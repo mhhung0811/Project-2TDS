@@ -10,6 +10,7 @@ public class PlayerIdleState : PlayerState
 
     public override void Enter()
     {
+        Debug.Log("Idle");
         base.Enter();
 
         Player.Animator.SetInteger("State", 0);

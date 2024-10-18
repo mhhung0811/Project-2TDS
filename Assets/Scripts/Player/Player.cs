@@ -6,12 +6,17 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public Animator Animator;
-    public Vector2 MovementInput;
-    public float MovementSpeed = 5f;
     public Rigidbody2D myRb;
-    public bool isFacingRight = true;
-    public bool isRolling = false;
-    public bool isPressWASD = false;
+    public Vector2 MovementInput;
+
+    public float MovementSpeed = 5f;
+    public float RollSpeed = 6f;
+    public float RollDuration = 0.5f;
+
+    public bool IsFacingRight = true;
+    public bool IsRolling = false;
+    public bool IsPressWASD = false;
+
     #region State Machine Variables
     public PlayerStateMachine StateMachine;
     public PlayerIdleState IdleState;
@@ -27,7 +32,8 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        MovementInput = Vector2.zero;
+        IsFacingRight = true;
+        MovementInput = new Vector2(1, 0);
         StateMachine.Initialize(IdleState);
     }
 
@@ -44,10 +50,10 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            isPressWASD = true;
+            IsPressWASD = true;
             MovementInput = context.ReadValue<Vector2>();
 
-            if(isRolling)
+            if(IsRolling)
             {
                 return;
             }
@@ -59,8 +65,8 @@ public class Player : MonoBehaviour
         }
         else if (context.canceled)
         {
-            isPressWASD = false;
-            if (isRolling)
+            IsPressWASD = false;
+            if (IsRolling)
             {
                 return;
             }
@@ -71,11 +77,11 @@ public class Player : MonoBehaviour
     public void Move()
     {
         myRb.velocity = MovementInput * MovementSpeed;
-        if (MovementInput.x > 0 && !isFacingRight)
+        if (MovementInput.x > 0 && !IsFacingRight)
         {
             Flip();
         }
-        else if (MovementInput.x < 0 && isFacingRight)
+        else if (MovementInput.x < 0 && IsFacingRight)
         {
             Flip();
         }
@@ -83,14 +89,13 @@ public class Player : MonoBehaviour
 
     public void Flip()
     {
-        isFacingRight = !isFacingRight;
+        IsFacingRight = !IsFacingRight;
         transform.Rotate(0f, 180f, 0f);
     }
 
     public void OnRoll(InputAction.CallbackContext context)
     {
-        Debug.Log("OnRoll");
-        if (context.performed)
+        if (context.performed && !IsRolling)
         {
             StateMachine.ChangeState(RollState);
         }

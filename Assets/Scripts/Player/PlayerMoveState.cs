@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerState
 {
-    private Vector2 movementInput;
+    private Vector2 _movementInput;
     public PlayerMoveState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
     }
 
     public override void Enter()
     {
+        Debug.Log("Move");
         base.Enter();
         Player.Animator.SetInteger("State", 1);
     }
@@ -28,10 +29,10 @@ public class PlayerMoveState : PlayerState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        movementInput = Player.MovementInput;
-        Player.Move();
 
-        if (movementInput == Vector2.zero)
+        _movementInput = Player.MovementInput;
+        Player.Move();
+        if (_movementInput == Vector2.zero)
         {
             PlayerStateMachine.ChangeState(Player.IdleState);
         }
