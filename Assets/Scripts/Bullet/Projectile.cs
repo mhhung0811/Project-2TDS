@@ -16,15 +16,20 @@ public class Projectile : Flyweight
 
     void Start()
     {
-        StartCoroutine(delayDespawn());
+        
     }
 
-    private void OnEnable()
+    private void Update()
     {
         float rotation = transform.rotation.eulerAngles.z;
         float xDirection = Mathf.Cos(rotation * Mathf.Deg2Rad);
         float yDirection = Mathf.Sin(rotation * Mathf.Deg2Rad);
         _rb.velocity = settings.speed * new Vector2(xDirection, yDirection);
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(delayDespawn());
     }
 
     private void OnDisable()

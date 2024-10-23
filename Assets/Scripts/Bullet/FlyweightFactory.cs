@@ -33,15 +33,15 @@ public class FlyweightFactory : MonoBehaviour
     
     public void Spawn(FlyweightType type, Vector2 position, float rotation)
     {
-        Debug.Log($"Spawning Flyweight: {type}");
-        Debug.Log($"Position: {position}");
-        Debug.Log($"Rotation: {rotation}");
+        //Debug.Log($"Spawning Flyweight: {type}");
+        //Debug.Log($"Position: {position}");
+        //Debug.Log($"Rotation: {rotation}");
         
         Flyweight fw = GetPoolFor(type)?.Get();
         if (fw == null) return;
         
         fw.transform.position = position;
-        fw.transform.eulerAngles = new Vector3(0, 0, rotation);
+        fw.transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
     public void ReturnToPool(Flyweight f) => GetPoolFor(f.settings.type)?.Release(f);
 

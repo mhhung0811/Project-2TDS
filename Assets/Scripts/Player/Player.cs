@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public Camera MainCamera;
     public Animator Animator;
     public Rigidbody2D myRb;
     public Vector2 MovementInput;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     public bool IsFacingRight = true;
     public bool IsRolling = false;
     public bool IsPressWASD = false;
+
+    public FactorySpawnEvent factoryDespawnEvent;
 
     #region State Machine Variables
     public PlayerStateMachine StateMachine;
@@ -44,6 +47,36 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         StateMachine.CurrentState.PhysicsUpdate();
+    }
+
+    public void Fire(InputAction.CallbackContext context)
+    {
+        
+        if (context.performed)
+        {
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+            Vector2 worldPosition = MainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, MainCamera.nearClipPlane));
+            
+            float angle = Vector2ToAngle(worldPosition - new Vector2(transform.position.x, transform.position.y));
+            Debug.Log(angle);
+
+            factoryDespawnEvent.Raise(FlyweightType.BasicBullet, this.transform.position, angle);
+        }
+  
+    }
+    public float Vector2ToAngle(Vector2 direction)
+    {
+        float angleInRadians = Mathf.Atan2(direction.y, direction.x);
+
+        float angleInDegrees = angleInRadians * Mathf.Rad2Deg;
+
+        if (angleInDegrees < 0)
+        {
+            angleInDegrees += 360f;
+        }
+
+        return angleInDegrees;
     }
 
     public void OnMove(InputAction.CallbackContext context)

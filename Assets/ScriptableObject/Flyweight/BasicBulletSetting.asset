@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   prefab: {fileID: 6895765342958289062, guid: bdf07e744af2dbd4db12a9addb67b605, type: 3}
-  speed: 10
+  speed: 16
   damage: 10
   factoryDespawnEvent: {fileID: 11400000, guid: 5f4e6c89e8b385e4984c58c297d8a0c3, type: 2}
