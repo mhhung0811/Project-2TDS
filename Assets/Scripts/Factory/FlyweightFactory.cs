@@ -5,12 +5,14 @@ using UnityEngine.Pool;
 public class FlyweightFactory : MonoBehaviour
 {
     [SerializeField] private List<FlyweightSetting> projectileSettings;
+    [SerializeField] private List<Transform> projectilePools;
     
     [SerializeField] private bool collectionCheck = true;
     [SerializeField] private int defaultCapacity = 10;
     [SerializeField] private int maxPoolSize = 100;
     
     private Dictionary<FlyweightType, FlyweightSetting> _flyweightSettingDictionary = new Dictionary<FlyweightType, FlyweightSetting>();
+    private Dictionary<FlyweightType, Transform> _flyweightPoolDictionary = new Dictionary<FlyweightType, Transform>();
     readonly Dictionary<FlyweightType, IObjectPool<Flyweight>> _pools = new();
     
     private IObjectPool<Flyweight> GetPoolFor(FlyweightType type)
@@ -33,13 +35,10 @@ public class FlyweightFactory : MonoBehaviour
     
     public void Spawn(FlyweightType type, Vector2 position, float rotation)
     {
-        //Debug.Log($"Spawning Flyweight: {type}");
-        //Debug.Log($"Position: {position}");
-        //Debug.Log($"Rotation: {rotation}");
-        
         Flyweight fw = GetPoolFor(type)?.Get();
         if (fw == null) return;
         
+        fw.transform.SetParent(_flyweightPoolDictionary[type]);
         fw.transform.position = position;
         fw.transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
@@ -51,6 +50,12 @@ public class FlyweightFactory : MonoBehaviour
         foreach (var setting in projectileSettings)
         {
             _flyweightSettingDictionary.Add(setting.type, setting);
+            
+            // Set up pool
+            var obj = new GameObject();
+            obj.transform.SetParent(transform);
+            obj.name = setting.type + " Pool";
+            _flyweightPoolDictionary.Add(setting.type, obj.transform);
         }
     }
 }
