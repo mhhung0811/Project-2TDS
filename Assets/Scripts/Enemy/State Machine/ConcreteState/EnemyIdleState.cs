@@ -24,15 +24,6 @@ public class EnemyIdleState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-
-        _direction = (_targetPos - Enemy.transform.position).normalized;
-        Debug.Log(_direction);
-        Enemy.MoveEnemy(_direction * Enemy.RamdomMovementSpeed);
-
-        if ((Enemy.transform.position - _targetPos).sqrMagnitude < 0.01f)
-        {
-            _targetPos = GetRamdonPointInCircle();
-        }
     }
 
     public override void PhysicsUpdate()
