@@ -21,7 +21,8 @@ public class GridManager : MonoBehaviour
 
     private void CreateGrid()
     {
-        Grid = new Node[GridSizeX, GridSizeY];
+		Debug.Log("Create Grid");
+		Grid = new Node[GridSizeX, GridSizeY];
         Vector2 worldBottomLeft = (Vector2)transform.position - Vector2.right * GridWorldSize.x/2 - Vector2.up * GridWorldSize.y / 2;
 
         for(int x = 0; x < GridSizeX; x++)

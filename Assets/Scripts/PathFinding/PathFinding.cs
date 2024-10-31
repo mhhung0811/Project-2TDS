@@ -1,25 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PathFinding : MonoBehaviour
 {
 	public Transform seeker, target;
-	GridManager GridManager;
+	public Vector2 startPointGrid;
+	GridManager gridManager;
 	private void Awake()
 	{
-		GridManager = GetComponent<GridManager>();
+		gridManager = GetComponent<GridManager>();
 	}
 
 	private void Update()
 	{
-		FindPath(seeker.position, target.position);
+		//FindPath(seeker.position, target.position);
 	}
-
+	public void OnFindPath(InputAction.CallbackContext context)
+	{
+		if (context.performed)
+		{
+			FindPath(seeker.position, target.position);
+		}
+	}
 	public List<Node> FindPath(Vector2 startPosition, Vector2 targetPosition)
 	{
-		Node startNode = GridManager.GetNodeFromWorldPoint(startPosition);
-		Node targetNode = GridManager.GetNodeFromWorldPoint(targetPosition);
+		Node startNode = gridManager.GetNodeFromWorldPoint(startPosition);
+		Node targetNode = gridManager.GetNodeFromWorldPoint(targetPosition);
 
 		List<Node> openSet = new List<Node>(); // List of node need to check
 		HashSet<Node> closedSet = new HashSet<Node>(); // List of node have checked
@@ -45,18 +53,18 @@ public class PathFinding : MonoBehaviour
 				return RetracePath(startNode,targetNode);
 			}
 
-			foreach (Node neighbor in GridManager.GetNeighbors(currentNode))
+			foreach (Node neighbor in gridManager.GetNeighbors(currentNode))
 			{
 				if (!neighbor.Walkable || closedSet.Contains(neighbor))
 				{
 					continue;
 				}
 
-				int newCostToNeighbor = currentNode.GCost + GridManager.GetDistance(currentNode, neighbor);
+				int newCostToNeighbor = currentNode.GCost + gridManager.GetDistance(currentNode, neighbor);
 				if (newCostToNeighbor < neighbor.GCost || !openSet.Contains(neighbor))
 				{
 					neighbor.GCost = newCostToNeighbor;
-					neighbor.HCost = GridManager.GetDistance(neighbor, targetNode);
+					neighbor.HCost = gridManager.GetDistance(neighbor, targetNode);
 					neighbor.Parent = currentNode;
 
 					if (!openSet.Contains(neighbor))
@@ -74,12 +82,16 @@ public class PathFinding : MonoBehaviour
 	{
 		List<Node> path = new List<Node>();
 		Node currentNode = endNode;
-		while (currentNode != null) { 
+
+		while (currentNode != startNode)
+		{
 			path.Add(currentNode);
 			currentNode = currentNode.Parent;
 		}
-		path.Reverse();
-		GridManager.path = path;
-		return path;
+
+		path.Reverse(); 
+		gridManager.path = path; 
+		return path; 
 	}
+
 }

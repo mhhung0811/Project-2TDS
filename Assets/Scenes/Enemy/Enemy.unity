@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 986055705}
   - component: {fileID: 986055708}
   - component: {fileID: 986055707}
+  - component: {fileID: 986055709}
   m_Layer: 0
   m_Name: A*
   m_TagString: Untagged
@@ -514,7 +515,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.24530433, g: 0.35435274, b: 0.4943396, a: 1}
+  m_Color: {r: 0.24705882, g: 0.4924723, b: 0.49411765, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -553,6 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seeker: {fileID: 64689609}
   target: {fileID: 488531603}
+  startPointGrid: {x: 6, y: 6}
 --- !u!114 &986055708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,11 +571,65 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   GridWorldSize: {x: 25, y: 15}
-  NodeRadius: 1
+  NodeRadius: 0.5
   NodeDiameter: 0
   GridSizeX: 0
   GridSizeY: 0
   Player: {fileID: 488531604}
+--- !u!114 &986055709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986055704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 746fc6c4ba2f4d044adb767c8a437c6f, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0ccc1d96-2e79-4088-9c01-d0b3c2d514a2
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 46f4a2ca-43ad-4cb2-9095-5639b08b8b0b
+    m_ActionName: Player/Roll[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 986055707}
+        m_TargetAssemblyTypeName: PathFinding, Assembly-CSharp
+        m_MethodName: OnFindPath
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 27d8b931-fee3-44f3-aa07-fb5aa20965fa
+    m_ActionName: Player/Attack[/Mouse/leftButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!114 &1336231201 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
@@ -709,7 +765,7 @@ Transform:
   m_GameObject: {fileID: 1379753368}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.71, y: -1.61, z: 0}
+  m_LocalPosition: {x: 4.8, y: -2.98, z: 0}
   m_LocalScale: {x: 1.201, y: 2.8761, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
