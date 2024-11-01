@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4796794010553010646}
   - component: {fileID: 2848320089499006292}
   - component: {fileID: 790851280412161788}
+  - component: {fileID: -4779760714336706812}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1439208483
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1436625960, guid: b46fc82d210cc554cadcebf2bf1b94ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -114,7 +115,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &4796794010553010646
 Animator:
   serializedVersion: 5
@@ -148,14 +149,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b317b5ad25d4e547b76249e7d0828b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
   Animator: {fileID: 4796794010553010646}
   myRb: {fileID: 4968054630321060433}
   MovementInput: {x: 0, y: 0}
   MovementSpeed: 5
   RollSpeed: 5
+  RollDuration: 0.5
   IsFacingRight: 1
   IsRolling: 0
   IsPressWASD: 0
+  factoryDespawnEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
 --- !u!114 &790851280412161788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 15e9d94ced283c944ac163da260d2267, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 746fc6c4ba2f4d044adb767c8a437c6f, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -213,8 +217,59 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 46f4a2ca-43ad-4cb2-9095-5639b08b8b0b
     m_ActionName: Player/Roll[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2848320089499006292}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 27d8b931-fee3-44f3-aa07-fb5aa20965fa
+    m_ActionName: Player/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!70 &-4779760714336706812
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345081005870679355}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.25, y: 1.25}
+  m_Direction: 0
