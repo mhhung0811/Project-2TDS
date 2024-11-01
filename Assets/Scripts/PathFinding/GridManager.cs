@@ -91,7 +91,7 @@ public class GridManager : MonoBehaviour
 		return GridSizeX * GridSizeY;
 	}
 
-	public List<Node> path;
+	//public List<Node> path;
 
 	private void OnDrawGizmos()
 	{
@@ -112,19 +112,19 @@ public class GridManager : MonoBehaviour
 			}
 		}
 
-		// Vẽ đường đi
-		if (path != null)
-		{
-			for (int i = 0; i < path.Count; i++)
-			{
-				Gizmos.color = Color.yellow;
-				Gizmos.DrawCube(path[i].WorldPosition, Vector3.one * (NodeDiameter));
-				if (i > 0)
-				{
-					Gizmos.DrawLine(path[i].WorldPosition, path[i - 1].WorldPosition);
-				}
-			}
-		}
+		//// Vẽ đường đi
+		//if (path != null)
+		//{
+		//	for (int i = 0; i < path.Count; i++)
+		//	{
+		//		Gizmos.color = Color.yellow;
+		//		Gizmos.DrawCube(path[i].WorldPosition, Vector3.one * (NodeDiameter));
+		//		if (i > 0)
+		//		{
+		//			Gizmos.DrawLine(path[i].WorldPosition, path[i - 1].WorldPosition);
+		//		}
+		//	}
+		//}
 	}
 
 }
