@@ -11,7 +11,6 @@ public class PlayerMoveState : PlayerState
 
     public override void Enter()
     {
-        Debug.Log("Move");
         base.Enter();
         Player.Animator.SetInteger("State", 1);
     }

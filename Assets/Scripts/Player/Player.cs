@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
 
     public void OnRoll(InputAction.CallbackContext context)
     {
-        if (context.performed && !IsRolling)
+        if (context.performed && !IsRolling && IsPressWASD)
         {
             StateMachine.ChangeState(RollState);
         }
