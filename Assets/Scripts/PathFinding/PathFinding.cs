@@ -9,8 +9,7 @@ using UnityEngine.InputSystem;
 
 public class PathFinding : MonoBehaviour
 {
-	public Transform seeker, target;
-	public Vector2 startPointGrid;
+
 	GridManager gridManager;
 	private void Awake()
 	{
@@ -23,10 +22,7 @@ public class PathFinding : MonoBehaviour
 	}
 	public void OnFindPath(InputAction.CallbackContext context)
 	{
-		if (context.performed)
-		{
-			StartCoroutine(FindPath(seeker.position, target.position));
-		}
+		
 	}
 
 	public void StartFindPath(Vector2 startPosition, Vector2 targetPosition)

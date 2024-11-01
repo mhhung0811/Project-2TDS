@@ -12,7 +12,7 @@ public class GridManager : MonoBehaviour
 	public int GridSizeX, GridSizeY;
 	public GameObject Player;
 	public bool DrawGridGizmos;
-	private void Start()
+	private void Awake()
     {
         NodeDiameter = NodeRadius * 2;
         GridSizeX = Mathf.RoundToInt(GridWorldSize.x / NodeDiameter);
