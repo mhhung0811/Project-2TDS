@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     public float NodeDiameter;
 	public int GridSizeX, GridSizeY;
 	public GameObject Player;
+	public bool DrawGridGizmos;
 	private void Start()
     {
         NodeDiameter = NodeRadius * 2;
@@ -85,6 +86,11 @@ public class GridManager : MonoBehaviour
 		return 14 * dstX + 10 * (dstY - dstX);
 	}
 
+	public int GetMaxSize()
+	{
+		return GridSizeX * GridSizeY;
+	}
+
 	public List<Node> path;
 
 	private void OnDrawGizmos()
@@ -92,7 +98,7 @@ public class GridManager : MonoBehaviour
 		// Vẽ hình vuông cho lưới
 		Gizmos.DrawWireCube(transform.position, new Vector3(GridWorldSize.x, GridWorldSize.y, 1));
 
-		if (Grid != null)
+		if (Grid != null && DrawGridGizmos)
 		{
 			Node playerNode = GetNodeFromWorldPoint(Player.transform.position);
 			foreach (Node n in Grid)
@@ -102,14 +108,21 @@ public class GridManager : MonoBehaviour
 				{
 					Gizmos.color = Color.cyan;
 				}
-				if (path != null)
+				Gizmos.DrawCube(n.WorldPosition, Vector3.one * (NodeDiameter - 0.05f));
+			}
+		}
+
+		// Vẽ đường đi
+		if (path != null)
+		{
+			for (int i = 0; i < path.Count; i++)
+			{
+				Gizmos.color = Color.yellow;
+				Gizmos.DrawCube(path[i].WorldPosition, Vector3.one * (NodeDiameter));
+				if (i > 0)
 				{
-					if(path.Contains(n))
-					{
-						Gizmos.color = Color.yellow;
-					}
+					Gizmos.DrawLine(path[i].WorldPosition, path[i - 1].WorldPosition);
 				}
-				Gizmos.DrawCube(n.WorldPosition, Vector3.one * (NodeDiameter - 0.1f));
 			}
 		}
 	}
