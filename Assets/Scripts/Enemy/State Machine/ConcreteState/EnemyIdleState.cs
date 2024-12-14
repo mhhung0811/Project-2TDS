@@ -13,7 +13,6 @@ public class EnemyIdleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        _targetPos = GetRamdonPointInCircle();
     }
 
     public override void Exit() 
@@ -34,10 +33,5 @@ public class EnemyIdleState : EnemyState
     public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
     {
         base.AnimationTriggerEvent(triggerType);
-    }
-
-    private Vector3 GetRamdonPointInCircle()
-    {
-        return Enemy.transform.position + (Vector3)Random.insideUnitCircle * Enemy.RandomMovementRange;
     }
 }

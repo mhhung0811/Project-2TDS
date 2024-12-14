@@ -5,5 +5,6 @@ using UnityEngine;
 public interface ITriggerCheckable
 {
     bool IsWithinStrikingDistance { get; set; }
-    void SetStrikingDistanceBool(bool isWithinStrikingDistance);
+    float AttackRange { get; set; }
+	void SetStrikingDistanceBool(bool isWithinStrikingDistance);
 }
