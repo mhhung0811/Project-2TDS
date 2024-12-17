@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EnemyAttackState : EnemyState
 {
+    private Enemy _enemy;
+    private EnemyStateMachine _enemyStateMachine;
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
-
+        _enemy = enemy;
+        _enemyStateMachine = enemyStateMachine;
     }
 
     public override void Enter()
@@ -22,6 +25,10 @@ public class EnemyAttackState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        if (_enemy.IsWithinStrikingDistance == false)
+        {
+            _enemyStateMachine.ChangeState(_enemy.ChaseState);
+        }
     }
 
     public override void PhysicsUpdate()
