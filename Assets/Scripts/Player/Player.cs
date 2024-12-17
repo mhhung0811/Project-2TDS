@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
             Vector2 worldPosition = MainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, MainCamera.nearClipPlane));
             
             float angle = Vector2ToAngle(worldPosition - new Vector2(transform.position.x, transform.position.y));
-            Debug.Log(angle);
+            //Debug.Log(angle);
 
             factoryDespawnEvent.Raise(FlyweightType.BasicBullet, this.transform.position, angle);
         }

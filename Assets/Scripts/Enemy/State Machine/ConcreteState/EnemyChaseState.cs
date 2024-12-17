@@ -1,27 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyChaseState : EnemyState
 {
-    public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
-    {
-    }
+	private Unit _unit;
+    private Enemy _enemy;
 
-    public override void Enter()
+	public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
+    {
+		_unit = enemy.GetComponent<Unit>();
+		_enemy = enemy;
+	}
+
+	public override void Enter()
     {
         base.Enter();
+        _unit.speed = _enemy.MoveSpeed; 
+        _unit.StartFindPath();
     }
 
     public override void Exit()
     {
         base.Exit();
-    }
+        _unit.speed = 0;
+		_unit.StopFindPath();
+	}
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-    }
+		_enemy.CheckForChangeAttackState();
+	}
 
     public override void PhysicsUpdate()
     {
@@ -30,6 +38,8 @@ public class EnemyChaseState : EnemyState
 
     public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
     {
-        base.AnimationTriggerEvent(triggerType);
-    }
+		base.AnimationTriggerEvent(triggerType);
+	}
+
+    
 }

@@ -20,7 +20,7 @@ public class PathFinding : MonoBehaviour
 	}
 	public void OnFindPath(InputAction.CallbackContext context)
 	{
-		
+
 	}
 
 	public void StartFindPath(Vector2 startPosition, Vector2 targetPosition)
@@ -37,13 +37,18 @@ public class PathFinding : MonoBehaviour
 		Node startNode = gridManager.GetNodeFromWorldPoint(startPosition);
 		Node targetNode = gridManager.GetNodeFromWorldPoint(targetPosition);
 
-		if(startNode.Walkable && targetNode.Walkable)
+		if(!targetNode.Walkable)
+		{
+			targetNode = FindClosestWalkableNode(targetNode);
+		}
+
+		if (startNode.Walkable && targetNode != null && targetNode.Walkable)
 		{
 			Heap<Node> openSet = new Heap<Node>(gridManager.GetMaxSize()); // List of node need to check
 			HashSet<Node> closedSet = new HashSet<Node>(); // List of node have checked
 			openSet.Add(startNode);
 
-			while(openSet.Count > 0)
+			while (openSet.Count > 0)
 			{
 				Node currentNode = openSet.RemoveFirst();
 				closedSet.Add(currentNode);
@@ -51,9 +56,9 @@ public class PathFinding : MonoBehaviour
 				if (currentNode == targetNode) // If current node is target node
 				{
 					sw.Stop();
-					print("Path found: " + sw.ElapsedMilliseconds + " ms");
+					//print("Path found: " + sw.ElapsedMilliseconds + " ms");
 					pathSuccess = true;
-					RetracePath(startNode,targetNode);
+					RetracePath(startNode, targetNode);
 					break;
 				}
 
@@ -84,14 +89,14 @@ public class PathFinding : MonoBehaviour
 			}
 		}
 		yield return null;
-		if(pathSuccess)
+		if (pathSuccess)
 		{
 			waypoints = RetracePath(startNode, targetNode);
 		}
 		PathRequestManager.Instance.FinishedProcessingPath(waypoints, pathSuccess);
 	}
 
-    public Vector2[] RetracePath(Node startNode, Node endNode)
+	public Vector2[] RetracePath(Node startNode, Node endNode)
 	{
 		List<Node> path = new List<Node>();
 		Node currentNode = endNode;
@@ -111,7 +116,7 @@ public class PathFinding : MonoBehaviour
 		List<Vector2> waypoints = new List<Vector2>();
 		Vector2 directionOld = Vector2.zero;
 
-		for(int i = 1; i < path.Count; i++)
+		for (int i = 1; i < path.Count; i++)
 		{
 			Vector2 directionNew = new Vector2(path[i - 1].GridX - path[i].GridX, path[i - 1].GridY - path[i].GridY);
 			if (directionNew != directionOld)
@@ -121,5 +126,25 @@ public class PathFinding : MonoBehaviour
 			directionOld = directionNew;
 		}
 		return waypoints.ToArray();
+	}
+
+	public Node FindClosestWalkableNode(Node unwalkableNode)
+	{
+		Node closestWalkableNode = null;
+		int shortestDistance = int.MaxValue;
+		foreach (Node neighbor in gridManager.GetNeighbors(unwalkableNode))
+		{
+			if (neighbor.Walkable)
+			{
+				int distance = gridManager.GetDistance(unwalkableNode, neighbor);
+				if (distance < shortestDistance)
+				{
+					shortestDistance = distance;
+					closestWalkableNode = neighbor;
+				}
+			}
+		}
+
+		return closestWalkableNode;
 	}
 }

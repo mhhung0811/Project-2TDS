@@ -5,13 +5,14 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
 	public Transform target;
-	float speed = 2;
+	public float speed;
 	Vector2[] path;
 	int targetIndex;
+	public bool onDrawGizmos;
 
 	void Start()
 	{
-		StartCoroutine(UpdatePath());
+		
 	}
 
 	private void Update()
@@ -30,12 +31,22 @@ public class Unit : MonoBehaviour
 		}
 	}
 
+	public void StartFindPath()
+	{
+		StartCoroutine("UpdatePath");
+	}
+
+	public void StopFindPath() {
+		StopCoroutine("UpdatePath");
+		StopCoroutine("FollowPath");
+	}
+
 	IEnumerator UpdatePath()
 	{
 		while (true)
 		{
 			PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-			yield return new WaitForSeconds(0.5f); 
+			yield return new WaitForSeconds(0.2f); 
 		}
 	}
 
@@ -68,6 +79,10 @@ public class Unit : MonoBehaviour
 
 	public void OnDrawGizmos()
 	{
+		if(!onDrawGizmos)
+		{
+			return;
+		}
 		if(path != null)
 		{
 			for (int i = targetIndex; i < path.Length; i++)
