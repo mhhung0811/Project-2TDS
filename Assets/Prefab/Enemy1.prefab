@@ -126,8 +126,9 @@ GameObject:
   - component: {fileID: 6907346933003755018}
   - component: {fileID: 712415394576712335}
   - component: {fileID: 6882285713865239888}
+  - component: {fileID: 2072130051263063549}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,10 +188,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1439208483
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 888776855, guid: a9736fb6fd61c8c41a3dc720d9d9a12f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -230,7 +231,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -262,7 +263,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &712415394576712335
 Animator:
   serializedVersion: 5
@@ -273,7 +274,7 @@ Animator:
   m_GameObject: {fileID: 7289365906783192301}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5298b66aaf0b1dc4c9b774967c5452b4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -297,5 +298,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
-  RandomMovementRange: 4
-  RamdomMovementSpeed: 2
+  <CurrentHealth>k__BackingField: {fileID: 11400000, guid: 71b64829ea594dc4faaa96d6c89acf9a, type: 2}
+  _animator: {fileID: 0}
+  <IsWithinStrikingDistance>k__BackingField: 0
+  <AttackRange>k__BackingField: 3
+  <MoveSpeed>k__BackingField: 3
+  <Obstacles>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &2072130051263063549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7289365906783192301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44dea100a204b024bb28556f5f4b824e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 2
+  onDrawGizmos: 1

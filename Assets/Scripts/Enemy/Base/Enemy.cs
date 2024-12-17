@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
     [field : SerializeField] public int MaxHealth { get; set; } = 6;
 	[field: SerializeField] public IntVariable CurrentHealth { get; set; }
     public Rigidbody2D RB { get; set; }
+    public Animator _animator;
     public bool IsFacingRight { get; set; } = true;
 	[field: SerializeField] public bool IsWithinStrikingDistance { get; set; }
     [field: SerializeField] public float AttackRange { get; set; } = 5f;
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
     {
         CurrentHealth.SetValue(MaxHealth);
 		RB = GetComponent<Rigidbody2D>();
+		_animator = GetComponent<Animator>();
 		unit = GetComponent<Unit>();
 		StateMachine.Initialize(ChaseState);
     }
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
     private void Update()
     {
         StateMachine.CurrentState.FrameUpdate();
+        CheckForFlip();
     }
 
     private void FixedUpdate()
@@ -59,6 +62,38 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
     {
     }
 
+    public void CheckForFlip()
+    {
+	    if (RB.velocity.x != 0)
+	    {
+		    if (RB.velocity.x > 0 && !IsFacingRight)
+		    {
+			    Flip();
+		    }
+		    else if (RB.velocity.x < 0 && IsFacingRight)
+		    {
+			    Flip();
+		    }
+	    }
+	    else
+	    {
+		    if (unit.target.position.x > transform.position.x && !IsFacingRight)
+		    {
+			    Flip();
+		    }
+		    else if (unit.target.position.x < transform.position.x && IsFacingRight)
+		    {
+			    Flip();
+		    }
+	    }
+    }
+
+    public void Flip()
+    {
+	    IsFacingRight = !IsFacingRight;
+	    transform.Rotate(0f, 180f, 0f);
+    }
+    
     public virtual void MoveEnemy(Vector2 velocity)
     {
         RB.velocity = velocity;

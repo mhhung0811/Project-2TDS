@@ -14,6 +14,7 @@ public class EnemyChaseState : EnemyState
 	public override void Enter()
     {
         base.Enter();
+        _enemy._animator.SetBool("isChasing", true);
         _unit.speed = _enemy.MoveSpeed; 
         _unit.StartFindPath();
     }
@@ -21,6 +22,7 @@ public class EnemyChaseState : EnemyState
     public override void Exit()
     {
         base.Exit();
+        _enemy._animator.SetBool("isChasing", false);
         _unit.speed = 0;
 		_unit.StopFindPath();
 	}
