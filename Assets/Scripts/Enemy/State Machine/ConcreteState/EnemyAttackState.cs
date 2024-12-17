@@ -15,11 +15,13 @@ public class EnemyAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        _enemy._animator.SetBool("isIdle", true);
     }
 
     public override void Exit()
     {
         base.Exit();
+        _enemy._animator.SetBool("isIdle", false);
     }
 
     public override void FrameUpdate()

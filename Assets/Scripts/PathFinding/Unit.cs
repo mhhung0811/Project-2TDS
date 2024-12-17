@@ -9,10 +9,11 @@ public class Unit : MonoBehaviour
 	Vector2[] path;
 	int targetIndex;
 	public bool onDrawGizmos;
+	private Rigidbody2D _rb;
 
 	void Start()
 	{
-		
+		_rb = GetComponent<Rigidbody2D>();
 	}
 
 	private void Update()
@@ -39,6 +40,7 @@ public class Unit : MonoBehaviour
 	public void StopFindPath() {
 		StopCoroutine("UpdatePath");
 		StopCoroutine("FollowPath");
+		_rb.velocity = Vector2.zero;
 	}
 
 	IEnumerator UpdatePath()
@@ -72,7 +74,8 @@ public class Unit : MonoBehaviour
 				currentWaypoint = path[targetIndex];
 			}
 
-			transform.position = Vector2.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+			// transform.position = Vector2.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+			_rb.velocity = (currentWaypoint - (Vector2)transform.position).normalized * speed;
 			yield return null;
 		}
 	}
