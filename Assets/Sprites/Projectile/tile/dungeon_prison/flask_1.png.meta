@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 15133120c8afc4846b2cc849d479e383
+guid: 05fad6887cdf7d043b221bc639d7e8ec
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,11 +48,11 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rouge_roll_0
+      name: flask_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
-        height: 40
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7efe11e96325c1a44b4f2ccd04ec222d
-      internalID: 125517881
+      spriteID: cee600fc1ae87dd459f00b7a66e78730
+      internalID: 672052954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rouge_roll_1
+      name: flask_1_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 16
         y: 0
-        width: 40
-        height: 40
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f28e388bc4170fc469fbea352652b244
-      internalID: -1154955373
+      spriteID: 579ddc866d43f5c41b6dec00fc7a21ab
+      internalID: 289582861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rouge_roll_2
+      name: flask_1_2
       rect:
         serializedVersion: 2
-        x: 80
+        x: 32
         y: 0
-        width: 40
-        height: 40
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 582518d92daf3b8468a04703560c066f
-      internalID: -1439073704
+      spriteID: 054009a85609e9d46b15e23095c6540b
+      internalID: -1062337342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rouge_roll_3
+      name: flask_1_3
       rect:
         serializedVersion: 2
-        x: 120
+        x: 48
         y: 0
-        width: 40
-        height: 40
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a616ed0df3e20864bb066b6236529e7d
-      internalID: 1374238201
+      spriteID: 27c9c2b287b03e24d83d9e1f656eafd9
+      internalID: -1795347699
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rouge_roll_0: 125517881
-      rouge_roll_1: -1154955373
-      rouge_roll_2: -1439073704
-      rouge_roll_3: 1374238201
+      flask_1_0: 672052954
+      flask_1_1: 289582861
+      flask_1_2: -1062337342
+      flask_1_3: -1795347699
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
