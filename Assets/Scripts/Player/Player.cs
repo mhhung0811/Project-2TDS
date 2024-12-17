@@ -5,7 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public Camera MainCamera;
+    public IntVariable HP;
+	public IntVariable MaxHP;
+
+	public Camera MainCamera;
     public Animator Animator;
     public Rigidbody2D myRb;
     public Vector2 MovementInput;
@@ -36,7 +39,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         IsFacingRight = true;
-        MovementInput = new Vector2(1, 0);
+		MovementInput = new Vector2(1, 0);
         StateMachine.Initialize(IdleState);
     }
 
