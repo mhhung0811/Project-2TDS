@@ -28,7 +28,7 @@ public class EnemyChaseState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-		CheckForChangeAttackState();
+		_enemy.CheckForChangeAttackState();
 	}
 
     public override void PhysicsUpdate()
@@ -41,16 +41,5 @@ public class EnemyChaseState : EnemyState
 		base.AnimationTriggerEvent(triggerType);
 	}
 
-    private void CheckForChangeAttackState()
-	{
-        if (_enemy.IsWithinStrikingDistance)
-        {
-            Vector2 direction = (_unit.target.transform.position - _enemy.transform.position).normalized;
-            if (!Physics2D.Raycast(_enemy.transform.position, direction, _enemy.AttackRange, _enemy.Obstacles))
-            {
-                _enemy.StateMachine.ChangeState(_enemy.AttackState);
-                Debug.Log("Chase -> Attack");
-			}
-        }
-	}
+    
 }
