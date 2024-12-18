@@ -124,7 +124,6 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 			if (!Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles))
 			{
 				StateMachine.ChangeState(AttackState);
-				Debug.Log("Chase -> Attack");
 			}
 		}
 	}

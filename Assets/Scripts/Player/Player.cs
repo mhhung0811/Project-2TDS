@@ -21,7 +21,10 @@ public class Player : MonoBehaviour
     public bool IsRolling = false;
     public bool IsPressWASD = false;
 
-    public FactorySpawnEvent factoryDespawnEvent;
+    public AWM awm;
+    public ShortGun shortGun;
+
+	public FactorySpawnEvent factoryDespawnEvent;
 
     #region State Machine Variables
     public PlayerStateMachine StateMachine;
@@ -38,7 +41,9 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        IsFacingRight = true;
+		awm = GetComponentInChildren<AWM>();
+		shortGun = GetComponentInChildren<ShortGun>();
+		IsFacingRight = true;
 		MovementInput = new Vector2(1, 0);
         StateMachine.Initialize(IdleState);
     }
@@ -62,12 +67,12 @@ public class Player : MonoBehaviour
             Vector2 worldPosition = MainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, MainCamera.nearClipPlane));
             
             float angle = Vector2ToAngle(worldPosition - new Vector2(transform.position.x, transform.position.y));
-            //Debug.Log(angle);
 
-            factoryDespawnEvent.Raise(FlyweightType.BasicBullet, this.transform.position, angle);
-        }
-  
-    }
+            //awm.Shoot(angle);
+            shortGun.Shoot(angle);
+		}
+
+	}
     public float Vector2ToAngle(Vector2 direction)
     {
         float angleInRadians = Mathf.Atan2(direction.y, direction.x);
