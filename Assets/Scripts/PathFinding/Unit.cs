@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-	public Transform target;
+	public Vector2Variable target;
 	public float speed;
 	Vector2[] path;
 	int targetIndex;
@@ -47,7 +47,7 @@ public class Unit : MonoBehaviour
 	{
 		while (true)
 		{
-			PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+			PathRequestManager.RequestPath(transform.position, target.CurrentValue, OnPathFound);
 			yield return new WaitForSeconds(0.2f); 
 		}
 	}

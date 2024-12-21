@@ -42,6 +42,12 @@ public class PathFinding : MonoBehaviour
 			targetNode = FindClosestWalkableNode(targetNode);
 		}
 
+		if (!startNode.Walkable)
+		{
+			startNode = FindClosestWalkableNode(startNode);
+		}
+
+
 		if (startNode.Walkable && targetNode != null && targetNode.Walkable)
 		{
 			Heap<Node> openSet = new Heap<Node>(gridManager.GetMaxSize()); // List of node need to check

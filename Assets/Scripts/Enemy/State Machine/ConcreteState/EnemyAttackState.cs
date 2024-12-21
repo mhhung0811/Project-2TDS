@@ -4,32 +4,29 @@ using UnityEngine;
 
 public class EnemyAttackState : EnemyState
 {
-    private Enemy _enemy;
-    private EnemyStateMachine _enemyStateMachine;
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
-        _enemy = enemy;
-        _enemyStateMachine = enemyStateMachine;
+
     }
 
     public override void Enter()
     {
         base.Enter();
-        _enemy._animator.SetBool("isIdle", true);
+        Enemy._animator.SetBool("isIdle", true);
     }
 
     public override void Exit()
     {
         base.Exit();
-        _enemy._animator.SetBool("isIdle", false);
+        Enemy._animator.SetBool("isIdle", false);
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        if (_enemy.IsWithinStrikingDistance == false)
+        if (Enemy.IsWithinStrikingDistance == false)
         {
-            _enemyStateMachine.ChangeState(_enemy.ChaseState);
+            EnemyStateMachine.ChangeState(Enemy.ChaseState);
         }
     }
 
