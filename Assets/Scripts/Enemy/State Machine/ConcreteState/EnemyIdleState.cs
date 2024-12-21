@@ -4,24 +4,20 @@ using UnityEngine;
 
 public class EnemyIdleState : EnemyState
 {
-    private Enemy _enemy;
-    private EnemyStateMachine _enemyStateMachine;
     public EnemyIdleState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
-        _enemy = enemy;
-        _enemyStateMachine = enemyStateMachine;
     }
 
     public override void Enter()
     {
         base.Enter();
-        _enemy._animator.SetBool("isIdle", true);
+        Enemy._animator.SetBool("isIdle", true);
     }
 
     public override void Exit() 
     { 
         base.Exit(); 
-        _enemy._animator.SetBool("isIdle", false);
+        Enemy._animator.SetBool("isIdle", false);
     }
 
     public override void FrameUpdate()

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public IntVariable HP;
 	public IntVariable MaxHP;
+    public Vector2Variable PlayerPos;
 
 	public Camera MainCamera;
     public Animator Animator;
@@ -50,7 +51,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        StateMachine.CurrentState.FrameUpdate();
+        PlayerPos.SetValue(transform.position);
+		StateMachine.CurrentState.FrameUpdate();
     }
     void FixedUpdate()
     {

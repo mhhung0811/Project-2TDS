@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
     [field: SerializeField] public float AttackRange { get; set; } = 5f;
 	[field: SerializeField] public float MoveSpeed { get; set; }
 	[field: SerializeField] public LayerMask Obstacles { get; set; }
-	public Unit unit { get; set; }
+	[field: SerializeField] public Vector2Variable PlayerPos { get; set; }
 
 
 	#region State Machine Variables
@@ -39,7 +39,6 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
         CurrentHealth.SetValue(MaxHealth);
 		RB = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
-		unit = GetComponent<Unit>();
 		StateMachine.Initialize(ChaseState);
     }
 
@@ -77,11 +76,11 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 	    }
 	    else
 	    {
-		    if (unit.target.position.x > transform.position.x && !IsFacingRight)
+		    if (PlayerPos.CurrentValue.x > transform.position.x && !IsFacingRight)
 		    {
 			    Flip();
 		    }
-		    else if (unit.target.position.x < transform.position.x && IsFacingRight)
+		    else if (PlayerPos.CurrentValue.x < transform.position.x && IsFacingRight)
 		    {
 			    Flip();
 		    }
@@ -120,7 +119,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 	{
 		if (IsWithinStrikingDistance)
 		{
-			Vector2 direction = (unit.target.transform.position - transform.position).normalized;
+			Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
 			if (!Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles))
 			{
 				StateMachine.ChangeState(AttackState);
@@ -153,9 +152,9 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 
 		try // object null when not in play mode
 		{
-            if (unit.target != null)
+            if (PlayerPos.CurrentValue != null)
             {
-                Vector2 direction = (unit.target.transform.position - transform.position).normalized;
+                Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
                 Gizmos.DrawRay(transform.position, direction * AttackRange);
             }
         }

@@ -346,6 +346,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9738ec3c79cc2b1479ef51257b4c9448, type: 2}
     - target: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
+      propertyPath: PlayerPos
+      value: 
+      objectReference: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
+    - target: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
       propertyPath: MainCamera
       value: 
       objectReference: {fileID: 2096350414}
@@ -426,7 +430,7 @@ PrefabInstance:
     - target: {fileID: 2072130051263063549, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 488531603}
+      objectReference: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
     - target: {fileID: 5801051325952995353, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.05
@@ -467,6 +471,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6882285713865239888, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
+      propertyPath: <PlayerPos>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
     - target: {fileID: 7289365906783192301, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: m_Name
       value: Enemy1 (2)
@@ -878,7 +886,7 @@ PrefabInstance:
     - target: {fileID: 2072130051263063549, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 488531603}
+      objectReference: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
     - target: {fileID: 5801051325952995353, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.44
@@ -919,6 +927,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6882285713865239888, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
+      propertyPath: <PlayerPos>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
     - target: {fileID: 7289365906783192301, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: m_Name
       value: Enemy1
@@ -8176,7 +8188,7 @@ PrefabInstance:
     - target: {fileID: 2072130051263063549, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 488531603}
+      objectReference: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
     - target: {fileID: 5801051325952995353, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.91
@@ -8217,6 +8229,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6882285713865239888, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
+      propertyPath: <PlayerPos>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
     - target: {fileID: 7289365906783192301, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: m_Name
       value: Enemy1 (1)
