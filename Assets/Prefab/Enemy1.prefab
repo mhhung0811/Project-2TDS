@@ -306,6 +306,7 @@ MonoBehaviour:
   <Obstacles>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
+  <PlayerPos>k__BackingField: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
 --- !u!114 &2072130051263063549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44dea100a204b024bb28556f5f4b824e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   speed: 2
   onDrawGizmos: 1

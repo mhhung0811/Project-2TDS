@@ -36,5 +36,6 @@ public class ShortGun : GunBase
 
 		currentAmmo--;
 		UpdateLastShootTime();
+		StateMachine.ChangeState(ShootingState);
 	}
 }

@@ -14,11 +14,14 @@ public class GunBase : MonoBehaviour, GunData
 	public float damage { get; set; }
 	public float bulletSpeed { get; set; }
 
+	public float timeShootingAnimation = 0.5f;
+
 	// GunStateMachine
 	public GunStateMachine StateMachine;
     public GunIdleState IdleState;
-	public GunShootingState ShootState;
+	public GunShootingState ShootingState;
 	public GunReloadingState ReloadState;
+	public GunOutOfAmmoState OutOfAmmoState;
 
 	public float lastShootTime;
 
@@ -26,8 +29,9 @@ public class GunBase : MonoBehaviour, GunData
 	{
 		StateMachine = new GunStateMachine();
 		IdleState = new GunIdleState(this, StateMachine);
-		ShootState = new GunShootingState(this, StateMachine);
+		ShootingState = new GunShootingState(this, StateMachine);
 		ReloadState = new GunReloadingState(this, StateMachine);
+		OutOfAmmoState = new GunOutOfAmmoState(this, StateMachine);
 	}
 
 	void Start()
@@ -71,7 +75,13 @@ public class GunBase : MonoBehaviour, GunData
 
 	public virtual bool CanShoot()
 	{
-		if(StateMachine.CurrentState == ReloadState)
+		if (currentAmmo == 0 && totalAmmo == 0)
+		{
+			StateMachine.ChangeState(OutOfAmmoState);
+			return false;
+		}
+
+		if (StateMachine.CurrentState == ReloadState)
 		{
 			return false;
 		}
@@ -81,6 +91,8 @@ public class GunBase : MonoBehaviour, GunData
 			StateMachine.ChangeState(ReloadState);
 			return false;
 		}
+
+		
 
 		return (Time.time > (lastShootTime + 1f/fireRate)) && currentAmmo > 0;
 	}

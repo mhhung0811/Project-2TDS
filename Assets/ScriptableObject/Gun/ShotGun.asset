@@ -15,8 +15,8 @@ MonoBehaviour:
   gunName: ShotGun
   maxAmmoPerMag: 5
   currentAmmo: 5
-  totalAmmo: 60
+  totalAmmo: 10
   reloadTime: 2
-  fireRate: 2
+  fireRate: 4
   damage: 100
   bulletSpeed: 0
