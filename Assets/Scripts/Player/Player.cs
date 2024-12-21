@@ -21,8 +21,9 @@ public class Player : MonoBehaviour
     public bool IsFacingRight = true;
     public bool IsRolling = false;
     public bool IsPressWASD = false;
+    public bool IsPressShoot = false;
 
-    public AWM awm;
+	public AWM awm;
     public ShortGun shortGun;
 
 	public FactorySpawnEvent factoryDespawnEvent;
@@ -53,27 +54,39 @@ public class Player : MonoBehaviour
     {
         PlayerPos.SetValue(transform.position);
 		StateMachine.CurrentState.FrameUpdate();
-    }
+        OnShoot();
+	}
     void FixedUpdate()
     {
         StateMachine.CurrentState.PhysicsUpdate();
     }
 
-    public void Fire(InputAction.CallbackContext context)
+    public void InputShoot(InputAction.CallbackContext context)
     {
         
         if (context.performed)
         {
-            Vector2 mousePosition = Mouse.current.position.ReadValue();
-
-            Vector2 worldPosition = MainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, MainCamera.nearClipPlane));
-            
-            float angle = Vector2ToAngle(worldPosition - new Vector2(transform.position.x, transform.position.y));
-
-            //awm.Shoot(angle);
-            shortGun.Shoot(angle);
+            IsPressShoot = true;
+		}
+		else if (context.canceled)
+		{
+			IsPressShoot = false;
 		}
 
+	}
+    public void OnShoot()
+    {
+        if (!IsPressShoot) return;
+        if(IsRolling) return;
+
+		Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+		Vector2 worldPosition = MainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, MainCamera.nearClipPlane));
+
+		float angle = Vector2ToAngle(worldPosition - new Vector2(transform.position.x, transform.position.y));
+
+		//awm.Shoot(angle);
+		shortGun.Shoot(angle);
 	}
     public float Vector2ToAngle(Vector2 direction)
     {
@@ -89,7 +102,7 @@ public class Player : MonoBehaviour
         return angleInDegrees;
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void InputMove(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -136,7 +149,7 @@ public class Player : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
-    public void OnRoll(InputAction.CallbackContext context)
+    public void InputRoll(InputAction.CallbackContext context)
     {
         if (context.performed && !IsRolling && IsPressWASD)
         {

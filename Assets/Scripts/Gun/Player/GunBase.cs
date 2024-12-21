@@ -14,8 +14,6 @@ public class GunBase : MonoBehaviour, GunData
 	public float damage { get; set; }
 	public float bulletSpeed { get; set; }
 
-	public float timeShootingAnimation = 0.5f;
-
 	// GunStateMachine
 	public GunStateMachine StateMachine;
     public GunIdleState IdleState;

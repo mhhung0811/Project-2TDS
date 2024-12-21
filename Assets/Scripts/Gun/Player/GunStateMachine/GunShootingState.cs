@@ -34,7 +34,7 @@ public class GunShootingState : GunState
 
 	public void CheckFinishShooting()
 	{
-		if (Time.time - _startTime >= Gun.timeShootingAnimation)
+		if (Time.time - _startTime >= (1.0f / Gun.fireRate))
 		{
 			Gun.StateMachine.ChangeState(Gun.IdleState);
 			Debug.Log("Finish shooting");
