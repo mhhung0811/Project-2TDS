@@ -133,14 +133,14 @@ public class Player : MonoBehaviour
     public void Move()
     {
         myRb.velocity = MovementInput * MovementSpeed;
-        if (MovementInput.x > 0 && !IsFacingRight)
-        {
-            Flip();
-        }
-        else if (MovementInput.x < 0 && IsFacingRight)
-        {
-            Flip();
-        }
+        //if (MovementInput.x > 0 && !IsFacingRight)
+        //{
+        //    Flip();
+        //}
+        //else if (MovementInput.x < 0 && IsFacingRight)
+        //{
+        //    Flip();
+        //}
     }    
 
     public void Flip()
@@ -157,8 +157,33 @@ public class Player : MonoBehaviour
         }
     }
 
-    #region Animation Triggers
-    public void AnimationTriggerEvent(AnimationTriggerType triggerEvent)
+	// Get position of mouse
+	public Vector2 GetMousePosition()
+	{
+		Vector2 mousePosition = Mouse.current.position.ReadValue();
+		Vector2 worldPosition = MainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, MainCamera.nearClipPlane));
+		return worldPosition;
+	}
+
+    public void UpdateAnimationByPosMouse()
+    {
+        Vector2 mousePosition = GetMousePosition();
+        Vector2 direction = mousePosition - new Vector2(transform.position.x, transform.position.y);
+        Animator.SetFloat("XInput", direction.x);
+		Animator.SetFloat("YInput", direction.y);
+		// Check Flip
+		if (direction.x > 0 && !IsFacingRight)
+		{
+			Flip();
+		}
+		else if (direction.x < 0 && IsFacingRight)
+		{
+			Flip();
+		}
+	}
+
+	#region Animation Triggers
+	public void AnimationTriggerEvent(AnimationTriggerType triggerEvent)
     {
         StateMachine.CurrentState.AnimationTriggerEvent(triggerEvent);
     }

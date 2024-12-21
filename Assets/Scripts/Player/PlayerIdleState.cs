@@ -11,9 +11,9 @@ public class PlayerIdleState : PlayerState
     public override void Enter()
     {
         base.Enter();
-
-        Player.Animator.SetInteger("State", 0);
+        Player.Animator.SetBool("IsMoving", false);
         Player.myRb.velocity = Vector2.zero;
+
     }
 
     public override void Exit()
@@ -24,7 +24,8 @@ public class PlayerIdleState : PlayerState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-    }
+        Player.UpdateAnimationByPosMouse();
+	}
 
     public override void PhysicsUpdate()
     {
