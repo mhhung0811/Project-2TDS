@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     public float MovementSpeed = 5f;
     public float RollSpeed = 6f;
-    public float RollDuration = 0.5f;
+    public float RollDuration = 0.4f;
 
     public bool IsFacingRight = true;
     public bool IsRolling = false;
