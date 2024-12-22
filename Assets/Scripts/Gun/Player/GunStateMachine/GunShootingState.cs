@@ -14,11 +14,13 @@ public class GunShootingState : GunState
 	{
 		base.Enter();
 		_startTime = Time.time;
+		Gun.animator.SetBool("IsShooting", true);
 		Debug.Log("Start shooting");
 	}
 
 	public override void Exit() 
 	{
+		Gun.animator.SetBool("IsShooting", false);
 	}
 
 	public override void FrameUpdate()

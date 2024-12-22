@@ -23,6 +23,8 @@ public class GunBase : MonoBehaviour, GunData
 
 	public float lastShootTime;
 
+	public Animator animator;
+
 	private void Awake()
 	{
 		StateMachine = new GunStateMachine();
@@ -37,6 +39,7 @@ public class GunBase : MonoBehaviour, GunData
 		InitGunData();
 		lastShootTime = -5;
 		StateMachine.Initialize(IdleState);
+		animator = GetComponent<Animator>();
 	}
 
     void Update()
@@ -89,8 +92,6 @@ public class GunBase : MonoBehaviour, GunData
 			StateMachine.ChangeState(ReloadState);
 			return false;
 		}
-
-		
 
 		return (Time.time > (lastShootTime + 1f/fireRate)) && currentAmmo > 0;
 	}

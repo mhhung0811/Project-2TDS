@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
 
 		float angle = Vector2ToAngle(worldPosition - new Vector2(transform.position.x, transform.position.y));
 
-		//awm.Shoot(angle);
+		// awm.Shoot(angle);
 		shortGun.Shoot(angle);
 	}
     public float Vector2ToAngle(Vector2 direction)
