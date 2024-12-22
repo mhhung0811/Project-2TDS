@@ -12,32 +12,34 @@ public class PlayerMoveState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        Player.Animator.SetInteger("State", 1);
-    }
+        Player.Animator.SetBool("IsMoving", true);
+        Debug.Log("Enter Move State");
+	}
 
     public override void Exit()
     {
         base.Exit();
-    }
+        Debug.Log("Exit Move State");
+	}
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-
+		Player.UpdateAnimationByPosMouse();
         _movementInput = Player.MovementInput;
-        Player.Move();
         if (_movementInput == Vector2.zero)
         {
             PlayerStateMachine.ChangeState(Player.IdleState);
         }
     }
 
-    public override void AnimationTriggerEvent(Player.AnimationTriggerType triggerType)
+	public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+		Player.Move();
+	}
+
+	public override void AnimationTriggerEvent(Player.AnimationTriggerType triggerType)
     {
         base.AnimationTriggerEvent(triggerType);
     }

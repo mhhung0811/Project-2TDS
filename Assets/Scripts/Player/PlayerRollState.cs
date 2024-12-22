@@ -15,18 +15,33 @@ public class PlayerRollState : PlayerState
     {
         Debug.Log("Roll");
         base.Enter();
-        Player.Animator.SetInteger("State", 2);
-        Player.IsRolling = true;
+        Player.Animator.SetBool("IsRolling", true);
+        Player.Animator.SetFloat("XInput", Player.MovementInput.x);
+		Player.Animator.SetFloat("YInput", Player.MovementInput.y);
+
+		Player.IsRolling = true;
         _rollDuration = Player.RollDuration;
         _rollDirection = Player.MovementInput;
 
-    }
+		// Check Flip
+		if (Player.MovementInput.x > 0 && !Player.IsFacingRight)
+		{
+			Player.Flip();
+		}
+		else if (Player.MovementInput.x < 0 && Player.IsFacingRight)
+		{
+			Player.Flip();
+		}
+
+	}
 
     public override void Exit()
     {
         base.Exit();
         Player.IsRolling = false;
-    }
+		Player.Animator.SetBool("IsRolling", false);
+		
+	}
 
     public override void FrameUpdate()
     {
