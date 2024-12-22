@@ -28,5 +28,6 @@ public class AWM : GunBase
 
 		currentAmmo--;
 		UpdateLastShootTime();
+		StateMachine.ChangeState(ShootingState);
 	}
 }

@@ -17,6 +17,6 @@ MonoBehaviour:
   currentAmmo: 5
   totalAmmo: 50
   reloadTime: 5
-  fireRate: 1
+  fireRate: 0.5
   damage: 100
   bulletSpeed: 4

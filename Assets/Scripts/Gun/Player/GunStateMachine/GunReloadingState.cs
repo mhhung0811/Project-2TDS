@@ -11,6 +11,7 @@ public class GunReloadingState : GunState
 	{
 		base.Enter();
 		startTime = Time.time;
+		Gun.animator.SetBool("IsReloading", true);
 		Debug.Log("Start reloading");
 	}
 
@@ -18,6 +19,7 @@ public class GunReloadingState : GunState
 	{
 		base.Exit();
 		startTime = 0;
+		Gun.animator.SetBool("IsReloading", false);
 	}
 
 	public override void FrameUpdate()

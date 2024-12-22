@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ShotGun
   m_EditorClassIdentifier: 
   gunName: ShotGun
-  maxAmmoPerMag: 20
-  currentAmmo: 20
+  maxAmmoPerMag: 4
+  currentAmmo: 4
   totalAmmo: 60
-  reloadTime: 2
-  fireRate: 8
+  reloadTime: 0.5
+  fireRate: 2
   damage: 100
   bulletSpeed: 0

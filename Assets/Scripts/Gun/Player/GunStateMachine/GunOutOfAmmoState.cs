@@ -15,7 +15,7 @@ public class GunOutOfAmmoState : GunState
 	public override void Exit()
 	{
 		base.Exit();
-	}
+	}	
 
 	public override void FrameUpdate()
 	{

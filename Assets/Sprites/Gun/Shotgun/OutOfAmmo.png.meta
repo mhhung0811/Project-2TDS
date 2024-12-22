@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 940402f1ecbbe7c4295e39ad648be749
+guid: f0d3e65b853c9f64094789f5535ab53e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,295 +97,295 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_0'
+      name: OutOfAmmo_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9889e870ce5b2cc44baeeb2a06cc6e88
-      internalID: -1944124963
+      spriteID: 648b6ef4522b61b47ae9ed60058ce6bc
+      internalID: -2092965960
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_1'
+      name: OutOfAmmo_1
       rect:
         serializedVersion: 2
         x: 160
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e5e8e4aee09c2a44b161e887ba0b9ac
-      internalID: -1651963867
+      spriteID: 851a99f3fc7d440458fbbe0e76603156
+      internalID: -2145280879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_2'
+      name: OutOfAmmo_2
       rect:
         serializedVersion: 2
         x: 320
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 131ef3692c12ada499aa410e43479f51
-      internalID: 525019414
+      spriteID: 84e0313ce662c2041990efcc69528801
+      internalID: -1263794171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_3'
+      name: OutOfAmmo_3
       rect:
         serializedVersion: 2
         x: 480
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23281489ed6a2bc4f9e77c0b0c6b38b2
-      internalID: 11593311
+      spriteID: 866dc50ef2e524f40acea9007dccb2f7
+      internalID: -556858104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_4'
+      name: OutOfAmmo_4
       rect:
         serializedVersion: 2
         x: 640
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e0d20128bf98b547b52f02b715d518d
-      internalID: -1715670892
+      spriteID: c6c61e874880e9d44931890574e7fe76
+      internalID: 1203986651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_5'
+      name: OutOfAmmo_5
       rect:
         serializedVersion: 2
         x: 800
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ef15528652572040b4ebb42dadd6ca0
-      internalID: -1218767866
+      spriteID: b744e0c2cf2098441815551e5b65b79b
+      internalID: 673790619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_6'
+      name: OutOfAmmo_6
       rect:
         serializedVersion: 2
         x: 960
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51fc098e5c6782546897c069deb4d9d9
-      internalID: 1602094391
+      spriteID: 8590e4cd213b00d47964a8a6ab98fc2b
+      internalID: -642142645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_7'
+      name: OutOfAmmo_7
       rect:
         serializedVersion: 2
         x: 1120
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a96c6006cdba9d4e8d037bf9176ddb5
-      internalID: -1876216716
+      spriteID: f24a19f2835760d46a14f20c7ece177a
+      internalID: -1703657086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_8'
+      name: OutOfAmmo_8
       rect:
         serializedVersion: 2
         x: 1280
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58edae079f6eee840bd5536a05c0c89d
-      internalID: -978627176
+      spriteID: 5d6c1c1d563a0b5429bfcfed9a333db8
+      internalID: -2067201001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_9'
+      name: OutOfAmmo_9
       rect:
         serializedVersion: 2
         x: 1440
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7463518aace2f648947f786696add20
-      internalID: 823996771
+      spriteID: 8efcbeb7cf4dc694e9221fe4c4757f8b
+      internalID: 1047022270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_10'
+      name: OutOfAmmo_10
       rect:
         serializedVersion: 2
         x: 1600
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2243952e3390e644b444f952e2e033b
-      internalID: -267272393
+      spriteID: 84b732a3be8dcdd43bcc6fc376b75ce2
+      internalID: -199201757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_11'
+      name: OutOfAmmo_11
       rect:
         serializedVersion: 2
         x: 1760
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d6aad274064ff3439693c2e936c232f
-      internalID: -1616399041
+      spriteID: 153ec1b420544c647833927d3e4ccacc
+      internalID: -1368781849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_12'
+      name: OutOfAmmo_12
       rect:
         serializedVersion: 2
         x: 1920
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9ef4cd8060a27f44aff0316858c9c9c
-      internalID: 1847777370
+      spriteID: b98ac53f5f737ec41842ef678f9a7deb
+      internalID: -463559233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_13'
+      name: OutOfAmmo_13
       rect:
         serializedVersion: 2
         x: 2080
         y: 0
         width: 112
-        height: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22ca457cdc609824bbe0455bb821fd1a
-      internalID: -1021366021
+      spriteID: cedf966f59c32644dae4caedffd5f544
+      internalID: -1016442393
       vertices: []
       indices: 
       edges: []
@@ -401,20 +401,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_0': -1944124963
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_1': -1651963867
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_10': -267272393
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_11': -1616399041
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_12': 1847777370
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_13': -1021366021
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_2': 525019414
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_3': 11593311
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_4': -1715670892
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_5': -1218767866
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_6': 1602094391
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_7': -1876216716
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_8': -978627176
-      '[SHOOTING_CHAMBER_OPEN] Shotgun_V1.02_9': 823996771
+      OutOfAmmo_0: -2092965960
+      OutOfAmmo_1: -2145280879
+      OutOfAmmo_10: -199201757
+      OutOfAmmo_11: -1368781849
+      OutOfAmmo_12: -463559233
+      OutOfAmmo_13: -1016442393
+      OutOfAmmo_2: -1263794171
+      OutOfAmmo_3: -556858104
+      OutOfAmmo_4: 1203986651
+      OutOfAmmo_5: 673790619
+      OutOfAmmo_6: -642142645
+      OutOfAmmo_7: -1703657086
+      OutOfAmmo_8: -2067201001
+      OutOfAmmo_9: 1047022270
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
