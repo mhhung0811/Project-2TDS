@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2106540768358155437}
   - component: {fileID: 5547229880886361940}
   - component: {fileID: 7758879126248839680}
+  - component: {fileID: 5773954178522005494}
   m_Layer: 0
   m_Name: AWM
   m_TagString: Untagged
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1439208483
   m_SortingLayer: 4
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -1931981337, guid: 14f8aa4a35044e04891e15efb4086321, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: ff9512063937c4a48aec47e81fa7cae2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +98,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e07bc983b212446892b851e0df7f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeShootingAnimation: 0.1
   lastShootTime: 0
+  animator: {fileID: 0}
   gunData: {fileID: 11400000, guid: 19815839d78c2d847bb8d854a9d05075, type: 2}
   factoryDespawnEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
+--- !u!95 &5773954178522005494
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901825539749122333}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 33b0c4eb1be35a74ea6e1c05d6333120, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
