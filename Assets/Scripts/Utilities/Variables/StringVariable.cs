@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,8 +14,15 @@ public class StringVariable : ScriptableObject
     public string CurrentValue
     {
         get => _currentValue;
-        set => _currentValue = value;
+        set
+        {
+            if (_currentValue == value) return;
+            _currentValue = value;
+            OnChanged?.Invoke(_currentValue);
+        }
     }
+    
+    public Action<string> OnChanged;
 
     private void OnEnable()
     {
