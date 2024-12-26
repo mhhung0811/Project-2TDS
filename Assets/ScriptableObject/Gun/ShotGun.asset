@@ -20,3 +20,4 @@ MonoBehaviour:
   fireRate: 2
   damage: 100
   bulletSpeed: 0
+  gunPrefab: {fileID: 858544987280695354, guid: ef1309822f4dcad488b50a1047cd356a, type: 3}

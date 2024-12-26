@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -24,9 +26,14 @@ public class Player : MonoBehaviour
     public bool IsPressShoot = false;
 
 	public AWM awm;
-    public ShortGun shortGun;
+    public ShotGun shotGun;
 
-	public FactorySpawnEvent factoryDespawnEvent;
+	public FactorySpawnEvent factorySpawnEvent;
+	public VoidIntVector2FloatFuncProvider spawnGunPrefFunc;
+
+	[Header("Interaction Zone")]
+	public float interactionOffSet = 0.25f;
+	public CircleCollider2D interactCollider;
 
     #region State Machine Variables
     public PlayerStateMachine StateMachine;
@@ -44,16 +51,19 @@ public class Player : MonoBehaviour
     void Start()
     {
 		awm = GetComponentInChildren<AWM>();
-		shortGun = GetComponentInChildren<ShortGun>();
+		shotGun = GetComponentInChildren<ShotGun>();
 		IsFacingRight = true;
 		MovementInput = new Vector2(1, 0);
         StateMachine.Initialize(IdleState);
+        
+        spawnGunPrefFunc.GetFunction()?.Invoke((0, Vector2.zero, 0));
     }
 
     void Update()
     {
         PlayerPos.SetValue(transform.position);
 		StateMachine.CurrentState.FrameUpdate();
+		UpdateInteractColliderByPosMouse();
         OnShoot();
 	}
     void FixedUpdate()
@@ -86,7 +96,7 @@ public class Player : MonoBehaviour
 		float angle = Vector2ToAngle(worldPosition - new Vector2(transform.position.x, transform.position.y));
 
 		// awm.Shoot(angle);
-		shortGun.Shoot(angle);
+		shotGun.Shoot(angle);
 	}
     public float Vector2ToAngle(Vector2 direction)
     {
@@ -141,7 +151,7 @@ public class Player : MonoBehaviour
         //{
         //    Flip();
         //}
-    }    
+    }
 
     public void Flip()
     {
@@ -155,6 +165,19 @@ public class Player : MonoBehaviour
         {
             StateMachine.ChangeState(RollState);
         }
+    }
+    
+    public void InputInteract(InputAction.CallbackContext context)
+    {
+	    if (context.performed)
+	    {
+		    Interact();
+	    }
+    }
+
+    public void Interact()
+    {
+	    interactCollider.GetComponent<InteractionZone>().Interact(this.gameObject);
     }
 
 	// Get position of mouse
@@ -180,6 +203,25 @@ public class Player : MonoBehaviour
 		{
 			Flip();
 		}
+	}
+    
+    public void UpdateInteractColliderByPosMouse()
+    {
+		// Get the mouse position in world coordinates
+		Vector2 mousePosition = GetMousePosition();
+
+		// Calculate the angle between the player and the mouse
+		Vector2 direction = mousePosition - (Vector2)transform.position;
+		float angle = Mathf.Atan2(direction.y, direction.x); // Angle in radians
+
+		Vector2 newColliderPosition = new Vector2(
+			transform.position.x + Mathf.Cos(angle) * interactionOffSet,
+			transform.position.y + Mathf.Sin(angle) * interactionOffSet
+		);
+		// Calculate the new position of the collider using trigonometry
+
+		// Update the collider's position
+		interactCollider.transform.position = newColliderPosition;
 	}
 
 	#region Animation Triggers

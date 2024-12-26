@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AWM : GunBase
 {
-	public GunDataSO gunData;
+	public GunData gunData;
 	public FactorySpawnEvent factoryDespawnEvent;
 
 	public override void InitGunData()
@@ -12,6 +12,18 @@ public class AWM : GunBase
 		gunName = gunData.gunName;
 		maxAmmoPerMag = gunData.maxAmmoPerMag;
 		currentAmmo = gunData.currentAmmo;
+		totalAmmo = gunData.totalAmmo;
+		reloadTime = gunData.reloadTime;
+		fireRate = gunData.fireRate;
+		damage = gunData.damage;
+		bulletSpeed = gunData.bulletSpeed;
+	}
+	
+	public override void ResetGunData()
+	{
+		gunName = gunData.gunName;
+		maxAmmoPerMag = gunData.maxAmmoPerMag;
+		currentAmmo = gunData.maxAmmoPerMag;
 		totalAmmo = gunData.totalAmmo;
 		reloadTime = gunData.reloadTime;
 		fireRate = gunData.fireRate;

@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface GunData
+public interface IGunData
 {
     public string gunName { get; set; }
     

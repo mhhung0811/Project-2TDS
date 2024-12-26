@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunBase : MonoBehaviour, GunData
+public class GunBase : MonoBehaviour, IGunData
 {
+	public int gunId { get; private set; }
+	
 	// GunData
 	public string gunName { get; set; }
 	public int maxAmmoPerMag { get; set; }
@@ -21,9 +23,9 @@ public class GunBase : MonoBehaviour, GunData
 	public GunReloadingState ReloadState;
 	public GunOutOfAmmoState OutOfAmmoState;
 
-	public float lastShootTime;
+	public float lastShootTime { get; private set; }
 
-	public Animator animator;
+	public Animator animator { get; private set; }
 
 	private void Awake()
 	{
@@ -62,6 +64,20 @@ public class GunBase : MonoBehaviour, GunData
 		fireRate = 4;
 		damage = 10;
 		bulletSpeed = 100;
+	}
+
+	public virtual void ResetGunData()
+	{
+		gunName = "GunBase";
+		maxAmmoPerMag = 30;
+		currentAmmo = 30;
+		totalAmmo = 150;
+		reloadTime = 3;
+		fireRate = 4;
+		damage = 10;
+		bulletSpeed = 100;
+		
+		Debug.Log("Reset Base Gun Data");
 	}
 
 	public virtual void Shoot(float angle)
@@ -109,5 +125,10 @@ public class GunBase : MonoBehaviour, GunData
 			currentAmmo += totalAmmo;
 			totalAmmo = 0;
 		}
+	}
+	
+	public void SetGunId(int id)
+	{
+		gunId = id;
 	}
 }

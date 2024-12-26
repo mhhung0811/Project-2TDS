@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewGun", menuName = "NewGunDataSO")]
-public class GunDataSO : ScriptableObject
+public class GunData : ScriptableObject
 {
 	[Header("Basic Info")]
 	public string gunName;

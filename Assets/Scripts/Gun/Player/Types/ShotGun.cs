@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ShortGun : GunBase
+public class ShotGun : GunBase
 {
-    public GunDataSO gunDataSO;
+    public GunData gunData;
 	public FactorySpawnEvent factoryDespawnEvent;
 	
 	private Coroutine reloadingCoroutine;
@@ -14,14 +13,26 @@ public class ShortGun : GunBase
 
 	public override void InitGunData()
 	{
-		gunName = gunDataSO.gunName;
-		maxAmmoPerMag = gunDataSO.maxAmmoPerMag;
-		currentAmmo = gunDataSO.maxAmmoPerMag;
-		totalAmmo = gunDataSO.totalAmmo;
-		reloadTime = gunDataSO.reloadTime;
-		fireRate = gunDataSO.fireRate;
-		damage = gunDataSO.damage;
-		bulletSpeed = gunDataSO.bulletSpeed;
+		gunName = gunData.gunName;
+		maxAmmoPerMag = gunData.maxAmmoPerMag;
+		currentAmmo = gunData.maxAmmoPerMag;
+		totalAmmo = gunData.totalAmmo;
+		reloadTime = gunData.reloadTime;
+		fireRate = gunData.fireRate;
+		damage = gunData.damage;
+		bulletSpeed = gunData.bulletSpeed;
+	}
+
+	public override void ResetGunData()
+	{
+		gunName = gunData.gunName;
+		maxAmmoPerMag = gunData.maxAmmoPerMag;
+		currentAmmo = gunData.maxAmmoPerMag;
+		totalAmmo = gunData.totalAmmo;
+		reloadTime = gunData.reloadTime;
+		fireRate = gunData.fireRate;
+		damage = gunData.damage;
+		bulletSpeed = gunData.bulletSpeed;
 	}
 
 	public override bool CanShoot()

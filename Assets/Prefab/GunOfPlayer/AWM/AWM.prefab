@@ -98,8 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e07bc983b212446892b851e0df7f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastShootTime: 0
-  animator: {fileID: 0}
   gunData: {fileID: 11400000, guid: 19815839d78c2d847bb8d854a9d05075, type: 2}
   factoryDespawnEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
 --- !u!95 &5773954178522005494
