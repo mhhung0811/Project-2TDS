@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3797591868954835461}
   - component: {fileID: 8672081258048049005}
   - component: {fileID: 2402932659261169764}
+  - component: {fileID: 954597959220317465}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Untagged
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 1439208483
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 888776855, guid: a9736fb6fd61c8c41a3dc720d9d9a12f, type: 3}
+  m_Sprite: {fileID: -775876169, guid: e9a382495f8e0b041afef2f0bcb14b8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -161,7 +162,7 @@ Animator:
   m_GameObject: {fileID: 2563951034689522211}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5298b66aaf0b1dc4c9b774967c5452b4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9777ae60d7faec141b3b94e657493b64, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -187,6 +188,28 @@ MonoBehaviour:
   target: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   speed: 2
   onDrawGizmos: 1
+--- !u!114 &954597959220317465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563951034689522211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78031eaa96553bf438469ceac9bc793a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 6
+  <CurrentHealth>k__BackingField: {fileID: 11400000, guid: 71b64829ea594dc4faaa96d6c89acf9a, type: 2}
+  _animator: {fileID: 8672081258048049005}
+  <IsWithinStrikingDistance>k__BackingField: 0
+  <AttackRange>k__BackingField: 4
+  <MoveSpeed>k__BackingField: 4
+  <Obstacles>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64
+  <PlayerPos>k__BackingField: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
 --- !u!1 &3125237204155563121
 GameObject:
   m_ObjectHideFlags: 0
