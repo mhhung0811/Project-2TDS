@@ -24,9 +24,8 @@ public class Player : MonoBehaviour
     public bool IsRolling = false;
     public bool IsPressWASD = false;
     public bool IsPressShoot = false;
-
-	public AWM awm;
-    public ShotGun shotGun;
+    
+    private PlayerInventory _inventory;
 
 	public FactorySpawnEvent factorySpawnEvent;
 	public VoidIntVector2FloatFuncProvider spawnGunPrefFunc;
@@ -50,8 +49,7 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-		awm = GetComponentInChildren<AWM>();
-		shotGun = GetComponentInChildren<ShotGun>();
+		_inventory = GetComponent<PlayerInventory>();
 		IsFacingRight = true;
 		MovementInput = new Vector2(1, 0);
         StateMachine.Initialize(IdleState);
@@ -96,7 +94,8 @@ public class Player : MonoBehaviour
 		float angle = Vector2ToAngle(worldPosition - new Vector2(transform.position.x, transform.position.y));
 
 		// awm.Shoot(angle);
-		shotGun.Shoot(angle);
+		// shotGun.Shoot(angle);
+		_inventory.GetHoldingGun().Shoot(angle);
 	}
     public float Vector2ToAngle(Vector2 direction)
     {
@@ -179,7 +178,47 @@ public class Player : MonoBehaviour
     {
 	    interactCollider.GetComponent<InteractionZone>().Interact(this.gameObject);
     }
+    
+    public void InputSwapGun1(InputAction.CallbackContext context)
+	{
+	    if (context.performed)
+	    {
+		    SwapGun(0);
+	    }
+	}
+	public void InputSwapGun2(InputAction.CallbackContext context)
+	{
+		if (context.performed)
+		{
+			SwapGun(1);
+		}
+	}
+	public void InputSwapGun3(InputAction.CallbackContext context)
+	{
+		if (context.performed)
+		{
+			SwapGun(2);
+		}
+	}
+	
+	public void SwapGun(int index)
+	{
+		_inventory.SwitchGun(index);
+	}
 
+	public void InputDropGun(InputAction.CallbackContext context)
+	{
+		if (context.performed)
+		{
+			DropGun();
+		}
+	}
+
+	public void DropGun()
+	{
+		_inventory.DropGun();
+	}
+	
 	// Get position of mouse
 	public Vector2 GetMousePosition()
 	{

@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnGunPrefFunc: {fileID: 11400000, guid: 4c7a28b658a524a439b381d958c09a36, type: 2}
-  getGunFunc: {fileID: 0}
+  getGunFunc: {fileID: 11400000, guid: 6de501ceb909a5a45b8b9d7a38453d77, type: 2}

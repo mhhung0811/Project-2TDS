@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,15 @@ public class Vector2Variable : ScriptableObject
 	public Vector2 CurrentValue
 	{
 		get => _currentValue;
-		set => _currentValue = value;
+		set
+		{
+			if (_currentValue == value) return;
+			_currentValue = value;
+			OnChanged?.Invoke(_currentValue);
+		}
 	}
+
+	public Action<Vector2> OnChanged;
 
 	public void SetValue(Vector2 value)
 	{

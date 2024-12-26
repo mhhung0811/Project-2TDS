@@ -13,8 +13,18 @@ public class GunPref : MonoBehaviour, IInteractable
     }
     public void Interact(GameObject go)
     {
-        Debug.Log("Is interacting with gun pref");
+        // Return gun pref
         returnGunPrefFunc.GetFunction()?.Invoke(gameObject);
-        // getGunFunc.GetFunction()?.Invoke((gunId));
+        
+        // Get gun
+        GameObject obj = getGunFunc.GetFunction()?.Invoke((gunId));
+        if (obj != null && obj.GetComponent<GunBase>() != null)
+        {
+            go.GetComponent<PlayerInventory>().AddGun(obj.GetComponent<GunBase>());
+        }
+        else
+        {
+            Debug.LogError("Failed to get gun from gun pref.");
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -6,7 +7,29 @@ public class PlayerInventory : MonoBehaviour
     private List<GunBase> gunCollection = new List<GunBase>();
     
     private GunBase holdingGun;
+ 
+    public int gunInventorySize = 3;
     
+    public Transform gunHolder;
+    
+    public GameObjectIntFuncProvider getGunFunc;
+    public VoidGameObjectFuncProvider returnGunFunc;
+    public VoidIntVector2FloatFuncProvider getGunPrefFunc;
+
+    private void Start()
+    {
+        // Get gun id 1
+        var gun = getGunFunc.GetFunction()?.Invoke((1));
+        if (gun != null && gun.GetComponent<GunBase>() != null)
+        {
+            AddGun(gun.GetComponent<GunBase>());
+        }
+        else
+        {
+            Debug.LogError("Failed to get gun from gun pref.");
+        }
+    }
+
     /// <summary>
     /// Adds a gun to the player's inventory.
     /// </summary>
@@ -18,23 +41,81 @@ public class PlayerInventory : MonoBehaviour
             return;
         }
 
+        // Check if the inventory is full
+        if (gunCollection.Count >= gunInventorySize)
+        {
+            Debug.LogWarning($"Inventory full! Dropping the currently held gun to add {newGun.name}.");
+
+            // Drop the currently held gun to make room for the new gun
+            DropGun();
+        }
+        
+        // Move from pool to player
+        newGun.transform.SetParent(gunHolder);
+        newGun.transform.localPosition = new Vector3(0.3f, 0, 0);
+        
         gunCollection.Add(newGun);
-        Debug.Log($"Added {newGun.name} to inventory.");
+        EquipGun(newGun);
+        // Debug.Log($"Added {newGun.name} to inventory.");
     }
     
     /// <summary>
-    /// Removes a gun from the player's inventory.
+    /// Drop holding gun from the player's inventory.
     /// </summary>
-    public void RemoveGun(GunBase gun)
+    public void DropGun()
     {
-        if (gunCollection.Remove(gun))
+        if (holdingGun != null)
         {
-            Debug.Log($"Removed {gun.name} from inventory.");
+            // Prevent dropping the last gun
+            if (gunCollection.Count == 1)
+            {
+                Debug.LogWarning("Cannot drop the last gun in the inventory!");
+                return;
+            }
+            
+            if (gunCollection.Remove(holdingGun))
+            {
+                Debug.Log($"Drop {holdingGun.name}.");
+                
+                // Return gun and generate gun pref
+                returnGunFunc.GetFunction()?.Invoke(holdingGun.gameObject);
+                getGunPrefFunc.GetFunction()?.Invoke((holdingGun.gunId, transform.position, 0));
+                
+                holdingGun = null;
+                
+                // Equip the next available gun in the inventory, if any
+                if (gunCollection.Count > 0)
+                {
+                    EquipGun(gunCollection[0]);
+                }
+                else
+                {
+                    Debug.Log("No guns left in inventory.");
+                }
+            }
+            else
+            {
+                Debug.LogError($"Failed to remove {holdingGun.name}: Gun not found in inventory.");
+            }
         }
         else
         {
-            Debug.LogError($"Failed to remove {gun.name}: Gun not found in inventory.");
+            Debug.LogError("No gun is currently equipped.");
         }
+    }
+    
+    /// <summary>
+    /// Switches to a gun based on its index in the collection.
+    /// </summary>
+    public void SwitchGun(int gunIndex)
+    {
+        if (gunIndex < 0 || gunIndex >= gunCollection.Count)
+        {
+            Debug.LogWarning($"Invalid gun index: {gunIndex}. Cannot switch to that gun.");
+            return;
+        }
+
+        EquipGun(gunCollection[gunIndex]);
     }
     
     /// <summary>
@@ -48,24 +129,17 @@ public class PlayerInventory : MonoBehaviour
             return;
         }
 
-        holdingGun = gun;
-        Debug.Log($"Equipped {holdingGun.name}.");
-    }
-    
-    /// <summary>
-    /// Unequips the currently held gun.
-    /// </summary>
-    public void UnequipGun()
-    {
+        // Deactivate the currently held gun
         if (holdingGun != null)
         {
-            Debug.Log($"Unequipped {holdingGun.name}.");
-            holdingGun = null;
+            holdingGun.gameObject.SetActive(false);
         }
-        else
-        {
-            Debug.LogError("No gun is currently equipped.");
-        }
+        
+        // Equip the new gun
+        holdingGun = gun;
+        holdingGun.gameObject.SetActive(true);
+        
+        Debug.Log($"Equipped {holdingGun.name}.");
     }
     
     /// <summary>
@@ -73,6 +147,10 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     public GunBase GetHoldingGun()
     {
+        if (holdingGun == null)
+        {
+            Debug.Log("No gun is currently equipped.");
+        }
         return holdingGun;
     }
 
