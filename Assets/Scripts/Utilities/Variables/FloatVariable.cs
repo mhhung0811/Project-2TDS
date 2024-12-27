@@ -11,8 +11,15 @@ public class FloatVariable : ScriptableObject
     public float CurrentValue
     {
         get => _currentValue;
-        set => _currentValue = value;
+        set
+        {
+            if (Mathf.Approximately(_currentValue, value)) return;
+            _currentValue = value;
+            OnChanged?.Invoke(_currentValue);
+        }
     }
+    
+    public Action<float> OnChanged;
     
     public void SetValue(float value)
     {

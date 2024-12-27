@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TestPlayer : MonoBehaviour
 {
-    public FactorySpawnEvent factorySpawnEvent;
+    [FormerlySerializedAs("factorySpawnEvent")] public FlyweightTypeVector2FloatEvent flyweightTypeVector2FloatEvent;
     
     void Start()
     {
@@ -15,7 +15,7 @@ public class TestPlayer : MonoBehaviour
     {
         while (true)
         {
-            factorySpawnEvent.Raise(FlyweightType.BasicBullet, transform.position, 0);
+            flyweightTypeVector2FloatEvent.Raise((FlyweightType.BasicBullet, new Vector2(this.transform.position.x, this.transform.position.y), 0));
             yield return new WaitForSeconds(0.5f);
         }
     }

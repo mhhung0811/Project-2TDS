@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AWM : GunBase
 {
-	public GunDataSO gunData;
-	public FactorySpawnEvent factoryDespawnEvent;
+	public GunData gunData;
+	public FlyweightTypeVector2FloatEvent takeBulletEvent;
 
 	public override void InitGunData()
 	{
@@ -18,13 +16,25 @@ public class AWM : GunBase
 		damage = gunData.damage;
 		bulletSpeed = gunData.bulletSpeed;
 	}
+	
+	public override void ResetGunData()
+	{
+		gunName = gunData.gunName;
+		maxAmmoPerMag = gunData.maxAmmoPerMag;
+		currentAmmo = gunData.maxAmmoPerMag;
+		totalAmmo = gunData.totalAmmo;
+		reloadTime = gunData.reloadTime;
+		fireRate = gunData.fireRate;
+		damage = gunData.damage;
+		bulletSpeed = gunData.bulletSpeed;
+	}
 
 
 	public override void Shoot(float angle)
 	{
 		if (!CanShoot()) return;
 
-		factoryDespawnEvent.Raise(FlyweightType.BasicBullet, this.transform.position, angle);
+		takeBulletEvent.Raise((FlyweightType.BasicBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
 
 		currentAmmo--;
 		UpdateLastShootTime();

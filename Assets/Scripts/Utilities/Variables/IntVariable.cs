@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,15 @@ public class IntVariable : ScriptableObject
     public int CurrentValue
     {
         get => _currentValue;
-        set => _currentValue = value;
+        set
+        {
+            if (_currentValue == value) return;
+            _currentValue = value;
+            OnChanged?.Invoke(_currentValue);
+        }
     }
+    
+    public event Action<int> OnChanged;
     
     public void SetValue(int value)
     {
