@@ -26,8 +26,7 @@ public class Player : MonoBehaviour
     public bool IsPressShoot = false;
     
     private PlayerInventory _inventory;
-
-	public FactorySpawnEvent factorySpawnEvent;
+    
 	public VoidIntVector2FloatFuncProvider spawnGunPrefFunc;
 
 	[Header("Interaction Zone")]

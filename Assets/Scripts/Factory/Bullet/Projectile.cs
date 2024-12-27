@@ -40,6 +40,6 @@ public class Projectile : Flyweight
     IEnumerator delayDespawn()
     {
         yield return new WaitForSeconds(2);
-        settings.factoryDespawnEvent.Raise(this);
+        settings.flyweightEvent.Raise(this);
     }
 }

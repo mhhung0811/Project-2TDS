@@ -6,6 +6,8 @@ using UnityEngine.Serialization;
 
 public class FuncConnector<TResult, TParams> : MonoBehaviour
 {
+    public string description;
+    
     [Tooltip("Reference to the FuncProvider where the function will be assigned.")]
     public FuncProvider<TResult, TParams> funcProvider;
 

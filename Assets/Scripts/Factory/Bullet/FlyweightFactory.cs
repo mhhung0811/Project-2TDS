@@ -33,14 +33,14 @@ public class FlyweightFactory : MonoBehaviour
         return pool;
     }
     
-    public void Spawn(FlyweightType type, Vector2 position, float rotation)
+    public void Spawn((FlyweightType type, Vector2 position, float rotation) parameters)
     {
-        Flyweight fw = GetPoolFor(type)?.Get();
+        Flyweight fw = GetPoolFor(parameters.type)?.Get();
         if (fw == null) return;
         
-        fw.transform.SetParent(_flyweightPoolDictionary[type]);
-        fw.transform.position = position;
-        fw.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        fw.transform.SetParent(_flyweightPoolDictionary[parameters.type]);
+        fw.transform.position = parameters.position;
+        fw.transform.rotation = Quaternion.Euler(0, 0, parameters.rotation);
     }
     public void ReturnToPool(Flyweight f) => GetPoolFor(f.settings.type)?.Release(f);
 

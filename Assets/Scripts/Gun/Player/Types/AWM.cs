@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AWM : GunBase
 {
 	public GunData gunData;
-	public FactorySpawnEvent factoryDespawnEvent;
+	public FlyweightTypeVector2FloatEvent takeBulletEvent;
 
 	public override void InitGunData()
 	{
@@ -36,7 +34,7 @@ public class AWM : GunBase
 	{
 		if (!CanShoot()) return;
 
-		factoryDespawnEvent.Raise(FlyweightType.BasicBullet, this.transform.position, angle);
+		takeBulletEvent.Raise((FlyweightType.BasicBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
 
 		currentAmmo--;
 		UpdateLastShootTime();

@@ -6,6 +6,7 @@ using System.Linq;
 [CustomEditor(typeof(FuncConnector<,>), true)]
 public class FuncConnectorEditor : Editor
 {
+    private SerializedProperty descriptionProp;
     private SerializedProperty funcProviderProp;
     private SerializedProperty funcProp;
     private SerializedProperty selectedMethodProp;
@@ -15,6 +16,7 @@ public class FuncConnectorEditor : Editor
 
     private void OnEnable()
     {
+        descriptionProp = serializedObject.FindProperty("description");
         funcProviderProp = serializedObject.FindProperty("funcProvider");
         funcProp = serializedObject.FindProperty("func");
         selectedMethodProp = serializedObject.FindProperty("selectedMethod");
@@ -33,6 +35,8 @@ public class FuncConnectorEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
+        
+        EditorGUILayout.PropertyField(descriptionProp);
 
         if (resultType == null || paramsType == null)
         {

@@ -1,13 +1,14 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Flyweight/Projectile Setting")]
 public class ProjectileSetting : FlyweightSetting
 {
     public float speed = 10f;
     public float damage = 10f;
-    public FactoryDespawnEvent factoryDespawnEvent;
+    [FormerlySerializedAs("factoryDespawnEvent")] public FlyweightEvent flyweightEvent;
     
     public override Flyweight Create()
     {

@@ -538,6 +538,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
+      propertyPath: takeBulletEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
+    - target: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
       propertyPath: takeGunPrefFunc
       value: 
       objectReference: {fileID: 11400000, guid: 789c0bab08de33a4f8fb809c18aa49e2, type: 2}
@@ -551,6 +555,10 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 61ece0a6bcb1729448b82ad0effc80b9, type: 2}
     - target: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
       propertyPath: factorySpawnEvent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
+      propertyPath: flyweightTypeVector2FloatEvent
       value: 
       objectReference: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
     - target: {fileID: 3345081005870679355, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
@@ -8708,86 +8716,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1864982375}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1461415399 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3592139224148121317, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
-  m_PrefabInstance: {fileID: 2080267672}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1461415410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461415399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 178dc27d097a4c859a468e47a1048fc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  funcProvider: {fileID: 11400000, guid: 6de501ceb909a5a45b8b9d7a38453d77, type: 2}
-  func: {fileID: 1461415411}
-  selectedMethod: GetGun
---- !u!114 &1461415411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461415399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd60fad6f3644f279b4dcc925db520ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inUseGun: {fileID: 11400000, guid: 1cd1017fada77f24a9510e410c759c29, type: 2}
-  defaultCapacity: 10
-  maxPoolSize: 100
---- !u!114 &1461415412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461415399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e281cce0e79466087528b188ba8b9de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  funcProvider: {fileID: 11400000, guid: 4c7a28b658a524a439b381d958c09a36, type: 2}
-  func: {fileID: 1461415411}
-  selectedMethod: ReturnGunPref
---- !u!114 &1461415413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461415399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46160108137544bdbf751ae48b6b2528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  funcProvider: {fileID: 11400000, guid: 61ece0a6bcb1729448b82ad0effc80b9, type: 2}
-  func: {fileID: 1461415411}
-  selectedMethod: GetGunPref
---- !u!114 &1461415414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461415399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e281cce0e79466087528b188ba8b9de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  funcProvider: {fileID: 11400000, guid: 3cae08f5c410f494d95e1cec52e16785, type: 2}
-  func: {fileID: 1461415411}
-  selectedMethod: ReturnGun
 --- !u!1 &1490117891
 GameObject:
   m_ObjectHideFlags: 0
@@ -9491,17 +9419,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2480544756683955820, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+    - target: {fileID: 1492332218813845883, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2480544756683955820, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2480544756683955820, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+    - target: {fileID: 1492332218813845883, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Spawn
       objectReference: {fileID: 0}
     - target: {fileID: 2480544756683955820, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9547,25 +9471,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Factory
       objectReference: {fileID: 0}
+    - target: {fileID: 4258327518646382260, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258327518646382260, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FlyweightFactory, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258327518646382260, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3592139224148121317, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1461415411}
-    - targetCorrespondingSourceObject: {fileID: 3592139224148121317, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1461415410}
-    - targetCorrespondingSourceObject: {fileID: 3592139224148121317, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1461415414}
-    - targetCorrespondingSourceObject: {fileID: 3592139224148121317, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1461415413}
-    - targetCorrespondingSourceObject: {fileID: 3592139224148121317, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1461415412}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72c0d3f5e49b5034cadfa818b796bb13, type: 3}
 --- !u!1 &2096350412
 GameObject:
