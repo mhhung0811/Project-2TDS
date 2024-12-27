@@ -14,7 +14,9 @@ public class Player : MonoBehaviour
 	public Camera MainCamera;
     public Animator Animator;
     public Rigidbody2D myRb;
-    public Vector2 MovementInput;
+    public HoldGun HoldGun;
+    public SpriteRenderer SpriteRenderer;
+	public Vector2 MovementInput;
 
     public float MovementSpeed = 5f;
     public float RollSpeed = 6f;
@@ -47,6 +49,8 @@ public class Player : MonoBehaviour
     void Start()
     {
 		_inventory = GetComponent<PlayerInventory>();
+        HoldGun = GetComponentInChildren<HoldGun>();
+		SpriteRenderer = GetComponent<SpriteRenderer>();
 		IsFacingRight = true;
 		MovementInput = new Vector2(1, 0);
         StateMachine.Initialize(IdleState);
@@ -137,14 +141,6 @@ public class Player : MonoBehaviour
     public void Move()
     {
         myRb.velocity = MovementInput * MovementSpeed;
-        //if (MovementInput.x > 0 && !IsFacingRight)
-        //{
-        //    Flip();
-        //}
-        //else if (MovementInput.x < 0 && IsFacingRight)
-        //{
-        //    Flip();
-        //}
     }
 
     public void Flip()
@@ -228,6 +224,17 @@ public class Player : MonoBehaviour
         Vector2 direction = mousePosition - new Vector2(transform.position.x, transform.position.y);
         Animator.SetFloat("XInput", direction.x);
 		Animator.SetFloat("YInput", direction.y);
+
+        float angle = Vector2ToAngle(direction);
+        if(angle > 22.5f && angle < 157.5)
+        {
+            SpriteRenderer.sortingOrder = 2;
+        }
+		else
+		{
+			SpriteRenderer.sortingOrder = 0;
+		}
+
 		// Check Flip
 		if (direction.x > 0 && !IsFacingRight)
 		{

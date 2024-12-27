@@ -143,8 +143,14 @@ public class PlayerInventory : MonoBehaviour
         // Equip the new gun
         holdingGun = gun;
         holdingGun.gameObject.SetActive(true);
-        
-        Debug.Log($"Equipped {holdingGun.name}.");
+
+		//Set Scale x >0, y > 0
+        holdingGun.transform.localScale = new Vector3(1, 1, 1);
+
+		// Set position of gun
+		holdingGun.transform.localPosition = new Vector3(0.5f, 0, 0);
+
+		Debug.Log($"Equipped {holdingGun.name}.");
     }
     
     /// <summary>

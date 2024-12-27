@@ -17,7 +17,6 @@ MonoBehaviour:
   currentAmmo: 5
   totalAmmo: 50
   reloadTime: 5
-  fireRate: 0.5
+  fireRate: 1
   damage: 100
   bulletSpeed: 4
-  gunPrefab: {fileID: 8901825539749122333, guid: aba583c7f69945f4abb628997468cf9e, type: 3}

@@ -33,6 +33,7 @@ public class PlayerRollState : PlayerState
 			Player.Flip();
 		}
 
+        Player.HoldGun.SetActive(false);
 	}
 
     public override void Exit()
@@ -40,7 +41,7 @@ public class PlayerRollState : PlayerState
         base.Exit();
         Player.IsRolling = false;
 		Player.Animator.SetBool("IsRolling", false);
-		
+		Player.HoldGun.SetActive(true);
 	}
 
     public override void FrameUpdate()
