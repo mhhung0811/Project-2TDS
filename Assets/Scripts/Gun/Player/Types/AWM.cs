@@ -4,6 +4,7 @@ public class AWM : GunBase
 {
 	public GunData gunData;
 	public FlyweightTypeVector2FloatEvent takeBulletEvent;
+	public VoidEvent playerShootEvent;
 
 	public override void InitGunData()
 	{
@@ -39,5 +40,8 @@ public class AWM : GunBase
 		currentAmmo--;
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
+		Void @void = new Void();
+
+		playerShootEvent.Raise(@void);
 	}
 }

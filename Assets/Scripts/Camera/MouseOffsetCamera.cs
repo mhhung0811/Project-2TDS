@@ -13,9 +13,21 @@ public class MouseOffsetCamera : MonoBehaviour
 	public float smoothSpeed = 0.1f;
 	public float dampingFactor = 0.5f; // Tỉ lệ giảm tốc độ camera so với chuột
 
+	public CinemachineVirtualCamera virtualCamera; // Gắn Virtual Camera
+	public CinemachineBasicMultiChannelPerlin noise; // Noise
+	public float shakeDuration = 1f; // Thời gian rung
+	public float shakeAmplitude = 1f; // Cường độ rung
+	public float shakeFrequency = 1f; // Tần số rung
+	private float shakeTimer;
+
 	private Vector3 mouseOffset;
 	private Vector3 targetOffset;
 	private Vector3 smoothVelocity;
+
+	private void Start()
+	{
+		noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+	}
 
 	void Update()
 	{
@@ -30,6 +42,28 @@ public class MouseOffsetCamera : MonoBehaviour
 
 		// Đặt offset mục tiêu
 		targetOffset = new Vector3(offsetX, offsetY, -10f);
+
+		OnShake();
+	}
+
+	public void OnShake()
+	{
+		if (shakeTimer > 0)
+		{
+			shakeTimer -= Time.deltaTime;
+			if (shakeTimer <= 0)
+			{
+				noise.m_AmplitudeGain = 0f;
+				noise.m_FrequencyGain = 0f;
+			}
+		}
+	}
+
+	public void ShakeCamera()
+	{
+		noise.m_AmplitudeGain = shakeAmplitude;
+		noise.m_FrequencyGain = shakeFrequency;
+		shakeTimer = shakeDuration;
 	}
 
 	void LateUpdate()

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ public class Player : MonoBehaviour
     public Vector2Variable PlayerPos;
 
 	public Camera MainCamera;
-    public Animator Animator;
+	public Animator Animator;
     public Rigidbody2D myRb;
     public HoldGun HoldGun;
     public SpriteRenderer SpriteRenderer;
@@ -230,7 +231,7 @@ public class Player : MonoBehaviour
         {
             SpriteRenderer.sortingOrder = 2;
         }
-		else
+        else
 		{
 			SpriteRenderer.sortingOrder = 0;
 		}
