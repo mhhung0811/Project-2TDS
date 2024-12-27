@@ -27,8 +27,6 @@ public class Player : MonoBehaviour
     
     private PlayerInventory _inventory;
     
-	public VoidIntVector2FloatFuncProvider spawnGunPrefFunc;
-
 	[Header("Interaction Zone")]
 	public float interactionOffSet = 0.25f;
 	public CircleCollider2D interactCollider;
@@ -52,8 +50,6 @@ public class Player : MonoBehaviour
 		IsFacingRight = true;
 		MovementInput = new Vector2(1, 0);
         StateMachine.Initialize(IdleState);
-        
-        spawnGunPrefFunc.GetFunction()?.Invoke((0, Vector2.zero, 0));
     }
 
     void Update()

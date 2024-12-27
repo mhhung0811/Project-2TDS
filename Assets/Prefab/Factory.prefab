@@ -76,8 +76,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3495036746688416300}
         m_TargetAssemblyTypeName: FlyweightFactory, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: Spawn
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -104,12 +104,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3495036746688416300}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+        m_TargetAssemblyTypeName: FlyweightFactory, Assembly-CSharp
+        m_MethodName: ReturnToPool
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

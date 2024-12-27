@@ -22,6 +22,8 @@ public class PlayerInventory : MonoBehaviour
         var gun = getGunFunc.GetFunction()?.Invoke((1));
         if (gun != null && gun.GetComponent<GunBase>() != null)
         {
+            Debug.Log($"Add {gun.GetComponent<GunBase>().gunName}.");
+            Debug.Log($"Add {gun.GetComponent<GunBase>().gunId}.");
             AddGun(gun.GetComponent<GunBase>());
         }
         else
@@ -53,10 +55,12 @@ public class PlayerInventory : MonoBehaviour
         // Move from pool to player
         newGun.transform.SetParent(gunHolder);
         newGun.transform.localPosition = new Vector3(0.3f, 0, 0);
+        newGun.transform.localRotation = Quaternion.Euler(0, 0, 0);
         
         gunCollection.Add(newGun);
         EquipGun(newGun);
-        // Debug.Log($"Added {newGun.name} to inventory.");
+        Debug.Log($"Added {newGun.name} to inventory.");
+        Debug.Log($"Added {newGun.gunId} to inventory.");
     }
     
     /// <summary>
@@ -76,10 +80,11 @@ public class PlayerInventory : MonoBehaviour
             if (gunCollection.Remove(holdingGun))
             {
                 Debug.Log($"Drop {holdingGun.name}.");
+                Debug.Log($"Drop {holdingGun.gunId}.");
                 
                 // Return gun and generate gun pref
-                returnGunFunc.GetFunction()?.Invoke(holdingGun.gameObject);
                 getGunPrefFunc.GetFunction()?.Invoke((holdingGun.gunId, transform.position, 0));
+                returnGunFunc.GetFunction()?.Invoke(holdingGun.gameObject);
                 
                 holdingGun = null;
                 

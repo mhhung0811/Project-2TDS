@@ -24,16 +24,20 @@ public class GunFactory : MonoBehaviour
             int id = gun.gunId;
 
             _gunPools[id] = new ObjectPool<GameObject>(
-                createFunc: () => Instantiate(gun.gunPrefab),
+                createFunc: () =>
+                {
+                    var go = Instantiate(gun.gunPrefab);
+                    go.GetComponent<GunBase>().SetGunId(id);
+                    return go;
+                },
                 actionOnGet: gun =>
                 {
                     gun.SetActive(true);
-                    // ResetGun(gun, gunData);
                 },
                 actionOnRelease: gun =>
                 {
+                    gun.transform.SetParent(_gunPoolTransforms[id]);
                     gun.SetActive(false);
-                    gun.GetComponent<GunBase>().ResetGunData();
                 },
                 actionOnDestroy: Destroy,
                 defaultCapacity: defaultCapacity,
@@ -45,7 +49,12 @@ public class GunFactory : MonoBehaviour
             _gunPoolTransforms.Add(gun.gunId, obj.transform);
             
             _gunPrefPools[id] = new ObjectPool<GameObject>(
-                createFunc: () => Instantiate(gun.gunPref),
+                createFunc: () =>
+                {
+                    var go = Instantiate(gun.gunPref);
+                    go.GetComponent<GunPref>().SetGunId(id);
+                    return go;
+                },
                 actionOnGet: gun => gun.SetActive(true),
                 actionOnRelease: gun => gun.SetActive(false),
                 actionOnDestroy: Destroy,
@@ -57,6 +66,11 @@ public class GunFactory : MonoBehaviour
             obj.name = "Gun Pref Pool No." + gun.gunId;
             _gunPrefPoolTransforms.Add(gun.gunId, obj.transform);
         }
+    }
+
+    private void Start()
+    {
+        GetGunPref((0, Vector2.zero, 0));
     }
 
     // Func

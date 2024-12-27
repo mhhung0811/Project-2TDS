@@ -21,6 +21,7 @@ public class InUseGun : ScriptableObject
         {
             gunEntry.gunPrefab.GetComponent<GunBase>().SetGunId(gunEntry.gunId);
             gunEntry.gunPref.GetComponent<GunPref>().SetGunId(gunEntry.gunId);
+            
         }
     }
 
