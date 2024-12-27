@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e9a382495f8e0b041afef2f0bcb14b8e
+guid: ccabc91aa583bce47b32a55bf8ff953f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle-Sheet_0
+      name: Explode_Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 32
-        height: 32
+        width: 22
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbd067c4874d8924c94affd1c2a93b65
-      internalID: -775876169
+      spriteID: 5625c33b656432448a69054e2c8b54ec
+      internalID: 1140025605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle-Sheet_1
+      name: Explode_Sheet_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 24
         y: 0
-        width: 32
-        height: 32
+        width: 22
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64e89223d8046874ea496dad11a69511
-      internalID: 298092004
+      spriteID: 0a3209c839488ff438d76fc18ac890e0
+      internalID: -737445716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle-Sheet_2
+      name: Explode_Sheet_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
+        x: 47
+        y: 2
+        width: 34
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 911b2564cf2461a498f8f1acff08d856
-      internalID: -2020135165
+      spriteID: 1f078385fcf01354f8f1b6257e45f564
+      internalID: 1344078054
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle-Sheet_3
+      name: Explode_Sheet_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
+        x: 82
+        y: 2
+        width: 38
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe615017440f9114e899a413359d3cef
-      internalID: -403164446
+      spriteID: 84ce21b89e0d4be44ab8604e51402303
+      internalID: 2140303040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explode_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 2
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c87302bc2e080e849840b4119b13aa48
+      internalID: 470089882
       vertices: []
       indices: 
       edges: []
@@ -191,10 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Idle-Sheet_0: -775876169
-      Idle-Sheet_1: 298092004
-      Idle-Sheet_2: -2020135165
-      Idle-Sheet_3: -403164446
+      Explode_Sheet_0: 1140025605
+      Explode_Sheet_1: -737445716
+      Explode_Sheet_2: 1344078054
+      Explode_Sheet_3: 2140303040
+      Explode_Sheet_4: 470089882
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
