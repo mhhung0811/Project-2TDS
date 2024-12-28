@@ -1,5 +1,6 @@
 ﻿public enum FlyweightType
 {
     BasicBullet,
-    FloatBullet
+    FloatBullet,
+	EnemyBullet,
 }

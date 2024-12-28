@@ -5,7 +5,8 @@ public class ShotGun : GunBase
 {
     public GunData gunData;
 	public FlyweightTypeVector2FloatEvent takeBulletEvent;
-	
+	public VoidEvent playerShootEvent;
+
 	private Coroutine reloadingCoroutine;
 	
 	public int bulletCount = 5;
@@ -82,6 +83,9 @@ public class ShotGun : GunBase
 		currentAmmo--;
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
+
+		Void @void = new Void();
+		playerShootEvent.Raise(@void);
 	}
 
 	public override void SetAmmoWhenReload()

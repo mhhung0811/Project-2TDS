@@ -40,8 +40,7 @@ public class AWM : GunBase
 		currentAmmo--;
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
-		Void @void = new Void();
 
-		playerShootEvent.Raise(@void);
+		playerShootEvent.Raise(new Void());
 	}
 }
