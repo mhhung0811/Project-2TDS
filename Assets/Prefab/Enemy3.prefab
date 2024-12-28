@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1298207140195679414}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 583316784740772555}
   - component: {fileID: 8129066391006934587}
   - component: {fileID: 6126683470344719166}
+  - component: {fileID: 6120996053218324435}
   m_Layer: 0
   m_Name: Enemy3
   m_TagString: Untagged
@@ -343,7 +344,7 @@ SpriteRenderer:
   m_SortingLayerID: 1439208483
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1417972707, guid: c5a431c4311d06749a41f9eff3e9d6d6, type: 3}
+  m_Sprite: {fileID: 1979082807, guid: f44e1046c1aca1e46b110a1a322f362f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -426,7 +427,7 @@ Animator:
   m_GameObject: {fileID: 7684728907619824441}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f1b5cc3367acdc1469d543ea6db06ad6, type: 2}
+  m_Controller: {fileID: 9100000, guid: c8060baa25025834ab52efdf5b82be9f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -452,3 +453,30 @@ MonoBehaviour:
   target: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   speed: 2
   onDrawGizmos: 1
+--- !u!114 &6120996053218324435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684728907619824441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e55799b53b300046a91f6d0bec41bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 6
+  <CurrentHealth>k__BackingField: 0
+  <IsWithinStrikingDistance>k__BackingField: 0
+  <AttackRange>k__BackingField: 6
+  <MoveSpeed>k__BackingField: 3
+  <Obstacles>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64
+  <PlayerPos>k__BackingField: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
+  _animator: {fileID: 7681083156399277725}
+  <AttackDuration>k__BackingField: 1.4
+  <AttackCooldown>k__BackingField: 1.5
+  attackCooldownTimer: 1
+  spawnBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
+  animatorGun: {fileID: 7681083156399277725}

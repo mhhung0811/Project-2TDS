@@ -23,7 +23,6 @@ public class EnemyAttackState : EnemyState
     {
         base.Exit();
         Enemy._animator.SetBool("isAttacking", false);
-        Debug.Log(_attackTimer);
 		Enemy.attackCooldownTimer = 0;
     }
 

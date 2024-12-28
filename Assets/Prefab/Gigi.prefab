@@ -315,7 +315,7 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 6
   <CurrentHealth>k__BackingField: 0
   <IsWithinStrikingDistance>k__BackingField: 0
-  <AttackRange>k__BackingField: 6
+  <AttackRange>k__BackingField: 6.5
   <MoveSpeed>k__BackingField: 3
   <Obstacles>k__BackingField:
     serializedVersion: 2

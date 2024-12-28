@@ -29,9 +29,9 @@ public class Enemy4 : Enemy
 
 			float angle = Vector2ToAngle(direction);
 
-			Vector2 posSpawnBullet = new Vector2(transform.position.x, transform.position.y) + direction * 0.5f;
+			Vector2 posSpawnBullet = new Vector2(transform.position.x, transform.position.y) + direction * 1f;
 
-			spawnBulletEvent.Raise((FlyweightType.EnemyBullet, new Vector2(transform.position.x, transform.position.y), angle));
+			spawnBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawnBullet, angle));
 
 			yield return new WaitForSeconds(0.2f);
 		}
