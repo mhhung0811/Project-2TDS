@@ -23,7 +23,7 @@ public class EnemyIdleState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-		if (Enemy.IsWithinStrikingDistance == false)
+		if (Enemy.IsWithinStrikingDistance == false || !Enemy.CheckRaycastAttack())
 		{
 			EnemyStateMachine.ChangeState(Enemy.ChaseState);
 		}

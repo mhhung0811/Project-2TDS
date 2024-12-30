@@ -3,4 +3,5 @@
     BasicBullet,
     FloatBullet,
 	EnemyBullet,
+	SniperBullet,
 }

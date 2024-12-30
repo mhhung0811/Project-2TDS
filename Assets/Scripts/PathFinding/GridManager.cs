@@ -31,7 +31,7 @@ public class GridManager : MonoBehaviour
             for(int y = 0; y< GridSizeY; y++)
             {
                 Vector2 worldPoint = worldBottomLeft + Vector2.right * (x * NodeDiameter + NodeRadius) + Vector2.up * (y * NodeDiameter + NodeRadius);
-                bool walkable = !(Physics2D.OverlapCircle(worldPoint, NodeRadius, UnwalkableMask));
+                bool walkable = !(Physics2D.OverlapCircle(worldPoint, NodeRadius - 0.05f, UnwalkableMask));
                 Grid[x, y] = new Node(walkable, worldPoint, x, y);
 			}
         }
@@ -74,6 +74,28 @@ public class GridManager : MonoBehaviour
 		return neighbors.ToArray();
 	}
 
+	public Node[] GetAllNeighbors(Node node)
+	{
+		List<Node> neighbors = new List<Node>();
+
+		for (int x = -1; x <= 1; x++)
+		{
+			for (int y = -1; y <= 1; y++)
+			{
+				if (x == 0 && y == 0) // Skip current node
+				{
+					continue;
+				}
+
+				int checkX = node.GridX + x;
+				int checkY = node.GridY + y;
+				neighbors.Add(Grid[checkX, checkY]);
+			}
+		}
+		Debug.Log("Neighbors: " + neighbors.Count);
+		return neighbors.ToArray();
+	}
+
 	public int GetDistance(Node nodeA, Node nodeB)
 	{
 		int dstX = Mathf.Abs(nodeA.GridX - nodeB.GridX);
@@ -111,20 +133,6 @@ public class GridManager : MonoBehaviour
 				Gizmos.DrawCube(n.WorldPosition, Vector3.one * (NodeDiameter - 0.05f));
 			}
 		}
-
-		//// Vẽ đường đi
-		//if (path != null)
-		//{
-		//	for (int i = 0; i < path.Count; i++)
-		//	{
-		//		Gizmos.color = Color.yellow;
-		//		Gizmos.DrawCube(path[i].WorldPosition, Vector3.one * (NodeDiameter));
-		//		if (i > 0)
-		//		{
-		//			Gizmos.DrawLine(path[i].WorldPosition, path[i - 1].WorldPosition);
-		//		}
-		//	}
-		//}
 	}
 
 }

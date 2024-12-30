@@ -21,4 +21,9 @@ public class ProjectileSetting : FlyweightSetting
         
         return flyweight;
     }
+
+	public override void OnGet(Flyweight f)
+	{
+        return;
+	}
 }

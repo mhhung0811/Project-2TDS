@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 		CurrentHealth = MaxHealth;
 		RB = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
-		StateMachine.Initialize(ChaseState);
+		StateMachine.Initialize(IdleState);
     }
 
     private void Update()
@@ -169,6 +169,16 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 				StateMachine.ChangeState(AttackState);
 			}
 		}
+	}
+
+	public bool CheckRaycastAttack()
+	{
+		Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
+		if(!Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	#region Animation Triggers

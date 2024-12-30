@@ -35,7 +35,7 @@ public class AWM : GunBase
 	{
 		if (!CanShoot()) return;
 
-		takeBulletEvent.Raise((FlyweightType.BasicBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
+		takeBulletEvent.Raise((FlyweightType.SniperBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
 
 		currentAmmo--;
 		UpdateLastShootTime();

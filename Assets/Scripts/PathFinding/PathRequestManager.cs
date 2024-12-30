@@ -14,10 +14,13 @@ public class PathRequestManager : Singleton<PathRequestManager>
 		base.Awake();
 		pathFinding = GetComponent<PathFinding>();
 	}
+
 	public static void RequestPath(Vector2 pathStart, Vector2 pathEnd, Action<Vector2[], bool> callback)
 	{
 		PathRequest newRequest = new PathRequest(pathStart, pathEnd, callback);
 		Instance.PathRequestQueue.Enqueue(newRequest);
+
+		Debug.Log("PathRequestQueue.Count: " + Instance.PathRequestQueue.Count);
 		Instance.TryProcessNext();
 	}
 

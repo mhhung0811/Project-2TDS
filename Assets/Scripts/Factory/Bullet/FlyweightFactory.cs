@@ -41,7 +41,9 @@ public class FlyweightFactory : MonoBehaviour
         fw.transform.SetParent(_flyweightPoolDictionary[parameters.type]);
         fw.transform.position = parameters.position;
         fw.transform.rotation = Quaternion.Euler(0, 0, parameters.rotation);
-    }
+
+        fw.gameObject.SetActive(true);
+	}
     public void ReturnToPool(Flyweight f) => GetPoolFor(f.settings.type)?.Release(f);
 
     private void Awake()

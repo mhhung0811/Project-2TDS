@@ -28,7 +28,10 @@ public class EnemyChaseState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-		Enemy.CheckForChangeAttackState();
+		if(Enemy.IsWithinStrikingDistance && Enemy.CheckRaycastAttack())
+        {
+            EnemyStateMachine.ChangeState(Enemy.IdleState);
+		}
 	}
 
     public override void PhysicsUpdate()
@@ -40,6 +43,4 @@ public class EnemyChaseState : EnemyState
     {
 		base.AnimationTriggerEvent(triggerType);
 	}
-
-    
 }
