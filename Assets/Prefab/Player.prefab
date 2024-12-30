@@ -158,6 +158,8 @@ MonoBehaviour:
   MainCamera: {fileID: 0}
   Animator: {fileID: 4796794010553010646}
   myRb: {fileID: 4968054630321060433}
+  HoldGun: {fileID: 0}
+  SpriteRenderer: {fileID: 0}
   MovementInput: {x: 0, y: 0}
   MovementSpeed: 5
   RollSpeed: 5
@@ -166,7 +168,6 @@ MonoBehaviour:
   IsRolling: 0
   IsPressWASD: 0
   IsPressShoot: 0
-  spawnGunPrefFunc: {fileID: 11400000, guid: 61ece0a6bcb1729448b82ad0effc80b9, type: 2}
   interactionOffSet: 0.25
   interactCollider: {fileID: 2547707970219836964}
 --- !u!114 &790851280412161788
@@ -336,7 +337,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 3345081005870679355}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f63b879c8decdc5478a70f6d665a4cfc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -499,6 +500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4403147993273003600}
+  - component: {fileID: 8432588112797346399}
   m_Layer: 0
   m_Name: HoldGun
   m_TagString: Untagged
@@ -515,9 +517,23 @@ Transform:
   m_GameObject: {fileID: 5043053550083842577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalPosition: {x: -0.1, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6772549295857386393}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8432588112797346399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5043053550083842577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96af8a955118f5d4e9bbf5266f169c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
+  Player: {fileID: 0}
