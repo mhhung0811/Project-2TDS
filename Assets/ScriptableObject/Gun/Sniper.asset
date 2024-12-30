@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   gunName: AWM
-  maxAmmoPerMag: 5
-  currentAmmo: 5
-  totalAmmo: 50
-  reloadTime: 5
-  fireRate: 1
+  maxAmmoPerMag: 100
+  currentAmmo: 100
+  totalAmmo: 200
+  reloadTime: 3
+  fireRate: 4
   damage: 100
   bulletSpeed: 4

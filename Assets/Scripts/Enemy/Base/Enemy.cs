@@ -18,12 +18,15 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 	[field: SerializeField] public float AttackDuration { get; set; }
     [field: SerializeField] public float AttackCooldown { get; set; }
     public float attackCooldownTimer;
+		
+	[field: SerializeField] public float InitTime { get; set; }
 
 	#region State Machine Variables
 	public EnemyStateMachine StateMachine { get; set; }
     public EnemyIdleState IdleState { get; set; }
     public EnemyChaseState ChaseState { get; set; }
     public EnemyAttackState AttackState { get; set; }
+	public EnemyInitState InitState { get; set; }
 	#endregion
 
 	#region Idel Variables
@@ -35,6 +38,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
         IdleState = new EnemyIdleState(this, StateMachine);
         ChaseState = new EnemyChaseState(this, StateMachine);
         AttackState = new EnemyAttackState(this, StateMachine);
+		InitState = new EnemyInitState(this, StateMachine);
 	}
 
     private void Start()
@@ -42,8 +46,9 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 		CurrentHealth = MaxHealth;
 		RB = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
-		StateMachine.Initialize(IdleState);
-    }
+		StateMachine.Initialize(InitState);
+		EffectManager.Instance.PlayEffect(EffectType.SpawnEnemy, transform.position, Quaternion.identity);
+	}
 
     private void Update()
     {

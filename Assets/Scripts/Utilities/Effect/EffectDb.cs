@@ -24,7 +24,7 @@ public class EffectDB : ScriptableObject
 				return effect.effectPref;
 			}
 		}
-		Debug.LogError("Effect not found in database: " + effectType.effectName);
+		Debug.LogError("Effect not found in database: " + effectType);
 		return null;
 	}
 }

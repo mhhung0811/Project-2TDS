@@ -5,3 +5,8 @@
 	EnemyBullet,
 	SniperBullet,
 }
+
+public enum EffectType
+{
+	SpawnEnemy,
+}
