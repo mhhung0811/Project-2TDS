@@ -41,7 +41,7 @@ public class EnemyHurtState : EnemyState
 	private void CheckForChangeState()
 	{
 		hurtTime += Time.deltaTime;
-		if (hurtTime >= 0.12)
+		if (hurtTime >= 0.2)
 		{
 			EnemyStateMachine.ChangeState(Enemy.IdleState);
 		}

@@ -326,5 +326,5 @@ MonoBehaviour:
   <AttackCooldown>k__BackingField: 0.4
   attackCooldownTimer: 0
   <InitTime>k__BackingField: 1.75
-  <DieTime>k__BackingField: 2
+  <DieTime>k__BackingField: 1.2
   spawnBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}

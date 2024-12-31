@@ -448,6 +448,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6882285713865239888, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
+      propertyPath: <DieTime>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882285713865239888, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: <InitTime>k__BackingField
       value: 1.75
       objectReference: {fileID: 0}
@@ -461,7 +465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7289365906783192301, guid: 1f4c32921820b7f4ea3265bff0c4859f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8525,6 +8529,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6120996053218324435, guid: 5a2f66a866370cb4296b302116723d1e, type: 3}
+      propertyPath: <DieTime>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120996053218324435, guid: 5a2f66a866370cb4296b302116723d1e, type: 3}
       propertyPath: <InitTime>k__BackingField
       value: 1.75
       objectReference: {fileID: 0}
@@ -8542,7 +8550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7684728907619824441, guid: 5a2f66a866370cb4296b302116723d1e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8777,6 +8785,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 954597959220317465, guid: fa30dded0fe18a445bfefb5c517f5835, type: 3}
+      propertyPath: <DieTime>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 954597959220317465, guid: fa30dded0fe18a445bfefb5c517f5835, type: 3}
       propertyPath: <InitTime>k__BackingField
       value: 1.75
       objectReference: {fileID: 0}
@@ -8834,7 +8846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2563951034689522211, guid: fa30dded0fe18a445bfefb5c517f5835, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8895,7 +8907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5323180115450704889, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8359091014384141857, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
       propertyPath: <InitTime>k__BackingField
@@ -8962,9 +8974,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1082602912793457232, guid: be653920869a56d49a60d7a3a6cb7c4a, type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1462986065185057858, guid: be653920869a56d49a60d7a3a6cb7c4a, type: 3}
-      propertyPath: <DieTime>k__BackingField
-      value: 1.2
+      propertyPath: <AttackCooldown>k__BackingField
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6094731966837580147, guid: be653920869a56d49a60d7a3a6cb7c4a, type: 3}
       propertyPath: m_Name
