@@ -8910,6 +8910,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8359091014384141857, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: <DieTime>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359091014384141857, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
       propertyPath: <InitTime>k__BackingField
       value: 1.75
       objectReference: {fileID: 0}
