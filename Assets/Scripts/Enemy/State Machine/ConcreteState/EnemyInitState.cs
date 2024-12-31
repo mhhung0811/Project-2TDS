@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class EnemyInitState : EnemyState
 {
@@ -13,7 +14,7 @@ public class EnemyInitState : EnemyState
 	{
 		initTimer = 0;
 		Enemy._animator.SetBool("isInit", true);
-		Debug.Log("Enemy Init State");
+		EffectManager.Instance.PlayEffect(EffectType.SpawnEnemy, Enemy.transform.position, Quaternion.identity);
 	}
 
 	public override void Exit()

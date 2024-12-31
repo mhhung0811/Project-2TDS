@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
+public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, IEnemyInteractable
 {
-    [field : SerializeField] public int MaxHealth { get; set; } = 6;
+    [field : SerializeField] public int MaxHealth { get; set; }
 	[field: SerializeField] public int CurrentHealth { get; set; }
     public bool IsFacingRight { get; set; } = true;
 	[field: SerializeField] public bool IsWithinStrikingDistance { get; set; }
@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
     public float attackCooldownTimer;
 		
 	[field: SerializeField] public float InitTime { get; set; }
+	[field: SerializeField] public float DieTime { get; set; }
 
 	#region State Machine Variables
 	public EnemyStateMachine StateMachine { get; set; }
@@ -27,6 +28,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
     public EnemyChaseState ChaseState { get; set; }
     public EnemyAttackState AttackState { get; set; }
 	public EnemyInitState InitState { get; set; }
+	public EnemyDieState DieState { get; set; }
+	public EnemyHurtState HurtState { get; set; }
 	#endregion
 
 	#region Idel Variables
@@ -39,6 +42,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
         ChaseState = new EnemyChaseState(this, StateMachine);
         AttackState = new EnemyAttackState(this, StateMachine);
 		InitState = new EnemyInitState(this, StateMachine);
+		DieState = new EnemyDieState(this, StateMachine);
+		HurtState = new EnemyHurtState(this, StateMachine);
 	}
 
     private void Start()
@@ -47,7 +52,6 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 		RB = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
 		StateMachine.Initialize(InitState);
-		EffectManager.Instance.PlayEffect(EffectType.SpawnEnemy, transform.position, Quaternion.identity);
 	}
 
     private void Update()
@@ -62,13 +66,26 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
         StateMachine.CurrentState.PhysicsUpdate();
     }
 
-    public void Damage(float damage)
-    {
-    }
+	public void OnEnemyBulletHit(float damage)
+	{
+		CurrentHealth -= (int)damage;
+
+		if(StateMachine.CurrentState != HurtState && (StateMachine.CurrentState == IdleState || StateMachine.CurrentState == ChaseState))
+		{
+			Debug.Log("---------Hurt");
+			StateMachine.ChangeState(HurtState);
+		}
+
+		if (CurrentHealth <= 0 && StateMachine.CurrentState != DieState)
+		{
+			Die();
+		}
+	}
 
     public void Die()
     {
-    }
+		StateMachine.ChangeState(DieState);
+	}
 
     public virtual void Attack()
     {

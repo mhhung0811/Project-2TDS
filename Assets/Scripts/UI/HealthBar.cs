@@ -21,8 +21,6 @@ public class HealthBar : MonoBehaviour
 		int hp = 5;
 		int totalHearts = maxHp / 2;
 
-		Debug.Log("Updating health bar: " + hp + "/" + maxHp);
-
 		// Destroy all children
 		foreach (Transform child in transform)
 		{
