@@ -7605,7 +7605,7 @@ MonoBehaviour:
   virtualCamera: {fileID: 1214222263}
   noise: {fileID: 0}
   shakeDuration: 0.1
-  shakeAmplitude: 4
+  shakeAmplitude: 5
   shakeFrequency: 0.1
 --- !u!114 &1214222266
 MonoBehaviour:
