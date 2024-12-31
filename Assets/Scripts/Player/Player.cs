@@ -6,20 +6,26 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPlayerInteractable
 {
     public IntVariable HP;
 	public IntVariable MaxHP;
     public Vector2Variable PlayerPos;
+    public VoidEvent PlayerHit;
 
 	public Camera MainCamera;
 	public Animator Animator;
     public Rigidbody2D myRb;
     public HoldGun HoldGun;
-    public SpriteRenderer SpriteRenderer;
 	public Vector2 MovementInput;
 
-    public float MovementSpeed = 5f;
+    public bool IsPlayerInteractable { get; set; }
+	public SpriteRenderer SpriteRenderer;
+    public bool isInvulnerable = false;
+	public float invulnerableDuration = 1f;
+    public float blinkInterval = 0.1f;
+
+	public float MovementSpeed = 5f;
     public float RollSpeed = 6f;
     public float RollDuration = 0.4f;
 
@@ -34,19 +40,21 @@ public class Player : MonoBehaviour
 	public float interactionOffSet = 0.25f;
 	public CircleCollider2D interactCollider;
 
-    #region State Machine Variables
-    public PlayerStateMachine StateMachine;
+	#region State Machine Variables
+	public PlayerStateMachine StateMachine;
     public PlayerIdleState IdleState;
     public PlayerMoveState MoveState;
     public PlayerRollState RollState;
-    #endregion
-    private void Awake()
+    public PlayerDieState DieState;
+	#endregion
+	private void Awake()
     {
         StateMachine = new PlayerStateMachine();
         RollState = new PlayerRollState(this, StateMachine);
         IdleState = new PlayerIdleState(this, StateMachine);
         MoveState = new PlayerMoveState(this, StateMachine);
-    }
+		DieState = new PlayerDieState(this, StateMachine);
+	}
     void Start()
     {
 		_inventory = GetComponent<PlayerInventory>();
@@ -55,10 +63,17 @@ public class Player : MonoBehaviour
 		IsFacingRight = true;
 		MovementInput = new Vector2(1, 0);
         StateMachine.Initialize(IdleState);
-    }
+		isInvulnerable = false;
+		IsPlayerInteractable = true;
+	}
 
     void Update()
     {
+        if (StateMachine.CurrentState == DieState)
+        {
+            return;
+        }
+
         PlayerPos.SetValue(transform.position);
 		StateMachine.CurrentState.FrameUpdate();
 		UpdateInteractColliderByPosMouse();
@@ -93,8 +108,6 @@ public class Player : MonoBehaviour
 
 		float angle = Vector2ToAngle(worldPosition - new Vector2(transform.position.x, transform.position.y));
 
-		// awm.Shoot(angle);
-		// shotGun.Shoot(angle);
 		_inventory.GetHoldingGun().Shoot(angle);
 	}
     public float Vector2ToAngle(Vector2 direction)
@@ -264,6 +277,49 @@ public class Player : MonoBehaviour
 
 		// Update the collider's position
 		interactCollider.transform.position = newColliderPosition;
+	}
+
+	public void Die()
+	{
+		StateMachine.ChangeState(DieState);
+	}
+
+	public void OnPlayerBulletHit()
+	{
+        if (isInvulnerable) return;
+
+        HP.CurrentValue = HP.CurrentValue - 1;
+
+        if(HP.CurrentValue <= 0)
+        {
+            Die();
+            return;
+        }
+        StartCoroutine(InvulnerablilityCoroutine());
+
+		// Camera shake
+        var @void = new Void();
+		PlayerHit.Raise(@void);
+	}
+
+    private IEnumerator InvulnerablilityCoroutine()
+    {
+		isInvulnerable = true;
+		IsPlayerInteractable = false;
+
+		float elapsedTime = 0f;
+		while (elapsedTime < invulnerableDuration)
+		{
+			SpriteRenderer.enabled = !SpriteRenderer.enabled;
+
+			yield return new WaitForSeconds(blinkInterval);
+			elapsedTime += blinkInterval;
+		}
+
+		SpriteRenderer.enabled = true;
+
+		isInvulnerable = false;
+		IsPlayerInteractable = true;
 	}
 
 	#region Animation Triggers

@@ -34,6 +34,10 @@ public class PlayerRollState : PlayerState
 		}
 
         Player.HoldGun.SetActive(false);
+
+        // bat tu khi roll
+        Player.isInvulnerable = true;
+		Player.IsPlayerInteractable = false;
 	}
 
     public override void Exit()
@@ -42,6 +46,10 @@ public class PlayerRollState : PlayerState
         Player.IsRolling = false;
 		Player.Animator.SetBool("IsRolling", false);
 		Player.HoldGun.SetActive(true);
+
+		// het bat tu khi roll
+		Player.isInvulnerable = false;
+        Player.IsPlayerInteractable = true;
 	}
 
     public override void FrameUpdate()

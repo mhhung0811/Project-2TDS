@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IPlayerInteractable
 {
-    void OnPlayerBulletHit();
+	bool IsPlayerInteractable { get; set; }
+	void OnPlayerBulletHit();
 }

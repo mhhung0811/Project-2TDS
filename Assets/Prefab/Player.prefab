@@ -159,8 +159,11 @@ MonoBehaviour:
   Animator: {fileID: 4796794010553010646}
   myRb: {fileID: 4968054630321060433}
   HoldGun: {fileID: 0}
-  SpriteRenderer: {fileID: 0}
   MovementInput: {x: 0, y: 0}
+  SpriteRenderer: {fileID: 0}
+  isInvulnerable: 0
+  invulnerableDuration: 2
+  blinkInterval: 0.1
   MovementSpeed: 5
   RollSpeed: 5
   RollDuration: 0.5

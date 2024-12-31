@@ -12,13 +12,15 @@ public class HealthBar : MonoBehaviour
 
 	public void Start()
 	{
-		UpdateUiHealthBar();
+		UpdateUiHealthBar(0);
+		PlayerHp.OnChanged += UpdateUiHealthBar;
 	}
 
-	public void UpdateUiHealthBar()
+	public void UpdateUiHealthBar(int newValue)
 	{
+		Debug.Log(newValue);
 		int maxHp = PlayerMaxHp.CurrentValue;
-		int hp = 5;
+		int hp = PlayerHp.CurrentValue;
 		int totalHearts = maxHp / 2;
 
 		// Destroy all children
