@@ -10,6 +10,7 @@ public class Boss : MonoBehaviour
 	public bool isFacingRight = true;
 
 	public Vector2Variable PlayerPos;
+	public Vector2Variable BossPos;
 
 	#region GetComponents
 	public Rigidbody2D RB { get; set; }
@@ -31,7 +32,7 @@ public class Boss : MonoBehaviour
 		IdleState = new BossIdleState(this, StateMachine);
 		MoveState = new BossMoveState(this, StateMachine);
 		RollState = new BossRollState(this, StateMachine);
-		StateMachine.Initialize(MoveState);
+		StateMachine.Initialize(IdleState);
 	}
 	private void Start()
 	{
@@ -40,6 +41,7 @@ public class Boss : MonoBehaviour
 
 	private void Update()
 	{
+		BossPos.CurrentValue = transform.position;
 		StateMachine.CurrentState.FrameUpdate();
 	}
 

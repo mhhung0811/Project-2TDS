@@ -4,6 +4,7 @@
     FloatBullet,
 	EnemyBullet,
 	SniperBullet,
+	TailWhipBullet,
 }
 
 public enum EffectType
