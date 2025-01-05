@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletTailWhip : Projectile
 {
 	public float destroyTime = 4f;
-	public float canDestroyTime = 2f;
+	public float canDestroyTime = 4f;
 	private bool canDestroyWithWall = false;
 	private float angleSpeed;
 	private float angleStart;
@@ -72,7 +72,7 @@ public class BulletTailWhip : Projectile
 
 		float vx = -angleSpeed * radius * Mathf.Sin(angleStart);
 		float vy = angleSpeed * radius * Mathf.Cos(angleStart);
-		_rb.velocity = new Vector2(vx, vy);
+		_rb.velocity = new Vector2(vx, vy).normalized * settings.speed;
 	}
 
 	public IEnumerator DestroyOvertime()

@@ -12,6 +12,8 @@ public class Boss : MonoBehaviour
 	public Vector2Variable PlayerPos;
 	public Vector2Variable BossPos;
 
+	public FlyweightTypeVector2FloatEvent TakeBulletEvent;
+
 	#region GetComponents
 	public Rigidbody2D RB { get; set; }
 	public Animator Animator;
@@ -22,6 +24,7 @@ public class Boss : MonoBehaviour
 	public BossIdleState IdleState { get; set; }
 	public BossMoveState MoveState { get; set; }
 	public BossRollState RollState { get; set; }
+	public BossTailWhipState TailWhipState { get; set; }
 	#endregion
 	private void Awake()
 	{
@@ -32,11 +35,12 @@ public class Boss : MonoBehaviour
 		IdleState = new BossIdleState(this, StateMachine);
 		MoveState = new BossMoveState(this, StateMachine);
 		RollState = new BossRollState(this, StateMachine);
+		TailWhipState = new BossTailWhipState(this, StateMachine);
 		StateMachine.Initialize(IdleState);
 	}
 	private void Start()
 	{
-		
+		StartCoroutine(TailWhipSkill());
 	}
 
 	private void Update()
@@ -78,6 +82,12 @@ public class Boss : MonoBehaviour
 	{
 		isFacingRight = !isFacingRight;
 		transform.Rotate(0f, 180f, 0f);
+	}
+
+	public IEnumerator TailWhipSkill()
+	{
+		yield return new WaitForSeconds(2f);
+		StateMachine.ChangeState(TailWhipState);
 	}
 	#endregion
 
