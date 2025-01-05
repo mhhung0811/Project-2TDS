@@ -11,16 +11,19 @@ public class BossIdleState : BossState
 	public override void Enter()
 	{
 		base.Enter();
+		Boss.Animator.SetBool("IsIdle", true);
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
+		Boss.Animator.SetBool("IsIdle", false);
 	}
 
 	public override void FrameUpdate()
 	{
 		base.FrameUpdate();
+		Boss.UpdateAnimationByPosPlayer();
 	}
 
 	public override void PhysicsUpdate()
