@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -42,11 +42,15 @@ public class PathFinding : MonoBehaviour
 			targetNode = FindClosestWalkableNode(targetNode);
 		}
 
-		if (!startNode.Walkable)
+		if(!startNode.Walkable)
 		{
 			startNode = FindClosestWalkableNode(startNode);
 		}
 
+		if(startNode ==null || targetNode == null)
+		{
+			print("Start node or target node is null");
+		}
 
 		if (startNode.Walkable && targetNode != null && targetNode.Walkable)
 		{
@@ -70,7 +74,7 @@ public class PathFinding : MonoBehaviour
 
 				foreach (Node neighbor in gridManager.GetNeighbors(currentNode))
 				{
-					if (!neighbor.Walkable || closedSet.Contains(neighbor))
+					if (!neighbor.Walkable || closedSet.Contains(neighbor) || (IsAdjacentToUnwalkable(neighbor) && neighbor != targetNode))
 					{
 						continue;
 					}
@@ -94,12 +98,24 @@ public class PathFinding : MonoBehaviour
 				}
 			}
 		}
-		yield return null;
 		if (pathSuccess)
 		{
 			waypoints = RetracePath(startNode, targetNode);
 		}
 		PathRequestManager.Instance.FinishedProcessingPath(waypoints, pathSuccess);
+		yield return null;
+	}
+
+	private bool IsAdjacentToUnwalkable(Node node)
+	{
+		foreach (Node neighbor in gridManager.GetNeighbors(node))
+		{
+			if (!neighbor.Walkable)
+			{
+				return true; // Có ít nhất 1 node Unwalkable ở gần
+			}
+		}
+		return false; // Không có node Unwalkable ở gần
 	}
 
 	public Vector2[] RetracePath(Node startNode, Node endNode)
@@ -138,7 +154,7 @@ public class PathFinding : MonoBehaviour
 	{
 		Node closestWalkableNode = null;
 		int shortestDistance = int.MaxValue;
-		foreach (Node neighbor in gridManager.GetNeighbors(unwalkableNode))
+		foreach (Node neighbor in gridManager.GetAllNeighbors(unwalkableNode))
 		{
 			if (neighbor.Walkable)
 			{
@@ -149,6 +165,11 @@ public class PathFinding : MonoBehaviour
 					closestWalkableNode = neighbor;
 				}
 			}
+		}
+
+		if (closestWalkableNode == null)
+		{
+			print("----Closest walkable node found");
 		}
 
 		return closestWalkableNode;

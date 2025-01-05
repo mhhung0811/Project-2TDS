@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1dd789a82b04e3ea933eeb407da4b23, type: 3}
+  m_Name: GigiBulletSetting
+  m_EditorClassIdentifier: 
+  type: 2
+  prefab: {fileID: 2801221837517870353, guid: 500519ee57e317049b3a3a5211199546, type: 3}
+  speed: 5
+  damage: 1
+  flyweightEvent: {fileID: 11400000, guid: 5f4e6c89e8b385e4984c58c297d8a0c3, type: 2}

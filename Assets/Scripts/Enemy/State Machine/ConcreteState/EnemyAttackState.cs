@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyAttackState : EnemyState
 {
-    public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
+	private float _attackTimer;
+	public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
 
     }
@@ -12,23 +13,23 @@ public class EnemyAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Enemy._animator.SetBool("isIdle", true);
-    }
+        Enemy._animator.SetBool("isAttacking", true);
+		_attackTimer = Time.time;
 
-    public override void Exit()
+		Enemy.Attack();
+	}
+
+	public override void Exit()
     {
         base.Exit();
-        Enemy._animator.SetBool("isIdle", false);
+        Enemy._animator.SetBool("isAttacking", false);
+		Enemy.attackCooldownTimer = 0;
     }
 
     public override void FrameUpdate()
     {
-        base.FrameUpdate();
-        if (Enemy.IsWithinStrikingDistance == false)
-        {
-            EnemyStateMachine.ChangeState(Enemy.ChaseState);
-        }
-    }
+        UpdateAttackTimer();
+	}
 
     public override void PhysicsUpdate()
     {
@@ -38,4 +39,12 @@ public class EnemyAttackState : EnemyState
     {
         base.AnimationTriggerEvent(triggerType);
     }
+
+    public void UpdateAttackTimer()
+	{
+		if (Time.time - _attackTimer >= Enemy.AttackDuration)
+		{
+			EnemyStateMachine.ChangeState(Enemy.IdleState);
+		}
+	}
 }

@@ -13,13 +13,11 @@ public class PlayerMoveState : PlayerState
     {
         base.Enter();
         Player.Animator.SetBool("IsMoving", true);
-        Debug.Log("Enter Move State");
 	}
 
     public override void Exit()
     {
         base.Exit();
-        Debug.Log("Exit Move State");
 	}
 
     public override void FrameUpdate()

@@ -15,7 +15,6 @@ public class GunShootingState : GunState
 		base.Enter();
 		_startTime = Time.time;
 		Gun.animator.SetBool("IsShooting", true);
-		Debug.Log("Start shooting");
 	}
 
 	public override void Exit() 
@@ -39,7 +38,6 @@ public class GunShootingState : GunState
 		if (Time.time - _startTime >= (1.0f / Gun.fireRate))
 		{
 			Gun.StateMachine.ChangeState(Gun.IdleState);
-			Debug.Log("Finish shooting");
 		}
 	}
 }

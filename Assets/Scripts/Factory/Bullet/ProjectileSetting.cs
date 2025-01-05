@@ -10,7 +10,7 @@ public class ProjectileSetting : FlyweightSetting
     public float damage = 10f;
     [FormerlySerializedAs("factoryDespawnEvent")] public FlyweightEvent flyweightEvent;
     
-    public override Flyweight Create()
+    public override Flyweight Create() // Instantiate callback OnEnable
     {
         var go = Instantiate(prefab);
         go.SetActive(false);
@@ -18,7 +18,12 @@ public class ProjectileSetting : FlyweightSetting
         
         var flyweight = go.GetOrAddComponent<Projectile>();
         flyweight.settings = this;
-        
-        return flyweight;
+
+		return flyweight;
     }
+
+	public override void OnGet(Flyweight f)
+	{
+        return;
+	}
 }

@@ -10,6 +10,8 @@ public class Unit : MonoBehaviour
 	int targetIndex;
 	public bool onDrawGizmos;
 	private Rigidbody2D _rb;
+	private Coroutine _updatePath;
+	private Coroutine _followPath;
 
 	void Start()
 	{
@@ -27,23 +29,30 @@ public class Unit : MonoBehaviour
 		{
 			path = newPath;
 			targetIndex = 0;
-			StopCoroutine("FollowPath");
-			StartCoroutine("FollowPath");
+			if(_followPath != null)
+			{
+				StopCoroutine(_followPath);
+			}
+			_followPath = StartCoroutine(FollowPath());
 		}
 	}
 
 	public void StartFindPath()
 	{
-		StartCoroutine("UpdatePath");
+		 _updatePath = StartCoroutine(UpdatePath());
 	}
 
-	public void StopFindPath() {
-		StopCoroutine("UpdatePath");
-		StopCoroutine("FollowPath");
+	public void StopFindPath() {	
+		if(_updatePath != null)
+			StopCoroutine(_updatePath);
+
+		if(_followPath != null)
+			StopCoroutine(_followPath);
+
 		_rb.velocity = Vector2.zero;
 	}
 
-	IEnumerator UpdatePath()
+	public IEnumerator UpdatePath()
 	{
 		while (true)
 		{
@@ -53,7 +62,7 @@ public class Unit : MonoBehaviour
 	}
 
 
-	IEnumerator FollowPath()
+	public IEnumerator FollowPath()
 	{
 		if (path == null || path.Length == 0)
 		{

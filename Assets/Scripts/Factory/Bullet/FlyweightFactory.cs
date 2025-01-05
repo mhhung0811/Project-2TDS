@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -35,14 +36,17 @@ public class FlyweightFactory : MonoBehaviour
     
     public void Spawn((FlyweightType type, Vector2 position, float rotation) parameters)
     {
-        Flyweight fw = GetPoolFor(parameters.type)?.Get();
-        if (fw == null) return;
-        
-        fw.transform.SetParent(_flyweightPoolDictionary[parameters.type]);
-        fw.transform.position = parameters.position;
-        fw.transform.rotation = Quaternion.Euler(0, 0, parameters.rotation);
-    }
-    public void ReturnToPool(Flyweight f) => GetPoolFor(f.settings.type)?.Release(f);
+		Flyweight fw = GetPoolFor(parameters.type)?.Get();
+		if (fw == null) return;
+
+		fw.transform.SetParent(_flyweightPoolDictionary[parameters.type]);
+		fw.transform.position = parameters.position;
+		fw.transform.rotation = Quaternion.Euler(0, 0, parameters.rotation);
+
+		fw.gameObject.SetActive(true);
+	}
+
+	public void ReturnToPool(Flyweight f) => GetPoolFor(f.settings.type)?.Release(f);
 
     private void Awake()
     {

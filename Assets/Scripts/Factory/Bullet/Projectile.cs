@@ -4,42 +4,38 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : Flyweight
 {
-    private new ProjectileSetting settings => (ProjectileSetting)base.settings;
+    public new ProjectileSetting settings {
+        get => (ProjectileSetting)base.settings;
+		set => base.settings = value;
+	}
 
-    private Rigidbody2D _rb;
+    public Rigidbody2D _rb;
 
-    void Awake()
+	public virtual void Awake()
     {
-        // Setting up components
-        _rb = GetComponent<Rigidbody2D>();
-    }
+		_rb = GetComponent<Rigidbody2D>();
+	}
 
-    void Start()
+	void Start()
     {
         
     }
 
     private void Update()
     {
-        float rotation = transform.rotation.eulerAngles.z;
-        float xDirection = Mathf.Cos(rotation * Mathf.Deg2Rad);
-        float yDirection = Mathf.Sin(rotation * Mathf.Deg2Rad);
-        _rb.velocity = settings.speed * new Vector2(xDirection, yDirection);
+       
     }
 
-    private void OnEnable()
+	public virtual void OnEnable()
     {
-        StartCoroutine(delayDespawn());
-    }
+		float rotation = transform.rotation.eulerAngles.z;
+		float xDirection = Mathf.Cos(rotation * Mathf.Deg2Rad);
+		float yDirection = Mathf.Sin(rotation * Mathf.Deg2Rad);
+		_rb.velocity = settings.speed * new Vector2(xDirection, yDirection);
+	}
 
-    private void OnDisable()
+	public virtual void OnDisable()
     {
         _rb.velocity = Vector2.zero;
-    }
-
-    IEnumerator delayDespawn()
-    {
-        yield return new WaitForSeconds(2);
-        settings.flyweightEvent.Raise(this);
     }
 }

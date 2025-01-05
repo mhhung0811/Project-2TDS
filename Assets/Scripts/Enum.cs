@@ -1,5 +1,12 @@
 ﻿public enum FlyweightType
 {
     BasicBullet,
-    FloatBullet
+    FloatBullet,
+	EnemyBullet,
+	SniperBullet,
+}
+
+public enum EffectType
+{
+	SpawnEnemy,
 }

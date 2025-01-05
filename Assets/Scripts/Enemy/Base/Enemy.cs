@@ -2,25 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
+public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, IEnemyInteractable
 {
-    [field : SerializeField] public int MaxHealth { get; set; } = 6;
-	[field: SerializeField] public IntVariable CurrentHealth { get; set; }
-    public Rigidbody2D RB { get; set; }
-    public Animator _animator;
+    [field : SerializeField] public int MaxHealth { get; set; }
+	[field: SerializeField] public int CurrentHealth { get; set; }
     public bool IsFacingRight { get; set; } = true;
 	[field: SerializeField] public bool IsWithinStrikingDistance { get; set; }
     [field: SerializeField] public float AttackRange { get; set; } = 5f;
 	[field: SerializeField] public float MoveSpeed { get; set; }
 	[field: SerializeField] public LayerMask Obstacles { get; set; }
 	[field: SerializeField] public Vector2Variable PlayerPos { get; set; }
+	public Rigidbody2D RB { get; set; }
+	public Animator _animator;
 
+	[field: SerializeField] public float AttackDuration { get; set; }
+    [field: SerializeField] public float AttackCooldown { get; set; }
+    public float attackCooldownTimer;
+		
+	[field: SerializeField] public float InitTime { get; set; }
+	[field: SerializeField] public float DieTime { get; set; }
 
 	#region State Machine Variables
 	public EnemyStateMachine StateMachine { get; set; }
     public EnemyIdleState IdleState { get; set; }
     public EnemyChaseState ChaseState { get; set; }
     public EnemyAttackState AttackState { get; set; }
+	public EnemyInitState InitState { get; set; }
+	public EnemyDieState DieState { get; set; }
+	public EnemyHurtState HurtState { get; set; }
 	#endregion
 
 	#region Idel Variables
@@ -32,34 +41,76 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
         IdleState = new EnemyIdleState(this, StateMachine);
         ChaseState = new EnemyChaseState(this, StateMachine);
         AttackState = new EnemyAttackState(this, StateMachine);
+		InitState = new EnemyInitState(this, StateMachine);
+		DieState = new EnemyDieState(this, StateMachine);
+		HurtState = new EnemyHurtState(this, StateMachine);
 	}
 
     private void Start()
     {
-        CurrentHealth.SetValue(MaxHealth);
+		CurrentHealth = MaxHealth;
 		RB = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
-		StateMachine.Initialize(ChaseState);
-    }
+		StateMachine.Initialize(InitState);
+	}
 
     private void Update()
     {
         StateMachine.CurrentState.FrameUpdate();
         CheckForFlip();
-    }
+        UpdateAttackCoolDown();
+	}
 
     private void FixedUpdate()
     {
         StateMachine.CurrentState.PhysicsUpdate();
     }
 
-    public void Damage(float damage)
-    {
-    }
+	public void OnEnemyBulletHit(float damage)
+	{
+		CurrentHealth -= (int)damage;
+
+		if(StateMachine.CurrentState != HurtState && (StateMachine.CurrentState == IdleState || StateMachine.CurrentState == ChaseState))
+		{
+			Debug.Log("---------Hurt");
+			StateMachine.ChangeState(HurtState);
+		}
+
+		if (CurrentHealth <= 0 && StateMachine.CurrentState != DieState)
+		{
+			Die();
+		}
+	}
 
     public void Die()
     {
+		StateMachine.ChangeState(DieState);
+	}
+
+    public virtual void Attack()
+    {
+
     }
+
+    public void UpdateAttackCoolDown()
+    {
+        if (attackCooldownTimer < AttackCooldown)
+        {
+			attackCooldownTimer += Time.deltaTime;
+		}
+    }
+
+    public bool CheckFinishAttackCoolDown()
+    {
+        if(attackCooldownTimer >= AttackCooldown)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
     public void CheckForFlip()
     {
@@ -99,7 +150,22 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
         CheckForLeftOrRightFacing(velocity);
     }
 
-    public void CheckForLeftOrRightFacing(Vector2 velocity)
+	public float Vector2ToAngle(Vector2 direction)
+	{
+		float angleInRadians = Mathf.Atan2(direction.y, direction.x);
+
+		float angleInDegrees = angleInRadians * Mathf.Rad2Deg;
+
+		if (angleInDegrees < 0)
+		{
+			angleInDegrees += 360f;
+		}
+
+		return angleInDegrees;
+	}
+
+
+	public void CheckForLeftOrRightFacing(Vector2 velocity)
     {
         if(IsFacingRight && velocity.x < 0)
         {
@@ -117,7 +183,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 
 	public virtual void CheckForChangeAttackState()
 	{
-		if (IsWithinStrikingDistance)
+		if (IsWithinStrikingDistance && CheckFinishAttackCoolDown())
 		{
 			Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
 			if (!Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles))
@@ -125,6 +191,16 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable
 				StateMachine.ChangeState(AttackState);
 			}
 		}
+	}
+
+	public bool CheckRaycastAttack()
+	{
+		Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
+		if(!Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	#region Animation Triggers

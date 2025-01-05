@@ -4,6 +4,7 @@ public class AWM : GunBase
 {
 	public GunData gunData;
 	public FlyweightTypeVector2FloatEvent takeBulletEvent;
+	public VoidEvent playerShootEvent;
 
 	public override void InitGunData()
 	{
@@ -34,10 +35,12 @@ public class AWM : GunBase
 	{
 		if (!CanShoot()) return;
 
-		takeBulletEvent.Raise((FlyweightType.BasicBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
+		takeBulletEvent.Raise((FlyweightType.SniperBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
 
 		currentAmmo--;
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
+
+		playerShootEvent.Raise(new Void());
 	}
 }

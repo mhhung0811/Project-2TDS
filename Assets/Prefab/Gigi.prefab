@@ -236,7 +236,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
 --- !u!50 &5897973523004866458
 Rigidbody2D:
   serializedVersion: 4
@@ -312,13 +312,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eeddeeb06e113a4fb50a76f2ffd71ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 6
-  <CurrentHealth>k__BackingField: {fileID: 11400000, guid: 71b64829ea594dc4faaa96d6c89acf9a, type: 2}
-  _animator: {fileID: 2560722354310888634}
+  <MaxHealth>k__BackingField: 100
+  <CurrentHealth>k__BackingField: 100
   <IsWithinStrikingDistance>k__BackingField: 0
-  <AttackRange>k__BackingField: 5
+  <AttackRange>k__BackingField: 6.5
   <MoveSpeed>k__BackingField: 3
   <Obstacles>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
   <PlayerPos>k__BackingField: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
+  _animator: {fileID: 2560722354310888634}
+  <AttackDuration>k__BackingField: 0.75
+  <AttackCooldown>k__BackingField: 0.4
+  attackCooldownTimer: 0
+  <InitTime>k__BackingField: 1.75
+  <DieTime>k__BackingField: 1.2
+  spawnBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
