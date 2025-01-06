@@ -29,6 +29,7 @@ public class Boss : MonoBehaviour
 	public BossSummonCheeseState SummonCheeseState { get; set; }
 	public BossCheeseSlamState CheeseSlamState { get; set; }
 	public BossElimentalerState ElimentalerState { get; set; }
+	public BossThrowKunaiState ThrowKunaiState { get; set; }
 	#endregion
 	private void Awake()
 	{
@@ -43,6 +44,7 @@ public class Boss : MonoBehaviour
 		SummonCheeseState = new BossSummonCheeseState(this, StateMachine);
 		CheeseSlamState = new BossCheeseSlamState(this, StateMachine);
 		ElimentalerState = new BossElimentalerState(this, StateMachine);
+		ThrowKunaiState = new BossThrowKunaiState(this, StateMachine);
 
 		StateMachine.Initialize(IdleState);
 	}
@@ -97,7 +99,8 @@ public class Boss : MonoBehaviour
 		yield return new WaitForSeconds(2f);
 		//StateMachine.ChangeState(TailWhipState);
 		//StateMachine.ChangeState(SummonCheeseState);
-		StateMachine.ChangeState(ElimentalerState);
+		//StateMachine.ChangeState(ElimentalerState);
+		StateMachine.ChangeState(ThrowKunaiState);
 	}
 	#endregion
 

@@ -8,9 +8,11 @@
 	EnemySniperBullet,
 	CheeseBullet,
 	CheeseBulletPro,
+	KunaiBullet,
 }
 
 public enum EffectType
 {
 	SpawnEnemy,
+	SpawnLineLaze,
 }
