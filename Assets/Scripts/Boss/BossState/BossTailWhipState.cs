@@ -20,7 +20,6 @@ public class BossTailWhipState : BossState
 	{
 		base.Exit();
 		Boss.Animator.SetBool("IsTailWhip", false);
-		Boss.StartCoroutine(Boss.TailWhipSkill());
 	}
 
 	public override void FrameUpdate()

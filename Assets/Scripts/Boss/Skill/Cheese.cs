@@ -6,7 +6,8 @@ using UnityEngine.UIElements;
 public class Cheese : MonoBehaviour
 {
     public Animator animator;
-    public GameObject CheeseSummon;
+	public SpriteRenderer spriteRenderer;
+	public GameObject CheeseSummon;
     public int quantityX;
 	public int quantityY;
     public float width;
@@ -18,11 +19,13 @@ public class Cheese : MonoBehaviour
 	public GameObject CheeseSlam;
 	public int quantityCheese;
 	private float spaceAngle;
+	private bool isPreSummon = false;
 
 
 	private void Awake()
 	{
 		animator = GetComponent<Animator>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	void Start()
     {
@@ -83,6 +86,7 @@ public class Cheese : MonoBehaviour
 
 	public void StartCheeseSlam()
 	{
+		spriteRenderer.sortingOrder = 2;
 		animator.SetBool("IsSlam", true);
 	}
 
@@ -111,6 +115,18 @@ public class Cheese : MonoBehaviour
         if (collision.gameObject.GetComponent<CheeseSummonBullet>() != null)
         {
             Destroy(collision.gameObject);
+			if (!isPreSummon)
+			{
+				isPreSummon = true;
+				StartCoroutine(SetAnimationPreSummon());
+			}
 		} 
+	}
+
+	public IEnumerator SetAnimationPreSummon()
+	{
+		isPreSummon = true;
+		yield return new WaitForSeconds(0.1f);
+		animator.SetBool("IsPreSummon", true);
 	}
 }

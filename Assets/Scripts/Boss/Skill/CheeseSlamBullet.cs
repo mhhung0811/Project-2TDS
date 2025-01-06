@@ -23,6 +23,7 @@ public class CheeseSlamBullet : MonoBehaviour
 		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 		timeCanMove = Random.Range(0, timeRadomCanMove);
+		speed = speed + Random.Range(-0.5f, 0.5f);
 		StartCoroutine(CanMove());
 	}
 

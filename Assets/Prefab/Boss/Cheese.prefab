@@ -77,15 +77,15 @@ SpriteRenderer:
   m_SortingLayerID: 1439208483
   m_SortingLayer: 4
   m_SortingOrder: 4
-  m_Sprite: {fileID: -1580447074, guid: 4c86a195779fd574889c8fcd82e84f96, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.375, y: 1.625}
+  m_Size: {x: 1.8333334, y: 2.1666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &6532586019193690778
@@ -123,8 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   CheeseSummon: {fileID: 8213803507765567944, guid: 3bb20450cdc52c6428eba9c44c4506d6, type: 3}
-  quantityX: 24
-  quantityY: 14
+  quantityX: 30
+  quantityY: 20
   width: 28
   height: 20
   CheeseSlam: {fileID: 2197790780690591480, guid: 5921e7138ba678f49a6080f71927df99, type: 3}
