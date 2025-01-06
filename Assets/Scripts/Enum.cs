@@ -5,6 +5,7 @@
 	EnemyBullet,
 	SniperBullet,
 	TailWhipBullet,
+	EnemySniperBullet,
 }
 
 public enum EffectType

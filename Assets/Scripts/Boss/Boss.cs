@@ -40,7 +40,7 @@ public class Boss : MonoBehaviour
 	}
 	private void Start()
 	{
-		StartCoroutine(TailWhipSkill());
+		//StartCoroutine(TailWhipSkill());
 	}
 
 	private void Update()

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1dd789a82b04e3ea933eeb407da4b23, type: 3}
-  m_Name: TailWhipBulletSetting
+  m_Name: EnemySniperBulletSetting
   m_EditorClassIdentifier: 
-  type: 4
-  prefab: {fileID: 6100833128857423752, guid: 07162a8849e3fb547bf39cfdff327755, type: 3}
-  speed: 6
-  damage: 1
+  type: 5
+  prefab: {fileID: 567669057631572231, guid: 0bba43555cca34240a926a9c72480b34, type: 3}
+  speed: 15
+  damage: 10
   flyweightEvent: {fileID: 11400000, guid: 5f4e6c89e8b385e4984c58c297d8a0c3, type: 2}

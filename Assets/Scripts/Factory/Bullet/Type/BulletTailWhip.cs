@@ -5,11 +5,13 @@ using UnityEngine;
 public class BulletTailWhip : Projectile
 {
 	public float destroyTime = 4f;
-	public float canDestroyTime = 4f;
+	public float canDestroyTime = 6f;
 	private bool canDestroyWithWall = false;
 	private float angleSpeed;
 	private float angleStart;
 	private float radius;
+	public float acceleration = 0.1f;
+	public float maxSpeed = 8f;
 	public Vector2Variable BossPos;
 	public override void Awake()
 	{
@@ -33,6 +35,11 @@ public class BulletTailWhip : Projectile
 	{
 		if (!canDestroyWithWall)
 		{
+			angleSpeed += acceleration * Time.fixedDeltaTime;
+			if (angleSpeed > maxSpeed)
+			{
+				angleSpeed = maxSpeed;
+			}
 			angleStart += angleSpeed * Time.fixedDeltaTime;
 
 			angleStart %= (2 * Mathf.PI);
@@ -72,7 +79,7 @@ public class BulletTailWhip : Projectile
 
 		float vx = -angleSpeed * radius * Mathf.Sin(angleStart);
 		float vy = angleSpeed * radius * Mathf.Cos(angleStart);
-		_rb.velocity = new Vector2(vx, vy).normalized * settings.speed;
+		_rb.velocity = new Vector2(vx, vy).normalized * maxSpeed;
 	}
 
 	public IEnumerator DestroyOvertime()
@@ -83,12 +90,16 @@ public class BulletTailWhip : Projectile
 
 	public void OnTriggerEnter2D(Collider2D collision)
 	{
-		IEnemyInteractable enemy = collision.gameObject.GetComponent<IEnemyInteractable>();
-		if (enemy != null)
+		IPlayerInteractable player = collision.gameObject.GetComponent<IPlayerInteractable>();
+		if (player != null)
 		{
-			enemy.OnEnemyBulletHit(settings.damage);
-			settings.flyweightEvent.Raise(this);
-			StopAllCoroutines();
+			if (player.IsPlayerInteractable)
+			{
+				Debug.Log("TailWhip");
+				settings.flyweightEvent.Raise(this);
+				player.OnPlayerBulletHit();
+				StopAllCoroutines();
+			}
 			return;
 		}
 

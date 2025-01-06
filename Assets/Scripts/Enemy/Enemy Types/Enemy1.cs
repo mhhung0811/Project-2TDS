@@ -27,7 +27,7 @@ public class Enemy1 : Enemy
 		Vector2 posSpawnBullet = new Vector2(transform.position.x, transform.position.y) + direction * 1f;
 		Vector2 posSpawnBullet1 = posSpawnBullet + new Vector2(direction.x, direction.y) * 0.25f;
 
-		spawnBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawnBullet1, angle));
+		spawnBulletEvent.Raise((FlyweightType.EnemySniperBullet, posSpawnBullet1, angle));
 
 		yield return new WaitForSeconds(0.9f);
 
