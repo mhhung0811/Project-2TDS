@@ -99,8 +99,8 @@ public class Cheese : MonoBehaviour
 	public IEnumerator SpawnCheeseSlam()
 	{
 		Vector2 offetRandom = Vector2.zero;
-		spaceAngle = 360 / quantityCheese;
-		for (int i = 0; i < quantityCheese; i++)
+		spaceAngle = 360f / quantityCheese;
+		for (int i = 0; i < quantityCheese ; i++)
 		{
 			offetRandom = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
 			GameObject cheeseSlam = Instantiate(CheeseSlam);

@@ -54,7 +54,8 @@ public class BossThrowKunaiState : BossState
 		Boss.Animator.SetBool("IsThrowKunai", true);
 		Boss.StartCoroutine(ThrowKunai(10));
 
-		yield return null;
+		yield return new WaitForSeconds(2f);
+		BossStateMachine.ChangeState(Boss.TailWhipState);
 	}
 
 	public IEnumerator ThrowKunai(int quantity)

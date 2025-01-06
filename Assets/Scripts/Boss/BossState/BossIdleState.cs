@@ -12,6 +12,7 @@ public class BossIdleState : BossState
 	{
 		base.Enter();
 		Boss.Animator.SetBool("IsIdle", true);
+		Boss.StartCoroutine(Boss.TestSkill());
 	}
 
 	public override void Exit()

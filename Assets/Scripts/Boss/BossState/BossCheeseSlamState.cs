@@ -12,6 +12,7 @@ public class BossCheeseSlamState : BossState
 	{
 		base.Enter();
 		Boss.Animator.SetBool("IsCheeseSlam", true);
+		Boss.StartCoroutine(EndState());
 	}
 
 	public override void Exit()
@@ -33,5 +34,11 @@ public class BossCheeseSlamState : BossState
 	public override void AnimationTriggerEvent(Boss.AnimationTriggerType triggerType)
 	{
 
+	}
+
+	public IEnumerator EndState()
+	{
+		yield return new WaitForSeconds(2f);
+		BossStateMachine.ChangeState(Boss.ElimentalerState);
 	}
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BossElimentalerState : BossState
 {
-	//private float timeEndSpawnCheese = 1.1f;
 	private float timeStartSpawnCheese = 0.9f;
 	public BossElimentalerState(Boss boss, BossStateMachine stateMachine) : base(boss, stateMachine)
 	{
@@ -61,5 +60,7 @@ public class BossElimentalerState : BossState
 			
 			yield return new WaitForSeconds(1f/40f);
 		}
+		yield return new WaitForSeconds(2f);
+		BossStateMachine.ChangeState(Boss.ThrowKunaiState);
 	}
 }
