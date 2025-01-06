@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1439208483
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: -1580447074, guid: 4c86a195779fd574889c8fcd82e84f96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -122,11 +122,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  CheeseSummon: {fileID: 0}
-  quantityX: 20
-  quantityY: 10
-  width: 15
-  height: 10
+  CheeseSummon: {fileID: 8213803507765567944, guid: 3bb20450cdc52c6428eba9c44c4506d6, type: 3}
+  quantityX: 24
+  quantityY: 14
+  width: 28
+  height: 20
+  CheeseSlam: {fileID: 2197790780690591480, guid: 5921e7138ba678f49a6080f71927df99, type: 3}
+  quantityCheese: 80
 --- !u!50 &3214151383681685348
 Rigidbody2D:
   serializedVersion: 4

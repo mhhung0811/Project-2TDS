@@ -15,6 +15,11 @@ public class Cheese : MonoBehaviour
     private float spaceX;
 	private float spaceY;
 
+	public GameObject CheeseSlam;
+	public int quantityCheese;
+	private float spaceAngle;
+
+
 	private void Awake()
 	{
 		animator = GetComponent<Animator>();
@@ -72,9 +77,35 @@ public class Cheese : MonoBehaviour
 		}
 
 		animator.SetBool("IsSummon", true);
-		yield return null;
+		yield return new WaitForSeconds(1.5f);
+		StartCheeseSlam();
 	}
 
+	public void StartCheeseSlam()
+	{
+		animator.SetBool("IsSlam", true);
+	}
+
+	public void DestroyGobj()
+	{
+		Destroy(gameObject);
+	}
+
+
+	public IEnumerator SpawnCheeseSlam()
+	{
+		Vector2 offetRandom = Vector2.zero;
+		spaceAngle = 360 / quantityCheese;
+		for (int i = 0; i < quantityCheese; i++)
+		{
+			offetRandom = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+			GameObject cheeseSlam = Instantiate(CheeseSlam);
+			CheeseSlamBullet cheeseSlamBullet = cheeseSlam.GetComponent<CheeseSlamBullet>();
+			cheeseSlamBullet.direction = new Vector2(Mathf.Cos(spaceAngle * i * Mathf.Deg2Rad), Mathf.Sin(spaceAngle * i * Mathf.Deg2Rad));
+			cheeseSlam.transform.position = (Vector2)this.transform.position + offetRandom;
+		}
+		yield return null;
+	}
 	public void OnTriggerEnter2D(Collider2D collision)
 	{
         if (collision.gameObject.GetComponent<CheeseSummonBullet>() != null)

@@ -36,7 +36,7 @@ public class CheeseSummonBullet : MonoBehaviour
 
 	private void OnEnable()
 	{
-		speed = 0f;
+		speed = Random.Range(-0.2f, 0f);
 		StartCoroutine(CanMove());
 	}
 

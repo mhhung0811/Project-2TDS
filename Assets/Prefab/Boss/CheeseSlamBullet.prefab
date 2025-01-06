@@ -121,6 +121,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab3f16036a8b0843a596aefebc0b1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 18
+  acceleration: 0.5
+  maxSpeed: 20
+  direction: {x: 1, y: 0}
+  timeRadomCanMove: 0.1
+  rb: {fileID: 0}
 --- !u!50 &1290759362452180217
 Rigidbody2D:
   serializedVersion: 4
