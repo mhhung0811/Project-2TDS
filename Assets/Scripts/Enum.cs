@@ -6,6 +6,8 @@
 	SniperBullet,
 	TailWhipBullet,
 	EnemySniperBullet,
+	CheeseBullet,
+	CheeseBulletPro,
 }
 
 public enum EffectType
