@@ -69,10 +69,11 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	public void OnEnemyBulletHit(float damage)
 	{
 		CurrentHealth -= (int)damage;
+		_animator.SetBool("isDamaged", true);
 
-		if(StateMachine.CurrentState != HurtState && (StateMachine.CurrentState == IdleState || StateMachine.CurrentState == ChaseState))
+
+		if (StateMachine.CurrentState != HurtState && (StateMachine.CurrentState == IdleState || StateMachine.CurrentState == ChaseState))
 		{
-			Debug.Log("---------Hurt");
 			StateMachine.ChangeState(HurtState);
 		}
 
@@ -82,7 +83,12 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		}
 	}
 
-    public void Die()
+	public void SetAnimationIdleAffterHurt()
+	{
+		_animator.SetBool("isDamaged", false);
+	}
+
+	public void Die()
     {
 		StateMachine.ChangeState(DieState);
 	}
