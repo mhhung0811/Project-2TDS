@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlockPro : GunBase
+public class AssaultRifle : GunBase
 {
 	public GunData gunData;
 	public FlyweightTypeVector2FloatEvent takeBulletEvent;
@@ -37,7 +37,7 @@ public class GlockPro : GunBase
 	{
 		if (!CanShoot()) return;
 
-		takeBulletEvent.Raise((FlyweightType.GlockProBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
+		takeBulletEvent.Raise((FlyweightType.AssaultRifleBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
 
 		currentAmmo--;
 		UpdateLastShootTime();

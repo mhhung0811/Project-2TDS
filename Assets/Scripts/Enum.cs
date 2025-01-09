@@ -9,6 +9,8 @@
 	CheeseBullet,
 	CheeseBulletPro,
 	KunaiBullet,
+	AssaultRifleBullet,
+	GlockProBullet,
 }
 
 public enum EffectType

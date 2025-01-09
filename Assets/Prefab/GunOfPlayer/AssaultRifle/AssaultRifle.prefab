@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1769522618084061655}
   - component: {fileID: 4103325871229796814}
   - component: {fileID: 6093078514750129879}
-  - component: {fileID: 6588936243055181003}
+  - component: {fileID: 5094163678675988259}
   m_Layer: 0
   m_Name: AssaultRifle
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6588936243055181003
+--- !u!114 &5094163678675988259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,9 +116,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3221900394859950438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1e07bc983b212446892b851e0df7f9d, type: 3}
+  m_Script: {fileID: 11500000, guid: db8548229a355884aa2ab9501c1cd288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: 19815839d78c2d847bb8d854a9d05075, type: 2}
+  gunData: {fileID: 11400000, guid: 3b9ce71df5cdbdd43a8a46a57f832e08, type: 2}
   takeBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
   playerShootEvent: {fileID: 11400000, guid: 4141f7d51c6876445ba7b724b667e64e, type: 2}
