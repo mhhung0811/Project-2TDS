@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2c59af7b0585b42b9afba4cb0798ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: 07c35a435ecdbff4081f8c6ad7643495, type: 2}
+  GunData: {fileID: 11400000, guid: 07c35a435ecdbff4081f8c6ad7643495, type: 2}
+  HoldGunPos: {fileID: 11400000, guid: 6dffcd1d33f6a404781f7e5c5dde1647, type: 2}
   takeBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
   playerShootEvent: {fileID: 11400000, guid: 4141f7d51c6876445ba7b724b667e64e, type: 2}

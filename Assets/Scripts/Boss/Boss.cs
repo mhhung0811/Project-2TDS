@@ -98,9 +98,9 @@ public class Boss : MonoBehaviour
 	{
 		yield return new WaitForSeconds(2f);
 		//StateMachine.ChangeState(TailWhipState);
-		StateMachine.ChangeState(SummonCheeseState);
+		//StateMachine.ChangeState(SummonCheeseState);
 		//StateMachine.ChangeState(ElimentalerState);
-		//StateMachine.ChangeState(ThrowKunaiState);
+		StateMachine.ChangeState(ThrowKunaiState);
 	}
 	#endregion
 

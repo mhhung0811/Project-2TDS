@@ -39,6 +39,6 @@ public class BossCheeseSlamState : BossState
 	public IEnumerator EndState()
 	{
 		yield return new WaitForSeconds(2f);
-		BossStateMachine.ChangeState(Boss.ElimentalerState);
+		BossStateMachine.ChangeState(Boss.IdleState);
 	}
 }

@@ -61,6 +61,6 @@ public class BossElimentalerState : BossState
 			yield return new WaitForSeconds(1f/40f);
 		}
 		yield return new WaitForSeconds(2f);
-		BossStateMachine.ChangeState(Boss.ThrowKunaiState);
+		BossStateMachine.ChangeState(Boss.IdleState);
 	}
 }

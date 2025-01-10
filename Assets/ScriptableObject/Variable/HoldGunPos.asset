@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a01d7d498023fc45aa77efad682084c, type: 3}
-  m_Name: AssaultRifle
+  m_Script: {fileID: 11500000, guid: c0babc815a959194d89278dc1ad29050, type: 3}
+  m_Name: HoldGunPos
   m_EditorClassIdentifier: 
-  gunName: Assault Rifle Gun
-  maxAmmoPerMag: 30
-  currentAmmo: 30
-  totalAmmo: 210
-  reloadTime: 1
-  fireRate: 10
-  posHoldGun: {x: -0.1, y: -0.15, z: 0}
-  posGun: {x: 0.5, y: 0, z: 0}
+  DefaultValue: {x: 0, y: 0}
