@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossIdleState : BossState
 {
+	private float timeToChangeState = 0.2f;
 	public BossIdleState(Boss boss, BossStateMachine stateMachine) : base(boss, stateMachine)
 	{
 	}
@@ -12,7 +13,7 @@ public class BossIdleState : BossState
 	{
 		base.Enter();
 		Boss.Animator.SetBool("IsIdle", true);
-		Boss.StartCoroutine(Boss.TestSkill());
+		Boss.StartCoroutine(CanExitState());
 	}
 
 	public override void Exit()
@@ -35,6 +36,12 @@ public class BossIdleState : BossState
 	public override void AnimationTriggerEvent(Boss.AnimationTriggerType triggerType)
 	{
 		
+	}
+
+	public IEnumerator CanExitState()
+	{
+		yield return new WaitForSeconds(timeToChangeState);
+		Boss.MechanicChangeState();
 	}
 }
 

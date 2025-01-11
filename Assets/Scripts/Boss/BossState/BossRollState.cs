@@ -36,12 +36,12 @@ public class BossRollState : BossState
 
 	public IEnumerator Roll()
 	{
-		//FlipRight();
-		Vector2 rollDirection = Boss.PlayerPos.CurrentValue - Boss.BossPos.CurrentValue;
+		int xInput = Random.Range(-1, 2);
+		int yInput = Random.Range(-1, 2);
 		Boss.Animator.SetBool("IsRoll", true);
-		Boss.Animator.SetFloat("XInput", rollDirection.x);
-		Boss.Animator.SetFloat("YInput", rollDirection.y);
-		Boss.RB.velocity = rollDirection.normalized * 8f;
+		Boss.Animator.SetFloat("XInput",xInput);
+		Boss.Animator.SetFloat("YInput", yInput);
+		Boss.RB.velocity = new Vector2(xInput, yInput).normalized * 8f;
 
 		yield return new WaitForSeconds(0.4f);
 		Boss.RB.velocity = Vector2.zero;

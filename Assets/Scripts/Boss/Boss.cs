@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public float moveSpeed;
 	public bool isFacingRight = true;
 	public bool isStayPosCenter = false;
+	public bool isMoveStatePrevious = false;
 	public float heightAreaMovable = 5f;
 	public float widthAreaMovable = 7f;
 
@@ -55,12 +56,12 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 		DieState = new BossDieState(this, StateMachine);
 		MoveToCenterState = new BossMoveToCenterState(this, StateMachine);
 
-		StateMachine.Initialize(IdleState);
+		StateMachine.Initialize(MoveToCenterState);
 	}
 	private void Start()
 	{
 		currentHealth.CurrentValue = maxHealth.CurrentValue;
-		StartCoroutine(TestSkill());
+		//StartCoroutine(TestSkill());
 	}
 
 	private void Update()
@@ -89,6 +90,23 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public void UpdateAnimationByPosPlayer()
 	{
 		Vector2 direction = PlayerPos.CurrentValue - (Vector2)transform.position;
+		Animator.SetFloat("XInput", direction.x);
+		Animator.SetFloat("YInput", direction.y);
+
+		// Check Flip
+		if (direction.x > 0 && !isFacingRight)
+		{
+			Flip();
+		}
+		else if (direction.x < 0 && isFacingRight)
+		{
+			Flip();
+		}
+	}
+
+	public void UpdateAnimationByPosCenter()
+	{
+		Vector2 direction = PosCenterBoss.CurrentValue - (Vector2)transform.position;
 		Animator.SetFloat("XInput", direction.x);
 		Animator.SetFloat("YInput", direction.y);
 
@@ -163,7 +181,46 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public void MoveToPosCenter()
 	{
 		Vector2 direction = (PosCenterBoss.CurrentValue - (Vector2)transform.position).normalized;
-		RB.velocity = direction * moveSpeed * 1.5f;
+		RB.velocity = direction * moveSpeed;
+	}
+
+	public void MechanicChangeState()
+	{
+		// Neu out areMoveable, di chuyen ve PosCenter
+		if(CheckOutAreaMovable() && isMoveStatePrevious)
+		{
+			StateMachine.ChangeState(MoveToCenterState);
+			return;
+		}
+
+		// Neu vua tan cong xong, di chuyen ap sat player
+		if (!isMoveStatePrevious)
+		{
+			StateMachine.ChangeState(MoveState);
+			return;
+		}
+
+		// tan cong random
+		RandomUseSkill();
+		isMoveStatePrevious = false;
+		return;
+	}
+
+	public void RandomUseSkill()
+	{
+		int random = Random.Range(0, 3);
+		switch (random)
+		{
+			case 0:
+				StateMachine.ChangeState(TailWhipState);
+				break;
+			case 1:
+				StateMachine.ChangeState(ThrowKunaiState);
+				break;
+			case 2:
+				StateMachine.ChangeState(ElimentalerState);
+				break;
+		}
 	}
 	#endregion
 

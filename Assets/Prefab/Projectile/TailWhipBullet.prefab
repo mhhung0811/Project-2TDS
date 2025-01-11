@@ -164,7 +164,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: bae7c1a9c2621bc408e328aaa5913b4d, type: 2}
   _rb: {fileID: 0}
   destroyTime: 4
-  canDestroyTime: 2
+  canDestroyTime: 3
   acceleration: 2
   maxSpeed: 10
   BossPos: {fileID: 11400000, guid: 375a2d3c85267fa439c0f0662a71c6d5, type: 2}

@@ -39,17 +39,17 @@ public class BossTailWhipState : BossState
 
 	public IEnumerator Attack()
 	{
-		float radius = 12;
+		float radius = 10;
 		float startAngle = 30;
 		float endAngle = 90;
-		float quantity = 36;
+		float quantity = 30;
 		float angleStep = (endAngle - startAngle) / quantity;
 		for (int i = 0; i < quantity ; i++)
 		{
 			float angle = endAngle - i * angleStep;
 			float x = radius * Mathf.Cos(angle * Mathf.Deg2Rad);
 			float y = radius * Mathf.Sin(angle * Mathf.Deg2Rad);
-			Vector2 offset = new Vector2(x, y) + new Vector2(0, -radius);
+			Vector2 offset = new Vector2(x, y) + new Vector2(+1, -radius);
 			Boss.TakeBulletEvent.Raise((FlyweightType.TailWhipBullet, Boss.BossPos.CurrentValue + offset, 0));
 		}
 		yield return null;
@@ -57,7 +57,7 @@ public class BossTailWhipState : BossState
 
 	private IEnumerator ChangeIdle()
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(3.5f);
 		Boss.StateMachine.ChangeState(Boss.IdleState);
 	}
 }

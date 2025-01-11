@@ -13,7 +13,6 @@ public class PlayerDieState : PlayerState
 		base.Enter();
 		Player.Animator.SetBool("IsDie", true);
 		Player.myRb.velocity = Vector2.zero;
-		Player.HoldGun.SetActive(false);
 		Player.myRb.constraints = RigidbodyConstraints2D.FreezeAll;
 	}
 

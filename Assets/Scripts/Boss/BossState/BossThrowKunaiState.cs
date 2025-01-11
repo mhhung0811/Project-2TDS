@@ -52,7 +52,7 @@ public class BossThrowKunaiState : BossState
 		// Lam 3 => 10 kunai
 		Boss.Animator.SetBool("IsIdle", false);
 		Boss.Animator.SetBool("IsThrowKunai", true);
-		Boss.StartCoroutine(ThrowKunai(45));
+		Boss.StartCoroutine(ThrowKunai(12));
 
 		yield return new WaitForSeconds(2f);
 		BossStateMachine.ChangeState(Boss.IdleState);

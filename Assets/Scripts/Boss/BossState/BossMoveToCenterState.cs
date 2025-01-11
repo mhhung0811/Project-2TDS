@@ -23,7 +23,7 @@ public class BossMoveToCenterState : BossState
 	public override void FrameUpdate()
 	{
 		base.FrameUpdate();
-		Boss.UpdateAnimationByPosPlayer();
+		Boss.UpdateAnimationByPosCenter();
 
 		if(Boss.isStayPosCenter)
 		{
