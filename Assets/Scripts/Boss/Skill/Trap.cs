@@ -10,6 +10,7 @@ public class Trap : MonoBehaviour
 	public float HorOrVer;
 	public Collider2D collision;
 	public Vector2 direction;
+	public float timeDestroy;
 	private void Awake()
 	{
 		animator = GetComponent<Animator>();
@@ -23,13 +24,27 @@ public class Trap : MonoBehaviour
 		HorOrVer = Random.Range(0, 2);
 		isFlying = true;
 		animator.SetFloat("HorOrVer", HorOrVer);
+		timeDestroy = 15f;
 	}
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        if(timeDestroy > 0)
+		{
+			AutoDestroy();
+		}
+	}
+
+	public void AutoDestroy()
+	{
+		timeDestroy -= Time.deltaTime;
+		if(timeDestroy <= 0)
+		{
+			animator.SetBool("IsIdle", false);
+			animator.SetBool("IsAttack", true);
+		}
+	}
 
 	public void OnTriggerEnter2D(Collider2D collision)
 	{
