@@ -17,3 +17,5 @@ MonoBehaviour:
     effectPref: {fileID: 9200122291621887243, guid: fc4a82d87b553a9458e9478217b41918, type: 3}
   - effectType: 1
     effectPref: {fileID: 1709166365004622650, guid: d33d5b74c8165e54e9d145b6aca60738, type: 3}
+  - effectType: 2
+    effectPref: {fileID: 577694756199880411, guid: 4867d7623c7a1b24b8986e0249ef9b4f, type: 3}

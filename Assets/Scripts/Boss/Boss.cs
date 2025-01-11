@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public bool isMoveStatePrevious = false;
 	public bool isRolling = false;
 	public bool canRoll = true;
+	public bool isUsedThrowTrap = false;
 	public float cooldownRoll = 15f;
 	public float heightAreaMovable = 5f;
 	public float widthAreaMovable = 7f;
@@ -23,6 +24,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 
 	public FlyweightTypeVector2FloatEvent TakeBulletEvent;
 	public GameObject Cheese;
+	public GameObject Trap;
 
 	#region GetComponents
 	public Rigidbody2D RB { get; set; }
@@ -42,6 +44,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public BossDieState DieState { get; set; }
 	public BossMoveToCenterState MoveToCenterState { get; set; }
 	public BossRollToMoveCenterState RollToMoveCenterState { get; set; }
+	public BossThrowTrapState ThrowTrapState { get; set; }
 	#endregion
 
 	private void Awake()
@@ -58,6 +61,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 		CheeseSlamState = new BossCheeseSlamState(this, StateMachine);
 		ElimentalerState = new BossElimentalerState(this, StateMachine);
 		ThrowKunaiState = new BossThrowKunaiState(this, StateMachine);
+		ThrowTrapState = new BossThrowTrapState(this, StateMachine);
 		DieState = new BossDieState(this, StateMachine);
 		MoveToCenterState = new BossMoveToCenterState(this, StateMachine);
 		RollToMoveCenterState = new BossRollToMoveCenterState(this, StateMachine);
@@ -191,10 +195,22 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 		RB.velocity = direction * moveSpeed;
 	}
 
+	public float PercentHealth()
+	{
+		return currentHealth.CurrentValue / maxHealth.CurrentValue;
+	}
+
 	public void MechanicChangeState()
 	{
-		// Neu vua tan cong xong, di chuyen ap sat player
-		if (!isMoveStatePrevious)
+        // Throw Trap
+        if (!isUsedThrowTrap && PercentHealth() <= 0.5f)
+        {
+			StateMachine.ChangeState(ThrowTrapState);
+			return;
+		}
+
+        // Neu vua tan cong xong, di chuyen ap sat player
+        if (!isMoveStatePrevious)
 		{
 			// Neu out areMoveable, di chuyen ve PosCenter
 			if (CheckOutAreaMovable())

@@ -17,4 +17,5 @@ public enum EffectType
 {
 	SpawnEnemy,
 	SpawnLineLaze,
+	TrapVFX,
 }

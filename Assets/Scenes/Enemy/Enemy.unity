@@ -346,11 +346,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6772549295857386393, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6772549295857386393, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.898
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6772549295857386393, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -27020,17 +27020,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 3186472115229708052, guid: 3e8da4dc813d73448a25c78d264ebdb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7957209514093491580, guid: 3e8da4dc813d73448a25c78d264ebdb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.2404327
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7957209514093491580, guid: 3e8da4dc813d73448a25c78d264ebdb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.18265407
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7957209514093491580, guid: 3e8da4dc813d73448a25c78d264ebdb6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.07392153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7957209514093491580, guid: 3e8da4dc813d73448a25c78d264ebdb6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27337,12 +27341,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8211502594301846411, guid: 655225d665a9a1641bf6759aaf9d9c21, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8211502594301846411, guid: 655225d665a9a1641bf6759aaf9d9c21, type: 3}
       propertyPath: m_TagString
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8290661461022028598, guid: 655225d665a9a1641bf6759aaf9d9c21, type: 3}
+      propertyPath: Trap
+      value: 
+      objectReference: {fileID: 3186472115229708052, guid: 3e8da4dc813d73448a25c78d264ebdb6, type: 3}
     - target: {fileID: 8290661461022028598, guid: 655225d665a9a1641bf6759aaf9d9c21, type: 3}
       propertyPath: canRoll
       value: 1
