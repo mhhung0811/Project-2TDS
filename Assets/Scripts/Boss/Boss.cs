@@ -10,8 +10,12 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public bool isFacingRight = true;
 	public bool isStayPosCenter = false;
 	public bool isMoveStatePrevious = false;
+	public bool isRolling = false;
+	public bool canRoll = true;
+	public float cooldownRoll = 15f;
 	public float heightAreaMovable = 5f;
 	public float widthAreaMovable = 7f;
+	public bool IsEnemyInteractable { get; set; }
 
 	public Vector2Variable PlayerPos;
 	public Vector2Variable BossPos;
@@ -37,6 +41,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public BossThrowKunaiState ThrowKunaiState { get; set; }
 	public BossDieState DieState { get; set; }
 	public BossMoveToCenterState MoveToCenterState { get; set; }
+	public BossRollToMoveCenterState RollToMoveCenterState { get; set; }
 	#endregion
 
 	private void Awake()
@@ -55,11 +60,13 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 		ThrowKunaiState = new BossThrowKunaiState(this, StateMachine);
 		DieState = new BossDieState(this, StateMachine);
 		MoveToCenterState = new BossMoveToCenterState(this, StateMachine);
+		RollToMoveCenterState = new BossRollToMoveCenterState(this, StateMachine);
 
 		StateMachine.Initialize(MoveToCenterState);
 	}
 	private void Start()
 	{
+		IsEnemyInteractable = true;
 		currentHealth.CurrentValue = maxHealth.CurrentValue;
 		//StartCoroutine(TestSkill());
 	}
@@ -186,16 +193,23 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 
 	public void MechanicChangeState()
 	{
-		// Neu out areMoveable, di chuyen ve PosCenter
-		if(CheckOutAreaMovable() && isMoveStatePrevious)
-		{
-			StateMachine.ChangeState(MoveToCenterState);
-			return;
-		}
-
 		// Neu vua tan cong xong, di chuyen ap sat player
 		if (!isMoveStatePrevious)
 		{
+			// Neu out areMoveable, di chuyen ve PosCenter
+			if (CheckOutAreaMovable())
+			{
+				int random = Random.Range(0, 2);
+				if (random == 0)
+				{
+					StateMachine.ChangeState(RollToMoveCenterState);
+				}
+				else
+				{
+					StateMachine.ChangeState(MoveToCenterState);
+				}
+				return;
+			}
 			StateMachine.ChangeState(MoveState);
 			return;
 		}
@@ -204,6 +218,15 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 		RandomUseSkill();
 		isMoveStatePrevious = false;
 		return;
+	}
+
+	public bool CanRoll()
+	{
+		if(canRoll && !CheckOutAreaMovable())
+		{
+			return true;
+		}
+		return false;
 	}
 
 	public void RandomUseSkill()

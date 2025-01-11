@@ -9,8 +9,11 @@ public class ShotGunBullet : Projectile
 		IEnemyInteractable enemy = collision.gameObject.GetComponent<IEnemyInteractable>();
 		if (enemy != null)
 		{
-			enemy.OnEnemyBulletHit(settings.damage);
-			settings.flyweightEvent.Raise(this);
+			if (enemy.IsEnemyInteractable)
+			{
+				enemy.OnEnemyBulletHit(settings.damage);
+				settings.flyweightEvent.Raise(this);
+			}
 			return;
 		}
 

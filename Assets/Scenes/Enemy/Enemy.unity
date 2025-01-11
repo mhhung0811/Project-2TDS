@@ -27333,8 +27333,16 @@ PrefabInstance:
       value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 8211502594301846411, guid: 655225d665a9a1641bf6759aaf9d9c21, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211502594301846411, guid: 655225d665a9a1641bf6759aaf9d9c21, type: 3}
       propertyPath: m_TagString
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8290661461022028598, guid: 655225d665a9a1641bf6759aaf9d9c21, type: 3}
+      propertyPath: canRoll
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8290661461022028598, guid: 655225d665a9a1641bf6759aaf9d9c21, type: 3}
       propertyPath: moveSpeed

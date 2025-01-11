@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	[field: SerializeField] public Vector2Variable PlayerPos { get; set; }
 	public Rigidbody2D RB { get; set; }
 	public Animator _animator;
+	public bool IsEnemyInteractable { get; set; }
 
 	[field: SerializeField] public float AttackDuration { get; set; }
     [field: SerializeField] public float AttackCooldown { get; set; }
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
     private void Start()
     {
 		CurrentHealth = MaxHealth;
+		IsEnemyInteractable = true;
 		RB = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
 		StateMachine.Initialize(InitState);

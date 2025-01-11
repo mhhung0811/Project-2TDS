@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossMoveState : BossState
 {
-	private float timeToChangeState = 1f;
+	private float timeToChangeState = 0.75f;
 	public BossMoveState(Boss boss, BossStateMachine stateMachine) : base(boss, stateMachine)
 	{
 	}
@@ -42,7 +42,15 @@ public class BossMoveState : BossState
 
 	public IEnumerator CanExitState()
 	{
-		yield return new WaitForSeconds(timeToChangeState);
-		BossStateMachine.ChangeState(Boss.IdleState);
+		yield return new WaitForSeconds(0.2f);
+		if (Boss.CanRoll())
+		{
+			BossStateMachine.ChangeState(Boss.RollState);	
+		}
+		else
+		{
+			yield return new WaitForSeconds(timeToChangeState - 0.2f);
+			BossStateMachine.ChangeState(Boss.IdleState);
+		}
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossIdleState : BossState
 {
-	private float timeToChangeState = 0.2f;
+	private float timeToChangeState = 0.4f;
 	public BossIdleState(Boss boss, BossStateMachine stateMachine) : base(boss, stateMachine)
 	{
 	}
