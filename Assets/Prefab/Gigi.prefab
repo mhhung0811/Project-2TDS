@@ -236,7 +236,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
 --- !u!50 &5897973523004866458
 Rigidbody2D:
   serializedVersion: 4
@@ -323,7 +323,7 @@ MonoBehaviour:
   <PlayerPos>k__BackingField: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   _animator: {fileID: 2560722354310888634}
   <AttackDuration>k__BackingField: 0.75
-  <AttackCooldown>k__BackingField: 0.4
+  <AttackCooldown>k__BackingField: 2
   attackCooldownTimer: 0
   <InitTime>k__BackingField: 1.75
   <DieTime>k__BackingField: 1.2

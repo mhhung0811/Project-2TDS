@@ -40,14 +40,14 @@ public class BossThrowKunaiState : BossState
 	public IEnumerator Attack() 
 	{
 		// Lan 1 => 4 kunai
-		Boss.StartCoroutine(ThrowKunai(4));
-		yield return new WaitForSeconds(1f);
+		Boss.StartCoroutine(ThrowKunai(5));
+		yield return new WaitForSeconds(1.5f);
 
 		// Lan 2 => 7 kunai
 		Boss.Animator.SetBool("IsIdle", false);
 		Boss.Animator.SetBool("IsThrowKunai", true);
-		Boss.StartCoroutine(ThrowKunai(7));
-		yield return new WaitForSeconds(1f);
+		Boss.StartCoroutine(ThrowKunai(8));
+		yield return new WaitForSeconds(1.5f);
 
 		// Lam 3 => 10 kunai
 		Boss.Animator.SetBool("IsIdle", false);
@@ -78,15 +78,25 @@ public class BossThrowKunaiState : BossState
 			effectLineLaze.Initialize(directionLine, 0.5f);
 		}
 
-		yield return new WaitForSeconds(0.5f);
-		Boss.Animator.SetBool("IsIdle", true);
-		Boss.Animator.SetBool("IsThrowKunai", false);
+		yield return new WaitForSeconds(0.3f);
 
 		for (int i = 0; i < quantity; i++)
 		{
 			float currentAngle = startAngle + i * spaceAngle;
 			Boss.TakeBulletEvent.Raise((FlyweightType.KunaiBullet, Boss.BossPos.CurrentValue, currentAngle));
 		}
+
+		yield return new WaitForSeconds(0.3f);
+
+		for (int i = 0; i < quantity; i++)
+		{
+			float currentAngle = startAngle + i * spaceAngle;
+			Boss.TakeBulletEvent.Raise((FlyweightType.KunaiBullet, Boss.BossPos.CurrentValue, currentAngle));
+		}
+
+		yield return new WaitForSeconds(0.3f);
+		Boss.Animator.SetBool("IsIdle", true);
+		Boss.Animator.SetBool("IsThrowKunai", false);
 	}
 
 }

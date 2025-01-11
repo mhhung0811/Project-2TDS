@@ -1,16 +1,20 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : MonoBehaviour, IEnemyInteractable
 {
-	public float maxHealth;
-	public float currentHealth;
+	public FloatVariable maxHealth;
+	public FloatVariable currentHealth;
 	public float moveSpeed;
 	public bool isFacingRight = true;
+	public bool isStayPosCenter = false;
+	public float heightAreaMovable = 5f;
+	public float widthAreaMovable = 7f;
 
 	public Vector2Variable PlayerPos;
 	public Vector2Variable BossPos;
+	public Vector2Variable PosCenterBoss;
 
 	public FlyweightTypeVector2FloatEvent TakeBulletEvent;
 	public GameObject Cheese;
@@ -30,7 +34,10 @@ public class Boss : MonoBehaviour
 	public BossCheeseSlamState CheeseSlamState { get; set; }
 	public BossElimentalerState ElimentalerState { get; set; }
 	public BossThrowKunaiState ThrowKunaiState { get; set; }
+	public BossDieState DieState { get; set; }
+	public BossMoveToCenterState MoveToCenterState { get; set; }
 	#endregion
+
 	private void Awake()
 	{
 		RB = GetComponent<Rigidbody2D>();
@@ -45,11 +52,14 @@ public class Boss : MonoBehaviour
 		CheeseSlamState = new BossCheeseSlamState(this, StateMachine);
 		ElimentalerState = new BossElimentalerState(this, StateMachine);
 		ThrowKunaiState = new BossThrowKunaiState(this, StateMachine);
+		DieState = new BossDieState(this, StateMachine);
+		MoveToCenterState = new BossMoveToCenterState(this, StateMachine);
 
 		StateMachine.Initialize(IdleState);
 	}
 	private void Start()
 	{
+		currentHealth.CurrentValue = maxHealth.CurrentValue;
 		StartCoroutine(TestSkill());
 	}
 
@@ -65,6 +75,11 @@ public class Boss : MonoBehaviour
 	}
 
 	#region Functions
+	public void Die()
+	{
+		StopAllCoroutines();
+		StateMachine.ChangeState(DieState);
+	}
 	public void Moving()
 	{
 		Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
@@ -100,7 +115,55 @@ public class Boss : MonoBehaviour
 		//StateMachine.ChangeState(TailWhipState);
 		//StateMachine.ChangeState(SummonCheeseState);
 		//StateMachine.ChangeState(ElimentalerState);
-		StateMachine.ChangeState(ThrowKunaiState);
+		//StateMachine.ChangeState(ThrowKunaiState);
+		//StateMachine.ChangeState(RollState);
+		//StateMachine.ChangeState(MoveState);
+		StateMachine.ChangeState(MoveToCenterState);
+	}
+
+	public void OnEnemyBulletHit(float damge)
+	{
+		currentHealth.CurrentValue = currentHealth.CurrentValue - damge;
+		Animator.SetBool("IsDamaged", true);
+
+		if(currentHealth.CurrentValue <= 0)
+		{
+			Die();
+		}
+	}
+	public void SetAnimationAfterHurt()
+	{
+		Animator.SetBool("IsDamaged", false);
+	}
+
+	public void EventOnEnterPosCenter()
+	{
+		Debug.Log("Enter Pos Center");
+		isStayPosCenter = true;
+	}
+
+	public void EventOnExitPosCenter()
+	{
+		Debug.Log("Exit Pos Center");
+		isStayPosCenter = false;
+	}
+	public bool CheckOutAreaMovable()
+	{
+		if (transform.position.x > PosCenterBoss.CurrentValue.x + widthAreaMovable / 2 || transform.position.x < PosCenterBoss.CurrentValue.x - widthAreaMovable / 2)
+		{
+			return true;
+		}
+		if (transform.position.y > PosCenterBoss.CurrentValue.y + heightAreaMovable / 2 || transform.position.y < PosCenterBoss.CurrentValue.y - heightAreaMovable / 2)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public void MoveToPosCenter()
+	{
+		Vector2 direction = (PosCenterBoss.CurrentValue - (Vector2)transform.position).normalized;
+		RB.velocity = direction * moveSpeed * 1.5f;
 	}
 	#endregion
 
@@ -116,4 +179,11 @@ public class Boss : MonoBehaviour
 		PlayFootStepSound,
 	}
 	#endregion
+
+	public void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+		// Draw a cube at the transform position
+		Gizmos.DrawWireCube(PosCenterBoss.CurrentValue, new Vector3(widthAreaMovable, heightAreaMovable, 0));
+	}
 }
