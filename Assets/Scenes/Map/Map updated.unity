@@ -910,9 +910,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Return Enemy
-  funcProvider: {fileID: 0}
-  func: {fileID: 0}
-  selectedMethod: 
+  funcProvider: {fileID: 11400000, guid: 20c83bbba3aeedd4988a709b75a5416d, type: 2}
+  func: {fileID: 1304913239}
+  selectedMethod: ReleaseEnemy
 --- !u!114 &1304913238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16893,7 +16893,7 @@ PrefabInstance:
       objectReference: {fileID: 488531604}
     - target: {fileID: 326291189102358619, guid: 6a26fd967c0b6014aadebdda9f4c5bc1, type: 3}
       propertyPath: DrawGridGizmos
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3293286187289397649, guid: 6a26fd967c0b6014aadebdda9f4c5bc1, type: 3}
       propertyPath: m_LocalPosition.x
