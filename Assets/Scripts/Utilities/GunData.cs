@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewGun", menuName = "NewGunDataSO")]
+[CreateAssetMenu(fileName = "NewGun", menuName = "Data Object/NewGunDataSO")]
 public class GunData : ScriptableObject
 {
 	[Header("Basic Info")]
