@@ -9,10 +9,10 @@ public class EnemyBullet : Projectile
 		IPlayerInteractable player = collision.gameObject.GetComponent<IPlayerInteractable>();
 		if (player != null)
 		{
-			player.OnPlayerBulletHit();
 			if(player.IsPlayerInteractable)
 			{
 				settings.flyweightEvent.Raise(this);
+				player.OnPlayerBulletHit();
 			}
 			return;
 		}

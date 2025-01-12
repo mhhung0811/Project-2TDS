@@ -282,6 +282,7 @@ public class Player : MonoBehaviour, IPlayerInteractable
 	public void Die()
 	{
 		StateMachine.ChangeState(DieState);
+		HoldGun.SetActive(false);
 	}
 
 	public void OnPlayerBulletHit()

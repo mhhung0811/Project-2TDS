@@ -70,7 +70,7 @@ public class GunFactory : MonoBehaviour
 
     private void Start()
     {
-        GetGunPref((0, Vector2.zero, 0));
+        GetGunPref((3, Vector2.zero, 0));
     }
 
     // Func

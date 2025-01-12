@@ -19,6 +19,10 @@ public class GunData : ScriptableObject
 
 	[Header("Shooting Settings")]
 	public float fireRate;     // Tốc độ bắn 
-	public float damage;       // Sát thương mỗi viên đạn
-	public float bulletSpeed;  // Tốc độ đạn
+
+	[Header("Position Hold Gun")]
+	public Vector3 posHoldGun;
+
+	[Header("Position Gun")]
+	public Vector3 posGun;
 }

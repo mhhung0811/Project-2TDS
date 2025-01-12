@@ -7,20 +7,33 @@ public class HoldGun : MonoBehaviour
 {
 	public Camera MainCamera;
 	public Player Player;
+	public Vector2Variable HoldGunPos;
+
+	private void Awake()
+	{
+		Player = GetComponentInParent<Player>();
+	}
 
 	private void Start()
 	{
-		Player = GetComponentInParent<Player>();
+		HoldGunPos.OnChanged += SetPositionWhenChangeGun;
 	}
 	private void Update()
 	{
 		UpdateRotation();
 	}
 
+	public void SetPositionWhenChangeGun(Vector2 newPos)
+	{
+		transform.localPosition = newPos;
+	}
+
+
 	public void SetActive(bool isActive)
 	{
 		this.gameObject.SetActive(isActive);
 	}
+
 
 	public void UpdateRotation()
 	{

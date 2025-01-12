@@ -18,5 +18,5 @@ MonoBehaviour:
   totalAmmo: 200
   reloadTime: 3
   fireRate: 4
-  damage: 100
-  bulletSpeed: 4
+  posHoldGun: {x: -0.1, y: -0.1, z: 0}
+  posGun: {x: 0.4, y: 0, z: 0}

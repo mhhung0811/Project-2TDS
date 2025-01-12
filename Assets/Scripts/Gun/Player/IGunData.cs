@@ -1,3 +1,7 @@
+
+
+using UnityEngine;
+
 public interface IGunData
 {
     public string gunName { get; set; }
@@ -12,6 +16,10 @@ public interface IGunData
 
 	// Shooting Settings
 	public float fireRate { get; set; } // Toc do ban dan (dan/giay)
-    public float damage { get; set; } // Sat thuong cua dan
-    public float bulletSpeed { get; set; } // Toc do cua dan
+
+	// Position Hold Gun
+	public Vector3 posHoldGun { get; set; } // Vi tri giu sung
+
+	// Position Gun
+	public Vector3 posGun { get; set; } // Vi tri sung
 }
