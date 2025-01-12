@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IEnemyInteractable
 {
-    void OnEnemyBulletHit(float damge);
+    bool IsEnemyInteractable { get; set; }
+	void OnEnemyBulletHit(float damge);
 }

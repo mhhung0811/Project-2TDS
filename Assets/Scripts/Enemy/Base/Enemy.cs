@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	[field: SerializeField] public Vector2Variable PlayerPos { get; set; }
 	public Rigidbody2D RB { get; set; }
 	public Animator _animator;
+	public bool IsEnemyInteractable { get; set; }
 
 	[field: SerializeField] public float AttackDuration { get; set; }
     [field: SerializeField] public float AttackCooldown { get; set; }
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
     private void Start()
     {
 		CurrentHealth = MaxHealth;
+		IsEnemyInteractable = true;
 		RB = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
 		StateMachine.Initialize(InitState);
@@ -69,10 +71,11 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	public void OnEnemyBulletHit(float damage)
 	{
 		CurrentHealth -= (int)damage;
+		_animator.SetBool("isDamaged", true);
 
-		if(StateMachine.CurrentState != HurtState && (StateMachine.CurrentState == IdleState || StateMachine.CurrentState == ChaseState))
+
+		if (StateMachine.CurrentState != HurtState && (StateMachine.CurrentState == IdleState || StateMachine.CurrentState == ChaseState))
 		{
-			Debug.Log("---------Hurt");
 			StateMachine.ChangeState(HurtState);
 		}
 
@@ -82,7 +85,12 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		}
 	}
 
-    public void Die()
+	public void SetAnimationIdleAffterHurt()
+	{
+		_animator.SetBool("isDamaged", false);
+	}
+
+	public void Die()
     {
 		StateMachine.ChangeState(DieState);
 	}

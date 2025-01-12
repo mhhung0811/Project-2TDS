@@ -16,15 +16,6 @@ public class Projectile : Flyweight
 		_rb = GetComponent<Rigidbody2D>();
 	}
 
-	void Start()
-    {
-        
-    }
-
-    private void Update()
-    {
-       
-    }
 
 	public virtual void OnEnable()
     {

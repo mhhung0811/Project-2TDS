@@ -201,8 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78031eaa96553bf438469ceac9bc793a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 6
-  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 100
+  <CurrentHealth>k__BackingField: 100
   <IsWithinStrikingDistance>k__BackingField: 0
   <AttackRange>k__BackingField: 7
   <MoveSpeed>k__BackingField: 2.5
@@ -212,8 +212,10 @@ MonoBehaviour:
   <PlayerPos>k__BackingField: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   _animator: {fileID: 8672081258048049005}
   <AttackDuration>k__BackingField: 0.6
-  <AttackCooldown>k__BackingField: 1.5
-  attackCooldownTimer: 0.5
+  <AttackCooldown>k__BackingField: 2
+  attackCooldownTimer: 0
+  <InitTime>k__BackingField: 1.75
+  <DieTime>k__BackingField: 1
   spawnBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
   animatorGun: {fileID: 209214221179179863}
 --- !u!1 &3052232379549242543

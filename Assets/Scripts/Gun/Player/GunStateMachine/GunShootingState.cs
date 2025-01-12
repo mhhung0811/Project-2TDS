@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class GunShootingState : GunState
 	public override void Exit() 
 	{
 		Gun.animator.SetBool("IsShooting", false);
+		Debug.Log("Exit Shooting State");
 	}
 
 	public override void FrameUpdate()

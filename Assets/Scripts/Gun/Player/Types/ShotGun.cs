@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ShotGun : GunBase
 {
-    public GunData gunData;
 	public FlyweightTypeVector2FloatEvent takeBulletEvent;
 	public VoidEvent playerShootEvent;
 
@@ -11,30 +10,6 @@ public class ShotGun : GunBase
 	
 	public int bulletCount = 5;
 	public float spreadAngle = 10;
-
-	public override void InitGunData()
-	{
-		gunName = gunData.gunName;
-		maxAmmoPerMag = gunData.maxAmmoPerMag;
-		currentAmmo = gunData.maxAmmoPerMag;
-		totalAmmo = gunData.totalAmmo;
-		reloadTime = gunData.reloadTime;
-		fireRate = gunData.fireRate;
-		damage = gunData.damage;
-		bulletSpeed = gunData.bulletSpeed;
-	}
-
-	public override void ResetGunData()
-	{
-		gunName = gunData.gunName;
-		maxAmmoPerMag = gunData.maxAmmoPerMag;
-		currentAmmo = gunData.maxAmmoPerMag;
-		totalAmmo = gunData.totalAmmo;
-		reloadTime = gunData.reloadTime;
-		fireRate = gunData.fireRate;
-		damage = gunData.damage;
-		bulletSpeed = gunData.bulletSpeed;
-	}
 
 	public override bool CanShoot()
 	{

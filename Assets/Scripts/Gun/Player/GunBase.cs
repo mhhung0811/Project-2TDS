@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunBase : MonoBehaviour, IGunData
 {
 	public int gunId { get; private set; }
-	
+
 	// GunData
 	public string gunName { get; set; }
 	public int maxAmmoPerMag { get; set; }
@@ -13,8 +13,12 @@ public class GunBase : MonoBehaviour, IGunData
 	public int totalAmmo { get; set; }
 	public float reloadTime { get; set; }
 	public float fireRate { get; set; }
-	public float damage { get; set; }
-	public float bulletSpeed { get; set; }
+	public Vector3 posHoldGun { get; set; }
+	public Vector3 posGun { get; set; }
+
+	[field: SerializeField] public GunData GunData;
+
+	[field: SerializeField] public Vector2Variable HoldGunPos;
 
 	// GunStateMachine
 	public GunStateMachine StateMachine;
@@ -22,10 +26,9 @@ public class GunBase : MonoBehaviour, IGunData
 	public GunShootingState ShootingState;
 	public GunReloadingState ReloadState;
 	public GunOutOfAmmoState OutOfAmmoState;
-
 	public float lastShootTime { get; private set; }
-
 	public Animator animator { get; private set; }
+	public HoldGun holdGun { get; private set; }
 
 	private void Awake()
 	{
@@ -34,6 +37,8 @@ public class GunBase : MonoBehaviour, IGunData
 		ShootingState = new GunShootingState(this, StateMachine);
 		ReloadState = new GunReloadingState(this, StateMachine);
 		OutOfAmmoState = new GunOutOfAmmoState(this, StateMachine);
+
+		holdGun = GetComponentInParent<HoldGun>();
 	}
 
 	void Start()
@@ -56,27 +61,31 @@ public class GunBase : MonoBehaviour, IGunData
 
 	public virtual void InitGunData()
 	{
-		gunName = "GunBase";
-		maxAmmoPerMag = 30;
-		currentAmmo = 30;
-		totalAmmo = 150;
-		reloadTime = 3;
-		fireRate = 4;
-		damage = 10;
-		bulletSpeed = 100;
+		gunName = GunData.gunName;
+		maxAmmoPerMag = GunData.maxAmmoPerMag;
+		currentAmmo = GunData.currentAmmo;
+		totalAmmo = GunData.totalAmmo;
+		reloadTime = GunData.reloadTime;
+		fireRate = GunData.fireRate;
+		posHoldGun = GunData.posHoldGun;
+		posGun = GunData.posGun;
+
+		HoldGunPos.CurrentValue = (Vector2)posHoldGun;
+
+		this.transform.localPosition = GunData.posGun;
 	}
 
 	public virtual void ResetGunData()
 	{
-		gunName = "GunBase";
-		maxAmmoPerMag = 30;
-		currentAmmo = 30;
-		totalAmmo = 150;
-		reloadTime = 3;
-		fireRate = 4;
-		damage = 10;
-		bulletSpeed = 100;
-		
+		gunName = GunData.gunName;
+		maxAmmoPerMag = GunData.maxAmmoPerMag;
+		currentAmmo = GunData.currentAmmo;
+		totalAmmo = GunData.totalAmmo;
+		reloadTime = GunData.reloadTime;
+		fireRate = GunData.fireRate;
+		posHoldGun = GunData.posHoldGun;
+		posGun = GunData.posGun;
+
 		Debug.Log("Reset Base Gun Data");
 	}
 
