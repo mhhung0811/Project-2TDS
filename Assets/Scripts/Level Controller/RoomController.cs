@@ -118,7 +118,7 @@ public class RoomController : MonoBehaviour
             }
             
             // Move A*
-            PathRequestManager.Instance.transform.position = transform.position;
+            PathRequestManager.Instance.UpdatePos(transform.position);
         }
         
         // spawn enemies

@@ -79,7 +79,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1439208483
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1802409550, guid: 6b6ef73ee6914524f893cb31c4f26028, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -155,6 +155,7 @@ MonoBehaviour:
   HP: {fileID: 11400000, guid: 71b64829ea594dc4faaa96d6c89acf9a, type: 2}
   MaxHP: {fileID: 11400000, guid: 9738ec3c79cc2b1479ef51257b4c9448, type: 2}
   PlayerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
+  PlayerHit: {fileID: 11400000, guid: 4141f7d51c6876445ba7b724b667e64e, type: 2}
   MainCamera: {fileID: 0}
   Animator: {fileID: 4796794010553010646}
   myRb: {fileID: 4968054630321060433}
@@ -363,8 +364,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 0, y: -0.15}
+  m_Size: {x: 0.5, y: 0.3}
   m_Direction: 0
 --- !u!114 &7159039348765187403
 MonoBehaviour:
@@ -540,3 +541,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   Player: {fileID: 0}
+  HoldGunPos: {fileID: 11400000, guid: 6dffcd1d33f6a404781f7e5c5dde1647, type: 2}

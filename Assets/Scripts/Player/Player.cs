@@ -178,6 +178,14 @@ public class Player : MonoBehaviour, IPlayerInteractable
 		    Interact();
 	    }
     }
+    
+    public void InputReload(InputAction.CallbackContext context)
+	{
+	    if (context.performed)
+	    {
+		    _inventory.GetHoldingGun().Reload();
+	    }
+	}
 
     public void Interact()
     {

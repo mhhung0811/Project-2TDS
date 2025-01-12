@@ -43,4 +43,10 @@ public class Node : IHeapItem<Node>
 		}
 		return -compare;
 	}
+	
+	public void UpdateNode(bool walkable, Vector2 worldPosition)
+	{
+		Walkable = walkable;
+		WorldPosition = worldPosition;
+	}
 }

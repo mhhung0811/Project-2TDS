@@ -68,9 +68,26 @@ public class ShotGun : GunBase
 		
 	}
 
+	public override void Reload()
+	{
+		Debug.Log($"Current ammo: {currentAmmo}, Total ammo: {totalAmmo}");
+		if (totalAmmo == 0)
+		{
+			StateMachine.ChangeState(OutOfAmmoState);
+			return;
+		}
+
+		if (currentAmmo >= maxAmmoPerMag)
+		{
+			return;
+		}
+
+		reloadingCoroutine = StartCoroutine(Reloading());
+	}
+
 	public IEnumerator Reloading()
 	{
-		for (int i = 0; i < this.maxAmmoPerMag; i++)
+		for (int i = currentAmmo; i < maxAmmoPerMag; i++)
 		{
 			StateMachine.ChangeState(ReloadState);
 			yield return new WaitForSeconds(this.reloadTime + 0.05f);

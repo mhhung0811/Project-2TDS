@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	public EnemyHurtState HurtState { get; set; }
 	#endregion
 
-	#region Idel Variables
+	#region Idle Variables
 
 	#endregion
 	private void Awake()

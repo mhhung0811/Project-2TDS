@@ -37,6 +37,22 @@ public class GridManager : MonoBehaviour
         }
 	}
 
+    public void UpdateGrid()
+    {
+	    Debug.Log("Update Grid");
+	    Vector2 worldBottomLeft = (Vector2)transform.position - Vector2.right * GridWorldSize.x/2 - Vector2.up * GridWorldSize.y / 2;
+
+	    for(int x = 0; x < GridSizeX; x++)
+	    {
+		    for(int y = 0; y< GridSizeY; y++)
+		    {
+			    Vector2 worldPoint = worldBottomLeft + Vector2.right * (x * NodeDiameter + NodeRadius) + Vector2.up * (y * NodeDiameter + NodeRadius);
+			    bool walkable = !(Physics2D.OverlapCircle(worldPoint, NodeRadius - 0.05f, UnwalkableMask));
+			    Grid[x, y].UpdateNode(walkable, worldPoint);
+		    }
+	    }
+    }
+
     public Node GetNodeFromWorldPoint(Vector2 worldPosition)
     {
 		float percentX = (worldPosition.x - (transform.position.x - GridWorldSize.x / 2)) / GridWorldSize.x;

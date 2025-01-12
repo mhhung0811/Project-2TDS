@@ -8,11 +8,13 @@ public class PathRequestManager : Singleton<PathRequestManager>
 	Queue<PathRequest> PathRequestQueue = new Queue<PathRequest>();
 	PathRequest CurrentPathRequest;
 	PathFinding pathFinding;
+	GridManager gridManager;
 	bool IsProcessingPath;
 	public override void Awake()
 	{
 		base.Awake();
 		pathFinding = GetComponent<PathFinding>();
+		gridManager = GetComponent<GridManager>();
 	}
 
 	public static void RequestPath(Vector2 pathStart, Vector2 pathEnd, Action<Vector2[], bool> callback)
@@ -53,5 +55,11 @@ public class PathRequestManager : Singleton<PathRequestManager>
 			pathEnd = _end;
 			callback = _callback;
 		}
+	}
+	
+	public void UpdatePos(Vector2 pos)
+	{
+		transform.position = pos;
+		gridManager.UpdateGrid();
 	}
 }

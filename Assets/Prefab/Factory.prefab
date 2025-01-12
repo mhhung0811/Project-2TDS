@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: 1987013119133324449}
   - component: {fileID: 3742377930562737670}
   - component: {fileID: 6857205827482315142}
+  - component: {fileID: 2168074826545911912}
+  - component: {fileID: 7417503984483236187}
+  - component: {fileID: 3022636264809954789}
   m_Layer: 0
   m_Name: Factory
   m_TagString: Untagged
@@ -203,3 +206,50 @@ MonoBehaviour:
   funcProvider: {fileID: 11400000, guid: 4c7a28b658a524a439b381d958c09a36, type: 2}
   func: {fileID: 3551524606352151776}
   selectedMethod: ReturnGunPref
+--- !u!114 &2168074826545911912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592139224148121317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d768575241d9417db987951daec38dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inUseEnemy: {fileID: 11400000, guid: 4be9a01bac10e8148bdae38d7384e235, type: 2}
+  defaultCapacity: 10
+  maxPoolSize: 100
+--- !u!114 &7417503984483236187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592139224148121317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302c92c258614a38b4e9d5caabc4a540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Get Enemy
+  funcProvider: {fileID: 11400000, guid: fcfa6add6a68b934893e34c5f6106f72, type: 2}
+  func: {fileID: 2168074826545911912}
+  selectedMethod: SpawnEnemy
+--- !u!114 &3022636264809954789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592139224148121317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f5436b25ee4c5bb9e4f69eeeecefce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Return Enemy
+  funcProvider: {fileID: 11400000, guid: 20c83bbba3aeedd4988a709b75a5416d, type: 2}
+  func: {fileID: 2168074826545911912}
+  selectedMethod: ReleaseEnemy

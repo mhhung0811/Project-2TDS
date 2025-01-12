@@ -136,6 +136,23 @@ public class GunBase : MonoBehaviour, IGunData
 		}
 	}
 	
+	public virtual void Reload()
+	{
+		Debug.Log($"Current ammo: {currentAmmo}, Total ammo: {totalAmmo}");
+		if (totalAmmo == 0)
+		{
+			StateMachine.ChangeState(OutOfAmmoState);
+			return;
+		}
+
+		if (currentAmmo >= maxAmmoPerMag)
+		{
+			return;
+		}
+
+		StateMachine.ChangeState(ReloadState);
+	}
+	
 	public void SetGunId(int id)
 	{
 		gunId = id;

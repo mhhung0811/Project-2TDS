@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 8290661461022028598}
   - component: {fileID: 6965294975741474674}
   - component: {fileID: 2810754119539991975}
+  - component: {fileID: 70099194342025263}
+  - component: {fileID: 4936292206817049318}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1439208483
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 3
   m_Sprite: {fileID: -949226785, guid: 25a944cd866220b4fa5340bc0f4c5b59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -123,13 +125,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: {fileID: 11400000, guid: f871543b234cd3940af42786ca7500f2, type: 2}
   currentHealth: {fileID: 11400000, guid: 6cfbdf3dd8f8f654fb8ecbbb0c56a38f, type: 2}
-  moveSpeed: 3
+  moveSpeed: 5
   isFacingRight: 1
+  isStayPosCenter: 0
+  isMoveStatePrevious: 0
+  isRolling: 0
+  canRoll: 1
+  isUsedThrowTrap: 0
+  cooldownRoll: 15
+  heightAreaMovable: 8
+  widthAreaMovable: 14
   PlayerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   BossPos: {fileID: 11400000, guid: 375a2d3c85267fa439c0f0662a71c6d5, type: 2}
   PosCenterBoss: {fileID: 11400000, guid: 4c4294afc2760a24fb22227361bac001, type: 2}
   TakeBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
   Cheese: {fileID: 1577374604294575238, guid: 6e2ee1fa5b7b81d4985f734a7ac2df19, type: 3}
+  Trap: {fileID: 3186472115229708052, guid: 3e8da4dc813d73448a25c78d264ebdb6, type: 3}
   Animator: {fileID: 0}
 --- !u!50 &6965294975741474674
 Rigidbody2D:
@@ -203,3 +214,61 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.6}
   m_EdgeRadius: 0
+--- !u!114 &70099194342025263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8211502594301846411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: 
+  Event: {fileID: 11400000, guid: ccc0c28eaf5c04a47abfb1368d4065ff, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8290661461022028598}
+        m_TargetAssemblyTypeName: Boss, Assembly-CSharp
+        m_MethodName: EventOnEnterPosCenter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4936292206817049318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8211502594301846411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: 
+  Event: {fileID: 11400000, guid: 6ece72e4cb7c39249a46477b95f9a65a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8290661461022028598}
+        m_TargetAssemblyTypeName: Boss, Assembly-CSharp
+        m_MethodName: EventOnExitPosCenter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
