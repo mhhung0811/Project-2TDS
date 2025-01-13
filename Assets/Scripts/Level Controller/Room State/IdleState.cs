@@ -1,17 +1,18 @@
-﻿public class IdleState : IState
+﻿using UnityEngine;
+
+public class IdleState : IState
 {
     private RoomController roomController;
-    private RoomStateMachine roomStateMachine;
     
-    public IdleState(RoomController roomController, RoomStateMachine roomStateMachine)
+    public IdleState(RoomController roomController)
     {
         this.roomController = roomController;
-        this.roomStateMachine = roomStateMachine;
     }
     
     public void Enter()
     {
-        
+        roomController.RoomDeactivated();
+        Debug.Log("Idle State Enter");
     }
 
     public void FrameUpdate()

@@ -12,6 +12,12 @@ public class Gigi : Enemy
 		StartCoroutine(AttackCoroutine());
 	}
 
+	public override void Die()
+	{
+		base.Die();
+		onEnemyDown.Raise(EnemyType.Gigi);
+	}
+
 	// Coroutine for the Attack after the attack animation is done
 	public IEnumerator AttackCoroutine()
 	{

@@ -1,17 +1,19 @@
-﻿public class TriggeredState : IState
+﻿using System.Collections;
+using UnityEngine;
+
+public class TriggeredState : IState
 {
     private RoomController roomController;
-    private RoomStateMachine roomStateMachine;
     
-    public TriggeredState(RoomController roomController, RoomStateMachine roomStateMachine)
+    public TriggeredState(RoomController roomController)
     {
         this.roomController = roomController;
-        this.roomStateMachine = roomStateMachine;
     }   
     
     public void Enter()
     {
-        
+        roomController.RoomTriggered();
+        Debug.Log("Room Triggered Enter");
     }
 
     public void FrameUpdate()
@@ -26,6 +28,6 @@
 
     public void Exit()
     {
-        roomStateMachine.TransitionTo(roomStateMachine.activeState);
+        Debug.Log("Room Triggered Exit");
     }
 }

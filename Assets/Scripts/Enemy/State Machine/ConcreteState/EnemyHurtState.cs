@@ -13,14 +13,14 @@ public class EnemyHurtState : EnemyState
 	{
 		hurtTime = 0;
 		Enemy._animator.SetBool("isHurt", true);
-		Debug.Log("Enemy Hurt");
+		// Debug.Log("Enemy Hurt");
 	}
 
 	public override void Exit()
 	{
 		hurtTime = 0;
 		Enemy._animator.SetBool("isHurt", false);
-		Debug.Log("Enemy Hurt Exit");
+		// Debug.Log("Enemy Hurt Exit");
 	}
 
 	public override void FrameUpdate()

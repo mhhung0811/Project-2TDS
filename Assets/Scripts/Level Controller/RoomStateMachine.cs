@@ -3,16 +3,14 @@
     public IState CurrentState { get; private set; }
     
     public IdleState idleState { get; }
-    public SetupState setupState { get; }
     public ActiveState activeState { get; }
     public TriggeredState triggeredState { get; }
     
     public RoomStateMachine(RoomController roomController)
     {
-        idleState = new IdleState(roomController, this);
-        setupState = new SetupState(roomController, this);
-        activeState = new ActiveState(roomController, this);
-        triggeredState = new TriggeredState(roomController, this);
+        idleState = new IdleState(roomController);
+        activeState = new ActiveState(roomController);
+        triggeredState = new TriggeredState(roomController);
     }
     
     public void Initialize(bool isActiveRoom)
@@ -24,7 +22,7 @@
     public void TransitionTo(IState nextState)
     {
         CurrentState.Exit();
-        CurrentState = setupState;
+        CurrentState = nextState;
         CurrentState.Enter();
     }
     

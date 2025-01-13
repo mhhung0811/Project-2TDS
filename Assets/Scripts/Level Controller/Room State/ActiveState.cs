@@ -1,17 +1,18 @@
-﻿public class ActiveState : IState
+﻿using UnityEngine;
+
+public class ActiveState : IState
 {
     private RoomController roomController;
-    private RoomStateMachine roomStateMachine;
     
-    public ActiveState(RoomController roomController, RoomStateMachine roomStateMachine)
+    public ActiveState(RoomController roomController)
     {
         this.roomController = roomController;
-        this.roomStateMachine = roomStateMachine;
     }
     
     public void Enter()
     {
-        
+        Debug.Log("Active State Enter");
+        roomController.RoomSetUp();
     }
 
     public void FrameUpdate()
@@ -26,6 +27,6 @@
 
     public void Exit()
     {
-        
+        Debug.Log("Active State Exit");
     }
 }

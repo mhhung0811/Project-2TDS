@@ -53,7 +53,7 @@ public class Door : MonoBehaviour
     {
         if (_room != null)
         {
-            _room.RoomTriggered();
+            _room.DelayTriggerdStateToState(_room.roomStateMachine.activeState);
         }
     }
     public void TurnOnInteractionZone()

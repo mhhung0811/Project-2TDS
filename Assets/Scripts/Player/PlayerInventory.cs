@@ -22,8 +22,8 @@ public class PlayerInventory : MonoBehaviour
         var gun = getGunFunc.GetFunction()?.Invoke((0));
         if (gun != null && gun.GetComponent<GunBase>() != null)
         {
-            Debug.Log($"Add {gun.GetComponent<GunBase>().gunName}.");
-            Debug.Log($"Add {gun.GetComponent<GunBase>().gunId}.");
+            // Debug.Log($"Add {gun.GetComponent<GunBase>().gunName}.");
+            // Debug.Log($"Add {gun.GetComponent<GunBase>().gunId}.");
             AddGun(gun.GetComponent<GunBase>());
         }
         else
@@ -59,8 +59,8 @@ public class PlayerInventory : MonoBehaviour
         
         gunCollection.Add(newGun);
         EquipGun(newGun);
-        Debug.Log($"Added {newGun.name} to inventory.");
-        Debug.Log($"Added {newGun.gunId} to inventory.");
+        // Debug.Log($"Added {newGun.name} to inventory.");
+        // Debug.Log($"Added {newGun.gunId} to inventory.");
     }
     
     /// <summary>
@@ -150,7 +150,7 @@ public class PlayerInventory : MonoBehaviour
 		// Set position of gun
 		holdingGun.transform.localPosition = new Vector3(0.5f, 0, 0);
 
-		Debug.Log($"Equipped {holdingGun.name}.");
+		// Debug.Log($"Equipped {holdingGun.name}.");
     }
     
     /// <summary>
