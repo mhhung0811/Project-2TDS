@@ -6,6 +6,12 @@ public class EffectManager : Singleton<EffectManager>
 {
 	public EffectDB effectDatabase;
 
+	public override void Awake()
+	{
+		base.Awake();
+		Application.targetFrameRate = 60;
+	}
+
 	public GameObject PlayEffect(EffectType effectType, Vector3 position, Quaternion rotation)
 	{
 		GameObject prefab = effectDatabase.GetEffectPrefab(effectType);

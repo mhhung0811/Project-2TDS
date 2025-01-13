@@ -12,7 +12,7 @@ public class IdleState : IState
     public void Enter()
     {
         roomController.RoomDeactivated();
-        Debug.Log("Idle State Enter");
+        // Debug.Log("Idle State Enter");
     }
 
     public void FrameUpdate()

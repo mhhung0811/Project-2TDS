@@ -33,13 +33,13 @@ public class RoomController : MonoBehaviour
     
     private void Awake()
     {
+        RetrieveEnemySpawnPoints();
+        RetrieveDoors();
+        
         _enemyDownEventListener = GetComponent<EnemyTypeEventListener>();
         _enemyDownEventListener.enabled = false;
         roomStateMachine = new RoomStateMachine(this);
         roomStateMachine.Initialize(isActiveRoom);
-        
-        RetrieveEnemySpawnPoints();
-        RetrieveDoors();
     }
 
     private void Start()
@@ -96,11 +96,12 @@ public class RoomController : MonoBehaviour
         // wave index here have to minus 1 as OnEnemyDown is called in-wave where wave setup have already called
         
         enemyIndex++;
-        // Debug.Log(_waves[waveIndex - 2].enemySpawnPoints.Count);
-        // Debug.Log($"Wave index: {waveIndex}");
-        // Debug.Log($"Total waves: {_waves.Count}");
+        Debug.Log(_waves[waveIndex - 2 >= 0 ? waveIndex - 2 : 0].enemySpawnPoints.Count);
+        Debug.Log($"Wave index: {waveIndex}");
+        Debug.Log($"Total waves: {_waves.Count}");
+        
         // Check all enemies died
-        if (waveIndex > 0 && enemyIndex < _waves[waveIndex - 2].enemySpawnPoints.Count) return;
+        if (waveIndex > 0 && enemyIndex < _waves[waveIndex - 2 >= 0 ? waveIndex - 2 : 0].enemySpawnPoints.Count) return;
 
         // Last wave
         if (waveIndex > _waves.Count)
@@ -129,9 +130,6 @@ public class RoomController : MonoBehaviour
         // Set up for first entry
         if (waveIndex == 1)
         {
-            // Active the enemy down event listener
-            _enemyDownEventListener.enabled = true;
-            
             // Open all doors
             foreach (Door door in _doors)
             {
@@ -146,6 +144,9 @@ public class RoomController : MonoBehaviour
         // First entry
         if (waveIndex == 1)
         {
+            // Active the enemy down event listener
+            _enemyDownEventListener.enabled = true;
+            
             // Close all doors
             foreach (Door door in _doors)
             {
