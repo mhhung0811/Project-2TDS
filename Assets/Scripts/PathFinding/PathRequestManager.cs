@@ -22,7 +22,7 @@ public class PathRequestManager : Singleton<PathRequestManager>
 		PathRequest newRequest = new PathRequest(pathStart, pathEnd, callback);
 		Instance.PathRequestQueue.Enqueue(newRequest);
 
-		Debug.Log("PathRequestQueue.Count: " + Instance.PathRequestQueue.Count);
+		// Debug.Log("PathRequestQueue.Count: " + Instance.PathRequestQueue.Count);
 		Instance.TryProcessNext();
 	}
 

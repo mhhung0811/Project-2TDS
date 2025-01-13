@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	[field: SerializeField] public float InitTime { get; set; }
 	[field: SerializeField] public float DieTime { get; set; }
 
+	[SerializeField] protected EnemyTypeEvent onEnemyDown;
+
 	#region State Machine Variables
 	public EnemyStateMachine StateMachine { get; set; }
     public EnemyIdleState IdleState { get; set; }
@@ -90,7 +92,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		_animator.SetBool("isDamaged", false);
 	}
 
-	public void Die()
+	public virtual void Die()
     {
 		StateMachine.ChangeState(DieState);
 	}

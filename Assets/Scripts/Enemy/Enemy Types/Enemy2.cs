@@ -13,6 +13,12 @@ public class Enemy2 : Enemy
 		StartCoroutine(AttackCoroutine());
 	}
 
+	public override void Die()
+	{
+		base.Die();
+		onEnemyDown.Raise(EnemyType.Enemy2);
+	}
+
 	// Coroutine for the Attack after the attack animation is done
 	public IEnumerator AttackCoroutine()
 	{

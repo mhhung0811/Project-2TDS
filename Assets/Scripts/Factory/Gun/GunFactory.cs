@@ -110,7 +110,7 @@ public class GunFactory : MonoBehaviour
     {
         if (_gunPrefPools.ContainsKey(parameters.id))
         {
-            Debug.Log("Is getting gun pref");
+            // Debug.Log("Is getting gun pref");
             var gun = _gunPrefPools[parameters.id].Get();
             gun.transform.SetParent(_gunPrefPoolTransforms[parameters.id]);
             gun.transform.position = parameters.position;

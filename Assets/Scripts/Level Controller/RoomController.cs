@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,25 +16,30 @@ public class Wave
 
 public class RoomController : MonoBehaviour
 {
-    private RoomStateMachine _roomStateMachine;
+    private EnemyTypeEventListener _enemyDownEventListener;
     private List<Wave> _waves = new List<Wave>();
     private List<Door> _doors = new List<Door>();
     private int waveIndex = 0;
+    private int enemyIndex = 0;
+    private Coroutine _delayedRoomTriggeredEndCoroutine;
 
     public bool isActiveRoom = false;
     
     public Transform enemyHolder;
     public Transform doorHolder;
 
+    public RoomStateMachine roomStateMachine { get; private set; }
     public VoidEnemyTypeVector3FuncProvider SpawnEnemyFunc;
     
     private void Awake()
     {
-        _roomStateMachine = new RoomStateMachine(this);
-        _roomStateMachine.Initialize(isActiveRoom);
-        
         RetrieveEnemySpawnPoints();
         RetrieveDoors();
+        
+        _enemyDownEventListener = GetComponent<EnemyTypeEventListener>();
+        _enemyDownEventListener.enabled = false;
+        roomStateMachine = new RoomStateMachine(this);
+        roomStateMachine.Initialize(isActiveRoom);
     }
 
     private void Start()
@@ -51,12 +57,12 @@ public class RoomController : MonoBehaviour
 
     private void Update()
     {
-        _roomStateMachine.FrameExecute();
+        roomStateMachine.FrameExecute();
     }
     
     private void FixedUpdate()
     {
-        _roomStateMachine.PhysicsExecute();
+        roomStateMachine.PhysicsExecute();
     }
     
     private void RetrieveEnemySpawnPoints()
@@ -85,32 +91,63 @@ public class RoomController : MonoBehaviour
 
     #region Events
 
-    public void OnRoomTriggered()
+    public void OnEnemyDown(EnemyType enemyType)
     {
-        _roomStateMachine.TransitionTo(_roomStateMachine.triggeredState);
+        // wave index here have to minus 1 as OnEnemyDown is called in-wave where wave setup have already called
+        
+        enemyIndex++;
+        Debug.Log(_waves[waveIndex - 2 >= 0 ? waveIndex - 2 : 0].enemySpawnPoints.Count);
+        Debug.Log($"Wave index: {waveIndex}");
+        Debug.Log($"Total waves: {_waves.Count}");
+        
+        // Check all enemies died
+        if (waveIndex > 0 && enemyIndex < _waves[waveIndex - 2 >= 0 ? waveIndex - 2 : 0].enemySpawnPoints.Count) return;
+
+        // Last wave
+        if (waveIndex > _waves.Count)
+        {
+            // Debug.Log("Last wave enemy down");
+            DelayTriggerdStateToState(roomStateMachine.idleState);
+        }
+        // Normal wave
+        else
+        {
+            // Debug.Log("Normal wave enemy down");
+            DelayTriggerdStateToState(roomStateMachine.activeState);
+        }
+
+        enemyIndex = 0;
     }
 
     #endregion
 
-    public void RoomTriggered()
+    #region State Call
+
+    public void RoomSetUp()
     {
-        // Room cleared
-        if (waveIndex >= _waves.Count)
+        waveIndex++;
+        
+        // Set up for first entry
+        if (waveIndex == 1)
         {
-            // open the door
+            // Open all doors
             foreach (Door door in _doors)
             {
-                door.IsClose = false;
+                door.IsClose = true;
+                door.TurnOnInteractionZone();
             }
-            
-            _roomStateMachine.TransitionTo(_roomStateMachine.idleState);
-            return;
         }
-        
+    }
+    
+    public void RoomTriggered()
+    {
         // First entry
-        if (waveIndex == 0)
+        if (waveIndex == 1)
         {
-            // shut the door
+            // Active the enemy down event listener
+            _enemyDownEventListener.enabled = true;
+            
+            // Close all doors
             foreach (Door door in _doors)
             {
                 door.IsClose = true;
@@ -120,15 +157,54 @@ public class RoomController : MonoBehaviour
             // Move A*
             PathRequestManager.Instance.UpdatePos(transform.position);
         }
+
+        Debug.Log(waveIndex);
+        Debug.Log(_waves.Count);
+        // Last wave
+        if (waveIndex > _waves.Count) return;
         
         // spawn enemies
-        foreach ((EnemyType enemyType, Vector3 position) in _waves[waveIndex].enemySpawnPoints)
+        if (waveIndex > 0)
         {
-            SpawnEnemyFunc.GetFunction()((enemyType, position));
+            foreach ((EnemyType enemyType, Vector3 position) in _waves[waveIndex - 1].enemySpawnPoints)
+            {
+                SpawnEnemyFunc.GetFunction()((enemyType, position));
+            }
         }
         
-        Debug.Log("Spawn enemies");
+        // Debug.Log("Spawn enemies");
+    }
+    
+    public void RoomDeactivated()
+    {
+        // Deactive the enemy down event listener
+        _enemyDownEventListener.enabled = false;
         
-        waveIndex++;
+        // Open all doors
+        foreach (Door door in _doors)
+        {
+            door.IsClose = false;
+            door.TurnOffInteractionZone();
+        }
+    }
+
+    #endregion
+    
+    public void DelayTriggerdStateToState(IState state, float delay = 0.1f)
+    {
+        roomStateMachine.TransitionTo(roomStateMachine.triggeredState);
+            
+        // Prevent coroutine call too many times
+        if (_delayedRoomTriggeredEndCoroutine != null)
+        {
+            StopCoroutine(_delayedRoomTriggeredEndCoroutine);
+        }
+        _delayedRoomTriggeredEndCoroutine = StartCoroutine(DelayedToState(state, delay));
+    }
+    
+    private IEnumerator DelayedToState(IState state, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        roomStateMachine.TransitionTo(state);
     }
 }

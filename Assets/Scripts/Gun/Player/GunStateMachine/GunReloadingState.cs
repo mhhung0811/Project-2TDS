@@ -12,7 +12,7 @@ public class GunReloadingState : GunState
 		base.Enter();
 		startTime = Time.time;
 		Gun.animator.SetBool("IsReloading", true);
-		Debug.Log("Start reloading");
+		// Debug.Log("Start reloading");
 	}
 
 	public override void Exit()
@@ -39,7 +39,7 @@ public class GunReloadingState : GunState
 		{
 			Gun.SetAmmoWhenReload();
 			Gun.StateMachine.ChangeState(Gun.IdleState);
-			Debug.Log("Finish reloading");
+			// Debug.Log("Finish reloading");
 		}
 	}
 }

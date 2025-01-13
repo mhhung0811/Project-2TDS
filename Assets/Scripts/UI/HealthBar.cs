@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
 
 	public void UpdateUiHealthBar(int newValue)
 	{
-		Debug.Log(newValue);
+		// Debug.Log(newValue);
 		int maxHp = PlayerMaxHp.CurrentValue;
 		int hp = PlayerHp.CurrentValue;
 		int totalHearts = maxHp / 2;

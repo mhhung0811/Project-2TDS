@@ -216,6 +216,7 @@ MonoBehaviour:
   attackCooldownTimer: 0
   <InitTime>k__BackingField: 1.75
   <DieTime>k__BackingField: 1
+  onEnemyDown: {fileID: 11400000, guid: 7dce80d15cb825345a33903f0ec32a29, type: 2}
   spawnBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
   animatorGun: {fileID: 209214221179179863}
 --- !u!1 &3052232379549242543
