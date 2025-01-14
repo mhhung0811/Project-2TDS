@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour, IPlayerInteractable
+public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 {
     public IntVariable HP;
 	public IntVariable MaxHP;
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IPlayerInteractable
 	public Vector2 MovementInput;
 
     public bool IsPlayerInteractable { get; set; }
+	public bool IsExplodedInteractable { get; set; }
 	public SpriteRenderer SpriteRenderer;
     public bool isInvulnerable = false;
 	public float invulnerableDuration = 1f;
@@ -65,6 +66,7 @@ public class Player : MonoBehaviour, IPlayerInteractable
         StateMachine.Initialize(IdleState);
 		isInvulnerable = false;
 		IsPlayerInteractable = true;
+		IsExplodedInteractable = true;
 	}
 
     void Update()
@@ -311,7 +313,35 @@ public class Player : MonoBehaviour, IPlayerInteractable
 		PlayerHit.Raise(@void);
 	}
 
-    private IEnumerator InvulnerablilityCoroutine()
+    public void OnExplode()
+	{
+		if (isInvulnerable) return;
+
+		HP.CurrentValue = HP.CurrentValue - 1;
+
+		if (HP.CurrentValue <= 0)
+		{
+			Die();
+			return;
+		}
+		StopAllCoroutines();
+		StartCoroutine(InvulnerablilityCoroutine());
+		StartCoroutine(Exploded());
+
+		// Camera shake
+		var @void = new Void();
+		PlayerHit.Raise(@void);
+	}
+
+	public IEnumerator Exploded()
+	{
+		PlayerInput playerInput = GetComponent<PlayerInput>();
+		playerInput.enabled = false;
+		yield return new WaitForSeconds(1f);
+		playerInput.enabled = true;
+	}
+
+	private IEnumerator InvulnerablilityCoroutine()
     {
 		isInvulnerable = true;
 		IsPlayerInteractable = false;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, IEnemyInteractable
+public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, IEnemyInteractable, IExplodedInteractable
 {
     [field : SerializeField] public int MaxHealth { get; set; }
 	[field: SerializeField] public int CurrentHealth { get; set; }
@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	[field: SerializeField] public float DieTime { get; set; }
 
 	[SerializeField] protected EnemyTypeEvent onEnemyDown;
+
+	public bool IsExplodedInteractable { get; set; } = true;
 
 	#region State Machine Variables
 	public EnemyStateMachine StateMachine { get; set; }
@@ -85,6 +87,13 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		{
 			Die();
 		}
+	}
+
+	public void OnExplode()
+	{
+		StopAllCoroutines();
+		_animator.SetBool("isDamaged", true);
+		Die();
 	}
 
 	public void SetAnimationIdleAffterHurt()
