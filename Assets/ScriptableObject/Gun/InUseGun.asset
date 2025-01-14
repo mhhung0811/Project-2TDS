@@ -7,7 +7,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f1965a0778045d6bc72e7518f5d052a, type: 3}
   m_Name: InUseGun
@@ -16,12 +16,16 @@ MonoBehaviour:
   - gunId: 0
     gunPrefab: {fileID: 858544987280695354, guid: ef1309822f4dcad488b50a1047cd356a, type: 3}
     gunPref: {fileID: 4927340329123874830, guid: 01d7caabbb41ad84fb291d9fa7d694d7, type: 3}
+    gunUI: {fileID: 4930600858090670552, guid: 2b6d1124a1185d744aff32d0c8710802, type: 3}
   - gunId: 1
     gunPrefab: {fileID: 8901825539749122333, guid: aba583c7f69945f4abb628997468cf9e, type: 3}
     gunPref: {fileID: 45476867439569560, guid: bcb4430191d6c3642a1b08d7bda6d6be, type: 3}
+    gunUI: {fileID: 7990740973607207543, guid: cbe4cf97c4390ff438351001ce3f21e1, type: 3}
   - gunId: 2
     gunPrefab: {fileID: 4559965659728241993, guid: 59b4517c88f2e0a42a2c719f8a6a13d1, type: 3}
     gunPref: {fileID: 1473529752503044186, guid: b574bf5a96bd07447a13666258ab8c9f, type: 3}
+    gunUI: {fileID: 2430322228364654053, guid: 211cdab9d4c59364ca07ebecbac1de8a, type: 3}
   - gunId: 3
     gunPrefab: {fileID: 3221900394859950438, guid: b0e75ad4a1f8b5543b015fb2f54283f7, type: 3}
     gunPref: {fileID: 7059717126619633523, guid: d853b142de9af8749981b48300a78cd8, type: 3}
+    gunUI: {fileID: 7333980056161413049, guid: 9fed4c0a27551ef4f8cf66f39e29dfd5, type: 3}

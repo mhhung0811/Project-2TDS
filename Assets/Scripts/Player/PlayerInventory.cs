@@ -15,11 +15,15 @@ public class PlayerInventory : MonoBehaviour
     public GameObjectIntFuncProvider getGunFunc;
     public VoidGameObjectFuncProvider returnGunFunc;
     public VoidIntVector2FloatFuncProvider getGunPrefFunc;
+    public IntEvent onGunChange;
+    public FloatVariable playerMaxReloadTime;
+    public FloatVariable playerReloadTime;
+    public BoolVariable isReloading;
 
     private void Start()
     {
         // Get gun id 1
-        var gun = getGunFunc.GetFunction()?.Invoke((0));
+        var gun = getGunFunc.GetFunction()?.Invoke((2));
         if (gun != null && gun.GetComponent<GunBase>() != null)
         {
             // Debug.Log($"Add {gun.GetComponent<GunBase>().gunName}.");
@@ -137,11 +141,13 @@ public class PlayerInventory : MonoBehaviour
         // Deactivate the currently held gun
         if (holdingGun != null)
         {
+            holdingGun.ResetReloadTimeVariables();
             holdingGun.gameObject.SetActive(false);
         }
         
         // Equip the new gun
         holdingGun = gun;
+        holdingGun.SetUpReloadTimeVariables(playerMaxReloadTime, playerReloadTime, isReloading);
         holdingGun.gameObject.SetActive(true);
 
 		//Set Scale x >0, y > 0
@@ -150,6 +156,9 @@ public class PlayerInventory : MonoBehaviour
 		// Set position of gun
 		holdingGun.transform.localPosition = new Vector3(0.5f, 0, 0);
 
+        // Notify listeners that the gun has changed
+        onGunChange?.Raise(holdingGun.gunId);
+        
 		// Debug.Log($"Equipped {holdingGun.name}.");
     }
     

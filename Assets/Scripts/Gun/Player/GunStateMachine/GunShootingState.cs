@@ -16,11 +16,13 @@ public class GunShootingState : GunState
 		base.Enter();
 		_startTime = Time.time;
 		Gun.animator.SetBool("IsShooting", true);
+		Gun.changeGunStateEvent.Raise(("IsShooting", true));
 	}
 
 	public override void Exit() 
 	{
 		Gun.animator.SetBool("IsShooting", false);
+		Gun.changeGunStateEvent.Raise(("IsShooting", false));
 		// Debug.Log("Exit Shooting State");
 	}
 

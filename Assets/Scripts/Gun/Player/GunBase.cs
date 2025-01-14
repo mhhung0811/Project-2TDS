@@ -29,6 +29,11 @@ public class GunBase : MonoBehaviour, IGunData
 	public float lastShootTime { get; private set; }
 	public Animator animator { get; private set; }
 	public HoldGun holdGun { get; private set; }
+	
+	public StringBoolEvent changeGunStateEvent;
+	public FloatVariable playerMaxReloadTime { get; private set; }
+	public FloatVariable playerReloadTime { get; private set; }
+	public BoolVariable playerIsReloading { get; private set; }
 
 	private void Awake()
 	{
@@ -156,5 +161,38 @@ public class GunBase : MonoBehaviour, IGunData
 	public void SetGunId(int id)
 	{
 		gunId = id;
+	}
+
+	public void UpdateReloadActive(bool value)
+	{
+		playerIsReloading.CurrentValue = value;
+	}
+	
+	public void UpdateReloadTime(float value)
+	{
+		playerReloadTime.CurrentValue = value;
+	}
+	
+	public void SetUpReloadTimeVariables(FloatVariable maxReloadTime, FloatVariable reloadTime, BoolVariable isReloading)
+	{
+		Debug.Log("Set up reload time variables");
+		
+		playerMaxReloadTime = maxReloadTime;
+		playerReloadTime = reloadTime;
+		playerIsReloading = isReloading;
+		
+		playerMaxReloadTime.CurrentValue = this.reloadTime;
+		playerReloadTime.CurrentValue = 0;
+	}
+	
+	public void ResetReloadTimeVariables()
+	{
+		playerMaxReloadTime.CurrentValue = 1;
+		playerReloadTime.CurrentValue = 0;
+		playerIsReloading.CurrentValue = false;
+		
+		playerMaxReloadTime = null;
+		playerReloadTime = null;
+		playerIsReloading = null;
 	}
 }
