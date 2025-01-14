@@ -33,6 +33,7 @@ public class SniperBullet : Projectile
 		{
 			if(enemy.IsEnemyInteractable)
 			{
+				EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
 				enemy.OnEnemyBulletHit(settings.damage);
 				settings.flyweightEvent.Raise(this);
 			}
@@ -41,6 +42,7 @@ public class SniperBullet : Projectile
 
 		if (collision.gameObject.CompareTag("Wall"))
 		{
+			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
 			settings.flyweightEvent.Raise(this);
 			return;
 		}

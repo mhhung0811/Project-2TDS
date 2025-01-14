@@ -11,6 +11,7 @@ public class EnemyBullet : Projectile
 		{
 			if(player.IsPlayerInteractable)
 			{
+				EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
 				settings.flyweightEvent.Raise(this);
 				player.OnPlayerBulletHit();
 			}
@@ -19,6 +20,7 @@ public class EnemyBullet : Projectile
 
 		if (collision.gameObject.CompareTag("Wall"))
 		{
+			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
 			settings.flyweightEvent.Raise(this);
 			return;
 		}

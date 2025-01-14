@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerRollState : PlayerState
 {
@@ -38,6 +39,7 @@ public class PlayerRollState : PlayerState
         // bat tu khi roll
         Player.isInvulnerable = true;
 		Player.IsPlayerInteractable = false;
+		Player.myRb.velocity = _rollDirection * Player.RollSpeed;
 	}
 
     public override void Exit()
@@ -65,7 +67,7 @@ public class PlayerRollState : PlayerState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        Player.myRb.velocity = _rollDirection * Player.RollSpeed * 1.5f;
+        
     }
 
     public override void AnimationTriggerEvent(Player.AnimationTriggerType triggerType)

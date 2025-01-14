@@ -28,7 +28,7 @@ AnimationClip:
       value: {fileID: 2074883490, guid: 9606813d7d432544b8bdef40ad89bae1, type: 3}
     - time: 0.25
       value: {fileID: -2140153276, guid: 9606813d7d432544b8bdef40ad89bae1, type: 3}
-    - time: 0.35
+    - time: 0.33333334
       value: {fileID: -1977093897, guid: 9606813d7d432544b8bdef40ad89bae1, type: 3}
     - time: 0.41666666
       value: {fileID: 994911113, guid: 9606813d7d432544b8bdef40ad89bae1, type: 3}
@@ -93,4 +93,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5
+    functionName: AnimationRollLand
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

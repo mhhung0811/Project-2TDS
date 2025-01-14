@@ -28,7 +28,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 
 	public float MovementSpeed = 5f;
     public float RollSpeed = 6f;
-    public float RollDuration = 0.4f;
+    public float RollDuration;
 
     public bool IsFacingRight = true;
     public bool IsRolling = false;
@@ -242,7 +242,13 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		return worldPosition;
 	}
 
-    public void UpdateAnimationByPosMouse()
+	public void AnimationRollLand()
+	{
+		EffectManager.Instance.PlayEffect(EffectType.EfRollLand, transform.position + new Vector3(0, -0.2f, 0), Quaternion.identity);
+		myRb.velocity = MovementInput.normalized * RollSpeed/2;
+	}
+
+	public void UpdateAnimationByPosMouse()
     {
         Vector2 mousePosition = GetMousePosition();
         Vector2 direction = mousePosition - new Vector2(transform.position.x, transform.position.y);
