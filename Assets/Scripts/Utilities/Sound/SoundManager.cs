@@ -7,10 +7,13 @@ public class SoundManager : Singleton<SoundManager>
 	public SoundDB soundDatabase;
 	private Dictionary<string, AudioClip[]> _soundDictionary;
 	private Queue<AudioSource> _audioSourcePool;
+	private AudioSource _audioSource;
+	public AudioClip musicBackGround;
 
 	public override void Awake()
 	{
 		base.Awake();
+		_audioSource = GetComponent<AudioSource>();
 
 		_soundDictionary = new Dictionary<string, AudioClip[]>();
 		foreach (Sound sound in soundDatabase.sounds)
@@ -23,6 +26,7 @@ public class SoundManager : Singleton<SoundManager>
 	{
 		_audioSourcePool = new Queue<AudioSource>();
 		Prepare(5);
+		PlayMusic();
 	}
 
 	public void Prepare(int amount = 10)
@@ -65,34 +69,12 @@ public class SoundManager : Singleton<SoundManager>
 		}
 	}
 
-	public AudioSource PlayLoop(string key)
+	public void PlayMusic()
 	{
-		if (!_soundDictionary.ContainsKey(key))
-		{
-			Debug.LogWarning("Sound key not found: " + key);
-			return null;
-		}
-
-		if (_soundDictionary.ContainsKey(key))
-		{
-			AudioClip clip = _soundDictionary[key][Random.Range(0, _soundDictionary[key].Length)];
-			if (clip != null)
-			{
-				if (_audioSourcePool.Count == 0)
-				{
-					Prepare(5);
-				}
-				AudioSource audioSource = _audioSourcePool.Dequeue();
-				audioSource.gameObject.SetActive(true);
-				audioSource.clip = clip;
-				audioSource.volume = 0.5f;
-				audioSource.loop = true;
-				audioSource.Play();
-				return audioSource;
-			}
-		}
-
-		return null;
+		_audioSource.clip = musicBackGround;
+		_audioSource.loop = true;
+		_audioSource.volume = 0.4f;
+		_audioSource.Play();
 	}
 
 	public IEnumerator Return(AudioSource audioSource)
