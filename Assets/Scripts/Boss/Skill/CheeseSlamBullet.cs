@@ -62,6 +62,7 @@ public class CheeseSlamBullet : MonoBehaviour
 		{
 			if (player.IsPlayerInteractable)
 			{
+				EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
 				player.OnPlayerBulletHit();
 				Destroy(gameObject);
 			}
@@ -69,6 +70,7 @@ public class CheeseSlamBullet : MonoBehaviour
 
 		if(collision.gameObject.CompareTag("Wall"))
 		{
+			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}

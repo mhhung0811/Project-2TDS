@@ -28,5 +28,5 @@ public class Projectile : Flyweight
 	public virtual void OnDisable()
     {
         _rb.velocity = Vector2.zero;
-    }
+	}
 }

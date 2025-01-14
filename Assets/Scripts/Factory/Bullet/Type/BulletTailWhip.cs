@@ -96,6 +96,7 @@ public class BulletTailWhip : Projectile
 			if (player.IsPlayerInteractable)
 			{
 				Debug.Log("TailWhip");
+				EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
 				settings.flyweightEvent.Raise(this);
 				player.OnPlayerBulletHit();
 				StopAllCoroutines();
@@ -105,6 +106,7 @@ public class BulletTailWhip : Projectile
 
 		if (collision.gameObject.CompareTag("Wall") && canDestroyWithWall)
 		{
+			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
 			settings.flyweightEvent.Raise(this);
 			StopAllCoroutines();
 			return;

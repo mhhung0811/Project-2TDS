@@ -16,8 +16,10 @@
 public enum EffectType
 {
 	SpawnEnemy,
-  SpawnLineLaze,
+	SpawnLineLaze,
 	TrapVFX,
+	EfRollLand,
+	EfBulletCollide,
 }
 
 public enum EnemyType

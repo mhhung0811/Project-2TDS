@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GunPref : MonoBehaviour, IInteractable
 {
@@ -6,10 +7,22 @@ public class GunPref : MonoBehaviour, IInteractable
     public bool isInteractable { get; set; }
     public VoidGameObjectFuncProvider returnGunPrefFunc;
     public GameObjectIntFuncProvider getGunFunc;
-    
-    public void SetGunId(int id)
+    private Rigidbody2D rb;
+
+	private void Awake()
+	{
+		rb = GetComponent<Rigidbody2D>();
+	}
+
+    private void Start()
+	{
+		StartCoroutine(StateInit());
+	}
+
+	public void SetGunId(int id)
     {
         gunId = id;
+
     }
     public void Interact(GameObject go)
     {
@@ -27,4 +40,12 @@ public class GunPref : MonoBehaviour, IInteractable
         // Return gun pref
         returnGunPrefFunc.GetFunction()?.Invoke(gameObject);
     }
+
+    public IEnumerator StateInit()
+    {
+        rb.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+		yield return new WaitForSeconds(1f);
+        rb.gravityScale = 0;
+        rb.velocity = Vector2.zero;
+	}
 }

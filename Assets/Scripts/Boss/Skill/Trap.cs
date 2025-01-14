@@ -61,6 +61,7 @@ public class Trap : MonoBehaviour
 				animator.SetBool("IsAttack", true);
 				this.collision.enabled = false;
 				EffectManager.Instance.PlayEffect(EffectType.TrapVFX, transform.position, Quaternion.identity);
+				SoundManager.Instance.PlaySound("TrapAttack");
 			}
 		}
 	}

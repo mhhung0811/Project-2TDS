@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4968863836939401399}
   - component: {fileID: 3442654017389861471}
   - component: {fileID: 6635271966574635143}
+  - component: {fileID: 8157649863421720951}
   m_Layer: 0
   m_Name: AssaultRifle Pref
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1439208483
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fed88cc6629e86f49a8a648563098183, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -145,3 +146,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   returnGunPrefFunc: {fileID: 11400000, guid: 4c7a28b658a524a439b381d958c09a36, type: 2}
   getGunFunc: {fileID: 11400000, guid: 6de501ceb909a5a45b8b9d7a38453d77, type: 2}
+--- !u!50 &8157649863421720951
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059717126619633523}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
