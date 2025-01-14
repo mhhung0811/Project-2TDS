@@ -11,6 +11,7 @@ public class InUseGun : ScriptableObject
         public int gunId;
         public GameObject gunPrefab;
         public GameObject gunPref;
+        public GameObject gunUI;
     }
     
     public List<GunEntry> guns = new List<GunEntry>();
@@ -21,7 +22,7 @@ public class InUseGun : ScriptableObject
         {
             gunEntry.gunPrefab.GetComponent<GunBase>().SetGunId(gunEntry.gunId);
             gunEntry.gunPref.GetComponent<GunPref>().SetGunId(gunEntry.gunId);
-            
+            gunEntry.gunUI.GetComponent<GunUI>().SetGunId(gunEntry.gunId);
         }
     }
 
@@ -48,6 +49,19 @@ public class InUseGun : ScriptableObject
         }
 
         Debug.LogError($"Gun pref with ID {id} not found!");
+        return null;
+    }
+    
+    // Retrieve GunUI by ID
+    public GameObject GetGunUIById(int id)
+    {
+        foreach (var gunEntry in guns)
+        {
+            if (gunEntry.gunId == id)
+                return gunEntry.gunUI;
+        }
+
+        Debug.LogError($"Gun UI with ID {id} not found!");
         return null;
     }
 }

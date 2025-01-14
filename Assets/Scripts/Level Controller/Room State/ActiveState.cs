@@ -11,7 +11,7 @@ public class ActiveState : IState
     
     public void Enter()
     {
-        Debug.Log("Active State Enter");
+        // Debug.Log("Active State Enter");
         roomController.RoomSetUp();
     }
 

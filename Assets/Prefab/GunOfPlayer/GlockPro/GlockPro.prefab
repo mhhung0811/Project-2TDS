@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5330967568483939488
 Transform:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1439208483
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 1061705949, guid: 73f579c066befaf41b633e62ebb45d0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,5 +121,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GunData: {fileID: 11400000, guid: 07c35a435ecdbff4081f8c6ad7643495, type: 2}
   HoldGunPos: {fileID: 11400000, guid: 6dffcd1d33f6a404781f7e5c5dde1647, type: 2}
+  changeGunStateEvent: {fileID: 11400000, guid: 7dd9216891c97e64ab736f43542245a4, type: 2}
   takeBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
   playerShootEvent: {fileID: 11400000, guid: 4141f7d51c6876445ba7b724b667e64e, type: 2}
