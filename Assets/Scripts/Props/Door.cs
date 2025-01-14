@@ -14,6 +14,15 @@ public class Door : MonoBehaviour
                 _isClose = value;
                 _animator.SetBool("isClose", value);
                 _boxCollider2D.isTrigger = !value;
+
+                if (value)
+                {
+                    SoundManager.Instance.PlaySound("DoorClose");
+                }
+                else
+                {
+                    SoundManager.Instance.PlaySound("DoorOpen");
+                }
             }
         }
     }

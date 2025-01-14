@@ -49,3 +49,9 @@ MonoBehaviour:
   - key: TrapAttack
     clips:
     - {fileID: 8300000, guid: 22c970203d984f140b94baef91202d20, type: 3}
+  - key: DoorOpen
+    clips:
+    - {fileID: 8300000, guid: 7150ef9ad9e600740a2c5fb0003c6c08, type: 3}
+  - key: DoorClose
+    clips:
+    - {fileID: 8300000, guid: 9ecd10b0436513444a356b529cd7364f, type: 3}

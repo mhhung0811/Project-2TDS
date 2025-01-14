@@ -23,7 +23,7 @@ public class PlayerInventory : MonoBehaviour
     private void Start()
     {
         // Get gun id 1
-        var gun = getGunFunc.GetFunction()?.Invoke((2));
+        var gun = getGunFunc.GetFunction()?.Invoke((1));
         if (gun != null && gun.GetComponent<GunBase>() != null)
         {
             // Debug.Log($"Add {gun.GetComponent<GunBase>().gunName}.");
