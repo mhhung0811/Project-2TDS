@@ -27,7 +27,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     public float blinkInterval = 0.1f;
 
 	public float MovementSpeed = 5f;
-    public float RollSpeed = 6f;
+    public float RollSpeed;
     public float RollDuration;
 
     public bool IsFacingRight = true;
@@ -242,11 +242,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		return worldPosition;
 	}
 
-	public void AnimationRollLand()
-	{
-		EffectManager.Instance.PlayEffect(EffectType.EfRollLand, transform.position + new Vector3(0, -0.2f, 0), Quaternion.identity);
-		myRb.velocity = MovementInput.normalized * RollSpeed/2;
-	}
+	
 
 	public void UpdateAnimationByPosMouse()
     {
@@ -345,6 +341,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		playerInput.enabled = false;
 		yield return new WaitForSeconds(1f);
 		playerInput.enabled = true;
+		myRb.drag = 0;
 	}
 
 	private IEnumerator InvulnerablilityCoroutine()

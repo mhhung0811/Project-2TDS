@@ -24,6 +24,8 @@ public class BarrelExplode : MonoBehaviour, IEnemyInteractable
 
     public void OnEnemyBulletHit(float damge)
     {
+		SoundManager.Instance.PlaySound("Explode");
+		StartCoroutine(SoundExplodeDelay(0.1f));
 		IsEnemyInteractable = false;
 		Explode();
     }
@@ -57,6 +59,12 @@ public class BarrelExplode : MonoBehaviour, IEnemyInteractable
     public void DestroyBarrel()
 	{
 		Destroy(gameObject);
+	}
+
+	public IEnumerator SoundExplodeDelay(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		SoundManager.Instance.PlaySound("Explode");	
 	}
 
 	public void OnDrawGizmos()

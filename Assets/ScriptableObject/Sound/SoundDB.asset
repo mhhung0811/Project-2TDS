@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f706428588ae5ea4480dd2a6e19d11dc, type: 3}
+  m_Name: SoundDB
+  m_EditorClassIdentifier: 
+  sounds:
+  - key: PlayerDodgeLeap
+    clips:
+    - {fileID: 8300000, guid: 48ff560a1d5cd2b4a977fbfad48994cb, type: 3}
+    - {fileID: 8300000, guid: d61af947e4842d74e8e725c1fba3598d, type: 3}
+    - {fileID: 8300000, guid: 98b71910804b93b419db8033ffa894fe, type: 3}
+  - key: PlayerDodgeRoll
+    clips:
+    - {fileID: 8300000, guid: 63a33b217f3a0ac40b57b53bbf05840b, type: 3}
+    - {fileID: 8300000, guid: 543bde417799a03499b15b352d8ccc51, type: 3}
+    - {fileID: 8300000, guid: 2374c3dd92cf9d94f930fe2dafd0d28d, type: 3}
+  - key: Explode
+    clips:
+    - {fileID: 8300000, guid: a4e1d214dba540344859ee25a8e734e5, type: 3}
+  - key: Ak47Shot
+    clips:
+    - {fileID: 8300000, guid: b0a207cb2b3ba5c4180571db5848cec2, type: 3}
+    - {fileID: 8300000, guid: eaad446d99fd16f499dac359def86644, type: 3}
+    - {fileID: 8300000, guid: 96c4cee6bb49bf14dabad64d2237565b, type: 3}
+  - key: BossCheeseSummon
+    clips:
+    - {fileID: 8300000, guid: d7254148cc1b9c3478c380532f0b2122, type: 3}
+  - key: BossCheeseSlam
+    clips:
+    - {fileID: 8300000, guid: 56ae61f6124d64a46a49e45c62052ced, type: 3}
+  - key: BossJumpPreSlam
+    clips:
+    - {fileID: 8300000, guid: e93e5dac6e3e730468ea22c9c332b502, type: 3}
+  - key: BossTailWhip
+    clips:
+    - {fileID: 8300000, guid: 7e1c5274627d7b84b9d6a2557e5a8243, type: 3}
+  - key: BossThrowTrap
+    clips:
+    - {fileID: 8300000, guid: 1262b02cc2a93b449bb6337dd3f75aaa, type: 3}
+  - key: TrapAttack
+    clips:
+    - {fileID: 8300000, guid: 22c970203d984f140b94baef91202d20, type: 3}

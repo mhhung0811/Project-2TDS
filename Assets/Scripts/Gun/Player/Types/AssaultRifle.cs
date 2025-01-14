@@ -16,6 +16,7 @@ public class AssaultRifle : GunBase
 		currentAmmo--;
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
+		SoundManager.Instance.PlaySound("Ak47Shot");
 
 		playerShootEvent.Raise(new Void());
 	}

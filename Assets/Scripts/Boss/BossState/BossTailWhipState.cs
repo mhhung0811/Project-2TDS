@@ -14,6 +14,7 @@ public class BossTailWhipState : BossState
 		Boss.Animator.SetBool("IsTailWhip", true);
 		Boss.StartCoroutine(ChangeIdle());
 		Boss.StartCoroutine(Attack());
+		Boss.StartCoroutine(SoundTailWhip());
 	}
 
 	public override void Exit()
@@ -44,7 +45,7 @@ public class BossTailWhipState : BossState
 		float endAngle = 90;
 		float quantity = 30;
 		float angleStep = (endAngle - startAngle) / quantity;
-		for (int i = 0; i < quantity ; i++)
+		for (int i = 0; i < quantity; i++)
 		{
 			float angle = endAngle - i * angleStep;
 			float x = radius * Mathf.Cos(angle * Mathf.Deg2Rad);
@@ -59,5 +60,14 @@ public class BossTailWhipState : BossState
 	{
 		yield return new WaitForSeconds(3.5f);
 		Boss.StateMachine.ChangeState(Boss.IdleState);
+	}
+
+	private IEnumerator SoundTailWhip()
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			SoundManager.Instance.PlaySound("BossTailWhip");
+			yield return new WaitForSeconds(1f);
+		}
 	}
 }

@@ -41,6 +41,7 @@ public class Cheese : MonoBehaviour
 
     public IEnumerator SpawnSummonCheese()
     {
+		SoundManager.Instance.PlaySound("BossCheeseSummon");
 		Vector2 offetRandom = Vector2.zero;
 		for(int temp = 0; temp < 3;temp++)
 		{
@@ -86,8 +87,16 @@ public class Cheese : MonoBehaviour
 
 	public void StartCheeseSlam()
 	{
+		SoundManager.Instance.PlaySound("BossJumpPreSlam");
 		spriteRenderer.sortingOrder = 2;
 		animator.SetBool("IsSlam", true);
+		//StartCoroutine(SoundExplodeDelay(0.2f));
+	}
+
+	public IEnumerator SoundExplodeDelay(float time)
+	{
+		yield return new WaitForSeconds(time);
+		SoundManager.Instance.PlaySound("BossCheeseSlam");
 	}
 
 	public void DestroyGobj()
@@ -98,6 +107,7 @@ public class Cheese : MonoBehaviour
 
 	public IEnumerator SpawnCheeseSlam()
 	{
+		SoundManager.Instance.PlaySound("BossCheeseSlam");
 		Vector2 offetRandom = Vector2.zero;
 		spaceAngle = 360f / quantityCheese;
 		for (int i = 0; i < quantityCheese ; i++)

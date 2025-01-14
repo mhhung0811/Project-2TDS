@@ -40,6 +40,9 @@ public class PlayerRollState : PlayerState
         Player.isInvulnerable = true;
 		Player.IsPlayerInteractable = false;
 		Player.myRb.velocity = _rollDirection * Player.RollSpeed;
+
+        SoundManager.Instance.PlaySound("PlayerDodgeLeap");
+        Player.StartCoroutine(AnimationRollLand());
 	}
 
     public override void Exit()
@@ -86,4 +89,13 @@ public class PlayerRollState : PlayerState
             PlayerStateMachine.ChangeState(Player.IdleState);
         }
     }
+
+	public IEnumerator AnimationRollLand()
+	{
+		yield return new WaitForSeconds(0.5f);
+		SoundManager.Instance.PlaySound("PlayerDodgeRoll");
+		Debug.Log("Roll Land");
+		EffectManager.Instance.PlayEffect(EffectType.EfRollLand, Player.transform.position + new Vector3(0, -0.2f, 0), Quaternion.identity);
+		Player.myRb.velocity = Player.MovementInput.normalized * Player.RollSpeed / 2;
+	}
 }

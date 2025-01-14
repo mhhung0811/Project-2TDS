@@ -19,6 +19,7 @@ public class BossThrowTrapState : BossState
 		base.Enter();
 		//Boss.Animator.SetBool("IsThrowTrap", true);
 		Boss.Animator.SetBool("IsMove", true);
+		SoundManager.Instance.PlaySound("BossThrowTrap");
 	}
 
 	public override void Exit()
