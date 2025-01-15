@@ -51,6 +51,7 @@ public class PlayerRollState : PlayerState
         Player.IsRolling = false;
 		Player.Animator.SetBool("IsRolling", false);
 		Player.HoldGun.SetActive(true);
+        Player.myRb.velocity = Vector2.zero;
 
 		// het bat tu khi roll
 		Player.isInvulnerable = false;

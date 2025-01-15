@@ -12,13 +12,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Unwalkable
   - Enemy
   - Player
-  - 
+  - Minimap
   - 
   - 
   - 
