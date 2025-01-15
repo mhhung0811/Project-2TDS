@@ -6,17 +6,19 @@ TagManager:
   tags:
   - Wall
   - Boss
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Unwalkable
   - Enemy
   - Player
-  - 
+  - Minimap
   - 
   - 
   - 

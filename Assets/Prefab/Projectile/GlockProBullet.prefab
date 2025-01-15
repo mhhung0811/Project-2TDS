@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5555882147663582445}
   m_Layer: 0
   m_Name: GlockProBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1439208483
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1317136747, guid: 6b615d690db736c449c875647a0dd21e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9204989119612682905}
   m_Layer: 0
   m_Name: AssaultRifleBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1439208483
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 344175505, guid: fc50021ccb83b394bad38ec9281d7994, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
