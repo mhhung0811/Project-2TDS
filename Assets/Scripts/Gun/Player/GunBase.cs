@@ -34,6 +34,8 @@ public class GunBase : MonoBehaviour, IGunData
 	public FloatVariable playerMaxReloadTime { get; private set; }
 	public FloatVariable playerReloadTime { get; private set; }
 	public BoolVariable playerIsReloading { get; private set; }
+	public IntVariable playerMaxAmmo { get; private set; }
+	public IntVariable playerAmmo { get; private set; }
 
 	private void Awake()
 	{
@@ -44,11 +46,11 @@ public class GunBase : MonoBehaviour, IGunData
 		OutOfAmmoState = new GunOutOfAmmoState(this, StateMachine);
 
 		holdGun = GetComponentInParent<HoldGun>();
+		InitGunData();
 	}
 
 	void Start()
     {
-		InitGunData();
 		lastShootTime = -5;
 		StateMachine.Initialize(IdleState);
 		animator = GetComponent<Animator>();
@@ -143,7 +145,7 @@ public class GunBase : MonoBehaviour, IGunData
 	
 	public virtual void Reload()
 	{
-		Debug.Log($"Current ammo: {currentAmmo}, Total ammo: {totalAmmo}");
+		// Debug.Log($"Current ammo: {currentAmmo}, Total ammo: {totalAmmo}");
 		if (totalAmmo == 0)
 		{
 			StateMachine.ChangeState(OutOfAmmoState);
@@ -163,6 +165,8 @@ public class GunBase : MonoBehaviour, IGunData
 		gunId = id;
 	}
 
+	#region UI
+
 	public void UpdateReloadActive(bool value)
 	{
 		playerIsReloading.CurrentValue = value;
@@ -170,13 +174,12 @@ public class GunBase : MonoBehaviour, IGunData
 	
 	public void UpdateReloadTime(float value)
 	{
+		
 		playerReloadTime.CurrentValue = value;
 	}
 	
 	public void SetUpReloadTimeVariables(FloatVariable maxReloadTime, FloatVariable reloadTime, BoolVariable isReloading)
 	{
-		Debug.Log("Set up reload time variables");
-		
 		playerMaxReloadTime = maxReloadTime;
 		playerReloadTime = reloadTime;
 		playerIsReloading = isReloading;
@@ -195,4 +198,34 @@ public class GunBase : MonoBehaviour, IGunData
 		playerReloadTime = null;
 		playerIsReloading = null;
 	}
+	
+	public void UpdateMaxAmmo(int value)
+	{
+		playerMaxAmmo.CurrentValue = value;
+	}
+	
+	public void UpdateAmmo(int value)
+	{
+		playerAmmo.CurrentValue = value;
+	}
+	
+	public void SetUpAmmoVariables(IntVariable maxAmmo, IntVariable ammo)
+	{
+		playerMaxAmmo = maxAmmo;
+		playerAmmo = ammo;
+		
+		playerMaxAmmo.CurrentValue = maxAmmoPerMag;
+		playerAmmo.CurrentValue = currentAmmo;
+	}
+	
+	public void ResetAmmoVariables()
+	{
+		playerMaxAmmo.CurrentValue = 0;
+		playerAmmo.CurrentValue = 0;
+		
+		playerMaxAmmo = null;
+		playerAmmo = null;
+	}
+
+	#endregion
 }

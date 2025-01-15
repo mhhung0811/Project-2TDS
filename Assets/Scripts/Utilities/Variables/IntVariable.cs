@@ -22,26 +22,6 @@ public class IntVariable : ScriptableObject
     }
     
     public event Action<int> OnChanged;
-    
-    public void SetValue(int value)
-    {
-        _currentValue = value;
-    }
-
-    public void SetValue(IntVariable value)
-    {
-        _currentValue = value.CurrentValue;
-    }
-
-    public void ApplyChange(int amount)
-    {
-        _currentValue += amount;
-    }
-
-    public void ApplyChange(IntVariable amount)
-    {
-        _currentValue += amount.CurrentValue;
-    }
 
     private void OnEnable()
     {

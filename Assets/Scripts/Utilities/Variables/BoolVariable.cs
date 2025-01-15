@@ -20,16 +20,6 @@ public class BoolVariable : ScriptableObject
     }
     
     public Action<bool> OnChanged;
-    
-    public void SetValue(bool value)
-    {
-        _currentValue = value;
-    }
-
-    public void SetValue(BoolVariable value)
-    {
-        _currentValue = value.CurrentValue;
-    }
 
     private void OnEnable()
     {
