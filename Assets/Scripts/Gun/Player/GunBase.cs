@@ -8,6 +8,7 @@ public class GunBase : MonoBehaviour, IGunData
 
 	// GunData
 	public string gunName { get; set; }
+	public bool isInfiniteAmmo { get; set; }
 	public int maxAmmoPerMag { get; set; }
 	public int currentAmmo { get; set; }
 	public int totalAmmo { get; set; }
@@ -34,8 +35,8 @@ public class GunBase : MonoBehaviour, IGunData
 	public FloatVariable playerMaxReloadTime { get; private set; }
 	public FloatVariable playerReloadTime { get; private set; }
 	public BoolVariable playerIsReloading { get; private set; }
-	public IntVariable playerMaxAmmo { get; private set; }
 	public IntVariable playerAmmo { get; private set; }
+	public IntVariable playerTotalAmmo { get; private set; }
 
 	private void Awake()
 	{
@@ -69,9 +70,10 @@ public class GunBase : MonoBehaviour, IGunData
 	public virtual void InitGunData()
 	{
 		gunName = GunData.gunName;
+		isInfiniteAmmo = GunData.isInfiniteAmmo;
 		maxAmmoPerMag = GunData.maxAmmoPerMag;
 		currentAmmo = GunData.currentAmmo;
-		totalAmmo = GunData.totalAmmo;
+		totalAmmo = GunData.isInfiniteAmmo ? -1 : GunData.totalAmmo;
 		reloadTime = GunData.reloadTime;
 		fireRate = GunData.fireRate;
 		posHoldGun = GunData.posHoldGun;
@@ -86,8 +88,9 @@ public class GunBase : MonoBehaviour, IGunData
 	{
 		gunName = GunData.gunName;
 		maxAmmoPerMag = GunData.maxAmmoPerMag;
+		isInfiniteAmmo = GunData.isInfiniteAmmo;
 		currentAmmo = GunData.currentAmmo;
-		totalAmmo = GunData.totalAmmo;
+		totalAmmo = GunData.isInfiniteAmmo ? -1 : GunData.totalAmmo;
 		reloadTime = GunData.reloadTime;
 		fireRate = GunData.fireRate;
 		posHoldGun = GunData.posHoldGun;
@@ -108,7 +111,7 @@ public class GunBase : MonoBehaviour, IGunData
 
 	public virtual bool CanShoot()
 	{
-		if (currentAmmo == 0 && totalAmmo == 0)
+		if (currentAmmo == 0 && totalAmmo == 0 && !isInfiniteAmmo)
 		{
 			StateMachine.ChangeState(OutOfAmmoState);
 			return false;
@@ -131,7 +134,12 @@ public class GunBase : MonoBehaviour, IGunData
 	public virtual void SetAmmoWhenReload()
 	{
 		int ammoToReload = maxAmmoPerMag - currentAmmo;
-		if(totalAmmo >= ammoToReload)
+		if (isInfiniteAmmo)
+		{
+			currentAmmo = maxAmmoPerMag;
+			totalAmmo = -1;
+		}
+		else if(totalAmmo >= ammoToReload)
 		{
 			totalAmmo -= ammoToReload;
 			currentAmmo = maxAmmoPerMag;
@@ -141,12 +149,15 @@ public class GunBase : MonoBehaviour, IGunData
 			currentAmmo += totalAmmo;
 			totalAmmo = 0;
 		}
+		Debug.Log($"Player Ammo: {currentAmmo}");
+		playerAmmo.CurrentValue = currentAmmo;
+		playerTotalAmmo.CurrentValue = totalAmmo;
 	}
 	
 	public virtual void Reload()
 	{
 		// Debug.Log($"Current ammo: {currentAmmo}, Total ammo: {totalAmmo}");
-		if (totalAmmo == 0)
+		if (totalAmmo == 0 && !isInfiniteAmmo)
 		{
 			StateMachine.ChangeState(OutOfAmmoState);
 			return;
@@ -166,18 +177,6 @@ public class GunBase : MonoBehaviour, IGunData
 	}
 
 	#region UI
-
-	public void UpdateReloadActive(bool value)
-	{
-		playerIsReloading.CurrentValue = value;
-	}
-	
-	public void UpdateReloadTime(float value)
-	{
-		
-		playerReloadTime.CurrentValue = value;
-	}
-	
 	public void SetUpReloadTimeVariables(FloatVariable maxReloadTime, FloatVariable reloadTime, BoolVariable isReloading)
 	{
 		playerMaxReloadTime = maxReloadTime;
@@ -199,32 +198,26 @@ public class GunBase : MonoBehaviour, IGunData
 		playerIsReloading = null;
 	}
 	
-	public void UpdateMaxAmmo(int value)
+	public void SetUpAmmoVariables(IntVariable ammo)
 	{
-		playerMaxAmmo.CurrentValue = value;
-	}
-	
-	public void UpdateAmmo(int value)
-	{
-		playerAmmo.CurrentValue = value;
-	}
-	
-	public void SetUpAmmoVariables(IntVariable maxAmmo, IntVariable ammo)
-	{
-		playerMaxAmmo = maxAmmo;
 		playerAmmo = ammo;
-		
-		playerMaxAmmo.CurrentValue = maxAmmoPerMag;
 		playerAmmo.CurrentValue = currentAmmo;
 	}
 	
 	public void ResetAmmoVariables()
 	{
-		playerMaxAmmo.CurrentValue = 0;
-		playerAmmo.CurrentValue = 0;
-		
-		playerMaxAmmo = null;
 		playerAmmo = null;
+	}
+	
+	public void SetUpTotalAmmoVariable(IntVariable ammo)
+	{
+		playerTotalAmmo = ammo;
+		playerTotalAmmo.CurrentValue = totalAmmo;
+	}
+	
+	public void ResetTotalAmmoVariable()
+	{
+		playerTotalAmmo = null;
 	}
 
 	#endregion

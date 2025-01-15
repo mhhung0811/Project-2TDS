@@ -5,7 +5,7 @@ public class GunHolderUI : MonoBehaviour
     [SerializeField] private InUseGun inUseGun;
     private Animator _animator;
     
-    public void ChangeGun(int id)
+    public void ChangeGun((int id, int maxAmmo) parameters)
     {
         // Destroy all children
         foreach (Transform child in transform)
@@ -14,7 +14,7 @@ public class GunHolderUI : MonoBehaviour
         }
         
         // Create new gun
-        var gunUI = Instantiate(inUseGun.GetGunUIById(id), transform);
+        var gunUI = Instantiate(inUseGun.GetGunUIById(parameters.id), transform);
         _animator = gunUI.GetComponent<Animator>();
     }
     

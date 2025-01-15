@@ -10,6 +10,7 @@ public class GunData : ScriptableObject
 	public string gunName;
 
 	[Header("Ammo Settings")]
+	public bool isInfiniteAmmo = false; // Số đạn vô hạn
 	public int maxAmmoPerMag;  // Số đạn trong 1 băng
 	public int currentAmmo;    // Số đạn hiện tại
 	public int totalAmmo;      // Tổng số đạn còn lại

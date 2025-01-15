@@ -11,8 +11,7 @@ public class GunReloadingState : GunState
 	{
 		base.Enter();
 		startTime = Time.time;
-		Gun.UpdateReloadActive(true);
-		// Gun.UpdateReloadTime(0);
+		Gun.playerIsReloading.CurrentValue = true;
 		Gun.animator.SetBool("IsReloading", true);
 		Gun.changeGunStateEvent.Raise(("IsReloading", true));
 		// Debug.Log("Start reloading");
@@ -22,9 +21,8 @@ public class GunReloadingState : GunState
 	{
 		base.Exit();
 		startTime = 0;
-		Debug.Log("Exit reloading");
-		Gun.UpdateReloadActive(false);
-		// Gun.UpdateReloadTime(Gun.reloadTime);
+		// Debug.Log("Exit reloading");
+		Gun.playerIsReloading.CurrentValue = false;
 		Gun.animator.SetBool("IsReloading", false);
 		Gun.changeGunStateEvent.Raise(("IsReloading", false));
 	}
@@ -32,7 +30,7 @@ public class GunReloadingState : GunState
 	public override void FrameUpdate()
 	{
 		base.FrameUpdate();
-		Gun.UpdateReloadTime(Time.time - startTime);
+		Gun.playerReloadTime.CurrentValue = Time.time - startTime;
 		CheckFinishReload();
 	}
 

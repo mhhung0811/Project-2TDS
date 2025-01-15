@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GlockPro
   m_EditorClassIdentifier: 
   gunName: GlockPro
+  isInfiniteAmmo: 1
   maxAmmoPerMag: 10
   currentAmmo: 10
   totalAmmo: 200

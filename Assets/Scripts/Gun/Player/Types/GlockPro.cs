@@ -18,5 +18,6 @@ public class GlockPro : GunBase
 		StateMachine.ChangeState(ShootingState);
 
 		playerShootEvent.Raise(new Void());
+		playerAmmo.CurrentValue = currentAmmo;
 	}
 }

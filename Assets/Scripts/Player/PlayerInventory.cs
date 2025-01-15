@@ -15,17 +15,17 @@ public class PlayerInventory : MonoBehaviour
     public GameObjectIntFuncProvider getGunFunc;
     public VoidGameObjectFuncProvider returnGunFunc;
     public VoidIntVector2FloatFuncProvider getGunPrefFunc;
-    public IntEvent onGunChange;
+    public IntIntEvent onGunChange;
     public FloatVariable playerMaxReloadTime;
     public FloatVariable playerReloadTime;
     public BoolVariable playerIsReloading;
-    public IntVariable playerMaxAmmo;
     public IntVariable playerAmmo;
+    public IntVariable playerTotalAmmo;
 
     private void Start()
     {
         // Get gun id 1
-        var gun = getGunFunc.GetFunction()?.Invoke((1));
+        var gun = getGunFunc.GetFunction()?.Invoke((2));
         if (gun != null && gun.GetComponent<GunBase>() != null)
         {
             // Debug.Log($"Add {gun.GetComponent<GunBase>().gunName}.");
@@ -134,23 +134,35 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     public void EquipGun(GunBase gun)
     {
+        if (holdingGun == gun)
+        {
+            Debug.LogWarning($"Already equipped {gun.name}.");
+            return;
+        }
+        
         if (!gunCollection.Contains(gun))
         {
             Debug.LogError($"Cannot equip {gun.name}: Gun is not in the inventory.");
             return;
         }
+        
+        // Notify listeners that the gun has changed
+        onGunChange?.Raise((gun.gunId, gun.maxAmmoPerMag));
 
         // Deactivate the currently held gun
         if (holdingGun != null)
         {
             holdingGun.ResetReloadTimeVariables();
+            holdingGun.ResetAmmoVariables();
+            holdingGun.ResetTotalAmmoVariable();
             holdingGun.gameObject.SetActive(false);
         }
         
         // Equip the new gun
         holdingGun = gun;
         holdingGun.SetUpReloadTimeVariables(playerMaxReloadTime, playerReloadTime, playerIsReloading);
-        // holdingGun.SetUpAmmoVariables(playerMaxAmmo, playerAmmo);
+        holdingGun.SetUpAmmoVariables(playerAmmo);
+        holdingGun.SetUpTotalAmmoVariable(playerTotalAmmo);
         holdingGun.gameObject.SetActive(true);
 
 		//Set Scale x >0, y > 0
@@ -158,9 +170,7 @@ public class PlayerInventory : MonoBehaviour
 
 		// Set position of gun
 		holdingGun.transform.localPosition = new Vector3(0.5f, 0, 0);
-
-        // Notify listeners that the gun has changed
-        onGunChange?.Raise(holdingGun.gunId);
+        
         
 		// Debug.Log($"Equipped {holdingGun.name}.");
     }

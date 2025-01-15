@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52d652abf7744e6dbe6601536dd31170, type: 3}
+  m_Script: {fileID: 11500000, guid: 148da54eca0a4a1d87fabc3d9ab47b34, type: 3}
   m_Name: OnGunChange
   m_EditorClassIdentifier: 
