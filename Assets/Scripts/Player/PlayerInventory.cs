@@ -150,7 +150,7 @@ public class PlayerInventory : MonoBehaviour
         // Equip the new gun
         holdingGun = gun;
         holdingGun.SetUpReloadTimeVariables(playerMaxReloadTime, playerReloadTime, playerIsReloading);
-        holdingGun.SetUpAmmoVariables(playerMaxAmmo, playerAmmo);
+        // holdingGun.SetUpAmmoVariables(playerMaxAmmo, playerAmmo);
         holdingGun.gameObject.SetActive(true);
 
 		//Set Scale x >0, y > 0

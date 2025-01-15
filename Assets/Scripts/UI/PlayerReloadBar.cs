@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PlayerReloadBar : MonoBehaviour
 {
     private Slider _reloadBar;
+    public Player player;
     
     public FloatVariable reloadTimeMax;
     public FloatVariable reloadTimeCurrent;
@@ -18,6 +19,18 @@ public class PlayerReloadBar : MonoBehaviour
         isReloading.OnChanged += UpdateSliderActive;
         
         gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (!player.IsFacingRight)
+        {
+            this.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, -180, 0); 
+        }
+        else
+        {
+            GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, 0); 
+        }
     }
     
     private void UpdateSliderActive(bool value)
@@ -34,7 +47,7 @@ public class PlayerReloadBar : MonoBehaviour
     
     private void UpdateSliderCurrent(float value)
     {
-        Debug.Log("UpdateSliderCurrent");
+        // Debug.Log("UpdateSliderCurrent");
         _reloadBar.value = value;
     }
 }

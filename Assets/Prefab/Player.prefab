@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1790530036168574748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2de901fa1449cb92ba1f4c55b91b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 2848320089499006292}
   reloadTimeMax: {fileID: 11400000, guid: 41b6939160732ea45921ad480903458a, type: 2}
   reloadTimeCurrent: {fileID: 11400000, guid: c981e723458cedc4dba004161d33897f, type: 2}
   isReloading: {fileID: 11400000, guid: a8e88cf90e526e449879dc9ac623defd, type: 2}
@@ -177,7 +178,7 @@ RectTransform:
   m_Father: {fileID: 4160740867617473918}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -461,7 +462,7 @@ MonoBehaviour:
   invulnerableDuration: 2
   blinkInterval: 0.1
   MovementSpeed: 5
-  RollSpeed: 5
+  RollSpeed: 8
   RollDuration: 0.5
   IsFacingRight: 1
   IsRolling: 0
@@ -698,7 +699,9 @@ MonoBehaviour:
   onGunChange: {fileID: 11400000, guid: 8b35cf1ec5c337f4584b3517ae0b8234, type: 2}
   playerMaxReloadTime: {fileID: 11400000, guid: 41b6939160732ea45921ad480903458a, type: 2}
   playerReloadTime: {fileID: 11400000, guid: c981e723458cedc4dba004161d33897f, type: 2}
-  isReloading: {fileID: 11400000, guid: a8e88cf90e526e449879dc9ac623defd, type: 2}
+  playerIsReloading: {fileID: 11400000, guid: a8e88cf90e526e449879dc9ac623defd, type: 2}
+  playerMaxAmmo: {fileID: 0}
+  playerAmmo: {fileID: 0}
 --- !u!1 &3842092606158417366
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,7 +735,7 @@ RectTransform:
   m_Father: {fileID: 3017761910650635969}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 4, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -898,7 +901,7 @@ GameObject:
   - component: {fileID: 2856800663260961975}
   - component: {fileID: 1044914422388771608}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
