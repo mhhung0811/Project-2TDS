@@ -20,26 +20,6 @@ public class FloatVariable : ScriptableObject
     }
     
     public Action<float> OnChanged;
-    
-    public void SetValue(float value)
-    {
-        _currentValue = value;
-    }
-
-    public void SetValue(FloatVariable value)
-    {
-        _currentValue = value.CurrentValue;
-    }
-
-    public void ApplyChange(float amount)
-    {
-        _currentValue += amount;
-    }
-
-    public void ApplyChange(FloatVariable amount)
-    {
-        _currentValue += amount.CurrentValue;
-    }
 
     private void OnEnable()
     {

@@ -18,7 +18,9 @@ public class PlayerInventory : MonoBehaviour
     public IntEvent onGunChange;
     public FloatVariable playerMaxReloadTime;
     public FloatVariable playerReloadTime;
-    public BoolVariable isReloading;
+    public BoolVariable playerIsReloading;
+    public IntVariable playerMaxAmmo;
+    public IntVariable playerAmmo;
 
     private void Start()
     {
@@ -147,7 +149,8 @@ public class PlayerInventory : MonoBehaviour
         
         // Equip the new gun
         holdingGun = gun;
-        holdingGun.SetUpReloadTimeVariables(playerMaxReloadTime, playerReloadTime, isReloading);
+        holdingGun.SetUpReloadTimeVariables(playerMaxReloadTime, playerReloadTime, playerIsReloading);
+        holdingGun.SetUpAmmoVariables(playerMaxAmmo, playerAmmo);
         holdingGun.gameObject.SetActive(true);
 
 		//Set Scale x >0, y > 0

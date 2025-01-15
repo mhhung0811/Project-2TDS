@@ -22,13 +22,13 @@ public class PlayerReloadBar : MonoBehaviour
     
     private void UpdateSliderActive(bool value)
     {
-        Debug.Log("UpdateSliderActive");
+        // Debug.Log("UpdateSliderActive");
         gameObject.SetActive(value);
     }
 
     private void UpdateSliderMax(float value)
     {
-        Debug.Log("UpdateSliderMax");
+        // Debug.Log("UpdateSliderMax");
         _reloadBar.maxValue = value;
     }
     

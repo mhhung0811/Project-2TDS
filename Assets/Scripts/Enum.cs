@@ -30,3 +30,11 @@ public enum EnemyType
 	Enemy4,
 	Gigi,
 }
+
+public enum GunType
+{
+	ShotGun,
+	AssaultRifle,
+	GlockPro,
+	AWM,
+}

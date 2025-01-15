@@ -12,6 +12,7 @@ public class InUseGun : ScriptableObject
         public GameObject gunPrefab;
         public GameObject gunPref;
         public GameObject gunUI;
+        public GameObject gunBulletShellUI;
     }
     
     public List<GunEntry> guns = new List<GunEntry>();
@@ -23,6 +24,7 @@ public class InUseGun : ScriptableObject
             gunEntry.gunPrefab.GetComponent<GunBase>().SetGunId(gunEntry.gunId);
             gunEntry.gunPref.GetComponent<GunPref>().SetGunId(gunEntry.gunId);
             gunEntry.gunUI.GetComponent<GunUI>().SetGunId(gunEntry.gunId);
+            gunEntry.gunBulletShellUI.GetComponent<BulletShellUI>().SetGunId(gunEntry.gunId);
         }
     }
 
@@ -62,6 +64,19 @@ public class InUseGun : ScriptableObject
         }
 
         Debug.LogError($"Gun UI with ID {id} not found!");
+        return null;
+    }
+    
+    // Retrieve BulletShellUI by ID
+    public GameObject GetBulletShellUIById(int id)
+    {
+        foreach (var gunEntry in guns)
+        {
+            if (gunEntry.gunId == id)
+                return gunEntry.gunBulletShellUI;
+        }
+
+        Debug.LogError($"Bullet shell UI with ID {id} not found!");
         return null;
     }
 }
