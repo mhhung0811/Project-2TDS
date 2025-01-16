@@ -1,0 +1,34 @@
+{
+    "name": "UIInput",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "20cd3c64-cca2-437b-a8be-707a13da547b",
+            "actions": [
+                {
+                    "name": "OpenMenuMinimap",
+                    "type": "Button",
+                    "id": "4cdf5147-7aa1-4f81-beda-331522b48b09",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6886f6c9-a68c-4816-8eb3-3b73f815bde3",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenMenuMinimap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
