@@ -24,6 +24,7 @@ public class RoomController : MonoBehaviour
     private Coroutine _delayedRoomTriggeredEndCoroutine;
 
     public bool isActiveRoom = false;
+    public Transform roomCenter;
     
     public Transform enemyHolder;
     public Transform doorHolder;
@@ -155,7 +156,7 @@ public class RoomController : MonoBehaviour
             }
             
             // Move A*
-            PathRequestManager.Instance.UpdatePos(transform.position);
+            PathRequestManager.Instance.UpdatePos(roomCenter.position);
         }
 
         Debug.Log(waveIndex);

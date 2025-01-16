@@ -70,8 +70,8 @@ public class AmmoUI : MonoBehaviour
     public void UpdateAmmoUI(int value)
     {
         // Debug.Log($"UI: {playerAmmo.CurrentValue}");
-        Debug.Log($"UI change: {value}");
-        Debug.Log($"Shell count: {bulletShells.Count}");
+        // Debug.Log($"UI change: {value}");
+        // Debug.Log($"Shell count: {bulletShells.Count}");
         
         // Handle invalid input scenarios
         if (value < 0)

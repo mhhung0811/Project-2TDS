@@ -149,7 +149,7 @@ public class GunBase : MonoBehaviour, IGunData
 			currentAmmo += totalAmmo;
 			totalAmmo = 0;
 		}
-		Debug.Log($"Player Ammo: {currentAmmo}");
+		// Debug.Log($"Player Ammo: {currentAmmo}");
 		playerAmmo.CurrentValue = currentAmmo;
 		playerTotalAmmo.CurrentValue = totalAmmo;
 	}
