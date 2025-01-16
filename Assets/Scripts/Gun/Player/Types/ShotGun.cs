@@ -58,9 +58,9 @@ public class ShotGun : GunBase
 		currentAmmo--;
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
-
-		Void @void = new Void();
-		playerShootEvent.Raise(@void);
+		
+		playerShootEvent.Raise(new Void());
+		playerAmmo.CurrentValue = currentAmmo;
 	}
 
 	public override void SetAmmoWhenReload()
@@ -95,6 +95,9 @@ public class ShotGun : GunBase
 			{
 				totalAmmo--;
 				currentAmmo++;
+				
+				playerAmmo.CurrentValue = currentAmmo;
+				playerTotalAmmo.CurrentValue = totalAmmo;
 			}
 		}
 	}

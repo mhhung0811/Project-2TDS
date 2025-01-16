@@ -19,5 +19,6 @@ public class AssaultRifle : GunBase
 		SoundManager.Instance.PlaySound("Ak47Shot");
 
 		playerShootEvent.Raise(new Void());
+		playerAmmo.CurrentValue = currentAmmo;
 	}
 }
