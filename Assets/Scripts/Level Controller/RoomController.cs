@@ -29,6 +29,8 @@ public class RoomController : MonoBehaviour
     public Transform enemyHolder;
     public Transform doorHolder;
 
+    public GameObject miniMap;
+
     public RoomStateMachine roomStateMachine { get; private set; }
     public VoidEnemyTypeVector3FuncProvider SpawnEnemyFunc;
     
@@ -147,9 +149,13 @@ public class RoomController : MonoBehaviour
         {
             // Active the enemy down event listener
             _enemyDownEventListener.enabled = true;
-            
-            // Close all doors
-            foreach (Door door in _doors)
+			//Open Minimap
+            if(miniMap != null)
+            {
+			    miniMap.SetActive(true);
+            }
+			// Close all doors
+			foreach (Door door in _doors)
             {
                 door.IsClose = true;
                 door.TurnOffInteractionZone();
