@@ -33,6 +33,8 @@ public class RoomController : MonoBehaviour
 
     public RoomStateMachine roomStateMachine { get; private set; }
     public VoidEnemyTypeVector3FuncProvider SpawnEnemyFunc;
+
+    public VoidEvent OnRoomTrigger;
     
     private void Awake()
     {
@@ -147,8 +149,15 @@ public class RoomController : MonoBehaviour
         // First entry
         if (waveIndex == 1)
         {
-            // Active the enemy down event listener
-            _enemyDownEventListener.enabled = true;
+			//Call the event
+			if (OnRoomTrigger != null)
+			{
+				Debug.Log("------Room Triggered Boss");
+				Void @void = new Void();
+				OnRoomTrigger.Raise(@void);
+			}
+			// Active the enemy down event listener
+			_enemyDownEventListener.enabled = true;
 			//Open Minimap
             if(miniMap != null)
             {
@@ -178,11 +187,11 @@ public class RoomController : MonoBehaviour
                 SpawnEnemyFunc.GetFunction()((enemyType, position));
             }
         }
-        
-        // Debug.Log("Spawn enemies");
-    }
-    
-    public void RoomDeactivated()
+
+		// Debug.Log("Spawn enemies");
+	}
+
+	public void RoomDeactivated()
     {
         // Deactive the enemy down event listener
         _enemyDownEventListener.enabled = false;

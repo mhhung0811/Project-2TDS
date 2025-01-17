@@ -88,8 +88,9 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 
     public void InputShoot(InputAction.CallbackContext context)
     {
-        
-        if (context.performed)
+		if(GameManager.Instance.isHoldButtonTab) return;
+
+		if (context.performed)
         {
             IsPressShoot = true;
 		}

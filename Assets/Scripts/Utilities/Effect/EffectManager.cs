@@ -9,7 +9,6 @@ public class EffectManager : Singleton<EffectManager>
 	public override void Awake()
 	{
 		base.Awake();
-		Application.targetFrameRate = 60;
 	}
 
 	public GameObject PlayEffect(EffectType effectType, Vector3 position, Quaternion rotation)

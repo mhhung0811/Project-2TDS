@@ -22,11 +22,13 @@ public class UIRoot : MonoBehaviour
     {
         if(context.performed)
 		{
+            GameManager.Instance.isHoldButtonTab = true;
 			MenuMinimap.SetActive(true);
             Minimap.SetActive(false);
 		}
         else
         {
+			GameManager.Instance.isHoldButtonTab = false;
 			MenuMinimap.SetActive(false);
 			Minimap.SetActive(true);
 		}

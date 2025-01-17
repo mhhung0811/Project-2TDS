@@ -77,4 +77,18 @@ public class MouseOffsetCamera : MonoBehaviour
 		// Di chuyển camera với hiệu ứng SmoothDamp
 		transform.position = Vector3.SmoothDamp(transform.position, player.position + mouseOffset, ref smoothVelocity, smoothSpeed);
 	}
+
+	public void OffVirtualCamera()
+	{
+		virtualCamera.enabled = false;
+		SoundManager.Instance.StopMusic();
+		StartCoroutine(OnVirtualCamera());
+	}
+
+	public IEnumerator OnVirtualCamera()
+	{
+		yield return new WaitForSeconds(3.5f);
+		virtualCamera.enabled = true;
+		SoundManager.Instance.PlayMusic();
+	}
 }

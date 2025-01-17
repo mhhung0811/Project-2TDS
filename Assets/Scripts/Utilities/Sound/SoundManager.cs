@@ -69,12 +69,52 @@ public class SoundManager : Singleton<SoundManager>
 		}
 	}
 
+	public void StopMusic()
+	{
+		StartCoroutine(DownToStopMusic());
+	}
+
+	public IEnumerator DownToStopMusic()
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(0.1f);
+			if (_audioSource.volume > 0)
+			{
+				_audioSource.volume -= 0.1f;
+			}
+			else
+			{
+				_audioSource.Stop();
+				break;
+			}
+		}
+	}
+
 	public void PlayMusic()
 	{
 		_audioSource.clip = musicBackGround;
 		_audioSource.loop = true;
-		_audioSource.volume = 0.4f;
+		_audioSource.volume = 0f;
 		_audioSource.Play();
+		StartCoroutine(InCreaseVolume(0.5f));
+	}
+
+	public IEnumerator InCreaseVolume(float maxVolume = 1f)
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(0.1f);
+			if (_audioSource.volume < maxVolume)
+			{
+				_audioSource.volume += 0.1f;
+			}
+			else
+			{
+				_audioSource.volume = maxVolume;
+				break;
+			}
+		}
 	}
 
 	public IEnumerator Return(AudioSource audioSource)
