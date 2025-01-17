@@ -25,8 +25,8 @@ public class SoundManager : Singleton<SoundManager>
 	public void Start()
 	{
 		_audioSourcePool = new Queue<AudioSource>();
-		Prepare(5);
 		PlayMusic();
+		Prepare(5);
 	}
 
 	public void Prepare(int amount = 10)
@@ -67,6 +67,37 @@ public class SoundManager : Singleton<SoundManager>
 				StartCoroutine(Return(audioSource));
 			}
 		}
+	}
+
+	public void StopAllSounds()
+	{
+		foreach (AudioSource audioSource in _audioSourcePool)
+		{
+			audioSource.Stop();
+			audioSource.gameObject.SetActive(false);
+		}
+
+		_audioSource.Stop();
+	}
+
+	public void PauseAllSounds()
+	{
+		foreach (AudioSource audioSource in _audioSourcePool)
+		{
+			audioSource.Pause(); 
+		}
+
+		_audioSource.Pause();
+	}
+
+	public void ResumeAllSounds()
+	{
+		foreach (AudioSource audioSource in _audioSourcePool)
+		{
+			audioSource.Play();
+		}
+
+		_audioSource.Play();
 	}
 
 	public void StopMusic()

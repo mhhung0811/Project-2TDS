@@ -18,6 +18,6 @@ public class EventHoverButton : MonoBehaviour, IPointerEnterHandler, IPointerExi
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		buttonText.fontSize -= 5; // Trở lại kích thước ban đầu
-		buttonText.color = new Color32(185, 185, 185, 255);
+		buttonText.color = new Color32(180, 180, 180, 255);
 	}
 }

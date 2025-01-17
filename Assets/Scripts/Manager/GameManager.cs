@@ -17,11 +17,13 @@ public class GameManager : Singleton<GameManager>
 	{
 		isGamePaused = true;
 		Time.timeScale = 0;
+		SoundManager.Instance.PauseAllSounds();
 	}
 
 	public void ResumeGame()
 	{
 		isGamePaused = false;
 		Time.timeScale = 1;
+		SoundManager.Instance.ResumeAllSounds();
 	}
 }

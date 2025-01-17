@@ -26,11 +26,24 @@ public class LoadingScenes : MonoBehaviour
     {
         loadingScreen.SetActive(true);
 
-		AsyncOperation operation = SceneManager.LoadSceneAsync("MapTest");
+		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
 		while (!operation.isDone)
 		{
 			yield return null;
 		}
+	}
+
+    public void RestartScene()
+    {
+		string currentSceneName = SceneManager.GetActiveScene().name;
+		GameManager.Instance.ResumeGame();
+		SoundManager.Instance.StopAllSounds();
+		StartCoroutine(LoadSceneAsync(currentSceneName));
+	}
+
+	public void Resume()
+	{
+		GameManager.Instance.ResumeGame();
 	}
 }

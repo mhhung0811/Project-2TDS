@@ -7,6 +7,7 @@ public class UIRoot : MonoBehaviour
 {
     public GameObject MenuMinimap;
     public GameObject Minimap;
+    public GameObject MenuGame;
     void Start()
     {
         
@@ -33,4 +34,13 @@ public class UIRoot : MonoBehaviour
 			Minimap.SetActive(true);
 		}
 	}
+
+    public void OpenMenuGame(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            MenuGame.SetActive(true);
+			GameManager.Instance.PauseGame();
+		}
+    }
 }
