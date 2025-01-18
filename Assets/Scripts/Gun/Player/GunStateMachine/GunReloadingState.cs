@@ -14,6 +14,7 @@ public class GunReloadingState : GunState
 		Gun.playerIsReloading.CurrentValue = true;
 		Gun.animator.SetBool("IsReloading", true);
 		Gun.changeGunStateEvent.Raise(("IsReloading", true));
+		SoundManager.Instance.PlaySound("ReloadGun");
 		// Debug.Log("Start reloading");
 	}
 

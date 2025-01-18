@@ -54,7 +54,8 @@ public class ShotGun : GunBase
 		{
 			StopCoroutine(reloadingCoroutine);
 		}
-		
+		this.StopAllCoroutines();
+
 		currentAmmo--;
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
@@ -70,6 +71,8 @@ public class ShotGun : GunBase
 
 	public override void Reload()
 	{
+		if(StateMachine.CurrentState == ReloadState) return;
+
 		Debug.Log($"Current ammo: {currentAmmo}, Total ammo: {totalAmmo}");
 		if (totalAmmo == 0)
 		{
@@ -89,6 +92,7 @@ public class ShotGun : GunBase
 	{
 		for (int i = currentAmmo; i < maxAmmoPerMag; i++)
 		{
+
 			StateMachine.ChangeState(ReloadState);
 			yield return new WaitForSeconds(this.reloadTime + 0.05f);
 			if (totalAmmo > 0)

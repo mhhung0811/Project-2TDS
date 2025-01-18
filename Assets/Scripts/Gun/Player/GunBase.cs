@@ -168,7 +168,10 @@ public class GunBase : MonoBehaviour, IGunData
 			return;
 		}
 
-		StateMachine.ChangeState(ReloadState);
+		if(StateMachine.CurrentState != ReloadState)
+		{
+			StateMachine.ChangeState(ReloadState);
+		}
 	}
 	
 	public void SetGunId(int id)

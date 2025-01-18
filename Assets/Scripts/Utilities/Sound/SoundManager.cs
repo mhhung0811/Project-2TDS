@@ -42,7 +42,7 @@ public class SoundManager : Singleton<SoundManager>
 		}
 	}
 
-	public void PlaySound(string key)
+	public void PlaySound(string key, float volume = 0.5f)
 	{
 		if (!_soundDictionary.ContainsKey(key))
 		{
@@ -63,7 +63,7 @@ public class SoundManager : Singleton<SoundManager>
 				AudioSource audioSource = _audioSourcePool.Dequeue();
 				audioSource.gameObject.SetActive(true);
 				audioSource.clip = clip;
-				audioSource.volume = 0.5f;
+				audioSource.volume = volume;
 				audioSource.Play();
 				StartCoroutine(Return(audioSource));
 			}

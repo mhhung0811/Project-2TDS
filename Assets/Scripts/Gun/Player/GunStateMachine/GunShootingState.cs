@@ -17,6 +17,7 @@ public class GunShootingState : GunState
 		_startTime = Time.time;
 		Gun.animator.SetBool("IsShooting", true);
 		Gun.changeGunStateEvent.Raise(("IsShooting", true));
+		SoundManager.Instance.PlaySound("Ak47Shot");
 	}
 
 	public override void Exit() 

@@ -140,7 +140,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
                 return;
             }
 
-            if (MovementInput != Vector2.zero)
+            if (MovementInput != Vector2.zero && StateMachine.CurrentState != MoveState)
             {
                 StateMachine.ChangeState(MoveState); 
             }

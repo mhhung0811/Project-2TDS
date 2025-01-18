@@ -55,3 +55,12 @@ MonoBehaviour:
   - key: DoorClose
     clips:
     - {fileID: 8300000, guid: 9ecd10b0436513444a356b529cd7364f, type: 3}
+  - key: ReloadGun
+    clips:
+    - {fileID: 8300000, guid: 5197f7dd0d5f4d9459cfa34fdae21287, type: 3}
+  - key: Shoot
+    clips:
+    - {fileID: 8300000, guid: f94d395952695ae4fba3e81238a94684, type: 3}
+  - key: FootStep
+    clips:
+    - {fileID: 8300000, guid: 8acc63c591e6d8c43a2db3c68da6462c, type: 3}
