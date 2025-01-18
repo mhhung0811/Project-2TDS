@@ -30,7 +30,7 @@ public class HealthBar : MonoBehaviour
 		}
 
 		// Create new hearts
-		for(int i = 0; i < totalHearts; i++)
+		for (int i = 0; i < totalHearts; i++)
 		{
 			GameObject heart;
 			if(hp >= 2)

@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 	public IntVariable MaxHP;
     public Vector2Variable PlayerPos;
     public VoidEvent PlayerHit;
+	public VoidEvent PlayerDied;
 
 	public Camera MainCamera;
 	public Animator Animator;
@@ -88,8 +89,9 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 
     public void InputShoot(InputAction.CallbackContext context)
     {
-        
-        if (context.performed)
+		if(GameManager.Instance.isHoldButtonTab) return;
+
+		if (context.performed)
         {
             IsPressShoot = true;
 		}

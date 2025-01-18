@@ -45,6 +45,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public BossMoveToCenterState MoveToCenterState { get; set; }
 	public BossRollToMoveCenterState RollToMoveCenterState { get; set; }
 	public BossThrowTrapState ThrowTrapState { get; set; }
+	public BossInitState InitState { get; set; }
 	#endregion
 
 	private void Awake()
@@ -65,8 +66,9 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 		DieState = new BossDieState(this, StateMachine);
 		MoveToCenterState = new BossMoveToCenterState(this, StateMachine);
 		RollToMoveCenterState = new BossRollToMoveCenterState(this, StateMachine);
+		InitState = new BossInitState(this, StateMachine);
 
-		StateMachine.Initialize(MoveToCenterState);
+		StateMachine.Initialize(InitState);
 	}
 	private void Start()
 	{

@@ -14,6 +14,7 @@ public class PlayerDieState : PlayerState
 		Player.Animator.SetBool("IsDie", true);
 		Player.myRb.velocity = Vector2.zero;
 		Player.myRb.constraints = RigidbodyConstraints2D.FreezeAll;
+		Player.StartCoroutine(Die());
 	}
 
 	public override void Exit()
@@ -35,5 +36,12 @@ public class PlayerDieState : PlayerState
 	{
 		base.AnimationTriggerEvent(triggerType);
 
+	}
+
+	public IEnumerator Die()
+	{
+		yield return new WaitForSeconds(1.5f);
+		Void @void = new Void();
+		Player.PlayerDied.Raise(@void);
 	}
 } 

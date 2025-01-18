@@ -2,13 +2,18 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Variable", menuName = "Variables/Bool Variable")]
-public class BoolVariable : ScriptableObject
+public class BoolVariable : ScriptableObject, IResetScene
 {
     public bool DefaultValue;
     
     private bool _currentValue;
-    
-    public bool CurrentValue
+	public bool isReset { get; set; } = true;
+	public void ResetScene()
+	{
+		_currentValue = DefaultValue;
+	}
+
+	public bool CurrentValue
     {
         get => _currentValue;
         set

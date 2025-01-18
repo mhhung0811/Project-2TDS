@@ -4,13 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Variable", menuName = "Variables/Int Variable")]
-public class IntVariable : ScriptableObject
+public class IntVariable : ScriptableObject, IResetScene
 {
     public int DefaultValue;
     
     private int _currentValue;
-    
-    public int CurrentValue
+	public bool isReset { get; set; } = true;
+	public void ResetScene()
+	{
+		_currentValue = DefaultValue;
+	}
+
+	public int CurrentValue
     {
         get => _currentValue;
         set

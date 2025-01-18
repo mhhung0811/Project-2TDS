@@ -21,6 +21,7 @@ public class PlayerInventory : MonoBehaviour
     public BoolVariable playerIsReloading;
     public IntVariable playerAmmo;
     public IntVariable playerTotalAmmo;
+    public Vector2Variable holdGunPos;
 
     private void Start()
     {
@@ -163,10 +164,11 @@ public class PlayerInventory : MonoBehaviour
         holdingGun.SetUpReloadTimeVariables(playerMaxReloadTime, playerReloadTime, playerIsReloading);
         holdingGun.SetUpAmmoVariables(playerAmmo);
         holdingGun.SetUpTotalAmmoVariable(playerTotalAmmo);
+        holdGunPos.CurrentValue = gun.posHoldGun;
         holdingGun.gameObject.SetActive(true);
 
 		//Set Scale x >0, y > 0
-        holdingGun.transform.localScale = new Vector3(1, 1, 1);
+		holdingGun.transform.localScale = new Vector3(1, 1, 1);
 
 		// Set position of gun
 		holdingGun.transform.localPosition = new Vector3(0.5f, 0, 0);

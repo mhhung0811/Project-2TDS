@@ -33,6 +33,8 @@ public class RoomController : MonoBehaviour
 
     public RoomStateMachine roomStateMachine { get; private set; }
     public VoidEnemyTypeVector3FuncProvider SpawnEnemyFunc;
+
+    public VoidEvent OnRoomTrigger;
     
     private void Awake()
     {
@@ -147,8 +149,15 @@ public class RoomController : MonoBehaviour
         // First entry
         if (waveIndex == 1)
         {
-            // Active the enemy down event listener
-            _enemyDownEventListener.enabled = true;
+			//Call the event
+			if (OnRoomTrigger != null)
+			{
+				Debug.Log("------Room Triggered Boss");
+				Void @void = new Void();
+				OnRoomTrigger.Raise(@void);
+			}
+			// Active the enemy down event listener
+			_enemyDownEventListener.enabled = true;
 			//Open Minimap
             if(miniMap != null)
             {
@@ -160,15 +169,21 @@ public class RoomController : MonoBehaviour
                 door.IsClose = true;
                 door.TurnOffInteractionZone();
             }
-            
-            // Move A*
-            PathRequestManager.Instance.UpdatePos(roomCenter.position);
+			// Play music
+			SoundManager.Instance.PlayMusic();
+
+			// Move A*
+			PathRequestManager.Instance.UpdatePos(roomCenter.position);
         }
 
         Debug.Log(waveIndex);
         Debug.Log(_waves.Count);
         // Last wave
-        if (waveIndex > _waves.Count) return;
+        if (waveIndex > _waves.Count) 
+        { 
+            SoundManager.Instance.StopMusic();
+            return;
+		};
         
         // spawn enemies
         if (waveIndex > 0)
@@ -178,17 +193,16 @@ public class RoomController : MonoBehaviour
                 SpawnEnemyFunc.GetFunction()((enemyType, position));
             }
         }
-        
-        // Debug.Log("Spawn enemies");
-    }
-    
-    public void RoomDeactivated()
+
+		// Debug.Log("Spawn enemies");
+	}
+
+	public void RoomDeactivated()
     {
         // Deactive the enemy down event listener
         _enemyDownEventListener.enabled = false;
-        
-        // Open all doors
-        foreach (Door door in _doors)
+		// Open all doors
+		foreach (Door door in _doors)
         {
             door.IsClose = false;
             door.TurnOffInteractionZone();

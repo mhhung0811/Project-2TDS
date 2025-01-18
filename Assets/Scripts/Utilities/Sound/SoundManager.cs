@@ -9,6 +9,7 @@ public class SoundManager : Singleton<SoundManager>
 	private Queue<AudioSource> _audioSourcePool;
 	private AudioSource _audioSource;
 	public AudioClip musicBackGround;
+	private Coroutine _musicDownCoroutine;
 
 	public override void Awake()
 	{
@@ -26,7 +27,7 @@ public class SoundManager : Singleton<SoundManager>
 	{
 		_audioSourcePool = new Queue<AudioSource>();
 		Prepare(5);
-		PlayMusic();
+		//PlayMusic();
 	}
 
 	public void Prepare(int amount = 10)
@@ -69,12 +70,87 @@ public class SoundManager : Singleton<SoundManager>
 		}
 	}
 
+	public void StopAllSounds()
+	{
+		foreach (AudioSource audioSource in _audioSourcePool)
+		{
+			audioSource.Stop();
+			audioSource.gameObject.SetActive(false);
+		}
+
+		_audioSource.Stop();
+	}
+
+	public void PauseAllSounds()
+	{
+		foreach (AudioSource audioSource in _audioSourcePool)
+		{
+			audioSource.Pause(); 
+		}
+
+		_audioSource.Pause();
+	}
+
+	public void ResumeAllSounds()
+	{
+		foreach (AudioSource audioSource in _audioSourcePool)
+		{
+			audioSource.Play();
+		}
+
+		_audioSource.Play();
+	}
+
+	public void StopMusic()
+	{
+		_musicDownCoroutine = StartCoroutine(DownToStopMusic());
+	}
+
+	public IEnumerator DownToStopMusic()
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(0.1f);
+			if (_audioSource.volume > 0)
+			{
+				_audioSource.volume -= 0.025f;
+			}
+			else
+			{
+				_audioSource.Stop();
+				break;
+			}
+		}
+	}
+
 	public void PlayMusic()
 	{
+		if(_musicDownCoroutine != null)
+		{
+			StopCoroutine(_musicDownCoroutine);
+		}
 		_audioSource.clip = musicBackGround;
 		_audioSource.loop = true;
-		_audioSource.volume = 0.4f;
+		_audioSource.volume = 0f;
 		_audioSource.Play();
+		StartCoroutine(InCreaseVolume(0.5f));
+	}
+
+	public IEnumerator InCreaseVolume(float maxVolume = 1f)
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(0.1f);
+			if (_audioSource.volume < maxVolume)
+			{
+				_audioSource.volume += 0.1f;
+			}
+			else
+			{
+				_audioSource.volume = maxVolume;
+				break;
+			}
+		}
 	}
 
 	public IEnumerator Return(AudioSource audioSource)

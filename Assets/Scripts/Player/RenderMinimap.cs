@@ -17,9 +17,6 @@ public class RenderMinimap : MonoBehaviour
 
 	public void OnTriggerEnter2D(Collider2D collision)
 	{
-		Debug.Log("Collision detected");
-		// Check layer is Minimap
-
 		TilemapRenderer tilemapRenderer = collision.GetComponent<TilemapRenderer>();
 		if (tilemapRenderer != null)
 		{
