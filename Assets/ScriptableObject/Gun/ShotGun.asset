@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ShotGun
   m_EditorClassIdentifier: 
   gunName: ShotGun
-  maxAmmoPerMag: 4
-  currentAmmo: 4
-  totalAmmo: 60
+  isInfiniteAmmo: 0
+  maxAmmoPerMag: 6
+  currentAmmo: 6
+  totalAmmo: 84
   reloadTime: 0.5
   fireRate: 2
   posHoldGun: {x: -0.1, y: -0.1, z: 0}

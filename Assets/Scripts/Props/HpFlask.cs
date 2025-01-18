@@ -21,8 +21,12 @@ public class HpFlask : MonoBehaviour, IInteractable
         var player = go.GetComponent<Player>();
         if (player != null)
         {
-            player.HP.CurrentValue += 1;
-            Destroy(gameObject);
+            player.HP.CurrentValue += 2;
+			if(player.HP.CurrentValue > player.MaxHP.CurrentValue)
+			{
+				player.HP.CurrentValue = player.MaxHP.CurrentValue;
+			}
+			Destroy(gameObject);
         }
     }
 

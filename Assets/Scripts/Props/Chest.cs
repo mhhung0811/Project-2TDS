@@ -33,12 +33,12 @@ public class Chest : MonoBehaviour, IInteractable
 
 		if(hpItem != null)
 		{
-			Instantiate(hpItem, transform.position + new Vector3(0.3f, -0.75f, 0), Quaternion.identity);
+			Instantiate(hpItem, transform.position + new Vector3(-0.75f, -0.75f, 0), Quaternion.identity);
 		}
 
 		if (ammoCell != null)
 		{
-			Instantiate(ammoCell, transform.position + new Vector3(-0.3f, -0.75f, 0), Quaternion.identity);
+			Instantiate(ammoCell, transform.position + new Vector3(0.75f, -0.75f, 0), Quaternion.identity);
 		}
 	}
 
