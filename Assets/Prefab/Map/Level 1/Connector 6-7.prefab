@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1137051404168051625, guid: abd331501391e1a498a9c11223b00af3, type: 3}
       propertyPath: m_Name
-      value: Connector 6-7 Variant
+      value: Connector 6-7
       objectReference: {fileID: 0}
     - target: {fileID: 1212701101914458118, guid: abd331501391e1a498a9c11223b00af3, type: 3}
       propertyPath: m_Size.x
@@ -3987,6 +3987,14 @@ PrefabInstance:
     - target: {fileID: 5907758524377405921, guid: abd331501391e1a498a9c11223b00af3, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907758524377405921, guid: abd331501391e1a498a9c11223b00af3, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907758524377405921, guid: abd331501391e1a498a9c11223b00af3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1769228421
       objectReference: {fileID: 0}
     - target: {fileID: 8033974339731127859, guid: abd331501391e1a498a9c11223b00af3, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size

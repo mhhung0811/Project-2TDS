@@ -22,5 +22,11 @@ public class RenderMinimap : MonoBehaviour
 		{
 			tilemapRenderer.enabled = true;
 		}
+		
+		SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+		if (spriteRenderer != null)
+		{
+			spriteRenderer.enabled = true;
+		}
 	}
 }

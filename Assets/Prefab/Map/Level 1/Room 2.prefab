@@ -31602,6 +31602,10 @@ PrefabInstance:
       propertyPath: enemyType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2669569903008844872, guid: 30c661bde46d1694588b257b87d9354e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3588123060489474132, guid: 30c661bde46d1694588b257b87d9354e, type: 3}
       propertyPath: m_Size.x
       value: 23
