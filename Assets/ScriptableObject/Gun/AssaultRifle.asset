@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: AssaultRifle
   m_EditorClassIdentifier: 
   gunName: Assault Rifle Gun
+  isInfiniteAmmo: 0
   maxAmmoPerMag: 30
   currentAmmo: 30
   totalAmmo: 210
   reloadTime: 1
-  fireRate: 10
+  fireRate: 7
   posHoldGun: {x: -0.1, y: -0.15, z: 0}
   posGun: {x: 0.5, y: 0, z: 0}

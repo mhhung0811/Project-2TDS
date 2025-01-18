@@ -15,5 +15,5 @@ MonoBehaviour:
   type: 10
   prefab: {fileID: 509630192530491076, guid: cefa2554a31a9fe4cbf636b77503e855, type: 3}
   speed: 15
-  damage: 10
+  damage: 15
   flyweightEvent: {fileID: 11400000, guid: 5f4e6c89e8b385e4984c58c297d8a0c3, type: 2}

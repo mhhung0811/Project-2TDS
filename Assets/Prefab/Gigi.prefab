@@ -312,10 +312,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eeddeeb06e113a4fb50a76f2ffd71ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 100
-  <CurrentHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 30
+  <CurrentHealth>k__BackingField: 30
   <IsWithinStrikingDistance>k__BackingField: 0
-  <AttackRange>k__BackingField: 6.5
+  <AttackRange>k__BackingField: 7.5
   <MoveSpeed>k__BackingField: 3
   <Obstacles>k__BackingField:
     serializedVersion: 2
