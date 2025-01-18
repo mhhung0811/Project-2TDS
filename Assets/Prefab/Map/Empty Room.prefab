@@ -858,6 +858,7 @@ MonoBehaviour:
   doorHolder: {fileID: 6069499838834938219}
   miniMap: {fileID: 2669569903008844872}
   SpawnEnemyFunc: {fileID: 11400000, guid: fcfa6add6a68b934893e34c5f6106f72, type: 2}
+  OnRoomTrigger: {fileID: 0}
 --- !u!114 &-9126009843196927045
 MonoBehaviour:
   m_ObjectHideFlags: 0
