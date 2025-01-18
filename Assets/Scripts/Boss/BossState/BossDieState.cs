@@ -11,6 +11,7 @@ public class BossDieState : BossState
 	{
 		base.Enter();
 		Boss.Animator.SetBool("IsDie", true);
+		Boss.StartCoroutine(Die());
 	}
 
 	public override void Exit()
@@ -32,5 +33,12 @@ public class BossDieState : BossState
 	public override void AnimationTriggerEvent(Boss.AnimationTriggerType triggerType)
 	{
 
+	}
+
+	public IEnumerator Die()
+	{
+		yield return new WaitForSeconds(2f);
+		Void @void = new Void();
+		Boss.BossDied.Raise(@void);
 	}
 }

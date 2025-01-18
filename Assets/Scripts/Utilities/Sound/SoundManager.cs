@@ -95,7 +95,10 @@ public class SoundManager : Singleton<SoundManager>
 	{
 		foreach (AudioSource audioSource in _audioSourcePool)
 		{
-			audioSource.Play();
+			if(audioSource.isPlaying == false)
+			{
+				audioSource.Play();
+			}
 		}
 
 		_audioSource.Play();

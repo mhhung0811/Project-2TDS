@@ -39,14 +39,38 @@ public class LoadingScenes : MonoBehaviour
 		yield return null;
 	}
 
-    public void RestartScene()
+	public void LoadMainScene(string sceneName)
+	{
+		StartCoroutine(LoadSceneMainAsync(sceneName));
+	}
+
+	public IEnumerator LoadSceneMainAsync(string sceneName)
+	{
+		loadingScreen.SetActive(true);
+
+		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+
+		while (!operation.isDone)
+		{
+			break;
+		}
+
+		Debug.Log("Scene Loaded");
+		// Start time in game
+		GameManager.Instance.PlayGame();
+		GameManager.Instance.ResumeGame();
+		yield return null;
+	}
+
+	public void RestartScene()
     {
 		string currentSceneName = SceneManager.GetActiveScene().name;
 		GameManager.Instance.ResumeGame();
 		SoundManager.Instance.StopAllSounds();
+		GameManager.Instance.ResetAllSO();
+		GameManager.Instance.PlayGame();
 		StartCoroutine(LoadSceneAsync(currentSceneName));
 	}
-
 	public void Resume()
 	{
 		GameManager.Instance.ResumeGame();

@@ -26,6 +26,8 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public GameObject Cheese;
 	public GameObject Trap;
 
+	public VoidEvent BossDied;
+
 	#region GetComponents
 	public Rigidbody2D RB { get; set; }
 	public Animator Animator;
