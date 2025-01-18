@@ -4,11 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Variable", menuName = "Variables/Vector2 Variable")]
-public class Vector2Variable : ScriptableObject
+public class Vector2Variable : ScriptableObject, IResetScene
 {
 	public Vector2 DefaultValue;
 
 	private Vector2 _currentValue;
+
+	public bool isReset { get; set; } = true;
+	public void ResetScene()
+	{
+		_currentValue = DefaultValue;
+	}
 
 	public Vector2 CurrentValue
 	{
@@ -42,4 +48,6 @@ public class Vector2Variable : ScriptableObject
 	{
 		_currentValue = DefaultValue;
 	}
+
+	
 }

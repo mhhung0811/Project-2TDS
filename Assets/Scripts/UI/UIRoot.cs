@@ -43,4 +43,9 @@ public class UIRoot : MonoBehaviour
 			GameManager.Instance.PauseGame();
 		}
     }
+
+    public void OnPlayerDie()
+    {
+        GameManager.Instance.PauseGame();
+	}
 }

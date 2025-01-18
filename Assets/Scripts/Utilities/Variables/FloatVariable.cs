@@ -2,13 +2,18 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Variable", menuName = "Variables/Float Variable")]
-public class FloatVariable : ScriptableObject
+public class FloatVariable : ScriptableObject, IResetScene
 { 
     public float DefaultValue;
     
     private float _currentValue;
-    
-    public float CurrentValue
+	public bool isReset { get; set; } = true;
+	public void ResetScene()
+	{
+		_currentValue = DefaultValue;
+	}
+
+	public float CurrentValue
     {
         get => _currentValue;
         set

@@ -169,15 +169,21 @@ public class RoomController : MonoBehaviour
                 door.IsClose = true;
                 door.TurnOffInteractionZone();
             }
-            
-            // Move A*
-            PathRequestManager.Instance.UpdatePos(roomCenter.position);
+			// Play music
+			SoundManager.Instance.PlayMusic();
+
+			// Move A*
+			PathRequestManager.Instance.UpdatePos(roomCenter.position);
         }
 
         Debug.Log(waveIndex);
         Debug.Log(_waves.Count);
         // Last wave
-        if (waveIndex > _waves.Count) return;
+        if (waveIndex > _waves.Count) 
+        { 
+            SoundManager.Instance.StopMusic();
+            return;
+		};
         
         // spawn enemies
         if (waveIndex > 0)
@@ -195,9 +201,8 @@ public class RoomController : MonoBehaviour
     {
         // Deactive the enemy down event listener
         _enemyDownEventListener.enabled = false;
-        
-        // Open all doors
-        foreach (Door door in _doors)
+		// Open all doors
+		foreach (Door door in _doors)
         {
             door.IsClose = false;
             door.TurnOffInteractionZone();

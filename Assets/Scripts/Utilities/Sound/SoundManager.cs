@@ -9,6 +9,7 @@ public class SoundManager : Singleton<SoundManager>
 	private Queue<AudioSource> _audioSourcePool;
 	private AudioSource _audioSource;
 	public AudioClip musicBackGround;
+	private Coroutine _musicDownCoroutine;
 
 	public override void Awake()
 	{
@@ -25,8 +26,8 @@ public class SoundManager : Singleton<SoundManager>
 	public void Start()
 	{
 		_audioSourcePool = new Queue<AudioSource>();
-		PlayMusic();
 		Prepare(5);
+		//PlayMusic();
 	}
 
 	public void Prepare(int amount = 10)
@@ -102,7 +103,7 @@ public class SoundManager : Singleton<SoundManager>
 
 	public void StopMusic()
 	{
-		StartCoroutine(DownToStopMusic());
+		_musicDownCoroutine = StartCoroutine(DownToStopMusic());
 	}
 
 	public IEnumerator DownToStopMusic()
@@ -112,7 +113,7 @@ public class SoundManager : Singleton<SoundManager>
 			yield return new WaitForSeconds(0.1f);
 			if (_audioSource.volume > 0)
 			{
-				_audioSource.volume -= 0.1f;
+				_audioSource.volume -= 0.025f;
 			}
 			else
 			{
@@ -124,6 +125,10 @@ public class SoundManager : Singleton<SoundManager>
 
 	public void PlayMusic()
 	{
+		if(_musicDownCoroutine != null)
+		{
+			StopCoroutine(_musicDownCoroutine);
+		}
 		_audioSource.clip = musicBackGround;
 		_audioSource.loop = true;
 		_audioSource.volume = 0f;

@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 	public IntVariable MaxHP;
     public Vector2Variable PlayerPos;
     public VoidEvent PlayerHit;
+	public VoidEvent PlayerDied;
 
 	public Camera MainCamera;
 	public Animator Animator;

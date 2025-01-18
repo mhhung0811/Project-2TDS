@@ -19,6 +19,7 @@ public class LoadingScenes : MonoBehaviour
 
     public void LoadScene(string sceneName)
 	{
+		GameManager.Instance.resetEvent.Invoke();
 		StartCoroutine(LoadSceneAsync(sceneName));
 	}
 
@@ -30,8 +31,12 @@ public class LoadingScenes : MonoBehaviour
 
 		while (!operation.isDone)
 		{
-			yield return null;
+			break;
 		}
+
+		Debug.Log("Scene Loaded");
+		GameManager.Instance.ResumeGame();
+		yield return null;
 	}
 
     public void RestartScene()
