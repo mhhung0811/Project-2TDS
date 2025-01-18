@@ -118,6 +118,8 @@ GameObject:
   - component: {fileID: 267425821889468714}
   - component: {fileID: 9044683478113996363}
   - component: {fileID: 7630144131188283382}
+  - component: {fileID: 7690796571295046102}
+  - component: {fileID: 4038075176080980011}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -224,6 +226,51 @@ MonoBehaviour:
       - m_Target: {fileID: 9044683478113996363}
         m_TargetAssemblyTypeName: MouseOffsetCamera, Assembly-CSharp
         m_MethodName: ShakeCamera
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7690796571295046102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7821949177216510568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoundingShape2D: {fileID: 0}
+  m_Damping: 0.5
+  m_MaxWindowSize: -1
+  m_Padding: 0
+--- !u!114 &4038075176080980011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7821949177216510568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: 
+  Event: {fileID: 11400000, guid: 27505cdcd6028ff49a8dbbe4a1d72411, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9044683478113996363}
+        m_TargetAssemblyTypeName: MouseOffsetCamera, Assembly-CSharp
+        m_MethodName: OffVirtualCamera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

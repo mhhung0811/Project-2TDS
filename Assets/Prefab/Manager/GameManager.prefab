@@ -46,3 +46,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGamePaused: 0
   isHoldButtonTab: 0
+  listReset:
+  - {fileID: 11400000, guid: 432040582739ea14aa05aea4d0e28cfa, type: 2}
+  - {fileID: 11400000, guid: 41b6939160732ea45921ad480903458a, type: 2}
+  - {fileID: 11400000, guid: a8e88cf90e526e449879dc9ac623defd, type: 2}
+  - {fileID: 11400000, guid: c981e723458cedc4dba004161d33897f, type: 2}
+  - {fileID: 11400000, guid: 581e24008db0a1d40ba557a5416bb58a, type: 2}
+  - {fileID: 11400000, guid: 6cfbdf3dd8f8f654fb8ecbbb0c56a38f, type: 2}
+  - {fileID: 11400000, guid: f871543b234cd3940af42786ca7500f2, type: 2}
+  - {fileID: 11400000, guid: 375a2d3c85267fa439c0f0662a71c6d5, type: 2}
+  - {fileID: 11400000, guid: 6dffcd1d33f6a404781f7e5c5dde1647, type: 2}
+  - {fileID: 11400000, guid: 71b64829ea594dc4faaa96d6c89acf9a, type: 2}
+  - {fileID: 11400000, guid: 9738ec3c79cc2b1479ef51257b4c9448, type: 2}
+  - {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
+  - {fileID: 11400000, guid: 4c4294afc2760a24fb22227361bac001, type: 2}
+  resetEvent:
+    m_PersistentCalls:
+      m_Calls: []

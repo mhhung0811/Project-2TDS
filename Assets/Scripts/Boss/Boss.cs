@@ -27,6 +27,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public GameObject Trap;
 
 	public VoidEvent BossDied;
+	public VoidEvent FinishInitBossState;
 
 	#region GetComponents
 	public Rigidbody2D RB { get; set; }

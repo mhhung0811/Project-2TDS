@@ -366,6 +366,20 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		IsPlayerInteractable = true;
 	}
 
+	public void OnCamUnfocus()
+	{
+		PlayerInput playerInput = GetComponent<PlayerInput>();
+		playerInput.enabled = false;
+		StartCoroutine(ActivatePlayerInput());
+	}
+	
+	public IEnumerator ActivatePlayerInput()
+	{
+		yield return new WaitForSeconds(3f);
+		PlayerInput playerInput = GetComponent<PlayerInput>();
+		playerInput.enabled = true;
+	}
+
 	#region Animation Triggers
 	public void AnimationTriggerEvent(AnimationTriggerType triggerEvent)
     {

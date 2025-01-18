@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 using System;
 using System.Linq;
@@ -95,3 +96,4 @@ public class FuncConnectorEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif

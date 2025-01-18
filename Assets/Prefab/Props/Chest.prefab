@@ -123,6 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnFunc: {fileID: 11400000, guid: 61ece0a6bcb1729448b82ad0effc80b9, type: 2}
+  hpItem: {fileID: 6402428378889505895, guid: a9971cc42ec2ad34cb710817c4df2fec, type: 3}
+  ammoCell: {fileID: 6402428378889505895, guid: 8ff98ee24036311459e8de91d156559a, type: 3}
   id: 2
 --- !u!50 &3649015467236785932
 Rigidbody2D:

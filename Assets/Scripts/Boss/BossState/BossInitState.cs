@@ -18,6 +18,7 @@ public class BossInitState : BossState
 	{
 		base.Exit();
 		Boss.Animator.SetBool("IsInit", false);
+		Boss.FinishInitBossState.Raise(new Void());
 	}
 
 	public override void FrameUpdate()
