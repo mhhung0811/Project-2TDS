@@ -16,6 +16,11 @@ public class AmmoUI : MonoBehaviour
     {
         playerAmmo.OnChanged += UpdateAmmoUI;
     }
+    
+    public void OnDestroy()
+    {
+        playerAmmo.OnChanged -= UpdateAmmoUI;
+    }
 
     public void ChangeGun((int id, int maxAmmo) parameters)
     {

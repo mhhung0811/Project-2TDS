@@ -27,7 +27,7 @@ public class LoadingScenes : MonoBehaviour
     {
         loadingScreen.SetActive(true);
 
-		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
 		while (!operation.isDone)
 		{

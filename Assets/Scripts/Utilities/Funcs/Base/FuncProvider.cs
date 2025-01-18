@@ -12,7 +12,8 @@ public class FuncProvider<TResult, TParams> : ScriptableObject
     {
         if (target == null || string.IsNullOrEmpty(methodName))
         {
-            Debug.LogError("FuncProvider: Target or method name is invalid!");
+            Debug.LogError("FuncProvider: Target or method name is null!");
+            _cachedFunc = null;
             return;
         }
 

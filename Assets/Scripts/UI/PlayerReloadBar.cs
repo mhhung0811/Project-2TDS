@@ -33,6 +33,13 @@ public class PlayerReloadBar : MonoBehaviour
         }
     }
     
+    private void OnDestroy()
+    {
+        reloadTimeMax.OnChanged -= UpdateSliderMax;
+        reloadTimeCurrent.OnChanged -= UpdateSliderCurrent;
+        isReloading.OnChanged -= UpdateSliderActive;
+    }
+    
     private void UpdateSliderActive(bool value)
     {
         // Debug.Log("UpdateSliderActive");

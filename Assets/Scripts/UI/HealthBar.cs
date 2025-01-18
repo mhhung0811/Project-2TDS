@@ -54,4 +54,10 @@ public class HealthBar : MonoBehaviour
 			rt.anchoredPosition = new Vector2(70 * i + 60, 0);
 		}
 	}
+	
+	private void OnDestroy()
+	{
+		PlayerHp.OnChanged -= UpdateUiHealthBar;
+		PlayerMaxHp.OnChanged -= UpdateUiHealthBar;
+	}
 }

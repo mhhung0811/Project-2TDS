@@ -57,4 +57,9 @@ public class FuncConnector<TResult, TParams> : MonoBehaviour
         var functionDelegate = (Func<TParams, TResult>)Delegate.CreateDelegate(typeof(Func<TParams, TResult>), func, methodInfo);
         funcProvider.SetFunction(functionDelegate);
     }
+
+    private void OnDestroy()
+    {
+        funcProvider.SetFunction(null);
+    }
 }

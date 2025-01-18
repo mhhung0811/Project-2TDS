@@ -25,6 +25,12 @@ public class HealthBarBoss : MonoBehaviour
         
     }
 
+    void OnDestroy()
+    {
+	    maxHealth.OnChanged -= SetValueHealthBar;
+	    currentHealth.OnChanged -= SetValueHealthBar;
+    }
+
     public void SetValueHealthBar(float currentHp)
     {
 		healthBar.value = currentHp;

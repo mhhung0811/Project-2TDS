@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AmmoTextUI : MonoBehaviour
@@ -41,5 +42,10 @@ public class AmmoTextUI : MonoBehaviour
             ammoText.gameObject.SetActive(true);
             ammoText.text = $"{playerAmmo.CurrentValue}/{totalAmmo}";
         }
+    }
+    void OnDestroy()
+    {
+        playerAmmo.OnChanged -= UpdateAmmoText;
+        playerTotalAmmo.OnChanged -= UpdateTotalAmmoText;
     }
 }

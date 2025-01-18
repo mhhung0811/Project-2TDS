@@ -24,7 +24,7 @@ public class GameManager : Singleton<GameManager>
 	public void PauseGame()
 	{
 		isGamePaused = true;
-		Time.timeScale = 0;
+		Time.timeScale = 1;
 		SoundManager.Instance.PauseAllSounds();
 	}
 

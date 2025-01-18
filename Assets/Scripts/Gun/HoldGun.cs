@@ -22,6 +22,11 @@ public class HoldGun : MonoBehaviour
 	{
 		UpdateRotation();
 	}
+	
+	private void OnDestroy()
+	{
+		HoldGunPos.OnChanged -= SetPositionWhenChangeGun;
+	}
 
 	public void SetPositionWhenChangeGun(Vector2 newPos)
 	{

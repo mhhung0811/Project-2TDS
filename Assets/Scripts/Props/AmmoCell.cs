@@ -26,8 +26,16 @@ public class AmmoCell : MonoBehaviour, IInteractable
 			if(playerInventory != null)
 			{
 				GunBase gun = playerInventory.GetHoldingGun();
-				gun.totalAmmo += gun.maxAmmoPerMag * 5;
-				playerInventory.playerTotalAmmo.CurrentValue = gun.totalAmmo;
+				if (gun.isInfiniteAmmo)
+				{
+					gun.totalAmmo = -1;
+					playerInventory.playerTotalAmmo.CurrentValue = gun.totalAmmo;
+				}
+				else
+				{
+					gun.totalAmmo += gun.maxAmmoPerMag * 5;
+					playerInventory.playerTotalAmmo.CurrentValue = gun.totalAmmo;
+				}
 			}
 			Destroy(gameObject);
 		}

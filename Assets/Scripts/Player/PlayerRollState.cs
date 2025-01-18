@@ -95,7 +95,7 @@ public class PlayerRollState : PlayerState
 	{
 		yield return new WaitForSeconds(0.5f);
 		SoundManager.Instance.PlaySound("PlayerDodgeRoll");
-		Debug.Log("Roll Land");
+		// Debug.Log("Roll Land");
 		EffectManager.Instance.PlayEffect(EffectType.EfRollLand, Player.transform.position + new Vector3(0, -0.2f, 0), Quaternion.identity);
 		Player.myRb.velocity = Player.MovementInput.normalized * Player.RollSpeed / 2;
 	}
