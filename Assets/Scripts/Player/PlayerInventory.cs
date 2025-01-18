@@ -31,7 +31,7 @@ public class PlayerInventory : MonoBehaviour
         {
             // Debug.Log($"Add {gun.GetComponent<GunBase>().gunName}.");
             // Debug.Log($"Add {gun.GetComponent<GunBase>().gunId}.");
-            AddGun(gun.GetComponent<GunBase>());
+			AddGun(gun.GetComponent<GunBase>());
         }
         else
         {
@@ -164,15 +164,12 @@ public class PlayerInventory : MonoBehaviour
         holdingGun.SetUpReloadTimeVariables(playerMaxReloadTime, playerReloadTime, playerIsReloading);
         holdingGun.SetUpAmmoVariables(playerAmmo);
         holdingGun.SetUpTotalAmmoVariable(playerTotalAmmo);
-        holdGunPos.CurrentValue = gun.posHoldGun;
+        holdingGun.transform.localPosition = holdingGun.posGun;
+        holdGunPos.CurrentValue = holdingGun.posHoldGun;
         holdingGun.gameObject.SetActive(true);
 
 		//Set Scale x >0, y > 0
-		holdingGun.transform.localScale = new Vector3(1, 1, 1);
-
-		// Set position of gun
-		holdingGun.transform.localPosition = new Vector3(0.5f, 0, 0);
-        
+		holdingGun.transform.localScale = new Vector3(1, 1, 1);        
         
 		// Debug.Log($"Equipped {holdingGun.name}.");
     }

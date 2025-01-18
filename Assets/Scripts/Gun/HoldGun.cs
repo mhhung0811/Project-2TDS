@@ -12,11 +12,11 @@ public class HoldGun : MonoBehaviour
 	private void Awake()
 	{
 		Player = GetComponentInParent<Player>();
+		HoldGunPos.OnChanged += SetPositionWhenChangeGun;
 	}
 
 	private void Start()
 	{
-		HoldGunPos.OnChanged += SetPositionWhenChangeGun;
 	}
 	private void Update()
 	{
@@ -30,6 +30,7 @@ public class HoldGun : MonoBehaviour
 
 	public void SetPositionWhenChangeGun(Vector2 newPos)
 	{
+		Debug.Log("------------SetPositionWhenChangeGun");
 		transform.localPosition = newPos;
 	}
 
