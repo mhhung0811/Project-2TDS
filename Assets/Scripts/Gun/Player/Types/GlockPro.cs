@@ -11,7 +11,7 @@ public class GlockPro : GunBase
 	{
 		if (!CanShoot()) return;
 
-		takeBulletEvent.Raise((FlyweightType.GlockProBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
+		takeBulletEvent.Raise((FlyweightType.GlockProBullet, new Vector2(this.transform.position.x, this.transform.position.y + 0.25f), angle));
 
 		currentAmmo--;
 		UpdateLastShootTime();

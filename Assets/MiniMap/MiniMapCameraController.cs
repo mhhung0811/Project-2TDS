@@ -19,6 +19,8 @@ public class MiniMapCameraController : MonoBehaviour, IBeginDragHandler, IDragHa
 	{
 		float cameraHeight = miniMapCamera.orthographicSize * 2;
 		float cameraWidth = cameraHeight * (miniMapCamera.pixelWidth / (float)miniMapCamera.pixelHeight);
+		Debug.Log("Camera width: " + cameraWidth + " Camera height: " + cameraHeight);
+		Debug.Log("MiniMap width: " + miniMapRect.sizeDelta.x + " MiniMap height: " + miniMapRect.sizeDelta.y);
 		dragSpeedY = cameraHeight / miniMapRect.sizeDelta.y;
 		dragSpeedX = cameraWidth / miniMapRect.sizeDelta.x;
 	}
