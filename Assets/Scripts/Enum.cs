@@ -20,6 +20,7 @@ public enum EffectType
 	TrapVFX,
 	EfRollLand,
 	EfBulletCollide,
+	EfTele,
 }
 
 public enum EnemyType
