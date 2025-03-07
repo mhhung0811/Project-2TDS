@@ -55,8 +55,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _DissolveAmount: 0
-    - _DissolveScale: 0
-    - _OutlineThickness: 0
+    - _DissolveScale: 30
+    - _OutlineThickness: 0.065
     - _SpiralStrength: 7.3
     - _VerticalDissolve: 0
     - _VerticleDissolve: 0
