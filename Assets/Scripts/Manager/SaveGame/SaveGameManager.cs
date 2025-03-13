@@ -10,6 +10,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
 	private string preName;
 
 	public GameData gameData;
+	public SaveSlot currentSaveSlot;
 
 	public override void Awake()
 	{
