@@ -22,6 +22,19 @@ public class SaveGameManager : Singleton<SaveGameManager>
 		if (!Directory.Exists(saveDirection))
 		{
 			Directory.CreateDirectory(saveDirection);
+			Debug.Log("SaveGameManager: " + saveDirection);
+			if (!File.Exists(saveListPath))
+			{
+				int count = 7;
+				List<SaveSlot> saveSlots = new List<SaveSlot>();
+				for (int i = 1; i <= count; i++)
+				{
+					saveSlots.Add(new SaveSlot(preName + i));
+				}
+				SaveSlotList saveSlotList = new SaveSlotList { saveSlots = saveSlots };
+				File.WriteAllText(saveListPath, JsonUtility.ToJson(saveSlotList, true));
+				Debug.Log("SaveGameManager: CreateSaveSlots: Save slots created");
+			}
 		}
 	}
 
@@ -90,13 +103,13 @@ public class SaveGameManager : Singleton<SaveGameManager>
 		{
 			File.Delete(path);
 			Debug.Log("SaveGameManager: DeleteSave: Save deleted");
-			if (File.Exists(saveListPath))
-			{
-				List<SaveSlot> saveSlots = GetSaveSlots();
-				saveSlots.RemoveAll(x => x.slotName == slotName);
-				SaveSlotList saveSlotList = new SaveSlotList { saveSlots = saveSlots };
-				File.WriteAllText(saveListPath, JsonUtility.ToJson(saveSlotList, true));
-			}
+			//if (File.Exists(saveListPath))
+			//{
+			//	List<SaveSlot> saveSlots = GetSaveSlots();
+			//	saveSlots.RemoveAll(x => x.slotName == slotName);
+			//	SaveSlotList saveSlotList = new SaveSlotList { saveSlots = saveSlots };
+			//	File.WriteAllText(saveListPath, JsonUtility.ToJson(saveSlotList, true));
+			//}
 		}
 		else
 		{
@@ -113,6 +126,21 @@ public class SaveGameManager : Singleton<SaveGameManager>
 			file.Delete();
 		}
 		Debug.Log("SaveGameManager: DeleteAllSaves: All files deleted");
+	}
+
+	// Check file exists and not empty
+	public bool CheckFile(string slotName)
+	{
+		string path = saveDirection + slotName + ".json";
+		if (File.Exists(path))
+		{
+			string json = File.ReadAllText(path);
+			if (json != "")
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }
 

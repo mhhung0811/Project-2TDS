@@ -7,11 +7,11 @@ using UnityEngine;
 public class SaveSlot
 {
     public string slotName;
-    public DateTime lastSave;
+    public string lastSave;
 
     public SaveSlot(string slotName)
 	{
 		this.slotName = slotName;
-		lastSave = DateTime.Now;
+		lastSave = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 	}
 }
