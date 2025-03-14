@@ -37,6 +37,14 @@ public class SaveGameManager : Singleton<SaveGameManager>
 				Debug.Log("SaveGameManager: CreateSaveSlots: Save slots created");
 			}
 		}
+
+		currentSaveSlot = GetSaveSlots()[0];
+		Debug.Log("SaveGameManager: Start: Current save slot: " + currentSaveSlot.slotName);
+	}
+
+	private void Start()
+	{
+		
 	}
 
 	// get all save slots
