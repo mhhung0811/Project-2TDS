@@ -65,7 +65,6 @@ public class UIRoot : MonoBehaviour
         {
             textTimeWin.enabled = true;
 		}
-        textTimeWin.text = GameManager.Instance.GetTimeInGame();
         GameManager.Instance.PauseGame();
 	}
 }

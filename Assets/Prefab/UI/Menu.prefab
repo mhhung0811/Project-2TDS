@@ -850,8 +850,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2283951806144250672}
-        m_TargetAssemblyTypeName: LoadingScenes, Assembly-CSharp
-        m_MethodName: 
+        m_TargetAssemblyTypeName: ButtonNewGameUI, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1126,8 +1126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64fd8a2551e8ec247af82a8006bb3295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainText: {fileID: 8277434719066352312}
-  loadingPanel: {fileID: 0}
+  mainText: {fileID: 251500597867351341}
+  loadingPanel: {fileID: 8277434719066352312}
 --- !u!114 &854816120529748945
 MonoBehaviour:
   m_ObjectHideFlags: 0
