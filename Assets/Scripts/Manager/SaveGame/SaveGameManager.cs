@@ -83,47 +83,25 @@ public class SaveGameManager : Singleton<SaveGameManager>
 	}
 
 	// save game data to save slot
-	public void SaveGame(string slotName, GameData gameData)
+	public void SaveGame(GameData gameData)
 	{
+		string slotName = currentSaveSlot.slotName;
 		string path = saveDirection + slotName + ".json";
 		File.WriteAllText(path, JsonUtility.ToJson(gameData, true));
 		Debug.Log("SaveGameManager: SaveGame: Game saved to " + path);
 	}
 
 	// load game data from save slot
-	public GameData LoadGame(string slotName)
+	public void LoadGame()
 	{
+		string slotName = currentSaveSlot.slotName;
 		string path = saveDirection + slotName + ".json";
 		if (File.Exists(path))
 		{
 			string json = File.ReadAllText(path);
 			this.gameData = JsonUtility.FromJson<GameData>(json);
-			return this.gameData;
 		}
 		Debug.LogWarning("SaveGameManager: LoadGame: File not found");
-		return null;
-	}
-
-	// delete save slot
-	public void DeleteSaveSlot(string slotName)
-	{
-		string path = saveDirection + slotName + ".json";
-		if(File.Exists(path))
-		{
-			File.Delete(path);
-			Debug.Log("SaveGameManager: DeleteSave: Save deleted");
-			//if (File.Exists(saveListPath))
-			//{
-			//	List<SaveSlot> saveSlots = GetSaveSlots();
-			//	saveSlots.RemoveAll(x => x.slotName == slotName);
-			//	SaveSlotList saveSlotList = new SaveSlotList { saveSlots = saveSlots };
-			//	File.WriteAllText(saveListPath, JsonUtility.ToJson(saveSlotList, true));
-			//}
-		}
-		else
-		{
-			Debug.LogWarning("SaveGameManager: DeleteSave: File not found");
-		}
 	}
 
 	// delete all files in save directory
@@ -147,6 +125,24 @@ public class SaveGameManager : Singleton<SaveGameManager>
 			if (json != "")
 			{
 				return true;
+			}
+		}
+		return false;
+	}
+
+	// Check current save slot file
+	public bool CheckCurrentSaveSlot()
+	{
+		if (currentSaveSlot != null)
+		{
+			string path = saveDirection + currentSaveSlot.slotName + ".json";
+			if (File.Exists(path))
+			{
+				string json = File.ReadAllText(path);
+				if (json != "")
+				{
+					return true;
+				}
 			}
 		}
 		return false;

@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
 	public UnityEvent resetEvent;
 	private float timeInGame = 0;
 	private bool startGame = false;
+	private LoadingScenes loadingScenes;
 
 	public override void Awake()
 	{
@@ -26,6 +27,11 @@ public class GameManager : Singleton<GameManager>
 		}
 	}
 
+	public void Start()
+	{
+		loadingScenes = new LoadingScenes();
+	}
+
 	public string GetTimeInGame()
 	{
 		int hours = (int)(timeInGame / 3600);
@@ -37,10 +43,10 @@ public class GameManager : Singleton<GameManager>
 
 	public void Update()
 	{
-		if (!isGamePaused && startGame)
-		{
-			timeInGame += Time.deltaTime;
-		}
+		//if (!isGamePaused && startGame)
+		//{
+		//	timeInGame += Time.deltaTime;
+		//}
 	}
 
 	public void PauseGame()
@@ -61,6 +67,25 @@ public class GameManager : Singleton<GameManager>
 		startGame = true;
 		timeInGame = 0;
 		Debug.Log("Start Game");
+	}
+
+	public void PlayNewGame()
+	{
+		// Override save new game
+		GameData gameData = new GameData();
+		SaveGameManager.Instance.SaveGame(gameData);
+		// Load Data
+		SaveGameManager.Instance.LoadGame();
+		// Load Scene
+		StartCoroutine(loadingScenes.LoadSceneAsync("Main"));
+	}
+
+	public void PlayContinueGame()
+	{
+		// Load data
+		SaveGameManager.Instance.LoadGame();
+		//
+		StartCoroutine(loadingScenes.LoadSceneAsync("Main"));
 	}
 
 	public void ResetAllSO()

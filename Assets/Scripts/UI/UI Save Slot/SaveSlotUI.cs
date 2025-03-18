@@ -45,10 +45,6 @@ public class SaveSlotUI : MonoBehaviour
 			panelData.SetActive(false);
 			panelEmpty.SetActive(true);
 		}
-
-		panelData.SetActive(true);
-		lastGame.text = saveSlot.lastGame;
-		panelEmpty.SetActive(false);
 	}
 
 	public void OnClick()

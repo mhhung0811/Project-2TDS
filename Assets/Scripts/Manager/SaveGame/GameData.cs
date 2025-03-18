@@ -7,12 +7,10 @@ public class GameData
 {
     public int level;
     public int health;
-    public int playerPos;
 
-	public GameData(int level, int health, int playerPos)
+	public GameData()
 	{
-		this.level = level;
-		this.health = health;
-		this.playerPos = playerPos;
+		level = 1;
+		health = 6;
 	}
 }
