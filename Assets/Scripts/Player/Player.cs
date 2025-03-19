@@ -69,7 +69,10 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		IsPlayerInteractable = true;
 		IsExplodedInteractable = true;
 
-		HP.CurrentValue = SaveGameManager.Instance.gameData.health;
+		if (SaveGameManager.Instance.isGameLoaded)
+		{
+			HP.CurrentValue = SaveGameManager.Instance.gameData.health;
+		}
 	}
 
     void Update()

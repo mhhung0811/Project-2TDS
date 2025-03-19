@@ -9,6 +9,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
 	private string saveListPath;
 	private string preName;
 
+	public bool isGameLoaded;
 	public GameData gameData;
 	public SaveSlot currentSaveSlot;
 
@@ -101,6 +102,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
 			string json = File.ReadAllText(path);
 			this.gameData = JsonUtility.FromJson<GameData>(json);
 			Debug.Log("SaveGameManager: LoadGame: Game loaded from " + path);
+			isGameLoaded = true;
 		}
 	}
 
