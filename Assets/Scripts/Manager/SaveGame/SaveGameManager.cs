@@ -100,8 +100,8 @@ public class SaveGameManager : Singleton<SaveGameManager>
 		{
 			string json = File.ReadAllText(path);
 			this.gameData = JsonUtility.FromJson<GameData>(json);
+			Debug.Log("SaveGameManager: LoadGame: Game loaded from " + path);
 		}
-		Debug.LogWarning("SaveGameManager: LoadGame: File not found");
 	}
 
 	// delete all files in save directory

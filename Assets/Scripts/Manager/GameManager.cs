@@ -9,15 +9,13 @@ public class GameManager : Singleton<GameManager>
 	public bool isHoldButtonTab = false;
 	public List<ScriptableObject> listReset;
 	public UnityEvent resetEvent;
-	private bool startGame = false;
-	private LoadingScenes loadingScenes;
+	public LoadingScenes loadingScenes;
 
 	public override void Awake()
 	{
 		base.Awake();
 		Application.targetFrameRate = 60;
 
-		startGame = false;
 
 		foreach (IResetScene reset in listReset)
 		{
@@ -27,7 +25,7 @@ public class GameManager : Singleton<GameManager>
 
 	public void Start()
 	{
-		loadingScenes = new LoadingScenes();
+		loadingScenes = GetComponent<LoadingScenes>();
 	}
 
 	public void Update()
@@ -47,11 +45,6 @@ public class GameManager : Singleton<GameManager>
 		isGamePaused = false;
 		Time.timeScale = 1;
 		SoundManager.Instance.ResumeAllSounds();
-	}
-
-	public void PlayGame() {
-		startGame = true;
-		Debug.Log("Start Game");
 	}
 
 	public void PlayNewGame()
