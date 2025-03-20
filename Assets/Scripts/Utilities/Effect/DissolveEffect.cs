@@ -52,7 +52,6 @@ public class DissolveEffect : MonoBehaviour
 
 			yield return null;
 		}
-		Debug.Log(elcapsetime);
 	}
 
 	public void Vanish()

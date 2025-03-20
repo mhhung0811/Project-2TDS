@@ -44,7 +44,7 @@ Material:
     - _DissolveAmount: 0
     - _DissolveScale: 20
     - _HorizontalDissolve: 0
-    - _OutlineThickness: 0.2
+    - _OutlineThickness: 0.05
     m_Colors:
     - _OutlineColor: {r: 0, g: 0.7597966, b: 1, a: 0}
   m_BuildTextureStacks: []

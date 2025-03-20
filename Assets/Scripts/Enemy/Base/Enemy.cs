@@ -205,7 +205,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		if (IsWithinStrikingDistance && CheckFinishAttackCoolDown())
 		{
 			Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
-			if (!Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles))
+			if(CheckRaycastAttack())
 			{
 				StateMachine.ChangeState(AttackState);
 			}
@@ -214,12 +214,25 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 
 	public bool CheckRaycastAttack()
 	{
-		Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
-		if(!Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles))
+		Vector2 distance = PlayerPos.CurrentValue - (Vector2)transform.position;
+		Vector2 direction = distance.normalized;
+
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles);
+
+		if(hit.collider != null)
 		{
-			return true;
+			float distanceToObstacle = hit.distance;
+			if (distanceToObstacle < distance.magnitude)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
 		}
-		return false;
+
+		return true;
 	}
 
 	#region Animation Triggers
