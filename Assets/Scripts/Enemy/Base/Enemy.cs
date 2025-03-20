@@ -12,19 +12,16 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	[field: SerializeField] public float MoveSpeed { get; set; }
 	[field: SerializeField] public LayerMask Obstacles { get; set; }
 	[field: SerializeField] public Vector2Variable PlayerPos { get; set; }
-	public Rigidbody2D RB { get; set; }
-	public Animator _animator;
-	public bool IsEnemyInteractable { get; set; }
-
 	[field: SerializeField] public float AttackDuration { get; set; }
     [field: SerializeField] public float AttackCooldown { get; set; }
     public float attackCooldownTimer;
-		
 	[field: SerializeField] public float InitTime { get; set; }
 	[field: SerializeField] public float DieTime { get; set; }
-
 	[field: SerializeField] protected EnemyTypeEvent onEnemyDown;
 	[field: SerializeField] public PatrolArea patrolArea;
+	public bool IsEnemyInteractable { get; set; }
+	public Rigidbody2D RB { get; set; }
+	public Animator _animator;
 
 	public bool IsExplodedInteractable { get; set; } = true;
 
@@ -76,7 +73,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
     {
         StateMachine.CurrentState.FrameUpdate();
         CheckForFlip();
-        //UpdateAttackCoolDown();
+        UpdateAttackCoolDown();
 	}
 
     private void FixedUpdate()
@@ -158,15 +155,15 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	    }
 	    else
 	    {
-		    if (PlayerPos.CurrentValue.x > transform.position.x && !IsFacingRight)
-		    {
-			    Flip();
-		    }
-		    else if (PlayerPos.CurrentValue.x < transform.position.x && IsFacingRight)
-		    {
-			    Flip();
-		    }
-	    }
+			if (PlayerPos.CurrentValue.x > transform.position.x && !IsFacingRight)
+			{
+				Flip();
+			}
+			else if (PlayerPos.CurrentValue.x < transform.position.x && IsFacingRight)
+			{
+				Flip();
+			}
+		}
     }
 
     public void Flip()

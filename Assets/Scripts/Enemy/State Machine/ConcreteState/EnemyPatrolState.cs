@@ -44,6 +44,11 @@ public class EnemyPatrolState : EnemyState
 			// StartFindPath to the next patrol point
 			_unit.StartFindPathPoint(_currentPatrolPoint);
 		}
+
+		if (Enemy.IsWithinStrikingDistance && Enemy.CheckRaycastAttack())
+		{
+			EnemyStateMachine.ChangeState(Enemy.AttackState);
+		}
 	}
 
 	public override void PhysicsUpdate()

@@ -448,6 +448,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2830256477572460263, guid: 5a2f66a866370cb4296b302116723d1e, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6120996053218324435, guid: 5a2f66a866370cb4296b302116723d1e, type: 3}
       propertyPath: patrolArea
       value: 
