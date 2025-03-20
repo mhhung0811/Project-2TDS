@@ -25,8 +25,6 @@ public class EnemyIdleState : EnemyState
         base.FrameUpdate();
 		if (Enemy.IsWithinStrikingDistance == false || !Enemy.CheckRaycastAttack())
 		{
-            Debug.Log(Enemy.CheckRaycastAttack());
-			Debug.Log("Changing to Chase State");
 			EnemyStateMachine.ChangeState(Enemy.ChaseState);
 		}
 		else

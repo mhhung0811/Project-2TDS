@@ -23,7 +23,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	[field: SerializeField] public float InitTime { get; set; }
 	[field: SerializeField] public float DieTime { get; set; }
 
-	[SerializeField] protected EnemyTypeEvent onEnemyDown;
+	[field: SerializeField] protected EnemyTypeEvent onEnemyDown;
+	[field: SerializeField] public PatrolArea patrolArea;
 
 	public bool IsExplodedInteractable { get; set; } = true;
 
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	public EnemyInitState InitState { get; set; }
 	public EnemyDieState DieState { get; set; }
 	public EnemyHurtState HurtState { get; set; }
+	public EnemyPatrolState PatrolState { get; set; }
 	#endregion
 
 	#region Idle Variables
@@ -49,6 +51,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		InitState = new EnemyInitState(this, StateMachine);
 		DieState = new EnemyDieState(this, StateMachine);
 		HurtState = new EnemyHurtState(this, StateMachine);
+		PatrolState = new EnemyPatrolState(this, StateMachine);
 	}
 
     private void Start()
@@ -57,14 +60,23 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		IsEnemyInteractable = true;
 		RB = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
-		StateMachine.Initialize(InitState);
+
+		if (patrolArea != null)
+		{
+			Debug.Log(patrolArea.patrolPoints.Count);
+			for (int i = 0; i < patrolArea.patrolPoints.Count; i++)
+			{
+				Debug.Log(patrolArea.patrolPoints[i].position);
+			}
+		}
+		StateMachine.Initialize(PatrolState);
 	}
 
-    private void Update()
+	private void Update()
     {
         StateMachine.CurrentState.FrameUpdate();
         CheckForFlip();
-        UpdateAttackCoolDown();
+        //UpdateAttackCoolDown();
 	}
 
     private void FixedUpdate()

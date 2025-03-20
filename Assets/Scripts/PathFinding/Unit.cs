@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour
 	private Coroutine _updatePath;
 	private Coroutine _followPath;
 
-	void Start()
+	private void Awake()
 	{
 		_rb = GetComponent<Rigidbody2D>();
 	}
@@ -42,6 +42,12 @@ public class Unit : MonoBehaviour
 		 _updatePath = StartCoroutine(UpdatePath());
 	}
 
+	public void StartFindPathPoint(Vector3 pos)
+	{
+		//_updatePath = StartCoroutine(UpdatePathPoint(pos));
+		PathRequestManager.RequestPath(transform.position, pos, OnPathFound);
+	}
+
 	public void StopFindPath() {	
 		if(_updatePath != null)
 			StopCoroutine(_updatePath);
@@ -52,15 +58,15 @@ public class Unit : MonoBehaviour
 		_rb.velocity = Vector2.zero;
 	}
 
+
 	public IEnumerator UpdatePath()
 	{
 		while (true)
 		{
 			PathRequestManager.RequestPath(transform.position, target.CurrentValue, OnPathFound);
-			yield return new WaitForSeconds(0.2f); 
+			yield return new WaitForSeconds(0.3f); 
 		}
 	}
-
 
 	public IEnumerator FollowPath()
 	{
@@ -73,7 +79,7 @@ public class Unit : MonoBehaviour
 
 		while (true)
 		{
-			if ((Vector2)transform.position == currentWaypoint)
+			if (Vector2.Distance(transform.position, currentWaypoint) < 0.2f)
 			{
 				targetIndex++;
 				if (targetIndex >= path.Length)
@@ -83,7 +89,6 @@ public class Unit : MonoBehaviour
 				currentWaypoint = path[targetIndex];
 			}
 
-			// transform.position = Vector2.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
 			_rb.velocity = (currentWaypoint - (Vector2)transform.position).normalized * speed;
 			yield return null;
 		}
