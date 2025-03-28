@@ -68,6 +68,11 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		isInvulnerable = false;
 		IsPlayerInteractable = true;
 		IsExplodedInteractable = true;
+
+		if (SaveGameManager.Instance.isGameLoaded)
+		{
+			HP.CurrentValue = SaveGameManager.Instance.gameData.health;
+		}
 	}
 
     void Update()
@@ -304,8 +309,10 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
         if (isInvulnerable) return;
 
         HP.CurrentValue = HP.CurrentValue - 1;
+		SaveGameManager.Instance.gameData.health = HP.CurrentValue;
+		SaveGameManager.Instance.SaveGame(SaveGameManager.Instance.gameData);
 
-        if(HP.CurrentValue <= 0)
+		if (HP.CurrentValue <= 0)
         {
             Die();
             return;

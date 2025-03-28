@@ -21,6 +21,8 @@ public class GunBase : MonoBehaviour, IGunData
 
 	[field: SerializeField] public Vector2Variable HoldGunPos;
 
+	[field: SerializeField] public DissolveEffect dissolveEffect;
+
 	// GunStateMachine
 	public GunStateMachine StateMachine;
     public GunIdleState IdleState;
@@ -31,7 +33,7 @@ public class GunBase : MonoBehaviour, IGunData
 	public Animator animator { get; private set; }
 	public HoldGun holdGun { get; private set; }
 	
-	public StringBoolEvent changeGunStateEvent;
+	[field: SerializeField]public StringBoolEvent changeGunStateEvent;
 	public FloatVariable playerMaxReloadTime { get; private set; }
 	public FloatVariable playerReloadTime { get; private set; }
 	public BoolVariable playerIsReloading { get; private set; }
@@ -47,6 +49,7 @@ public class GunBase : MonoBehaviour, IGunData
 		OutOfAmmoState = new GunOutOfAmmoState(this, StateMachine);
 
 		holdGun = GetComponentInParent<HoldGun>();
+		dissolveEffect = GetComponent<DissolveEffect>();
 		InitGunData();
 	}
 
@@ -107,6 +110,11 @@ public class GunBase : MonoBehaviour, IGunData
 	public void UpdateLastShootTime()
 	{
 		lastShootTime = Time.time;
+	}
+
+	public void OnEnable()
+	{
+		dissolveEffect.Appear();
 	}
 
 	public virtual bool CanShoot()

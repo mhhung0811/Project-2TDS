@@ -75,7 +75,8 @@ public class MiniMapClick : MonoBehaviour
 			if (hit.CompareTag("Teleport"))
 			{
 				player.position = hit.transform.parent.position;
-				EffectManager.Instance.PlayEffect(EffectType.EfTele, player.position, Quaternion.Euler(-90, 0, 0));
+				Vector2 playerPos = new Vector2(player.position.x, player.position.y - 0.6f);
+				EffectManager.Instance.PlayEffect(EffectType.EfTele, playerPos, Quaternion.Euler(-90, 0, 0));
 				break;
 			}
 		}

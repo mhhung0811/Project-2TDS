@@ -28,7 +28,13 @@ public class EnemyChaseState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-		if(Enemy.IsWithinStrikingDistance && Enemy.CheckRaycastAttack())
+        if (!Enemy.patrolArea.CheckEnemyInPatrolArea(Enemy.transform.position))
+        {
+            EnemyStateMachine.ChangeState(Enemy.PatrolState);
+            return;
+        }
+
+		if (Enemy.IsWithinStrikingDistance && Enemy.CheckRaycastAttack())
         {
             EnemyStateMachine.ChangeState(Enemy.IdleState);
 		}

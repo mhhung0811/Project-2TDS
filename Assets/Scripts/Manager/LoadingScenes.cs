@@ -1,78 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class LoadingScenes : MonoBehaviour
 {
-    public GameObject loadingScreen;
-	void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    public void LoadScene(string sceneName)
+	public IEnumerator LoadSceneAsync(string sceneName)
 	{
-		GameManager.Instance.resetEvent.Invoke();
-		StartCoroutine(LoadSceneAsync(sceneName));
-	}
-
-    public IEnumerator LoadSceneAsync(string sceneName)
-    {
-        loadingScreen.SetActive(true);
-
 		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+		operation.allowSceneActivation = false; // Chặn scene load ngay lập tức
 
-		while (!operation.isDone)
+		while (operation.progress < 0.9f) // Chờ scene load đến 90%
 		{
-			break;
+			yield return null;
 		}
 
-		Debug.Log("Scene Loaded");
-		GameManager.Instance.ResumeGame();
-		yield return null;
-	}
+		Debug.Log("Scene Loaded 90%, waiting for activation...");
 
-	public void LoadMainScene(string sceneName)
-	{
-		StartCoroutine(LoadSceneMainAsync(sceneName));
-	}
+		yield return new WaitForSeconds(1f); // Tuỳ chọn: Delay 1 giây trước khi vào scene
 
-	public IEnumerator LoadSceneMainAsync(string sceneName)
-	{
-		loadingScreen.SetActive(true);
+		operation.allowSceneActivation = true; // Kích hoạt scene sau khi load xong
 
-		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-
-		while (!operation.isDone)
+		while (!operation.isDone) // Chờ đến khi scene thực sự được active
 		{
-			break;
+			yield return null;
 		}
 
-		Debug.Log("Scene Loaded");
-		// Start time in game
-		GameManager.Instance.PlayGame();
-		GameManager.Instance.ResumeGame();
-		yield return null;
-	}
-
-	public void RestartScene()
-    {
-		string currentSceneName = SceneManager.GetActiveScene().name;
-		GameManager.Instance.ResumeGame();
-		SoundManager.Instance.StopAllSounds();
-		GameManager.Instance.ResetAllSO();
-		GameManager.Instance.PlayGame();
-		StartCoroutine(LoadSceneAsync(currentSceneName));
-	}
-	public void Resume()
-	{
-		GameManager.Instance.ResumeGame();
+		Debug.Log("Scene Fully Loaded and Activated!");
+		GameManager.Instance.ResumeGame(); // Tiếp tục game sau khi scene hoàn toàn load xong
 	}
 }

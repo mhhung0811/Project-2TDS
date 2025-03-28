@@ -12,18 +12,16 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	[field: SerializeField] public float MoveSpeed { get; set; }
 	[field: SerializeField] public LayerMask Obstacles { get; set; }
 	[field: SerializeField] public Vector2Variable PlayerPos { get; set; }
-	public Rigidbody2D RB { get; set; }
-	public Animator _animator;
-	public bool IsEnemyInteractable { get; set; }
-
 	[field: SerializeField] public float AttackDuration { get; set; }
     [field: SerializeField] public float AttackCooldown { get; set; }
     public float attackCooldownTimer;
-		
 	[field: SerializeField] public float InitTime { get; set; }
 	[field: SerializeField] public float DieTime { get; set; }
-
-	[SerializeField] protected EnemyTypeEvent onEnemyDown;
+	[field: SerializeField] protected EnemyTypeEvent onEnemyDown;
+	[field: SerializeField] public PatrolArea patrolArea;
+	public bool IsEnemyInteractable { get; set; }
+	public Rigidbody2D RB { get; set; }
+	public Animator _animator;
 
 	public bool IsExplodedInteractable { get; set; } = true;
 
@@ -35,6 +33,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	public EnemyInitState InitState { get; set; }
 	public EnemyDieState DieState { get; set; }
 	public EnemyHurtState HurtState { get; set; }
+	public EnemyPatrolState PatrolState { get; set; }
 	#endregion
 
 	#region Idle Variables
@@ -49,6 +48,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		InitState = new EnemyInitState(this, StateMachine);
 		DieState = new EnemyDieState(this, StateMachine);
 		HurtState = new EnemyHurtState(this, StateMachine);
+		PatrolState = new EnemyPatrolState(this, StateMachine);
 	}
 
     private void Start()
@@ -57,10 +57,19 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		IsEnemyInteractable = true;
 		RB = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
-		StateMachine.Initialize(InitState);
+
+		if (patrolArea != null)
+		{
+			Debug.Log(patrolArea.patrolPoints.Count);
+			for (int i = 0; i < patrolArea.patrolPoints.Count; i++)
+			{
+				Debug.Log(patrolArea.patrolPoints[i].position);
+			}
+		}
+		StateMachine.Initialize(PatrolState);
 	}
 
-    private void Update()
+	private void Update()
     {
         StateMachine.CurrentState.FrameUpdate();
         CheckForFlip();
@@ -146,15 +155,15 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	    }
 	    else
 	    {
-		    if (PlayerPos.CurrentValue.x > transform.position.x && !IsFacingRight)
-		    {
-			    Flip();
-		    }
-		    else if (PlayerPos.CurrentValue.x < transform.position.x && IsFacingRight)
-		    {
-			    Flip();
-		    }
-	    }
+			if (PlayerPos.CurrentValue.x > transform.position.x && !IsFacingRight)
+			{
+				Flip();
+			}
+			else if (PlayerPos.CurrentValue.x < transform.position.x && IsFacingRight)
+			{
+				Flip();
+			}
+		}
     }
 
     public void Flip()
@@ -205,7 +214,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		if (IsWithinStrikingDistance && CheckFinishAttackCoolDown())
 		{
 			Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
-			if (!Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles))
+			if(CheckRaycastAttack())
 			{
 				StateMachine.ChangeState(AttackState);
 			}
@@ -214,12 +223,25 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 
 	public bool CheckRaycastAttack()
 	{
-		Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
-		if(!Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles))
+		Vector2 distance = PlayerPos.CurrentValue - (Vector2)transform.position;
+		Vector2 direction = distance.normalized;
+
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles);
+
+		if(hit.collider != null)
 		{
-			return true;
+			float distanceToObstacle = hit.distance;
+			if (distanceToObstacle < distance.magnitude)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
 		}
-		return false;
+
+		return true;
 	}
 
 	#region Animation Triggers
