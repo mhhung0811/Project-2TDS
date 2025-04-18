@@ -19,7 +19,7 @@ public class FuncProvider<TResult, TParams> : ScriptableObject
 
         if (_cachedFunc != null)
         {
-            Debug.LogWarning("FuncProvider: Function is being reassigned! Previous function will be overwritten.");
+            // Debug.LogWarning("FuncProvider: Function is being reassigned! Previous function will be overwritten.");
         }
 
         var methodInfo = target.GetType().GetMethod(methodName, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic);
@@ -37,10 +37,10 @@ public class FuncProvider<TResult, TParams> : ScriptableObject
     /// </summary>
     public void SetFunction(Func<TParams, TResult> functionDelegate)
     {
-        if (_cachedFunc != null)
-        {
-            Debug.LogWarning("FuncProvider: Function is being reassigned! Previous function will be overwritten.");
-        }
+        // if (_cachedFunc != null)
+        // {
+        //     Debug.LogWarning("FuncProvider: Function is being reassigned! Previous function will be overwritten.");
+        // }
 
         _cachedFunc = functionDelegate;
     }

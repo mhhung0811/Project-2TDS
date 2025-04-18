@@ -1,19 +1,9 @@
-using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Variable", menuName = "Variables/Float Variable")]
-public class FloatVariable : ScriptableObject, IResetScene
+public class FloatVariable : ScriptableVariable<float>, IResetScene
 { 
-    public float DefaultValue;
-    
-    private float _currentValue;
-	public bool isReset { get; set; } = true;
-	public void ResetScene()
-	{
-		_currentValue = DefaultValue;
-	}
-
-	public float CurrentValue
+    public override float CurrentValue
     {
         get => _currentValue;
         set
@@ -24,10 +14,10 @@ public class FloatVariable : ScriptableObject, IResetScene
         }
     }
     
-    public Action<float> OnChanged;
-
-    private void OnEnable()
+    public bool isReset { get; set; }
+    public void ResetScene()
     {
         _currentValue = DefaultValue;
+        OnChanged?.Invoke(_currentValue);
     }
 }
