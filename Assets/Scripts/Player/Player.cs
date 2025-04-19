@@ -82,7 +82,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
             return;
         }
 
-        PlayerPos.SetValue(transform.position);
+        PlayerPos.CurrentValue = transform.position;
 		StateMachine.CurrentState.FrameUpdate();
 		UpdateInteractColliderByPosMouse();
         OnShoot();
