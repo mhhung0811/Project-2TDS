@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class GunPref : MonoBehaviour, IInteractable
 {
-    public int gunId { get; private set; }
+	public GunType gunType;
     public bool isInteractable { get; set; }
-    public VoidGameObjectFuncProvider returnGunPrefFunc;
-    public GameObjectIntFuncProvider getGunFunc;
+
+    public GunTypeEvent unlockGun;
     private Rigidbody2D rb;
 
 	private void Awake()
@@ -18,30 +18,17 @@ public class GunPref : MonoBehaviour, IInteractable
 	{
 		StartCoroutine(StateInit());
 	}
-
-	public void SetGunId(int id)
-    {
-        gunId = id;
-
-    }
+    
     public void Interact(GameObject go)
     {
-        // Get gun
-        GameObject obj = getGunFunc.GetFunction()?.Invoke((gunId));
-        if (obj != null && obj.GetComponent<GunBase>() != null)
-        {
-            go.GetComponent<PlayerInventory>().AddGun(obj.GetComponent<GunBase>());
-        }
-        else
-        {
-            Debug.LogError("Failed to get gun from gun pref.");
-        }
-        
-        // Return gun pref
-        returnGunPrefFunc.GetFunction()?.Invoke(gameObject);
+	    unlockGun?.Raise(gunType);
+	    
+	    Debug.Log("Gun pref unlocked: " + gunType);
+	    
+	    Destroy(gameObject);
     }
 
-    public IEnumerator StateInit()
+    private IEnumerator StateInit()
     {
         rb.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
 		yield return new WaitForSeconds(1f);

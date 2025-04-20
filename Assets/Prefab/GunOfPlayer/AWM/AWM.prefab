@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e07bc983b212446892b851e0df7f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunType: 3
   GunData: {fileID: 11400000, guid: 19815839d78c2d847bb8d854a9d05075, type: 2}
   HoldGunPos: {fileID: 11400000, guid: 6dffcd1d33f6a404781f7e5c5dde1647, type: 2}
   dissolveEffect: {fileID: -909650085839963467}

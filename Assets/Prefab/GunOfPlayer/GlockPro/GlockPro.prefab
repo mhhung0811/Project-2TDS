@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4559965659728241993}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.076567, y: -2.3164062, z: -0.067839995}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2c59af7b0585b42b9afba4cb0798ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunType: 2
   GunData: {fileID: 11400000, guid: 07c35a435ecdbff4081f8c6ad7643495, type: 2}
   HoldGunPos: {fileID: 11400000, guid: 6dffcd1d33f6a404781f7e5c5dde1647, type: 2}
   dissolveEffect: {fileID: 2832289412558331490}

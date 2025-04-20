@@ -8,7 +8,7 @@ public class InUseGun : ScriptableObject
     [Serializable]
     public class GunEntry 
     {
-        public int gunId;
+        public GunType gunType;
         public GameObject gunPrefab;
         public GameObject gunPref;
         public GameObject gunUI;
@@ -21,62 +21,58 @@ public class InUseGun : ScriptableObject
     {
         foreach (var gunEntry in guns)
         {
-            gunEntry.gunPrefab.GetComponent<GunBase>().SetGunId(gunEntry.gunId);
-            gunEntry.gunPref.GetComponent<GunPref>().SetGunId(gunEntry.gunId);
-            gunEntry.gunUI.GetComponent<GunUI>().SetGunId(gunEntry.gunId);
-            gunEntry.gunBulletShellUI.GetComponent<BulletShellUI>().SetGunId(gunEntry.gunId);
+            // gunEntry.gunPrefab.GetComponent<GunBase>().SetGunId(gunEntry.gunId);
+            // gunEntry.gunPref.GetComponent<GunPref>().SetGunId(gunEntry.gunId);
+            // gunEntry.gunUI.GetComponent<GunUI>().SetGunId(gunEntry.gunId);
+            // gunEntry.gunBulletShellUI.GetComponent<BulletShellUI>().SetGunId(gunEntry.gunId);
         }
     }
-
-    // Retrieve Gun by ID
-    public GameObject GetGunById(int id)
+    
+    public GameObject GetGunByType(GunType type)
     {
         foreach (var gunEntry in guns)
         {
-            if (gunEntry.gunId == id)
+            if (gunEntry.gunType == type)
                 return gunEntry.gunPrefab;
         }
 
-        Debug.LogError($"Gun with ID {id} not found!");
+        Debug.LogError($"Gun with type {type} not found!");
         return null;
     }
     
-    // Retrieve GunPref by ID
-    public GameObject GetGunPrefById(int id)
+    public GameObject GetGunPrefByType(GunType type)
     {
         foreach (var gunEntry in guns)
         {
-            if (gunEntry.gunId == id)
+            if (gunEntry.gunType == type)
                 return gunEntry.gunPref;
         }
 
-        Debug.LogError($"Gun pref with ID {id} not found!");
+        Debug.LogError($"Gun pref with type {type} not found!");
         return null;
     }
     
-    // Retrieve GunUI by ID
-    public GameObject GetGunUIById(int id)
+    public GameObject GetGunUIByType(GunType type)
     {
         foreach (var gunEntry in guns)
         {
-            if (gunEntry.gunId == id)
+            if (gunEntry.gunType == type)
                 return gunEntry.gunUI;
         }
 
-        Debug.LogError($"Gun UI with ID {id} not found!");
+        Debug.LogError($"Gun UI with type {type} not found!");
         return null;
     }
     
-    // Retrieve BulletShellUI by ID
-    public GameObject GetBulletShellUIById(int id)
+    public GameObject GetBulletShellUIByType(GunType type)
     {
         foreach (var gunEntry in guns)
         {
-            if (gunEntry.gunId == id)
+            if (gunEntry.gunType == type)
                 return gunEntry.gunBulletShellUI;
         }
 
-        Debug.LogError($"Bullet shell UI with ID {id} not found!");
+        Debug.LogError($"Bullet shell UI with type {type} not found!");
         return null;
     }
 }

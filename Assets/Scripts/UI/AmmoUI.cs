@@ -22,7 +22,8 @@ public class AmmoUI : MonoBehaviour
         playerAmmo.OnChanged -= UpdateAmmoUI;
     }
 
-    public void ChangeGun((int id, int maxAmmo) parameters)
+    // Event listener
+    public void ChangeGun((GunType type, int maxAmmo) parameters)
     {
         // Debug.Log($"UI: {playerMaxAmmo.CurrentValue}");
         
@@ -37,7 +38,7 @@ public class AmmoUI : MonoBehaviour
         for (int i = 0; i < parameters.maxAmmo; i++)
         {
             // Instantiate a new shell as a child of the shellHolder
-            var shell = Instantiate(inUseGun.GetBulletShellUIById(parameters.id), shellHolder.transform);
+            var shell = Instantiate(inUseGun.GetBulletShellUIByType(parameters.type), shellHolder.transform);
 
             // Get the BulletShellUI component
             var shellUI = shell.GetComponent<BulletShellUI>();

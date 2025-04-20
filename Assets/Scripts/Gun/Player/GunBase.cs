@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunBase : MonoBehaviour, IGunData
 {
-	public int gunId { get; private set; }
+	public GunType gunType;
 
 	// GunData
 	public string gunName { get; set; }
@@ -33,7 +33,7 @@ public class GunBase : MonoBehaviour, IGunData
 	public Animator animator { get; private set; }
 	public HoldGun holdGun { get; private set; }
 	
-	[field: SerializeField]public StringBoolEvent changeGunStateEvent;
+	public StringBoolEvent changeGunStateEvent;
 	public FloatVariable playerMaxReloadTime { get; private set; }
 	public FloatVariable playerReloadTime { get; private set; }
 	public BoolVariable playerIsReloading { get; private set; }
@@ -180,11 +180,6 @@ public class GunBase : MonoBehaviour, IGunData
 		{
 			StateMachine.ChangeState(ReloadState);
 		}
-	}
-	
-	public void SetGunId(int id)
-	{
-		gunId = id;
 	}
 
 	#region UI

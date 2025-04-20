@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7105f34df33c4f848d99aa18cee6080b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnGunPrefFunc: {fileID: 11400000, guid: 4c7a28b658a524a439b381d958c09a36, type: 2}
-  getGunFunc: {fileID: 11400000, guid: 6de501ceb909a5a45b8b9d7a38453d77, type: 2}
+  gunType: 3
+  unlockGun: {fileID: 11400000, guid: 41b6e7f77fa27ff44842e19beb353d2b, type: 2}
 --- !u!50 &5408244106709900354
 Rigidbody2D:
   serializedVersion: 4

@@ -17,11 +17,13 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 	public Camera MainCamera;
 	public Animator Animator;
     public Rigidbody2D myRb;
+	[NonSerialized]
     public HoldGun HoldGun;
-	public Vector2 MovementInput;
+    public Vector2 MovementInput;
 
     public bool IsPlayerInteractable { get; set; }
 	public bool IsExplodedInteractable { get; set; }
+	[NonSerialized]
 	public SpriteRenderer SpriteRenderer;
     public bool isInvulnerable = false;
 	public float invulnerableDuration = 1f;
@@ -36,7 +38,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     public bool IsPressWASD = false;
     public bool IsPressShoot = false;
     
-    private PlayerInventory _inventory;
+    // private PlayerInventory _inventory;
+    private PlayerArsenal _arsenal;
     
 	[Header("Interaction Zone")]
 	public float interactionOffSet = 0.25f;
@@ -59,7 +62,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 	}
     void Start()
     {
-		_inventory = GetComponent<PlayerInventory>();
+		// _inventory = GetComponent<PlayerInventory>();
+		_arsenal = GetComponent<PlayerArsenal>();
         HoldGun = GetComponentInChildren<HoldGun>();
 		SpriteRenderer = GetComponent<SpriteRenderer>();
 		IsFacingRight = true;
@@ -117,7 +121,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 
 		float angle = Vector2ToAngle(worldPosition - new Vector2(transform.position.x, transform.position.y));
 
-		_inventory.GetHoldingGun().Shoot(angle);
+		// _inventory.GetHoldingGun().Shoot(angle);
+		_arsenal.GetHoldingGun().Shoot(angle);
 	}
     public float Vector2ToAngle(Vector2 direction)
     {
@@ -192,7 +197,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 	{
 	    if (context.performed && GameManager.Instance.isGamePaused == false)
 	    {
-		    _inventory.GetHoldingGun().Reload();
+		    // _inventory.GetHoldingGun().Reload();
+		    _arsenal.GetHoldingGun().Reload();
 	    }
 	}
 
@@ -225,20 +231,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 	
 	public void SwapGun(int index)
 	{
-		_inventory.SwitchGun(index);
-	}
-
-	public void InputDropGun(InputAction.CallbackContext context)
-	{
-		if (context.performed && GameManager.Instance.isGamePaused == false)
-		{
-			DropGun();
-		}
-	}
-
-	public void DropGun()
-	{
-		_inventory.DropGun();
+		// _inventory.SwitchGun(index);
+		_arsenal.SwitchGun(index);
 	}
 	
 	// Get position of mouse

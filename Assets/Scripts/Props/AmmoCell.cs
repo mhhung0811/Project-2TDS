@@ -20,28 +20,26 @@ public class AmmoCell : MonoBehaviour, IInteractable
 	public void Interact(GameObject go)
 	{
 		var player = go.GetComponent<Player>();
-		if (player != null)
+		if (player == null) return;
+		var arsenal = player.GetComponent<PlayerArsenal>();
+		if(arsenal != null)
 		{
-			PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
-			if(playerInventory != null)
+			var gun = arsenal.GetHoldingGun();
+			if (gun.isInfiniteAmmo)
 			{
-				GunBase gun = playerInventory.GetHoldingGun();
-				if (gun.isInfiniteAmmo)
-				{
-					gun.totalAmmo = -1;
-					playerInventory.playerTotalAmmo.CurrentValue = gun.totalAmmo;
-				}
-				else
-				{
-					gun.totalAmmo += gun.maxAmmoPerMag * 5;
-					playerInventory.playerTotalAmmo.CurrentValue = gun.totalAmmo;
-				}
+				gun.totalAmmo = -1;
 			}
-			Destroy(gameObject);
+			else
+			{
+				gun.totalAmmo += gun.maxAmmoPerMag * 5;
+			}
+
+			arsenal.playerTotalAmmo.CurrentValue = gun.totalAmmo;
 		}
+		Destroy(gameObject);
 	}
 
-	public IEnumerator StateInit()
+	private IEnumerator StateInit()
 	{
 		rb.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
 		yield return new WaitForSeconds(1f);

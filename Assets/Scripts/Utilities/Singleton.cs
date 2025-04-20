@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : Component
 {
-    // Start is called before the first frame update
     private static T _instance;
     public static T Instance
     {

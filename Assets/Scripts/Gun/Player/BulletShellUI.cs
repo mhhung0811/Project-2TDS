@@ -25,8 +25,6 @@ public class BulletShellUI : MonoBehaviour
         }
     }
     
-    public int gunId { get; private set; }
-    
     public float shellDistant = 5;
     public float shellSize = 30;
     
@@ -36,10 +34,5 @@ public class BulletShellUI : MonoBehaviour
     private void Awake()
     {
         _rectTransform.sizeDelta = new Vector2(shellSize, shellSize);
-    }
-
-    public void SetGunId(int id)
-    {
-        gunId = id;
     }
 }

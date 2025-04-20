@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,7 +7,8 @@ using UnityEngine.InputSystem;
 public class HoldGun : MonoBehaviour
 {
 	public Camera MainCamera;
-	public Player Player;
+	[NonSerialized]
+	private Player Player;
 	public Vector2Variable HoldGunPos;
 
 	private void Awake()
@@ -15,9 +17,6 @@ public class HoldGun : MonoBehaviour
 		HoldGunPos.OnChanged += SetPositionWhenChangeGun;
 	}
 
-	private void Start()
-	{
-	}
 	private void Update()
 	{
 		UpdateRotation();

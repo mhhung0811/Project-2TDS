@@ -42,15 +42,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DropGun",
-                    "type": "Button",
-                    "id": "9f6fbd1f-fafc-487d-ad4e-45ba3bdd0ce7",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Press 1",
                     "type": "Button",
                     "id": "4348e885-6a88-4099-8e6c-c708a9c5556a",
@@ -202,17 +193,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c9830dc1-1587-49c4-951a-a39df98b6f5b",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DropGun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
