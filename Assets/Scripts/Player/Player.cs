@@ -14,7 +14,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     public VoidEvent PlayerHit;
 	public VoidEvent PlayerDied;
 
-	public Camera MainCamera;
+	private Camera MainCamera;
 	public Animator Animator;
     public Rigidbody2D myRb;
 	[NonSerialized]
@@ -33,10 +33,14 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     public float RollSpeed;
     public float RollDuration;
 
-    public bool IsFacingRight = true;
-    public bool IsRolling = false;
-    public bool IsPressWASD = false;
-    public bool IsPressShoot = false;
+	[NonSerialized]
+	public bool IsFacingRight = true;
+	[NonSerialized]
+	public bool IsRolling = false;
+	[NonSerialized]
+	public bool IsPressWASD = false;
+	[NonSerialized]
+	public bool IsPressShoot = false;
     
     // private PlayerInventory _inventory;
     private PlayerArsenal _arsenal;
@@ -63,6 +67,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     void Start()
     {
 		// _inventory = GetComponent<PlayerInventory>();
+		MainCamera = Camera.main;
 		_arsenal = GetComponent<PlayerArsenal>();
         HoldGun = GetComponentInChildren<HoldGun>();
 		SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -296,6 +301,11 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 	{
 		StateMachine.ChangeState(DieState);
 		HoldGun.SetActive(false);
+	}
+
+	public void Teleport()
+	{
+		this.transform.position = PlayerPos.CurrentValue;
 	}
 
 	public void OnPlayerBulletHit()

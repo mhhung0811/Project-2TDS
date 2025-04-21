@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5391147298382549687}
   - component: {fileID: 3592837925380232694}
-  - component: {fileID: 4120373384078740619}
+  - component: {fileID: 2111917328695990481}
   m_Layer: 0
   m_Name: MenuMinimapCamera
-  m_TagString: Untagged
+  m_TagString: MenuMiniMapCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 50
+  orthographic size: 40
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -84,7 +84,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &4120373384078740619
+--- !u!114 &2111917328695990481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

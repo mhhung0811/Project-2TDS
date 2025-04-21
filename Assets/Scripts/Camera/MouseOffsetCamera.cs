@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MouseOffsetCamera : MonoBehaviour
 {
-	public Transform player;
+	public Vector2Variable playerPos;
 	public float followRatioX = 0.2f;
 	public float followRatioY = 0.2f;
 	public float maxOffsetX = 5f;
@@ -69,13 +69,13 @@ public class MouseOffsetCamera : MonoBehaviour
 	void LateUpdate()
 	{
 		// Lấy vị trí mục tiêu của camera
-		Vector3 targetPosition = player.position + targetOffset;
+		Vector3 targetPosition = (Vector3)playerPos.CurrentValue + targetOffset;
 
 		// Giảm tốc độ camera theo dampingFactor
 		mouseOffset = Vector3.Lerp(mouseOffset, targetOffset, dampingFactor * Time.deltaTime);
 
 		// Di chuyển camera với hiệu ứng SmoothDamp
-		transform.position = Vector3.SmoothDamp(transform.position, player.position + mouseOffset, ref smoothVelocity, smoothSpeed);
+		transform.position = Vector3.SmoothDamp(transform.position, (Vector3)playerPos.CurrentValue + mouseOffset, ref smoothVelocity, smoothSpeed);
 	}
 
 	public void OffVirtualCamera()

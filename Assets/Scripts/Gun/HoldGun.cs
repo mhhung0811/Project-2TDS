@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 
 public class HoldGun : MonoBehaviour
 {
-	public Camera MainCamera;
 	[NonSerialized]
+	private Camera MainCamera;
 	private Player Player;
 	public Vector2Variable HoldGunPos;
 
@@ -17,6 +17,11 @@ public class HoldGun : MonoBehaviour
 		HoldGunPos.OnChanged += SetPositionWhenChangeGun;
 	}
 
+	private void Start()
+	{
+		// Lấy camera chính
+		MainCamera = Camera.main;
+	}
 	private void Update()
 	{
 		UpdateRotation();

@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class MiniMapClick : MonoBehaviour
 {
-	public Camera minimapCamera;  // Camera của minimap
-	public Transform player;      // Nhân vật sẽ dịch chuyển
+	private Camera minimapCamera;  // Camera của minimap
+	public Vector2Variable playerPos;      // Nhân vật sẽ dịch chuyển
 	public RectTransform minimapUI; // UI của minimap (Image hoặc RawImage)
 	public RectTransform minimapPanel; // RectTransform của RawImage hiển thị minimap
 	public LayerMask minimapLayer; // Layer của các Collider 2D trên minimap
+	public VoidEvent teleportEvent; // Sự kiện teleport
 
 	public bool isDragging = false;
-	public Vector2 mouseStartPos;
-	public float dragThreshold = 5f;
+	private Vector2 mouseStartPos;
+	private float dragThreshold = 5f;
+	private float offsetX;
+	private float offsetY;
 
-	public float offsetX;
-	public float offsetY;
+	private void Awake()
+	{
+		minimapCamera = GameObject.FindWithTag("MenuMiniMapCamera").GetComponent<Camera>();
+	}
 
 	private void Start()
 	{
@@ -74,9 +79,10 @@ public class MiniMapClick : MonoBehaviour
 		{
 			if (hit.CompareTag("Teleport"))
 			{
-				player.position = hit.transform.parent.position;
-				Vector2 playerPos = new Vector2(player.position.x, player.position.y - 0.6f);
-				EffectManager.Instance.PlayEffect(EffectType.EfTele, playerPos, Quaternion.Euler(-90, 0, 0));
+				playerPos.CurrentValue = hit.transform.parent.position;
+				teleportEvent.Raise(new Void()); // Gọi sự kiện teleport
+				Vector2 posEffect = new Vector2(playerPos.CurrentValue.x, playerPos.CurrentValue.y - 0.6f);
+				EffectManager.Instance.PlayEffect(EffectType.EfTele, posEffect, Quaternion.Euler(-90, 0, 0));
 				break;
 			}
 		}
