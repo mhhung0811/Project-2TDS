@@ -310,8 +310,10 @@ GameObject:
   - component: {fileID: 2848320089499006292}
   - component: {fileID: 790851280412161788}
   - component: {fileID: -4779760714336706812}
-  - component: {fileID: 7159039348765187403}
   - component: {fileID: 8445335004037890109}
+  - component: {fileID: 4708352331105556207}
+  - component: {fileID: 8794105362669998000}
+  - component: {fileID: 651676363517058387}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -456,22 +458,15 @@ MonoBehaviour:
   PlayerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   PlayerHit: {fileID: 11400000, guid: 4141f7d51c6876445ba7b724b667e64e, type: 2}
   PlayerDied: {fileID: 11400000, guid: e4e46ddc5385e5c4886fe3180cdda9a9, type: 2}
-  MainCamera: {fileID: 0}
   Animator: {fileID: 4796794010553010646}
   myRb: {fileID: 4968054630321060433}
-  HoldGun: {fileID: 0}
   MovementInput: {x: 0, y: 0}
-  SpriteRenderer: {fileID: 0}
   isInvulnerable: 0
   invulnerableDuration: 2
   blinkInterval: 0.1
   MovementSpeed: 5
   RollSpeed: 8
   RollDuration: 0.68
-  IsFacingRight: 1
-  IsRolling: 0
-  IsPressWASD: 0
-  IsPressShoot: 0
   interactionOffSet: 0.25
   interactCollider: {fileID: 2547707970219836964}
 --- !u!114 &790851280412161788
@@ -563,22 +558,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e12d4a58-82d3-4047-907d-c74be2a3f235
     m_ActionName: Player/Interact[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2848320089499006292}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: InputDropGun
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 9f6fbd1f-fafc-487d-ad4e-45ba3bdd0ce7
-    m_ActionName: Player/DropGun[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2848320089499006292}
@@ -691,30 +670,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.15}
   m_Size: {x: 0.5, y: 0.3}
   m_Direction: 0
---- !u!114 &7159039348765187403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3345081005870679355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0f745e6c6ac40cfaa173dee093a2482, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunInventorySize: 3
-  gunHolder: {fileID: 4403147993273003600}
-  getGunFunc: {fileID: 11400000, guid: 6de501ceb909a5a45b8b9d7a38453d77, type: 2}
-  returnGunFunc: {fileID: 11400000, guid: 3cae08f5c410f494d95e1cec52e16785, type: 2}
-  getGunPrefFunc: {fileID: 11400000, guid: 61ece0a6bcb1729448b82ad0effc80b9, type: 2}
-  onGunChange: {fileID: 11400000, guid: 8b35cf1ec5c337f4584b3517ae0b8234, type: 2}
-  playerMaxReloadTime: {fileID: 11400000, guid: 41b6939160732ea45921ad480903458a, type: 2}
-  playerReloadTime: {fileID: 11400000, guid: c981e723458cedc4dba004161d33897f, type: 2}
-  playerIsReloading: {fileID: 11400000, guid: a8e88cf90e526e449879dc9ac623defd, type: 2}
-  playerAmmo: {fileID: 11400000, guid: 432040582739ea14aa05aea4d0e28cfa, type: 2}
-  playerTotalAmmo: {fileID: 11400000, guid: 581e24008db0a1d40ba557a5416bb58a, type: 2}
-  holdGunPos: {fileID: 11400000, guid: 6dffcd1d33f6a404781f7e5c5dde1647, type: 2}
 --- !u!114 &8445335004037890109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,6 +690,84 @@ MonoBehaviour:
       - m_Target: {fileID: 2848320089499006292}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnCamUnfocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4708352331105556207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345081005870679355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61b3a172db545e0b05117d907d8262d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunHolder: {fileID: 4403147993273003600}
+  onGunChange: {fileID: 11400000, guid: 23d228e75b0cdb34d8e4a63e1945b69d, type: 2}
+  playerMaxReloadTime: {fileID: 11400000, guid: 41b6939160732ea45921ad480903458a, type: 2}
+  playerReloadTime: {fileID: 11400000, guid: c981e723458cedc4dba004161d33897f, type: 2}
+  playerIsReloading: {fileID: 11400000, guid: a8e88cf90e526e449879dc9ac623defd, type: 2}
+  playerAmmo: {fileID: 11400000, guid: 432040582739ea14aa05aea4d0e28cfa, type: 2}
+  playerTotalAmmo: {fileID: 11400000, guid: 581e24008db0a1d40ba557a5416bb58a, type: 2}
+  holdGunPos: {fileID: 11400000, guid: 6dffcd1d33f6a404781f7e5c5dde1647, type: 2}
+--- !u!114 &8794105362669998000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345081005870679355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1cbc7b983b34d779f207a0124be9f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: On gun in arsenal change
+  Event: {fileID: 11400000, guid: f93a41f97353b6844a5bb5d60d27a31d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4708352331105556207}
+        m_TargetAssemblyTypeName: PlayerArsenal, Assembly-CSharp
+        m_MethodName: ChangeGunInArsenal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &651676363517058387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345081005870679355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: On teleport
+  Event: {fileID: 11400000, guid: 1af8f4e8fee604942bb2a91c69288165, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2848320089499006292}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Teleport
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1166,8 +1199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96af8a955118f5d4e9bbf5266f169c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCamera: {fileID: 0}
-  Player: {fileID: 0}
   HoldGunPos: {fileID: 11400000, guid: 6dffcd1d33f6a404781f7e5c5dde1647, type: 2}
 --- !u!1 &5392623502916656110
 GameObject:

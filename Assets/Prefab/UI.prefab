@@ -4671,7 +4671,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -140, y: -140}
+  m_AnchoredPosition: {x: -150, y: -150}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2752175537860384188
@@ -5138,7 +5138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea56c2b7799dbd4b9eccab3880e4a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miniMapCamera: {fileID: 0}
   miniMapRect: {fileID: 5440748280417059998}
   playerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
 --- !u!114 &7745304762017304161
@@ -5153,18 +5152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4714afdee7302334aaca40063d1d58bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimapCamera: {fileID: 0}
-  player: {fileID: 0}
+  playerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   minimapUI: {fileID: 5440748280417059998}
   minimapPanel: {fileID: 6242768485666572200}
   minimapLayer:
     serializedVersion: 2
     m_Bits: 512
+  teleportEvent: {fileID: 11400000, guid: 1af8f4e8fee604942bb2a91c69288165, type: 2}
   isDragging: 0
-  mouseStartPos: {x: 0, y: 0}
-  dragThreshold: 5
-  offsetX: 0
-  offsetY: 0
 --- !u!1 &7555586128305490891
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class MiniMapCameraController : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
-	public Camera miniMapCamera; // Camera của minimap
+	private Camera miniMapCamera; // Camera của minimap
 	public RectTransform miniMapRect; // RectTransform của RawImage hiển thị minimap
 	public Vector2Variable playerPos; // Vị trí của player
 
@@ -14,6 +14,11 @@ public class MiniMapCameraController : MonoBehaviour, IBeginDragHandler, IDragHa
 
 	private Vector3 dragStartCameraPosition; // Vị trí camera khi bắt đầu kéo
 	private Vector2 dragStartMousePosition; // Vị trí chuột khi bắt đầu kéo
+
+	public void Awake()
+	{
+		miniMapCamera = GameObject.FindWithTag("MenuMiniMapCamera").GetComponent<Camera>();
+	}
 
 	public void Start()
 	{
