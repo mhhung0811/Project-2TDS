@@ -14,19 +14,21 @@ public class MouseOffsetCamera : MonoBehaviour
 	public float dampingFactor = 0.5f; // Tỉ lệ giảm tốc độ camera so với chuột
 
 	public CinemachineVirtualCamera virtualCamera; // Gắn Virtual Camera
-	public CinemachineBasicMultiChannelPerlin noise; // Noise
-	public float shakeDuration = 1f; // Thời gian rung
-	public float shakeAmplitude = 1f; // Cường độ rung
-	public float shakeFrequency = 1f; // Tần số rung
-	private float shakeTimer;
 
 	private Vector3 mouseOffset;
 	private Vector3 targetOffset;
 	private Vector3 smoothVelocity;
 
+	//shake
+	public float shakeDuration;
+	private float shakeTimer;
+	public float shakeStrength;
+	private Vector2 shakeOffset = Vector2.zero;
+	private Vector2 shakeDirection = Vector2.zero;
+
 	private void Start()
 	{
-		noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
 	}
 
 	void Update()
@@ -43,39 +45,38 @@ public class MouseOffsetCamera : MonoBehaviour
 		// Đặt offset mục tiêu
 		targetOffset = new Vector3(offsetX, offsetY, -10f);
 
-		OnShake();
-	}
-
-	public void OnShake()
-	{
-		if (shakeTimer > 0)
-		{
-			shakeTimer -= Time.deltaTime;
-			if (shakeTimer <= 0)
-			{
-				noise.m_AmplitudeGain = 0f;
-				noise.m_FrequencyGain = 0f;
-			}
-		}
 	}
 
 	public void ShakeCamera()
 	{
-		noise.m_AmplitudeGain = shakeAmplitude;
-		noise.m_FrequencyGain = shakeFrequency;
+		Vector3 mousePosInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		shakeDirection = (mousePosInWorld - (Vector3)playerPos.CurrentValue).normalized;
+		shakeOffset = shakeOffset + shakeDirection * shakeStrength;
 		shakeTimer = shakeDuration;
 	}
 
 	void LateUpdate()
 	{
-		// Lấy vị trí mục tiêu của camera
-		Vector3 targetPosition = (Vector3)playerPos.CurrentValue + targetOffset;
-
 		// Giảm tốc độ camera theo dampingFactor
 		mouseOffset = Vector3.Lerp(mouseOffset, targetOffset, dampingFactor * Time.deltaTime);
 
+		Vector2 shakeOffsetCur = Vector2.zero;
+
+		if(shakeTimer > 0)
+		{
+			shakeTimer -= Time.deltaTime;
+			shakeOffsetCur = shakeOffset * Mathf.Sin(shakeTimer/ shakeDuration * Mathf.PI);
+		}
+		else
+		{
+			shakeOffset = Vector2.zero;
+			shakeDirection = Vector2.zero;
+		}
+
+		Vector3 targetPos = (Vector3)playerPos.CurrentValue + mouseOffset - (Vector3)shakeOffsetCur;
+
 		// Di chuyển camera với hiệu ứng SmoothDamp
-		transform.position = Vector3.SmoothDamp(transform.position, (Vector3)playerPos.CurrentValue + mouseOffset, ref smoothVelocity, smoothSpeed);
+		transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref smoothVelocity, smoothSpeed);
 	}
 
 	public void OffVirtualCamera()

@@ -5,11 +5,10 @@ using UnityEngine;
 public class MiniMapClick : MonoBehaviour
 {
 	private Camera minimapCamera;  // Camera của minimap
-	public Vector2Variable playerPos;      // Nhân vật sẽ dịch chuyển
 	public RectTransform minimapUI; // UI của minimap (Image hoặc RawImage)
 	public RectTransform minimapPanel; // RectTransform của RawImage hiển thị minimap
 	public LayerMask minimapLayer; // Layer của các Collider 2D trên minimap
-	public VoidEvent teleportEvent; // Sự kiện teleport
+	public Vector2Event teleportEvent; // Sự kiện teleport
 
 	public bool isDragging = false;
 	private Vector2 mouseStartPos;
@@ -79,9 +78,9 @@ public class MiniMapClick : MonoBehaviour
 		{
 			if (hit.CompareTag("Teleport"))
 			{
-				playerPos.CurrentValue = hit.transform.parent.position;
-				teleportEvent.Raise(new Void()); // Gọi sự kiện teleport
-				Vector2 posEffect = new Vector2(playerPos.CurrentValue.x, playerPos.CurrentValue.y - 0.6f);
+				Vector2 playerPos = hit.transform.parent.position;
+				teleportEvent.Raise(playerPos); // Gọi sự kiện teleport
+				Vector2 posEffect = new Vector2(playerPos.x, playerPos.y - 0.6f);
 				EffectManager.Instance.PlayEffect(EffectType.EfTele, posEffect, Quaternion.Euler(-90, 0, 0));
 				break;
 			}

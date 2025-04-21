@@ -303,9 +303,10 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		HoldGun.SetActive(false);
 	}
 
-	public void Teleport()
+	// Event Listener
+	public void Teleport(Vector2 pos)
 	{
-		this.transform.position = PlayerPos.CurrentValue;
+		this.transform.position = pos;
 	}
 
 	public void OnPlayerBulletHit()

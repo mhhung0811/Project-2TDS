@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5baf0755297ce4e4a869ea37bb9e6fdb, type: 3}
-  m_Name: Teleport
+  m_Script: {fileID: 11500000, guid: c926a102ec0707b4a9c9ae8d5242eea3, type: 3}
+  m_Name: ClickTeleport
   m_EditorClassIdentifier: 

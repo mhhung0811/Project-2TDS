@@ -5152,13 +5152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4714afdee7302334aaca40063d1d58bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   minimapUI: {fileID: 5440748280417059998}
   minimapPanel: {fileID: 6242768485666572200}
   minimapLayer:
     serializedVersion: 2
     m_Bits: 512
-  teleportEvent: {fileID: 11400000, guid: 1af8f4e8fee604942bb2a91c69288165, type: 2}
+  teleportEvent: {fileID: 11400000, guid: 2f80315f0561f22498c46eab477e54bc, type: 2}
   isDragging: 0
 --- !u!1 &7555586128305490891
 GameObject:
