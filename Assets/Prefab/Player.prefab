@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 8445335004037890109}
   - component: {fileID: 4708352331105556207}
   - component: {fileID: 8794105362669998000}
-  - component: {fileID: 651676363517058387}
+  - component: {fileID: 2407178947788878506}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -748,7 +748,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &651676363517058387
+--- !u!114 &2407178947788878506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -757,18 +757,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3345081005870679355}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
+  m_Script: {fileID: 11500000, guid: c979cff53236f8a4aa6d86040487446c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Description: On teleport
-  Event: {fileID: 11400000, guid: 1af8f4e8fee604942bb2a91c69288165, type: 2}
+  Description: 
+  Event: {fileID: 11400000, guid: 2f80315f0561f22498c46eab477e54bc, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2848320089499006292}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Teleport
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
