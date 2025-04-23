@@ -14,6 +14,7 @@ public class AssaultRifle : GunBase
 		takeBulletEvent.Raise((FlyweightType.AssaultRifleBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
 
 		currentAmmo--;
+		ConsumeMana();
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
 		//SoundManager.Instance.PlaySound("Ak47Shot");

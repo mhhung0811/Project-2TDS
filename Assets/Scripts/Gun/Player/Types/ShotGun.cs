@@ -57,6 +57,7 @@ public class ShotGun : GunBase
 		this.StopAllCoroutines();
 
 		currentAmmo--;
+		ConsumeMana();
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
 		

@@ -12,6 +12,7 @@ public class AWM : GunBase
 		takeBulletEvent.Raise((FlyweightType.SniperBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
 
 		currentAmmo--;
+		ConsumeMana();
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
 

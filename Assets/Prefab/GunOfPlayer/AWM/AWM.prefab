@@ -104,6 +104,8 @@ MonoBehaviour:
   HoldGunPos: {fileID: 11400000, guid: 6dffcd1d33f6a404781f7e5c5dde1647, type: 2}
   dissolveEffect: {fileID: -909650085839963467}
   changeGunStateEvent: {fileID: 11400000, guid: 7dd9216891c97e64ab736f43542245a4, type: 2}
+  playerMana: {fileID: 11400000, guid: 972b15fede1dacc419b6116134cb712f, type: 2}
+  manaConsumed: 0
   takeBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
   playerShootEvent: {fileID: 11400000, guid: 4141f7d51c6876445ba7b724b667e64e, type: 2}
 --- !u!95 &5773954178522005494

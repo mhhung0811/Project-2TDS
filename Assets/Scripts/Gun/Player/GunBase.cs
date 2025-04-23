@@ -40,6 +40,10 @@ public class GunBase : MonoBehaviour, IGunData
 	public IntVariable playerAmmo { get; private set; }
 	public IntVariable playerTotalAmmo { get; private set; }
 
+	public IntVariable playerMana;
+
+	public int manaConsumed;
+
 	private void Awake()
 	{
 		StateMachine = new GunStateMachine();
@@ -105,6 +109,16 @@ public class GunBase : MonoBehaviour, IGunData
 	public virtual void Shoot(float angle)
 	{
 		
+	}
+
+	public virtual void ConsumeMana()
+	{
+		if(playerMana.CurrentValue <= manaConsumed)
+		{
+			Debug.Log("Not enough mana to shoot");
+			return;
+		}
+		playerMana.CurrentValue -= manaConsumed;
 	}
 
 	public void UpdateLastShootTime()
