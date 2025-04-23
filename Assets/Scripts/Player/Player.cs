@@ -10,21 +10,18 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 {
     public IntVariable HP;
 	public IntVariable MaxHP;
-    public Vector2Variable PlayerPos;
+	public IntVariable Mana;
+	public IntVariable MaxMana;
+
+	public Vector2Variable PlayerPos;
     public VoidEvent PlayerHit;
 	public VoidEvent PlayerDied;
-
-	private Camera MainCamera;
 	public Animator Animator;
     public Rigidbody2D myRb;
-	[NonSerialized]
-    public HoldGun HoldGun;
-    public Vector2 MovementInput;
 
     public bool IsPlayerInteractable { get; set; }
 	public bool IsExplodedInteractable { get; set; }
-	[NonSerialized]
-	public SpriteRenderer SpriteRenderer;
+
     public bool isInvulnerable = false;
 	public float invulnerableDuration = 1f;
     public float blinkInterval = 0.1f;
@@ -34,6 +31,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     public float RollDuration;
 
 	[NonSerialized]
+	public SpriteRenderer SpriteRenderer;
+	[NonSerialized]
 	public bool IsFacingRight = true;
 	[NonSerialized]
 	public bool IsRolling = false;
@@ -41,10 +40,15 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 	public bool IsPressWASD = false;
 	[NonSerialized]
 	public bool IsPressShoot = false;
-    
-    // private PlayerInventory _inventory;
-    private PlayerArsenal _arsenal;
-    
+	[NonSerialized]
+	public HoldGun HoldGun;
+	[NonSerialized]
+	public Vector2 MovementInput;
+
+	// private PlayerInventory _inventory;
+	private PlayerArsenal _arsenal;
+	private Camera MainCamera;
+
 	[Header("Interaction Zone")]
 	public float interactionOffSet = 0.25f;
 	public CircleCollider2D interactCollider;
