@@ -82,6 +82,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		IsPlayerInteractable = true;
 		IsExplodedInteractable = true;
 
+		Mana.OnChanged += OnChangeMana;
+
 		if (SaveGameManager.Instance.isGameLoaded)
 		{
 			HP.CurrentValue = SaveGameManager.Instance.gameData.health;
@@ -360,6 +362,27 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		yield return new WaitForSeconds(1f);
 		playerInput.enabled = true;
 		myRb.drag = 0;
+	}
+
+	public void OnChangeMana(int velue)
+	{
+		if(Mana.CurrentValue <= 0 && HP.CurrentValue > 1)
+		{
+			HP.CurrentValue = HP.CurrentValue - 1;
+			StartCoroutine(RefillMana());
+		}
+	}
+
+	private IEnumerator RefillMana()
+	{
+		float timeToWait = 1f;
+		float elapsedTime = 0f;
+		while (elapsedTime < timeToWait)
+		{
+			elapsedTime += Time.deltaTime;
+			Mana.CurrentValue = (int)Mathf.Lerp(0, MaxMana.CurrentValue, elapsedTime / timeToWait);
+			yield return null;
+		}
 	}
 
 	private IEnumerator InvulnerablilityCoroutine()

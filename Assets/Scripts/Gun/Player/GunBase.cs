@@ -113,11 +113,6 @@ public class GunBase : MonoBehaviour, IGunData
 
 	public virtual void ConsumeMana()
 	{
-		if(playerMana.CurrentValue <= manaConsumed)
-		{
-			Debug.Log("Not enough mana to shoot");
-			return;
-		}
 		playerMana.CurrentValue -= manaConsumed;
 	}
 
