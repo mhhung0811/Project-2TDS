@@ -44,10 +44,11 @@ public class ShotGun : GunBase
 
 		float totalSpreadAngle = spreadAngle * (bulletCount - 1);
 		float startAngle = angle - totalSpreadAngle / 2;
+		SetOffset(angle);
 		for (int i = 0; i < bulletCount; i++)
 		{
 			float currentAngle = startAngle + i * spreadAngle;
-			takeBulletEvent.Raise((FlyweightType.BasicBullet, new Vector2(this.transform.position.x, this.transform.position.y), currentAngle));
+			takeBulletEvent.Raise((FlyweightType.BasicBullet, new Vector2(this.transform.position.x + offsetX, this.transform.position.y + offsetY), currentAngle));
 		}
 
 		if (reloadingCoroutine != null)

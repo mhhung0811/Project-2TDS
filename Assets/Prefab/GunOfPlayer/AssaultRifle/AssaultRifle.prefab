@@ -127,6 +127,8 @@ MonoBehaviour:
   changeGunStateEvent: {fileID: 11400000, guid: 7dd9216891c97e64ab736f43542245a4, type: 2}
   playerMana: {fileID: 11400000, guid: 972b15fede1dacc419b6116134cb712f, type: 2}
   onRefillManal: {fileID: 11400000, guid: 9ebca4ba95c92634da3dcd7456b2cd8a, type: 2}
+  spawnRadius: 0.6
+  spawnOffset: 0.1
   takeBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
   playerShootEvent: {fileID: 11400000, guid: 4141f7d51c6876445ba7b724b667e64e, type: 2}
 --- !u!114 &7396725573163763818

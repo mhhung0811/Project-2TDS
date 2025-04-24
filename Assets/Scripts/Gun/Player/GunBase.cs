@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class GunBase : MonoBehaviour, IGunData
@@ -44,6 +46,15 @@ public class GunBase : MonoBehaviour, IGunData
 	public IntVariable playerMana;
 
 	public VoidEvent onRefillManal;
+
+	[NonSerialized]
+	public float offsetX;
+	[NonSerialized]
+	public float offsetY;
+
+	[Header("Pos Spawn Bullet")]
+	public float spawnRadius;
+	public float spawnOffset;
 
 	private void Awake()
 	{
@@ -189,6 +200,30 @@ public class GunBase : MonoBehaviour, IGunData
 		{
 			StateMachine.ChangeState(ReloadState);
 		}
+	}
+
+
+	public void SetOffset(float angle)
+	{
+		angle = (angle + 360) % 360;
+
+		float radian = angle * Mathf.Deg2Rad;
+		offsetX = Mathf.Cos(radian) * spawnRadius;
+		offsetY = Mathf.Sin(radian) * spawnRadius;
+
+		if (angle >= 90 && angle <= 270)
+		{
+			angle -= 90;
+		}
+		else
+		{
+			angle += 90;
+		}
+
+		radian = angle * Mathf.Deg2Rad;
+		Vector2 direction = new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)).normalized * spawnOffset;
+		offsetX += direction.x;
+		offsetY += direction.y;
 	}
 
 	#region UI
