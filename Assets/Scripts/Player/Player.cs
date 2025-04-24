@@ -87,6 +87,10 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		if (SaveGameManager.Instance.isGameLoaded)
 		{
 			HP.CurrentValue = SaveGameManager.Instance.gameData.health;
+			Mana.CurrentValue = SaveGameManager.Instance.gameData.mana;
+			MaxHP.CurrentValue = SaveGameManager.Instance.gameData.maxHealth;
+			MaxMana.CurrentValue = SaveGameManager.Instance.gameData.maxMana;
+			this.transform.position = (Vector3)SaveGameManager.Instance.gameData.LastSpawn;
 		}
 	}
 
@@ -109,7 +113,15 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 
     public void InputShoot(InputAction.CallbackContext context)
     {
-		if(GameManager.Instance.isHoldButtonTab) return;
+		if (GameManager.Instance.isHoldButtonTab) {
+			IsPressShoot = false;
+			return;
+		}
+
+		if(GameManager.Instance.isOpenUI)
+		{
+			return;
+		}
 
 		if (context.performed && GameManager.Instance.isGamePaused == false)
         {
@@ -375,7 +387,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 
 	private IEnumerator RefillMana()
 	{
-		float timeToWait = 1f;
+		float timeToWait = 0.5f;
 		float elapsedTime = 0f;
 		while (elapsedTime < timeToWait)
 		{

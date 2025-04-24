@@ -145,6 +145,11 @@ public class GunBase : MonoBehaviour, IGunData
 			return false;
 		}
 
+		if(playerMana.CurrentValue <= 0) {
+			Debug.Log("Not enough mana to shoot");
+			return false;
+		}
+
 		return (Time.time > (lastShootTime + 1f/fireRate)) && currentAmmo > 0;
 	}
 

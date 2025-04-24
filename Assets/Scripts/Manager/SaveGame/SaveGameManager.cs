@@ -40,7 +40,10 @@ public class SaveGameManager : Singleton<SaveGameManager>
 		}
 
 		currentSaveSlot = GetSaveSlots()[0];
+		Debug.Log(saveDirection);
 		Debug.Log("SaveGameManager: Start: Current save slot: " + currentSaveSlot.slotName);
+
+		LoadGame();
 	}
 
 	private void Start()
