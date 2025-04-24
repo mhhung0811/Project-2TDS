@@ -57,7 +57,6 @@ public class ShotGun : GunBase
 		this.StopAllCoroutines();
 
 		currentAmmo--;
-		ConsumeMana();
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
 		
@@ -74,13 +73,6 @@ public class ShotGun : GunBase
 	{
 		if(StateMachine.CurrentState == ReloadState) return;
 
-		Debug.Log($"Current ammo: {currentAmmo}, Total ammo: {totalAmmo}");
-		if (totalAmmo == 0)
-		{
-			StateMachine.ChangeState(OutOfAmmoState);
-			return;
-		}
-
 		if (currentAmmo >= maxAmmoPerMag)
 		{
 			return;
@@ -91,18 +83,26 @@ public class ShotGun : GunBase
 
 	public IEnumerator Reloading()
 	{
+		if(playerMana.CurrentValue < manaCost)
+		{
+			onRefillManal.Raise(new Void());
+		}
 		for (int i = currentAmmo; i < maxAmmoPerMag; i++)
 		{
 
 			StateMachine.ChangeState(ReloadState);
 			yield return new WaitForSeconds(this.reloadTime + 0.05f);
-			if (totalAmmo > 0)
+			if (playerMana.CurrentValue >= manaCost)
 			{
-				totalAmmo--;
+				playerMana.CurrentValue -= manaCost;
 				currentAmmo++;
 				
 				playerAmmo.CurrentValue = currentAmmo;
-				playerTotalAmmo.CurrentValue = totalAmmo;
+				playerTotalAmmo.CurrentValue = maxAmmoPerMag;
+			}
+			else
+			{
+				break;
 			}
 		}
 	}

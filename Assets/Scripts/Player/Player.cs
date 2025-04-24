@@ -82,8 +82,6 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		IsPlayerInteractable = true;
 		IsExplodedInteractable = true;
 
-		Mana.OnChanged += OnChangeMana;
-
 		if (SaveGameManager.Instance.isGameLoaded)
 		{
 			HP.CurrentValue = SaveGameManager.Instance.gameData.health;
@@ -376,9 +374,9 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		myRb.drag = 0;
 	}
 
-	public void OnChangeMana(int velue)
+	public void OnRefillMana()
 	{
-		if(Mana.CurrentValue <= 0 && HP.CurrentValue > 1)
+		if(HP.CurrentValue > 1)
 		{
 			HP.CurrentValue = HP.CurrentValue - 1;
 			StartCoroutine(RefillMana());

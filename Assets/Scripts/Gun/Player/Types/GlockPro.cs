@@ -14,7 +14,6 @@ public class GlockPro : GunBase
 		takeBulletEvent.Raise((FlyweightType.GlockProBullet, new Vector2(this.transform.position.x, this.transform.position.y + 0.25f), angle));
 
 		currentAmmo--;
-		ConsumeMana();
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);
 

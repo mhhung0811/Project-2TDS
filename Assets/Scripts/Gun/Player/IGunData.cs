@@ -10,6 +10,7 @@ public interface IGunData
     public int maxAmmoPerMag { get; set; } // So dang trong 1 bang dan
     public int currentAmmo { get; set; } // So dan hien tai trong bang dan
     public int totalAmmo { get; set; } // So dan con lai
+	public int manaCost { get; set; } // So nang luong tieu hao khi ban 1 vien dan
 
 	// Reload Settings
 	public float reloadTime { get; set; } // Thoi gian nap dan

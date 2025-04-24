@@ -441,7 +441,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3345081005870679355, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 849094446}
   m_SourcePrefab: {fileID: 100100000, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
 --- !u!1 &300243599
 GameObject:
@@ -1384,6 +1387,51 @@ MonoBehaviour:
   maxMana: {fileID: 11400000, guid: 52879e0383ca6444ba7329d5e3f29836, type: 2}
   currentMana: {fileID: 11400000, guid: 972b15fede1dacc419b6116134cb712f, type: 2}
   manaBar: {fileID: 0}
+--- !u!1 &849094434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3345081005870679355, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
+  m_PrefabInstance: {fileID: 237937968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &849094441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
+  m_PrefabInstance: {fileID: 237937968}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849094434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b317b5ad25d4e547b76249e7d0828b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &849094446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849094434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: 
+  Event: {fileID: 11400000, guid: 9ebca4ba95c92634da3dcd7456b2cd8a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 849094441}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnRefillMana
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &970841130
 PrefabInstance:
   m_ObjectHideFlags: 0

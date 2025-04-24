@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb670e170f28cd4fbe99192d27ed428, type: 3}
   m_Name: PlayerMaxMana
   m_EditorClassIdentifier: 
-  DefaultValue: 1000
+  DefaultValue: 200

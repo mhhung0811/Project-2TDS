@@ -17,6 +17,7 @@ MonoBehaviour:
   maxAmmoPerMag: 10
   currentAmmo: 10
   totalAmmo: 200
+  manaCost: 1
   reloadTime: 1.5
   fireRate: 4
   posHoldGun: {x: 0.2, y: -0.2, z: 0}

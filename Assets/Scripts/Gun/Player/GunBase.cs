@@ -12,6 +12,7 @@ public class GunBase : MonoBehaviour, IGunData
 	public int maxAmmoPerMag { get; set; }
 	public int currentAmmo { get; set; }
 	public int totalAmmo { get; set; }
+	public int manaCost { get; set; }
 	public float reloadTime { get; set; }
 	public float fireRate { get; set; }
 	public Vector3 posHoldGun { get; set; }
@@ -42,7 +43,7 @@ public class GunBase : MonoBehaviour, IGunData
 
 	public IntVariable playerMana;
 
-	public int manaConsumed;
+	public VoidEvent onRefillManal;
 
 	private void Awake()
 	{
@@ -85,6 +86,7 @@ public class GunBase : MonoBehaviour, IGunData
 		fireRate = GunData.fireRate;
 		posHoldGun = GunData.posHoldGun;
 		posGun = GunData.posGun;
+		manaCost = GunData.manaCost;
 
 		HoldGunPos.CurrentValue = (Vector2)posHoldGun;
 
@@ -109,11 +111,6 @@ public class GunBase : MonoBehaviour, IGunData
 	public virtual void Shoot(float angle)
 	{
 		
-	}
-
-	public virtual void ConsumeMana()
-	{
-		playerMana.CurrentValue -= manaConsumed;
 	}
 
 	public void UpdateLastShootTime()
@@ -145,35 +142,33 @@ public class GunBase : MonoBehaviour, IGunData
 			return false;
 		}
 
-		if(playerMana.CurrentValue <= 0) {
-			Debug.Log("Not enough mana to shoot");
-			return false;
-		}
-
 		return (Time.time > (lastShootTime + 1f/fireRate)) && currentAmmo > 0;
 	}
 
 	public virtual void SetAmmoWhenReload()
 	{
 		int ammoToReload = maxAmmoPerMag - currentAmmo;
-		if (isInfiniteAmmo)
+		int manaToReload = ammoToReload * manaCost;
+
+		if (playerMana.CurrentValue < manaToReload)
 		{
-			currentAmmo = maxAmmoPerMag;
-			totalAmmo = -1;
+			if(playerMana.CurrentValue < manaCost)
+			{
+				onRefillManal.Raise(new Void());
+			}
+			else
+			{
+				ammoToReload = playerMana.CurrentValue / manaCost;
+				manaToReload = ammoToReload * manaCost;
+				playerMana.CurrentValue = playerMana.CurrentValue % manaCost;
+			}
 		}
-		else if(totalAmmo >= ammoToReload)
-		{
-			totalAmmo -= ammoToReload;
-			currentAmmo = maxAmmoPerMag;
-		}
-		else
-		{
-			currentAmmo += totalAmmo;
-			totalAmmo = 0;
-		}
+		Debug.Log("Reload nênneneenennne");
+		playerMana.CurrentValue -= manaToReload;
+		currentAmmo += ammoToReload;
 		// Debug.Log($"Player Ammo: {currentAmmo}");
 		playerAmmo.CurrentValue = currentAmmo;
-		playerTotalAmmo.CurrentValue = totalAmmo;
+		playerTotalAmmo.CurrentValue = maxAmmoPerMag;
 	}
 	
 	public virtual void Reload()
@@ -232,7 +227,7 @@ public class GunBase : MonoBehaviour, IGunData
 	public void SetUpTotalAmmoVariable(IntVariable ammo)
 	{
 		playerTotalAmmo = ammo;
-		playerTotalAmmo.CurrentValue = totalAmmo;
+		playerTotalAmmo.CurrentValue = maxAmmoPerMag;
 	}
 	
 	public void ResetTotalAmmoVariable()
