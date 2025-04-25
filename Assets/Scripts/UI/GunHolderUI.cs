@@ -8,8 +8,6 @@ public class GunHolderUI : MonoBehaviour
     // Event listener
     public void ChangeGun((GunType type, int maxAmmo) parameters)
     {
-        Debug.Log("Changing");
-        
         // Destroy all children
         foreach (Transform child in transform)
         {
