@@ -20,15 +20,6 @@ public class RestPanel : MonoBehaviour
         
     }
 
-	private void OnEnable()
-	{
-		GameManager.Instance.isOpenUI = true;
-	}
-
-	private void OnDisable()
-	{
-		GameManager.Instance.isOpenUI = false;
-	}	
 	public void OnClickBtnRest()
     {
 		Debug.Log("Resting...");

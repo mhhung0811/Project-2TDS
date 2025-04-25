@@ -448,21 +448,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2830256477572460263, guid: 5a2f66a866370cb4296b302116723d1e, type: 3}
-      propertyPath: enemy
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6120996053218324435, guid: 5a2f66a866370cb4296b302116723d1e, type: 3}
       propertyPath: patrolArea
       value: 
       objectReference: {fileID: 924477496}
-    - target: {fileID: 6120996053218324435, guid: 5a2f66a866370cb4296b302116723d1e, type: 3}
-      propertyPath: <AttackRange>k__BackingField
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 7684728907619824441, guid: 5a2f66a866370cb4296b302116723d1e, type: 3}
       propertyPath: m_Name
       value: Enemy3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684728907619824441, guid: 5a2f66a866370cb4296b302116723d1e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7773,6 +7769,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1864982375}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1749141618
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3578458099754462547, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578458099754462547, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578458099754462547, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578458099754462547, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578458099754462547, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578458099754462547, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578458099754462547, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578458099754462547, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578458099754462547, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578458099754462547, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323180115450704889, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: m_Name
+      value: Enemy4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359091014384141857, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
+      propertyPath: patrolArea
+      value: 
+      objectReference: {fileID: 924477496}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
 --- !u!1 &1864982373
 GameObject:
   m_ObjectHideFlags: 0
@@ -8503,4 +8560,5 @@ SceneRoots:
   - {fileID: 308287893}
   - {fileID: 672942736}
   - {fileID: 885562712}
+  - {fileID: 1749141618}
   - {fileID: 657922158510823763}

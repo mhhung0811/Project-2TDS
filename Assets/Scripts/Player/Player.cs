@@ -161,7 +161,12 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 
     public void InputMove(InputAction.CallbackContext context)
     {
-        if (context.performed && GameManager.Instance.isGamePaused == false)
+		if (GameManager.Instance.isOpenUI)
+		{
+			return;
+		}
+
+		if (context.performed && GameManager.Instance.isGamePaused == false)
         {
             IsPressWASD = true;
             MovementInput = context.ReadValue<Vector2>();
@@ -200,7 +205,12 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 
     public void InputRoll(InputAction.CallbackContext context)
     {
-        if (context.performed && !IsRolling && IsPressWASD && GameManager.Instance.isGamePaused == false)
+		if (GameManager.Instance.isOpenUI)
+		{
+			return;
+		}
+
+		if (context.performed && !IsRolling && IsPressWASD && GameManager.Instance.isGamePaused == false)
         {
             StateMachine.ChangeState(RollState);
         }
@@ -208,7 +218,12 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     
     public void InputInteract(InputAction.CallbackContext context)
     {
-	    if (context.performed && GameManager.Instance.isGamePaused == false)
+		if (GameManager.Instance.isOpenUI)
+		{
+			return;
+		}
+
+		if (context.performed && GameManager.Instance.isGamePaused == false)
 	    {
 		    Interact();
 	    }
@@ -216,7 +231,12 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     
     public void InputReload(InputAction.CallbackContext context)
 	{
-	    if (context.performed && GameManager.Instance.isGamePaused == false)
+		if (GameManager.Instance.isOpenUI)
+		{
+			return;
+		}
+
+		if (context.performed && GameManager.Instance.isGamePaused == false)
 	    {
 		    // _inventory.GetHoldingGun().Reload();
 		    _arsenal.GetHoldingGun().Reload();
@@ -230,13 +250,22 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     
     public void InputSwapGun1(InputAction.CallbackContext context)
 	{
-	    if (context.performed && GameManager.Instance.isGamePaused == false)
+		if (GameManager.Instance.isOpenUI)
+		{
+			return;
+		}
+
+		if (context.performed && GameManager.Instance.isGamePaused == false)
 	    {
 		    SwapGun(0);
 	    }
 	}
 	public void InputSwapGun2(InputAction.CallbackContext context)
 	{
+		if (GameManager.Instance.isOpenUI)
+		{
+			return;
+		}
 		if (context.performed && GameManager.Instance.isGamePaused == false)
 		{
 			SwapGun(1);
@@ -244,6 +273,10 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 	}
 	public void InputSwapGun3(InputAction.CallbackContext context)
 	{
+		if (GameManager.Instance.isOpenUI)
+		{
+			return;
+		}
 		if (context.performed && GameManager.Instance.isGamePaused == false)
 		{
 			SwapGun(2);

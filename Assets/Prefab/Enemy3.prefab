@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
+  enemy: {fileID: 0}
 --- !u!1 &5497382091228818420
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,18 +469,19 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 75
   <CurrentHealth>k__BackingField: 75
   <IsWithinStrikingDistance>k__BackingField: 0
-  <AttackRange>k__BackingField: 8
+  <AttackRange>k__BackingField: 6
   <MoveSpeed>k__BackingField: 3
   <Obstacles>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
   <PlayerPos>k__BackingField: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
-  _animator: {fileID: 7681083156399277725}
   <AttackDuration>k__BackingField: 1.4
   <AttackCooldown>k__BackingField: 2
   attackCooldownTimer: 0
   <InitTime>k__BackingField: 1.75
   <DieTime>k__BackingField: 1
   onEnemyDown: {fileID: 11400000, guid: 7dce80d15cb825345a33903f0ec32a29, type: 2}
+  patrolArea: {fileID: 0}
+  _animator: {fileID: 7681083156399277725}
   spawnBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
   animatorGun: {fileID: 7681083156399277725}

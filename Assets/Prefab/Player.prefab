@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 4708352331105556207}
   - component: {fileID: 8794105362669998000}
   - component: {fileID: 2407178947788878506}
+  - component: {fileID: 1873615056651309943}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -455,12 +456,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: {fileID: 11400000, guid: 71b64829ea594dc4faaa96d6c89acf9a, type: 2}
   MaxHP: {fileID: 11400000, guid: 9738ec3c79cc2b1479ef51257b4c9448, type: 2}
+  Mana: {fileID: 11400000, guid: 972b15fede1dacc419b6116134cb712f, type: 2}
+  MaxMana: {fileID: 11400000, guid: 52879e0383ca6444ba7329d5e3f29836, type: 2}
   PlayerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   PlayerHit: {fileID: 11400000, guid: 4141f7d51c6876445ba7b724b667e64e, type: 2}
   PlayerDied: {fileID: 11400000, guid: e4e46ddc5385e5c4886fe3180cdda9a9, type: 2}
   Animator: {fileID: 4796794010553010646}
   myRb: {fileID: 4968054630321060433}
-  MovementInput: {x: 0, y: 0}
   isInvulnerable: 0
   invulnerableDuration: 2
   blinkInterval: 0.1
@@ -777,6 +779,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1873615056651309943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345081005870679355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: 
+  Event: {fileID: 11400000, guid: 9ebca4ba95c92634da3dcd7456b2cd8a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2848320089499006292}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnRefillMana
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3842092606158417366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +1041,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
 --- !u!114 &5573613154221799804
 MonoBehaviour:
   m_ObjectHideFlags: 0

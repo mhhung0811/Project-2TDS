@@ -203,8 +203,8 @@ MonoBehaviour:
   smoothSpeed: 0
   dampingFactor: 10
   virtualCamera: {fileID: 267425821889468714}
-  shakeDuration: 0.15
-  shakeStrength: 0.3
+  shakeDuration: 0.1
+  shakeStrength: 0.2
 --- !u!114 &7630144131188283382
 MonoBehaviour:
   m_ObjectHideFlags: 0
