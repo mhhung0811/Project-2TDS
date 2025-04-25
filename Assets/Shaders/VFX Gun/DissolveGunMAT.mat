@@ -43,8 +43,8 @@ Material:
     m_Floats:
     - _DissolveAmount: 0
     - _DissolveScale: 20
-    - _HorizontalDissolve: 0.3641433
-    - _OutlineThickness: 0.05
+    - _HorizontalDissolve: 0
+    - _OutlineThickness: 0.2
     m_Colors:
     - _OutlineColor: {r: 0, g: 0.7597966, b: 1, a: 0}
   m_BuildTextureStacks: []

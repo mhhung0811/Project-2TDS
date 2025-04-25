@@ -7,7 +7,8 @@ using UnityEngine.EventSystems;
 public class EventHoverButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 	public TextMeshProUGUI buttonText;
-
+	public Color hoverColor;
+	public Color pressedColor;
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		buttonText.fontSize += 5; // Tăng kích thước text

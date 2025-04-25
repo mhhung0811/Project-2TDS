@@ -17,15 +17,17 @@ public class InventoryManager : MonoBehaviour
         // _gunSlotSize = 3;
         _gunColection.Add(GunType.GlockPro);
         _gunColection.Add(GunType.AssaultRifle);
-        
-        InitializedGun();
+		_gunColection.Add(GunType.ShotGun);
+
+		InitializedGun();
     }
 
     private void Start()
     {
         ChangeGunInArsenal(_guns[GunType.GlockPro], 0);
         ChangeGunInArsenal(_guns[GunType.AssaultRifle], 1);
-    }
+		ChangeGunInArsenal(_guns[GunType.ShotGun], 2);
+	}
     
     private void InitializedGun()
     {

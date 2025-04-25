@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class GunBase : MonoBehaviour, IGunData
@@ -12,6 +14,7 @@ public class GunBase : MonoBehaviour, IGunData
 	public int maxAmmoPerMag { get; set; }
 	public int currentAmmo { get; set; }
 	public int totalAmmo { get; set; }
+	public int manaCost { get; set; }
 	public float reloadTime { get; set; }
 	public float fireRate { get; set; }
 	public Vector3 posHoldGun { get; set; }
@@ -39,6 +42,19 @@ public class GunBase : MonoBehaviour, IGunData
 	public BoolVariable playerIsReloading { get; private set; }
 	public IntVariable playerAmmo { get; private set; }
 	public IntVariable playerTotalAmmo { get; private set; }
+
+	public IntVariable playerMana;
+
+	public VoidEvent onRefillManal;
+
+	[NonSerialized]
+	public float offsetX;
+	[NonSerialized]
+	public float offsetY;
+
+	[Header("Pos Spawn Bullet")]
+	public float spawnRadius;
+	public float spawnOffset;
 
 	private void Awake()
 	{
@@ -81,6 +97,7 @@ public class GunBase : MonoBehaviour, IGunData
 		fireRate = GunData.fireRate;
 		posHoldGun = GunData.posHoldGun;
 		posGun = GunData.posGun;
+		manaCost = GunData.manaCost;
 
 		HoldGunPos.CurrentValue = (Vector2)posHoldGun;
 
@@ -142,24 +159,27 @@ public class GunBase : MonoBehaviour, IGunData
 	public virtual void SetAmmoWhenReload()
 	{
 		int ammoToReload = maxAmmoPerMag - currentAmmo;
-		if (isInfiniteAmmo)
+		int manaToReload = ammoToReload * manaCost;
+
+		if (playerMana.CurrentValue < manaToReload)
 		{
-			currentAmmo = maxAmmoPerMag;
-			totalAmmo = -1;
+			if(playerMana.CurrentValue < manaCost)
+			{
+				onRefillManal.Raise(new Void());
+			}
+			else
+			{
+				ammoToReload = playerMana.CurrentValue / manaCost;
+				manaToReload = ammoToReload * manaCost;
+				playerMana.CurrentValue = playerMana.CurrentValue % manaCost;
+			}
 		}
-		else if(totalAmmo >= ammoToReload)
-		{
-			totalAmmo -= ammoToReload;
-			currentAmmo = maxAmmoPerMag;
-		}
-		else
-		{
-			currentAmmo += totalAmmo;
-			totalAmmo = 0;
-		}
+		Debug.Log("Reload nênneneenennne");
+		playerMana.CurrentValue -= manaToReload;
+		currentAmmo += ammoToReload;
 		// Debug.Log($"Player Ammo: {currentAmmo}");
 		playerAmmo.CurrentValue = currentAmmo;
-		playerTotalAmmo.CurrentValue = totalAmmo;
+		playerTotalAmmo.CurrentValue = maxAmmoPerMag;
 	}
 	
 	public virtual void Reload()
@@ -180,6 +200,30 @@ public class GunBase : MonoBehaviour, IGunData
 		{
 			StateMachine.ChangeState(ReloadState);
 		}
+	}
+
+
+	public void SetOffset(float angle)
+	{
+		angle = (angle + 360) % 360;
+
+		float radian = angle * Mathf.Deg2Rad;
+		offsetX = Mathf.Cos(radian) * spawnRadius;
+		offsetY = Mathf.Sin(radian) * spawnRadius;
+
+		if (angle >= 90 && angle <= 270)
+		{
+			angle -= 90;
+		}
+		else
+		{
+			angle += 90;
+		}
+
+		radian = angle * Mathf.Deg2Rad;
+		Vector2 direction = new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)).normalized * spawnOffset;
+		offsetX += direction.x;
+		offsetY += direction.y;
 	}
 
 	#region UI
@@ -218,7 +262,7 @@ public class GunBase : MonoBehaviour, IGunData
 	public void SetUpTotalAmmoVariable(IntVariable ammo)
 	{
 		playerTotalAmmo = ammo;
-		playerTotalAmmo.CurrentValue = totalAmmo;
+		playerTotalAmmo.CurrentValue = maxAmmoPerMag;
 	}
 	
 	public void ResetTotalAmmoVariable()
