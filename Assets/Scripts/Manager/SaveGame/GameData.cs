@@ -5,12 +5,17 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int level;
     public int health;
+	public int maxHealth;
+	public int mana;
+	public int maxMana;
+	public Vector2 LastSpawn;
 
 	public GameData()
 	{
-		level = 1;
 		health = 6;
+		maxHealth = 6;
+		mana = 1000;
+		maxMana = 1000;
 	}
 }

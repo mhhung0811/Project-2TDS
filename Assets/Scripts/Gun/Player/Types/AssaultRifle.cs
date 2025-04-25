@@ -11,7 +11,9 @@ public class AssaultRifle : GunBase
 	{
 		if (!CanShoot()) return;
 
-		takeBulletEvent.Raise((FlyweightType.AssaultRifleBullet, new Vector2(this.transform.position.x, this.transform.position.y), angle));
+		SetOffset(angle);
+
+		takeBulletEvent.Raise((FlyweightType.AssaultRifleBullet, new Vector2(this.transform.position.x + offsetX, this.transform.position.y + offsetY), angle));
 
 		currentAmmo--;
 		UpdateLastShootTime();

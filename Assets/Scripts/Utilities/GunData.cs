@@ -15,6 +15,9 @@ public class GunData : ScriptableObject
 	public int currentAmmo;    // Số đạn hiện tại
 	public int totalAmmo;      // Tổng số đạn còn lại
 
+	[Header("ManaCost ( n mana / ammo )")]
+	public int manaCost;      // Số năng lượng tiêu hao khi bắn 1 viên đạn
+
 	[Header("Reload Settings")]
 	public float reloadTime;   // Thời gian nạp đạn
 

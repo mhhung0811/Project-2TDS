@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
 	public List<ScriptableObject> listReset;
 	public UnityEvent resetEvent;
 	public LoadingScenes loadingScenes;
+	public bool isOpenUI;
 
 	public override void Awake()
 	{
@@ -26,6 +27,7 @@ public class GameManager : Singleton<GameManager>
 	public void Start()
 	{
 		loadingScenes = GetComponent<LoadingScenes>();
+		isOpenUI = false;
 	}
 
 	public void Update()
