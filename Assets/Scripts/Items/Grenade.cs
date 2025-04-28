@@ -53,8 +53,9 @@ public class Grenade : MonoBehaviour
 
     public void Explode()
     {
-
-    }
+        EffectManager.Instance.PlayEffect(EffectType.EfExplode, this.transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+	}
 
     private IEnumerator OnExplode()
     {
