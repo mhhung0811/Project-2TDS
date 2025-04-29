@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5baf0755297ce4e4a869ea37bb9e6fdb, type: 3}
-  m_Name: OnFadeInPanel
+  m_Script: {fileID: 11500000, guid: fe812b903ca14c019b614ce1b364e9a0, type: 3}
+  m_Name: OnRoomEnterChangeCameraBound
   m_EditorClassIdentifier: 

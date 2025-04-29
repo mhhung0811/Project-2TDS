@@ -115,6 +115,14 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		StateMachine.ChangeState(DieState);
 	}
 
+	public virtual void Revive()
+	{
+		StateMachine.ChangeState(IdleState);
+		gameObject.SetActive(true);
+		CurrentHealth = MaxHealth;
+		
+	}
+
     public virtual void Attack()
     {
 

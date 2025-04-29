@@ -60,7 +60,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     public PlayerRollState RollState;
     public PlayerDieState DieState;
 	#endregion
-	private void Awake()
+	private void Awake()	
     {
         StateMachine = new PlayerStateMachine();
         RollState = new PlayerRollState(this, StateMachine);
@@ -84,15 +84,15 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 
 		if (SaveGameManager.Instance.isGameLoaded)
 		{
-			HP.CurrentValue = SaveGameManager.Instance.gameData.health;
-			Mana.CurrentValue = SaveGameManager.Instance.gameData.mana;
+			HP.CurrentValue = SaveGameManager.Instance.gameData.maxHealth;
+			Mana.CurrentValue = SaveGameManager.Instance.gameData.maxMana;
 			MaxHP.CurrentValue = SaveGameManager.Instance.gameData.maxHealth;
 			MaxMana.CurrentValue = SaveGameManager.Instance.gameData.maxMana;
-			this.transform.position = (Vector3)SaveGameManager.Instance.gameData.LastSpawn;
+			transform.position = SaveGameManager.Instance.gameData.lastSpawn;
 		}
 	}
 
-    void Update()
+    private void Update()
     {
         if (StateMachine.CurrentState == DieState)
         {
@@ -104,7 +104,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		UpdateInteractColliderByPosMouse();
         OnShoot();
 	}
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
         StateMachine.CurrentState.PhysicsUpdate();
     }
@@ -355,16 +356,16 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 	// Event Listener
 	public void Teleport(Vector2 pos)
 	{
-		this.transform.position = pos;
+		transform.position = pos;
 	}
 
 	public void OnPlayerBulletHit()
 	{
         if (isInvulnerable) return;
 
-        HP.CurrentValue = HP.CurrentValue - 1;
-		SaveGameManager.Instance.gameData.health = HP.CurrentValue;
-		SaveGameManager.Instance.SaveGame(SaveGameManager.Instance.gameData);
+        HP.CurrentValue -= 1;
+		// SaveGameManager.Instance.gameData.health = HP.CurrentValue;
+		// SaveGameManager.Instance.SaveGame(SaveGameManager.Instance.gameData);
 
 		if (HP.CurrentValue <= 0)
         {
@@ -472,4 +473,10 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
         RollEnd,
     }
     #endregion
+
+    public void ToIdleState()
+    {
+	    MovementInput = Vector2.zero;
+	    StateMachine.ChangeState(IdleState);
+    }
 }

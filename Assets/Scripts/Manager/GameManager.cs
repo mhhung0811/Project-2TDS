@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -28,11 +27,6 @@ public class GameManager : Singleton<GameManager>
 	{
 		loadingScenes = GetComponent<LoadingScenes>();
 		isOpenUI = false;
-	}
-
-	public void Update()
-	{
-
 	}
 
 	public void PauseGame()
