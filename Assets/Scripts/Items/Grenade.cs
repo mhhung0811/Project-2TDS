@@ -12,7 +12,7 @@ public class Grenade : MonoBehaviour
     private Vector2 direction;
     public Vector2 targetPos;
 
-    public bool isThrowing = false;
+    private bool isThrowing = false;
 	void Start()
     {
         StartCoroutine(OnExplode());

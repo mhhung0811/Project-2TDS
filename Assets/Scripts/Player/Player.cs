@@ -462,6 +462,12 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		playerInput.enabled = true;
 	}
 
+	public void SetStatePlayerOnOpenUI()
+	{
+		MovementInput = Vector2.zero;
+		StateMachine.ChangeState(IdleState);
+	}
+
 	#region Animation Triggers
 	public void AnimationTriggerEvent(AnimationTriggerType triggerEvent)
     {

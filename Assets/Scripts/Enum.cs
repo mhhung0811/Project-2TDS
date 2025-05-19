@@ -23,6 +23,7 @@ public enum EffectType
 	EfTele,
 	EfBuff,
 	EfExplode,
+	EfBurning,
 }
 
 public enum EnemyType
