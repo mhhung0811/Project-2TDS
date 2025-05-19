@@ -94,6 +94,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Press C",
+                    "type": "Button",
+                    "id": "313f5cb2-1cd6-4d1f-a06d-2b7e14d4cac0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Press V",
+                    "type": "Button",
+                    "id": "90d51abb-2826-454e-880f-b9c5e2328f34",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -259,6 +277,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "OnMiniMap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df201652-3a5e-44d1-af81-427f49e44157",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Press C",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2984d1a-58d4-491d-9f89-5d2852272403",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Press V",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

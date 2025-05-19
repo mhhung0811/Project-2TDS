@@ -16,7 +16,7 @@ public class Molotov : MonoBehaviour
 	private bool isThrowing = false;
 	void Start()
 	{
-		StartCoroutine(OnExplode());
+		//StartCoroutine(OnExplode());
 	}
 
 	// Update is called once per frame

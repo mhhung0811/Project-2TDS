@@ -10,12 +10,13 @@ public class Grenade : MonoBehaviour
     private float height;
     private Vector2 basePos;
     private Vector2 direction;
+
     public Vector2 targetPos;
 
     private bool isThrowing = false;
 	void Start()
     {
-        StartCoroutine(OnExplode());
+        //StartCoroutine(OnExplode());
 	}
 
     // Update is called once per frame
