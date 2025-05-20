@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class BurnDamageEffect : IDamageEffectVisitor
 {
+	public BurnDamageEffect()
+	{
+		
+	}
+
 	public void Visit(Player player)
 	{
-		// Implement the logic for applying burn damage to the player
 		Debug.Log("Applying burn damage to player");
+		player.OnPlayerBulletHit();
 	}
 
 	public void Visit(Enemy enemy)
 	{
-		// Implement the logic for applying burn damage to the enemy
-		Debug.Log("Applying burn damage to enemy");
+		Debug.Log("Applying burn damage to Enemy");
+		enemy.OnEnemyBulletHit(20);
 	}
 }

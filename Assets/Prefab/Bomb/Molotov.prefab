@@ -99,7 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -9.81
-  radius: 1
+  radius: 1.6
+  timeBurning: 5
+  dps: 0.25
+  damage: 20
 --- !u!58 &1233896604780071143
 CircleCollider2D:
   m_ObjectHideFlags: 0

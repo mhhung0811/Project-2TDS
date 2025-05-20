@@ -53,4 +53,10 @@ public class Grenade : BombBase
 			}
 		}
 	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(transform.position, radius);
+	}
 }
