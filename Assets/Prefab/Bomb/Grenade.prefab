@@ -97,5 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3035478ee71215f46821bc9c82ba8e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: -10
-  targetPos: {x: -10, y: 0}
+  gravity: -9.81
+  radius: 2
+  force: 12
+  damage: 50

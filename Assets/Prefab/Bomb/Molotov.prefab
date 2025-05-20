@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b153f4f54dc51f40b73a6d7477194c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: -10
-  targetPos: {x: -5, y: 0}
+  gravity: -9.81
+  radius: 1
 --- !u!58 &1233896604780071143
 CircleCollider2D:
   m_ObjectHideFlags: 0

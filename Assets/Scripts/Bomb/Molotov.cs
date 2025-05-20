@@ -2,46 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Molotov : MonoBehaviour
+public class Molotov : BombBase
 {
-
-	public float gravity;
-	private float verticalSpeed;
-	private float horizontalSpeed;
-	private float height;
-	private Vector2 basePos;
-	private Vector2 direction;
-	public Vector2 targetPos;
-
-	private bool isThrowing = false;
-	void Start()
-	{
-		//StartCoroutine(OnExplode());
-	}
-
-	// Update is called once per frame
 	void Update()
 	{
 		if (isThrowing)
 		{
-			verticalSpeed = verticalSpeed + gravity * Time.deltaTime;
-			height = height + verticalSpeed * Time.deltaTime;
-
-			basePos += direction * horizontalSpeed * Time.deltaTime;
-
-			this.transform.position = new Vector3(basePos.x, basePos.y + height, 0.0f);
-
-			if (height < 0.0f)
-			{
-				isThrowing = false;
-				height = 0.0f;
-				basePos = this.transform.position;
-				Explode();
-			}
+			Throwing();
 		}
 	}
 
-	public void Throw(Vector2 pos)
+	public override void Throw(Vector2 pos)
 	{
 		isThrowing = true;
 		basePos = this.transform.position;
@@ -52,7 +23,7 @@ public class Molotov : MonoBehaviour
 		direction = direction.normalized;
 	}
 
-	public void Explode()
+	public override void Explode()
 	{
 		Vector3 center = transform.position;
 
@@ -89,12 +60,5 @@ public class Molotov : MonoBehaviour
 		}
 
 		Destroy(this.gameObject);
-	}
-
-
-	private IEnumerator OnExplode()
-	{
-		yield return new WaitForSeconds(1f);
-		Throw(targetPos);
 	}
 }

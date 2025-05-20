@@ -50,7 +50,6 @@ public class PlayerUseItems : MonoBehaviour
 		GameObject grenadeInstance = Instantiate(grenade, transform.position, Quaternion.identity);
 		Grenade grenadeScript = grenadeInstance.GetComponent<Grenade>();
         Vector2 targetPos = InputUtils.GetMouseWorldPosition(Camera.main);
-        grenadeScript.targetPos = targetPos;
 		grenadeScript.Throw(targetPos);
 	}
 
@@ -59,7 +58,6 @@ public class PlayerUseItems : MonoBehaviour
 		GameObject molotovInstance = Instantiate(molotov, transform.position, Quaternion.identity);
 		Molotov molotovScript = molotovInstance.GetComponent<Molotov>();
 		Vector2 targetPos = InputUtils.GetMouseWorldPosition(Camera.main);
-		molotovScript.targetPos = targetPos;
 		molotovScript.Throw(targetPos);
 	}
 }

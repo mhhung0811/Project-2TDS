@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, IEnemyInteractable, IExplodedInteractable
+public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInteractable, IExplodedInteractable, IDamageEffectApplicable
 {
     [field : SerializeField] public int MaxHealth { get; set; }
 	[field: SerializeField] public int CurrentHealth { get; set; }
     public bool IsFacingRight { get; set; } = true;
 	[field: SerializeField] public bool IsWithinStrikingDistance { get; set; }
-    [field: SerializeField] public float AttackRange { get; set; } = 5f;
+    [field: SerializeField] public float AttackRange { get; set; }
 	[field: SerializeField] public float MoveSpeed { get; set; }
 	[field: SerializeField] public LayerMask Obstacles { get; set; }
 	[field: SerializeField] public Vector2Variable PlayerPos { get; set; }
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	public Rigidbody2D RB { get; set; }
 	public Animator _animator;
 
-	public bool IsExplodedInteractable { get; set; } = true;
+	public bool CanExplodeInteractable { get; set; } = true;
 
 	#region State Machine Variables
 	public EnemyStateMachine StateMachine { get; set; }
@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 	public EnemyDieState DieState { get; set; }
 	public EnemyHurtState HurtState { get; set; }
 	public EnemyPatrolState PatrolState { get; set; }
+	public EnemyKnockbackState KnockbackState { get; set; }
 	#endregion
 
 	#region Idle Variables
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		DieState = new EnemyDieState(this, StateMachine);
 		HurtState = new EnemyHurtState(this, StateMachine);
 		PatrolState = new EnemyPatrolState(this, StateMachine);
+		KnockbackState = new EnemyKnockbackState(this, StateMachine);
 	}
 
     private void Start()
@@ -98,11 +100,13 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		}
 	}
 
-	public void OnExplode()
+	public void OnExplode(float damage)
 	{
 		StopAllCoroutines();
 		_animator.SetBool("isDamaged", true);
-		Die();
+
+		CurrentHealth -= (int)damage;
+		StateMachine.ChangeState(KnockbackState);
 	}
 
 	public void SetAnimationIdleAffterHurt()
@@ -242,6 +246,11 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 		}
 
 		return true;
+	}
+
+	public void Accept(IDamageEffectVisitor visitor)
+	{
+		visitor.Visit(this);
 	}
 
 	#region Animation Triggers
