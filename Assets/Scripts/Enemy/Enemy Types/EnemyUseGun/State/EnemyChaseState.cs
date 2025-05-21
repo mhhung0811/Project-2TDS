@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyChaseState : EnemyState
 {
 	private Unit _unit;
+	private EnemyUseGun enemyUseGun => (EnemyUseGun)base.Enemy;
 
 	public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
@@ -12,7 +13,7 @@ public class EnemyChaseState : EnemyState
 	public override void Enter()
     {
         base.Enter();
-        Enemy._animator.SetBool("isChasing", true);
+        Enemy.animator.SetBool("isChasing", true);
         _unit.speed = Enemy.MoveSpeed; 
         _unit.StartFindPath();
     }
@@ -20,7 +21,7 @@ public class EnemyChaseState : EnemyState
     public override void Exit()
     {
         base.Exit();
-        Enemy._animator.SetBool("isChasing", false);
+        Enemy.animator.SetBool("isChasing", false);
         _unit.speed = 0;
 		_unit.StopFindPath();
 	}
@@ -28,15 +29,15 @@ public class EnemyChaseState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        if (!Enemy.patrolArea.CheckEnemyInPatrolArea(Enemy.transform.position))
+        if (!enemyUseGun.patrolArea.CheckEnemyInPatrolArea(Enemy.transform.position))
         {
-            EnemyStateMachine.ChangeState(Enemy.PatrolState);
+            EnemyStateMachine.ChangeState(enemyUseGun.PatrolState);
             return;
         }
 
 		if (Enemy.IsWithinStrikingDistance && Enemy.CheckRaycastAttack())
         {
-            EnemyStateMachine.ChangeState(Enemy.IdleState);
+            EnemyStateMachine.ChangeState(enemyUseGun.IdleState);
 		}
 	}
 

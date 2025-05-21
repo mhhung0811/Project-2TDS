@@ -5,25 +5,25 @@ using UnityEngine;
 public class EnemyAttackState : EnemyState
 {
 	private float _attackTimer;
+    private EnemyUseGun enemyUseGun => (EnemyUseGun)base.Enemy;
 	public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
-
-    }
+	}
 
     public override void Enter()
     {
         base.Enter();
-        Enemy._animator.SetBool("isAttacking", true);
+        Enemy.animator.SetBool("isAttacking", true);
 		_attackTimer = Time.time;
 
-		Enemy.Attack();
+		enemyUseGun.Attack();
 	}
 
 	public override void Exit()
     {
         base.Exit();
-        Enemy._animator.SetBool("isAttacking", false);
-		Enemy.attackCooldownTimer = 0;
+        Enemy.animator.SetBool("isAttacking", false);
+		enemyUseGun.attackCooldownTimer = 0;
     }
 
     public override void FrameUpdate()
@@ -42,9 +42,9 @@ public class EnemyAttackState : EnemyState
 
     public void UpdateAttackTimer()
 	{
-		if (Time.time - _attackTimer >= Enemy.AttackDuration)
+		if (Time.time - _attackTimer >= enemyUseGun.AttackDuration)
 		{
-			EnemyStateMachine.ChangeState(Enemy.IdleState);
+			EnemyStateMachine.ChangeState(enemyUseGun.IdleState);
 		}
 	}
 }

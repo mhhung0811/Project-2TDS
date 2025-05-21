@@ -7,6 +7,7 @@ public class EnemyPatrolState : EnemyState
 	private Unit _unit;
 	private Vector2 _currentPatrolPoint;
 	private int _currentPatrolIndex;
+	private EnemyUseGun enemyUseGun => (EnemyUseGun)base.Enemy;
 
 	public EnemyPatrolState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
 	{
@@ -17,11 +18,11 @@ public class EnemyPatrolState : EnemyState
 	{
 		base.Enter();
 
-		Enemy._animator.SetBool("isChasing", true);
+		enemyUseGun.animator.SetBool("isChasing", true);
 		_currentPatrolIndex = 0;
-		_currentPatrolPoint = Enemy.patrolArea.patrolPoints[_currentPatrolIndex].position;
+		_currentPatrolPoint = enemyUseGun.patrolArea.patrolPoints[_currentPatrolIndex].position;
 
-		_unit.speed = Enemy.MoveSpeed*0.8f;
+		_unit.speed = enemyUseGun.MoveSpeed*0.8f;
 		_unit.StartFindPathPoint(_currentPatrolPoint);
 		Debug.Log("Patrol State");
 	}
@@ -29,7 +30,7 @@ public class EnemyPatrolState : EnemyState
 	public override void Exit()
 	{
 		base.Exit();
-		Enemy._animator.SetBool("isChasing", false);
+		enemyUseGun.animator.SetBool("isChasing", false);
 		_unit.speed = 0;
 		_unit.StopFindPath();
 	}
@@ -47,7 +48,7 @@ public class EnemyPatrolState : EnemyState
 
 		if (Enemy.IsWithinStrikingDistance && Enemy.CheckRaycastAttack())
 		{
-			EnemyStateMachine.ChangeState(Enemy.AttackState);
+			EnemyStateMachine.ChangeState(enemyUseGun.AttackState);
 		}
 	}
 
@@ -73,10 +74,10 @@ public class EnemyPatrolState : EnemyState
 	private void ChooseNextPatrolPoint()
 	{
 		_currentPatrolIndex++;
-		if (_currentPatrolIndex >= Enemy.patrolArea.patrolPoints.Count)
+		if (_currentPatrolIndex >= enemyUseGun.patrolArea.patrolPoints.Count)
 		{
 			_currentPatrolIndex = 0;
 		}
-		_currentPatrolPoint = Enemy.patrolArea.patrolPoints[_currentPatrolIndex].position;
+		_currentPatrolPoint = enemyUseGun.patrolArea.patrolPoints[_currentPatrolIndex].position;
 	}
 }

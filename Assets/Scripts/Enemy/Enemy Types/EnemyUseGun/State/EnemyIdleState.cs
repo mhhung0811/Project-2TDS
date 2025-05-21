@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class EnemyIdleState : EnemyState
 {
-    public EnemyIdleState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
+	private EnemyUseGun enemyUseGun => (EnemyUseGun)base.Enemy;
+	public EnemyIdleState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
     }
 
     public override void Enter()
     {
         base.Enter();
-        Enemy._animator.SetBool("isIdle", true);
+        Enemy.animator.SetBool("isIdle", true);
     }
 
     public override void Exit() 
     { 
         base.Exit(); 
-        Enemy._animator.SetBool("isIdle", false);
+        Enemy.animator.SetBool("isIdle", false);
     }
 
     public override void FrameUpdate()
@@ -25,11 +26,11 @@ public class EnemyIdleState : EnemyState
         base.FrameUpdate();
 		if (Enemy.IsWithinStrikingDistance == false || !Enemy.CheckRaycastAttack())
 		{
-			EnemyStateMachine.ChangeState(Enemy.ChaseState);
+			EnemyStateMachine.ChangeState(enemyUseGun.ChaseState);
 		}
 		else
 		{
-			Enemy.CheckForChangeAttackState();
+			enemyUseGun.CheckForChangeAttackState();
 		}
 	}
 

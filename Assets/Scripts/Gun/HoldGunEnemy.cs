@@ -7,10 +7,11 @@ using UnityEngine.InputSystem;
 public class HoldGunEnemy : MonoBehaviour
 {
 	public Vector2Variable playerPos;
-	public Enemy enemy;
+	public EnemyUseGun enemy;
+
 	private void Start()
 	{
-		enemy = GetComponentInParent<Enemy>();
+		enemy = GetComponentInParent<EnemyUseGun>();
 		if(enemy == null)
 		{
 			Debug.LogError("Enemy is null");

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHurtState : EnemyState
 {
 	private float hurtTime;
+	private EnemyUseGun enemyUseGun => (EnemyUseGun)base.Enemy;
 	public EnemyHurtState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
 	{
 	}
@@ -12,14 +13,14 @@ public class EnemyHurtState : EnemyState
 	public override void Enter()
 	{
 		hurtTime = 0;
-		Enemy._animator.SetBool("isHurt", true);
+		Enemy.animator.SetBool("isHurt", true);
 		// Debug.Log("Enemy Hurt");
 	}
 
 	public override void Exit()
 	{
 		hurtTime = 0;
-		Enemy._animator.SetBool("isHurt", false);
+		Enemy.animator.SetBool("isHurt", false);
 		// Debug.Log("Enemy Hurt Exit");
 	}
 
@@ -43,7 +44,7 @@ public class EnemyHurtState : EnemyState
 		hurtTime += Time.deltaTime;
 		if (hurtTime >= 0.2)
 		{
-			EnemyStateMachine.ChangeState(Enemy.IdleState);
+			EnemyStateMachine.ChangeState(enemyUseGun.IdleState);
 		}
 	}
 }

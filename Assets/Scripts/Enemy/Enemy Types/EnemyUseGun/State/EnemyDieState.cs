@@ -12,14 +12,14 @@ public class EnemyDieState : EnemyState
 	public override void Enter()
 	{
 		dieTime = 0;
-		Enemy._animator.SetBool("isDie", true);
+		Enemy.animator.SetBool("isDie", true);
 		// Debug.Log("Enemy Die");
 	}
 
 	public override void Exit()
 	{
 		dieTime = 0;
-		Enemy._animator.SetBool("isDie", false);
+		Enemy.animator.SetBool("isDie", false);
 		// Debug.Log("Enemy Die Exit");
 	}
 

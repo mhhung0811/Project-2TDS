@@ -6,6 +6,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class EnemyInitState : EnemyState
 {
 	private float initTimer;
+	private EnemyUseGun enemyUseGun => (EnemyUseGun)base.Enemy;
 	public EnemyInitState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
 	{
 	}
@@ -13,14 +14,14 @@ public class EnemyInitState : EnemyState
 	public override void Enter()
 	{
 		initTimer = 0;
-		Enemy._animator.SetBool("isInit", true);
+		Enemy.animator.SetBool("isInit", true);
 		EffectManager.Instance.PlayEffect(EffectType.SpawnEnemy, Enemy.transform.position, Quaternion.identity);
 	}
 
 	public override void Exit()
 	{
 		initTimer = 0;
-		Enemy._animator.SetBool("isInit", false);
+		Enemy.animator.SetBool("isInit", false);
 	}
 
 	public override void FrameUpdate()
@@ -43,7 +44,7 @@ public class EnemyInitState : EnemyState
 		initTimer += Time.deltaTime;
 		if (initTimer >= Enemy.InitTime)
 		{
-			EnemyStateMachine.ChangeState(Enemy.IdleState);
+			EnemyStateMachine.ChangeState(enemyUseGun.IdleState);
 		}
 	}
 }

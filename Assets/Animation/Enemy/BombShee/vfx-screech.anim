@@ -22,27 +22,27 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -1948525604, guid: 193a5e3779f173444865cd274e469b43, type: 3}
-    - time: 0.033333335
+    - time: 0.05
       value: {fileID: -1303709243, guid: 193a5e3779f173444865cd274e469b43, type: 3}
-    - time: 0.083333336
+    - time: 0.1
       value: {fileID: -632207003, guid: 193a5e3779f173444865cd274e469b43, type: 3}
-    - time: 0.11666667
-      value: {fileID: -1171072823, guid: 193a5e3779f173444865cd274e469b43, type: 3}
     - time: 0.15
-      value: {fileID: -1294157197, guid: 193a5e3779f173444865cd274e469b43, type: 3}
+      value: {fileID: -1171072823, guid: 193a5e3779f173444865cd274e469b43, type: 3}
     - time: 0.2
+      value: {fileID: -1294157197, guid: 193a5e3779f173444865cd274e469b43, type: 3}
+    - time: 0.25
       value: {fileID: 1477248734, guid: 193a5e3779f173444865cd274e469b43, type: 3}
-    - time: 0.23333333
+    - time: 0.3
       value: {fileID: -1175216210, guid: 193a5e3779f173444865cd274e469b43, type: 3}
-    - time: 0.28333333
-      value: {fileID: 536004507, guid: 193a5e3779f173444865cd274e469b43, type: 3}
-    - time: 0.31666666
-      value: {fileID: 179060248, guid: 193a5e3779f173444865cd274e469b43, type: 3}
     - time: 0.35
-      value: {fileID: -474046155, guid: 193a5e3779f173444865cd274e469b43, type: 3}
+      value: {fileID: 536004507, guid: 193a5e3779f173444865cd274e469b43, type: 3}
     - time: 0.4
+      value: {fileID: 179060248, guid: 193a5e3779f173444865cd274e469b43, type: 3}
+    - time: 0.45
+      value: {fileID: -474046155, guid: 193a5e3779f173444865cd274e469b43, type: 3}
+    - time: 0.5
       value: {fileID: 991388174, guid: 193a5e3779f173444865cd274e469b43, type: 3}
-    - time: 0.43333334
+    - time: 0.55
       value: {fileID: -1702130788, guid: 193a5e3779f173444865cd274e469b43, type: 3}
     attribute: m_Sprite
     path: 
@@ -83,7 +83,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.45000002
+    m_StopTime: 0.5833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -102,4 +102,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5833333
+    functionName: LoopScreech
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
