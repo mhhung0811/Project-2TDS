@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy4 : Enemy
+public class Enemy4 : EnemyUseGun
 {
 	public FlyweightTypeVector2FloatEvent spawnBulletEvent;
 
