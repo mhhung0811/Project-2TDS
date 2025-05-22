@@ -402,7 +402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8359091014384141857, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
       propertyPath: <AttackRange>k__BackingField
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8359091014384141857, guid: 6c413df54e6a25943b2d86c322dfd07f, type: 3}
       propertyPath: <CurrentHealth>k__BackingField
@@ -627,11 +627,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1893838833783865676, guid: f80b3958467fdd74f91419db8981294a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.23
+      value: -17.69
       objectReference: {fileID: 0}
     - target: {fileID: 1893838833783865676, guid: f80b3958467fdd74f91419db8981294a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.86
+      value: 14.53
       objectReference: {fileID: 0}
     - target: {fileID: 1893838833783865676, guid: f80b3958467fdd74f91419db8981294a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1454,6 +1454,9 @@ GameObject:
   - component: {fileID: 1665086487}
   - component: {fileID: 1665086486}
   - component: {fileID: 1665086485}
+  - component: {fileID: 1665086490}
+  - component: {fileID: 1665086489}
+  - component: {fileID: 1665086488}
   m_Layer: 0
   m_Name: BombShee
   m_TagString: Untagged
@@ -1550,6 +1553,92 @@ Transform:
   - {fileID: 424158578}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1665086488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665086484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2371aad4f2ad5c04994805024bca38ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 100
+  <CurrentHealth>k__BackingField: 100
+  <Obstacles>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64
+  <PlayerPos>k__BackingField: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
+  <InitTime>k__BackingField: 0.5
+  <DieTime>k__BackingField: 1
+  onEnemyDown: {fileID: 11400000, guid: 7dce80d15cb825345a33903f0ec32a29, type: 2}
+  animator: {fileID: 0}
+  <AttackRange>k__BackingField: 50
+  <MoveSpeed>k__BackingField: 5
+--- !u!50 &1665086489
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665086484}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &1665086490
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665086484}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 0.75, y: 0.85}
+  m_Direction: 0
 --- !u!1001 &1744447931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2040,11 +2129,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3433603097199478420, guid: 785f40def5134b946b684ad902a30c64, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.99
+      value: -7.14
       objectReference: {fileID: 0}
     - target: {fileID: 3433603097199478420, guid: 785f40def5134b946b684ad902a30c64, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.29
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 3433603097199478420, guid: 785f40def5134b946b684ad902a30c64, type: 3}
       propertyPath: m_LocalPosition.z

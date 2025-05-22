@@ -13,11 +13,13 @@ public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInterac
 	[field: SerializeField] public float DieTime { get; set; }
 
 	[field: SerializeField] protected EnemyTypeEvent onEnemyDown;
+
+	[HideInInspector]
 	public Animator animator;
 
 
 	// implement interface ITriggerCheckable 
-	[field: SerializeField] public bool IsWithinStrikingDistance { get; set; }
+	[HideInInspector] public bool IsWithinStrikingDistance { get; set; }
     [field: SerializeField] public float AttackRange { get; set; }
 
 
