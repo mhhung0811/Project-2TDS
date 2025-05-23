@@ -13,7 +13,7 @@ public class BombSheeIdleState : EnemyState
 
 	public override void Enter()
 	{
-		bombShee.StartCoroutine(TestState());
+		
 	}
 
 	public override void Exit()
@@ -23,7 +23,11 @@ public class BombSheeIdleState : EnemyState
 
 	public override void FrameUpdate()
 	{
-
+		if (!bombShee.OnProtectRange())
+		{
+			EnemyStateMachine.ChangeState(bombShee.MoveState);
+		}
+		bombShee.Screech();
 	}
 
 	public override void PhysicsUpdate()
@@ -39,6 +43,6 @@ public class BombSheeIdleState : EnemyState
 	private IEnumerator TestState()
 	{
 		yield return new WaitForSeconds(2f);
-		EnemyStateMachine.ChangeState(bombShee.ScreechState);
+		//bombShee.Screech();
 	}
 }

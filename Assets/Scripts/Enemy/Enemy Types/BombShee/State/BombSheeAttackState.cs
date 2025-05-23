@@ -13,6 +13,9 @@ public class BombSheeAttackState : EnemyState
 
 	public override void Enter()
 	{
+		bombShee.StopAllCoroutines();
+		bombShee.SkillBombShee.StopAllCoroutines();
+		bombShee.SkillBombShee.EndScreech();
 		bombShee.animator.SetBool("IsAttack", true);
 	}
 

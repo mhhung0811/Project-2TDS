@@ -13,12 +13,17 @@ public class BombSheeDieState : EnemyState
 
 	public override void Enter()
 	{
-
+		Debug.Log("BombShee: Enter DieState");
+		bombShee.animator.SetBool("IsDie", true);
+		SoundManager.Instance.PlaySound("Explode");
+		EffectManager.Instance.PlayEffect(EffectType.EfExplode, bombShee.transform.position, Quaternion.identity);
+		bombShee.StartCoroutine(WaitDie());
 	}
 
 	public override void Exit()
 	{
-
+		bombShee.animator.SetBool("IsDie", false);
+		bombShee.RB.velocity = Vector2.zero;
 	}
 
 	public override void FrameUpdate()
@@ -34,5 +39,11 @@ public class BombSheeDieState : EnemyState
 	public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
 	{
 
+	}
+
+	private IEnumerator WaitDie()
+	{
+		yield return new WaitForSeconds(0.5f);
+		bombShee.gameObject.SetActive(false);
 	}
 }

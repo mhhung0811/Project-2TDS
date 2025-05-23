@@ -15,6 +15,7 @@ public class BombSheeScreechState : EnemyState
 	{
 		bombShee.animator.SetBool("IsScreech", true);
 		bombShee.SkillBombShee.StartScreech();
+		bombShee.StartCoroutine(Screeching());
 	}
 
 	public override void Exit()
@@ -35,5 +36,13 @@ public class BombSheeScreechState : EnemyState
 	public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
 	{
 
+	}
+
+	private IEnumerator Screeching()
+	{
+		yield return new WaitForSeconds(bombShee.timeScreech);
+		bombShee.SkillBombShee.EndScreech();
+		yield return new WaitForSeconds(bombShee.cooldownScreech);
+		bombShee.canScreech = true;
 	}
 }

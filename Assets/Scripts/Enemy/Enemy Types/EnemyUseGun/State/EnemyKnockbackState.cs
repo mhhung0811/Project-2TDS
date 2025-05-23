@@ -46,6 +46,7 @@ public class EnemyKnockbackState : EnemyState
 	public IEnumerator EndState()
 	{
 		yield return new WaitForSeconds(timer);
+		enemyUseGun.RB.drag = 0;
 		EnemyStateMachine.ChangeState(enemyUseGun.IdleState);
 	}
 }

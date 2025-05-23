@@ -186,7 +186,7 @@ public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInterac
     }
 	#endregion
 
-	public void OnDrawGizmos()
+	public virtual void OnDrawGizmos()
 	{
 		Gizmos.DrawWireSphere(transform.position, AttackRange);
 
