@@ -75,6 +75,11 @@ public class BombShee : Enemy
 		StateMachine.ChangeState(BulletState);
 	}
 
+	public void CallbackEndAniDamaged()
+	{
+		animator.SetBool("IsDamaged", false);
+	}
+
 	public void Screech()
 	{
 		if(canScreech)
@@ -153,6 +158,19 @@ public class BombShee : Enemy
 		RB.drag = 0;
 	}
 	#endregion
+
+	public override void OnEnemyBulletHit(float damage)
+	{
+		Debug.Log("BombShee: OnEnemyBulletHit with damage: " + damage);
+		CurrentHealth -= (int)damage;
+		animator.SetBool("IsDamaged", true);
+
+		if (CurrentHealth <= 0)
+		{
+			StateMachine.ChangeState(DieState);
+			return;
+		}
+	}
 
 	public override void OnDrawGizmos()
 	{

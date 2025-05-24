@@ -14,7 +14,7 @@ public class EffectBase : MonoBehaviour
         
     }
 
-    public void OnDestroy() { 
+    public void EndEffect() { 
         Destroy(gameObject);
     }
 }

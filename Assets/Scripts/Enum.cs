@@ -24,6 +24,7 @@ public enum EffectType
 	EfBuff,
 	EfExplode,
 	EfBurning,
+	VFXBulletBombshee,
 }
 
 public enum EnemyType

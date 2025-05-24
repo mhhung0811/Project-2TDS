@@ -15,15 +15,13 @@ public class BombSheeDieState : EnemyState
 	{
 		Debug.Log("BombShee: Enter DieState");
 		bombShee.animator.SetBool("IsDie", true);
-		SoundManager.Instance.PlaySound("Explode");
-		EffectManager.Instance.PlayEffect(EffectType.EfExplode, bombShee.transform.position, Quaternion.identity);
 		bombShee.StartCoroutine(WaitDie());
+		bombShee.SkillBombShee.EndScreech();
 	}
 
 	public override void Exit()
 	{
 		bombShee.animator.SetBool("IsDie", false);
-		bombShee.RB.velocity = Vector2.zero;
 	}
 
 	public override void FrameUpdate()
