@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IExplodedInteractable
 {
-    bool IsExplodedInteractable { get; set; }
-	void OnExplode();
+    bool CanExplodeInteractable { get; set; }
+	void OnExplode(float damage);
 }

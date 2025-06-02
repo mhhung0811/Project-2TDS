@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
+public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable, IDamageEffectApplicable
 {
     public IntVariable HP;
 	public IntVariable MaxHP;
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
     public Rigidbody2D myRb;
 
     public bool IsPlayerInteractable { get; set; }
-	public bool IsExplodedInteractable { get; set; }
+	public bool CanExplodeInteractable { get; set; }
 
     public bool isInvulnerable = false;
 	public float invulnerableDuration = 1f;
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
         StateMachine.Initialize(IdleState);
 		isInvulnerable = false;
 		IsPlayerInteractable = true;
-		IsExplodedInteractable = true;
+		CanExplodeInteractable = true;
 
 		if (SaveGameManager.Instance.isGameLoaded)
 		{
@@ -378,7 +378,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		PlayerHit.Raise(@void);
 	}
 
-    public void OnExplode()
+    public void OnExplode(float damage)
 	{
 		if (isInvulnerable) return;
 
@@ -460,6 +460,17 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable
 		yield return new WaitForSeconds(3f);
 		PlayerInput playerInput = GetComponent<PlayerInput>();
 		playerInput.enabled = true;
+	}
+
+	public void SetStatePlayerOnOpenUI()
+	{
+		MovementInput = Vector2.zero;
+		StateMachine.ChangeState(IdleState);
+	}
+
+	public void Accept(IDamageEffectVisitor visitor)
+	{
+		visitor.Visit(this);
 	}
 
 	#region Animation Triggers

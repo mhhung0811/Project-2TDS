@@ -2,159 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, IEnemyInteractable, IExplodedInteractable
+public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInteractable, IExplodedInteractable, IDamageEffectApplicable
 {
-    [field : SerializeField] public int MaxHealth { get; set; }
+	// Base Enemy Variables
+	[field : SerializeField] public int MaxHealth { get; set; }
 	[field: SerializeField] public int CurrentHealth { get; set; }
-    public bool IsFacingRight { get; set; } = true;
-	[field: SerializeField] public bool IsWithinStrikingDistance { get; set; }
-    [field: SerializeField] public float AttackRange { get; set; } = 5f;
-	[field: SerializeField] public float MoveSpeed { get; set; }
 	[field: SerializeField] public LayerMask Obstacles { get; set; }
 	[field: SerializeField] public Vector2Variable PlayerPos { get; set; }
-	[field: SerializeField] public float AttackDuration { get; set; }
-    [field: SerializeField] public float AttackCooldown { get; set; }
-    public float attackCooldownTimer;
 	[field: SerializeField] public float InitTime { get; set; }
 	[field: SerializeField] public float DieTime { get; set; }
+
 	[field: SerializeField] protected EnemyTypeEvent onEnemyDown;
-	[field: SerializeField] public PatrolArea patrolArea;
-	public bool IsEnemyInteractable { get; set; }
+
+	[HideInInspector]
+	public Animator animator;
+
+
+	// implement interface ITriggerCheckable 
+	[HideInInspector] public bool IsWithinStrikingDistance { get; set; }
+    [field: SerializeField] public float AttackRange { get; set; }
+
+
+	// implement interface IEnemyMove
+	[field: SerializeField] public float MoveSpeed { get; set; }
+    public bool IsFacingRight { get; set; } = true;
 	public Rigidbody2D RB { get; set; }
-	public Animator _animator;
 
-	public bool IsExplodedInteractable { get; set; } = true;
 
-	#region State Machine Variables
+	// implement interface IEnemyInteractable
+	public bool IsEnemyInteractable { get; set; }
+
+
+	// implement interface IExplodedInteractable
+	public bool CanExplodeInteractable { get; set; } = true;
+
 	public EnemyStateMachine StateMachine { get; set; }
-    public EnemyIdleState IdleState { get; set; }
-    public EnemyChaseState ChaseState { get; set; }
-    public EnemyAttackState AttackState { get; set; }
-	public EnemyInitState InitState { get; set; }
-	public EnemyDieState DieState { get; set; }
-	public EnemyHurtState HurtState { get; set; }
-	public EnemyPatrolState PatrolState { get; set; }
-	#endregion
 
-	#region Idle Variables
+	/// <summary>
+	/// Function -----------------------------------------------
+	/// </summary>
 
-	#endregion
-	private void Awake()
-    {
-        StateMachine = new EnemyStateMachine();
-        IdleState = new EnemyIdleState(this, StateMachine);
-        ChaseState = new EnemyChaseState(this, StateMachine);
-        AttackState = new EnemyAttackState(this, StateMachine);
-		InitState = new EnemyInitState(this, StateMachine);
-		DieState = new EnemyDieState(this, StateMachine);
-		HurtState = new EnemyHurtState(this, StateMachine);
-		PatrolState = new EnemyPatrolState(this, StateMachine);
-	}
-
-    private void Start()
-    {
-		CurrentHealth = MaxHealth;
-		IsEnemyInteractable = true;
-		RB = GetComponent<Rigidbody2D>();
-		_animator = GetComponent<Animator>();
-
-		if (patrolArea != null)
+	#region Functions Base
+	public void CheckForFlip()
+	{
+		if (RB.velocity.x != 0)
 		{
-			Debug.Log(patrolArea.patrolPoints.Count);
-			for (int i = 0; i < patrolArea.patrolPoints.Count; i++)
+			if (RB.velocity.x > 0 && !IsFacingRight)
 			{
-				Debug.Log(patrolArea.patrolPoints[i].position);
+				Flip();
 			}
-		}
-		StateMachine.Initialize(PatrolState);
-	}
-
-	private void Update()
-    {
-        StateMachine.CurrentState.FrameUpdate();
-        CheckForFlip();
-        UpdateAttackCoolDown();
-	}
-
-    private void FixedUpdate()
-    {
-        StateMachine.CurrentState.PhysicsUpdate();
-    }
-
-	public void OnEnemyBulletHit(float damage)
-	{
-		CurrentHealth -= (int)damage;
-		_animator.SetBool("isDamaged", true);
-
-
-		if (StateMachine.CurrentState != HurtState && (StateMachine.CurrentState == IdleState || StateMachine.CurrentState == ChaseState))
-		{
-			StateMachine.ChangeState(HurtState);
-		}
-
-		if (CurrentHealth <= 0 && StateMachine.CurrentState != DieState)
-		{
-			Die();
-		}
-	}
-
-	public void OnExplode()
-	{
-		StopAllCoroutines();
-		_animator.SetBool("isDamaged", true);
-		Die();
-	}
-
-	public void SetAnimationIdleAffterHurt()
-	{
-		_animator.SetBool("isDamaged", false);
-	}
-
-	public virtual void Die()
-    {
-		StateMachine.ChangeState(DieState);
-	}
-
-    public virtual void Attack()
-    {
-
-    }
-
-    public void UpdateAttackCoolDown()
-    {
-        if (attackCooldownTimer < AttackCooldown)
-        {
-			attackCooldownTimer += Time.deltaTime;
-		}
-    }
-
-    public bool CheckFinishAttackCoolDown()
-    {
-        if(attackCooldownTimer >= AttackCooldown)
-		{
-			return true;
+			else if (RB.velocity.x < 0 && IsFacingRight)
+			{
+				Flip();
+			}
 		}
 		else
 		{
-			return false;
-		}
-	}
-
-    public void CheckForFlip()
-    {
-	    if (RB.velocity.x != 0)
-	    {
-		    if (RB.velocity.x > 0 && !IsFacingRight)
-		    {
-			    Flip();
-		    }
-		    else if (RB.velocity.x < 0 && IsFacingRight)
-		    {
-			    Flip();
-		    }
-	    }
-	    else
-	    {
 			if (PlayerPos.CurrentValue.x > transform.position.x && !IsFacingRight)
 			{
 				Flip();
@@ -164,19 +67,13 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 				Flip();
 			}
 		}
-    }
+	}
 
-    public void Flip()
-    {
-	    IsFacingRight = !IsFacingRight;
-	    transform.Rotate(0f, 180f, 0f);
-    }
-    
-    public virtual void MoveEnemy(Vector2 velocity)
-    {
-        RB.velocity = velocity;
-        CheckForLeftOrRightFacing(velocity);
-    }
+	public void Flip()
+	{
+		IsFacingRight = !IsFacingRight;
+		transform.Rotate(0f, 180f, 0f);
+	}
 
 	public float Vector2ToAngle(Vector2 direction)
 	{
@@ -191,7 +88,55 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
 
 		return angleInDegrees;
 	}
+	
 
+	public bool CheckRaycastAttack()
+	{
+		Vector2 distance = PlayerPos.CurrentValue - (Vector2)transform.position;
+		Vector2 direction = distance.normalized;
+
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles);
+
+		if (hit.collider != null)
+		{
+			float distanceToObstacle = hit.distance;
+			if (distanceToObstacle < distance.magnitude)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+
+		return true;
+	}
+	#endregion
+
+
+
+	// implement interface IEnemyInteractable
+	public virtual void OnEnemyBulletHit(float damage)
+	{
+		
+	}
+
+
+	// implement interface IExplodedInteractable
+	public virtual void OnExplode(float damage)
+	{
+
+	}
+
+
+	// implement interface IEnemyMove
+	#region IEnemyMovable
+	public virtual void MoveEnemy(Vector2 velocity)
+	{
+		RB.velocity = velocity;
+		CheckForLeftOrRightFacing(velocity);
+	}
 
 	public void CheckForLeftOrRightFacing(Vector2 velocity)
     {
@@ -208,52 +153,30 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
             IsFacingRight = !IsFacingRight;
         }
     }
+	#endregion
 
-	public virtual void CheckForChangeAttackState()
+
+	// implement interface IDamageEffectApplicable
+	public void Accept(IDamageEffectVisitor visitor)
 	{
-		if (IsWithinStrikingDistance && CheckFinishAttackCoolDown())
-		{
-			Vector2 direction = (PlayerPos.CurrentValue - (Vector2)transform.position).normalized;
-			if(CheckRaycastAttack())
-			{
-				StateMachine.ChangeState(AttackState);
-			}
-		}
+		visitor.Visit(this);
 	}
 
-	public bool CheckRaycastAttack()
-	{
-		Vector2 distance = PlayerPos.CurrentValue - (Vector2)transform.position;
-		Vector2 direction = distance.normalized;
 
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, AttackRange, Obstacles);
+	// implement interface ITriggerCheckable
+	public void SetStrikingDistanceBool(bool isWithinStrikingDistance)
+    {
+        IsWithinStrikingDistance = isWithinStrikingDistance;
+    }
 
-		if(hit.collider != null)
-		{
-			float distanceToObstacle = hit.distance;
-			if (distanceToObstacle < distance.magnitude)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-
-		return true;
-	}
 
 	#region Animation Triggers
 	private void AnimationTriggerEvent(AnimationTriggerType triggerType)
     {
         StateMachine.CurrentState.AnimationTriggerEvent(triggerType);
     }
-    #region Trigger Check
-    public void SetStrikingDistanceBool(bool isWithinStrikingDistance)
-    {
-        IsWithinStrikingDistance = isWithinStrikingDistance;
-    }
+	#region Trigger Check
+
     #endregion
 
     public enum AnimationTriggerType
@@ -263,7 +186,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMove, ITriggerCheckable, 
     }
 	#endregion
 
-	public void OnDrawGizmos()
+	public virtual void OnDrawGizmos()
 	{
 		Gizmos.DrawWireSphere(transform.position, AttackRange);
 

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class OpenUIBlockInputPlayer : MonoBehaviour
 {
+	public VoidEvent onOpenUI;
 	private void OnEnable()
 	{
 		GameManager.Instance.isOpenUI = true;
+		onOpenUI?.Raise(new Void());
 	}
 
 	private void OnDisable()
