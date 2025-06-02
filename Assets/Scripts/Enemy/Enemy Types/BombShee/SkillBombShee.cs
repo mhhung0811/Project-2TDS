@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class SkillBombShee : MonoBehaviour
 {
-    private Animator _ani;
+    public LayerMask bulletPlayer;
+    public float radius;
+
+    private Animator ani;
+    private bool isScreeching = false;
 	private void Awake()
 	{
-		_ani = GetComponent<Animator>();
+		ani = GetComponent<Animator>();
 	}
 
     void Start()
@@ -17,27 +21,47 @@ public class SkillBombShee : MonoBehaviour
 
     void Update()
     {
-        
-    }
+        if(isScreeching)
+		{
+			DestroyBulletPlayerInRange();
+		}
+	}
+
+    private void DestroyBulletPlayerInRange()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, bulletPlayer);
+		foreach (Collider2D collider in colliders)
+		{
+			Projectile projectile = collider.GetComponent<Projectile>();
+            if(projectile != null)
+            {
+                projectile.settings.flyweightEvent.Raise(projectile);
+			}
+		}
+	}
 
     public void StartScreech()
     {
-        _ani.SetBool("IsStart", true);
+        ani.SetBool("IsStart", true);
+        isScreeching = true;
 	}
 
     public void LoopScreech()
     {
-		_ani.SetBool("IsLoop", true);
+		ani.SetBool("IsLoop", true);
+		isScreeching = true;
 	}
 
     public void EndScreech()
     {
-		_ani.SetBool("IsStart", false);
-		_ani.SetBool("IsLoop", false);
+		ani.SetBool("IsStart", false);
+		ani.SetBool("IsLoop", false);
+        isScreeching = false;
 	}
 
-    public void VfxBullet()
-    {
-        _ani.SetBool("IsBullet", true);
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.blue;
+		Gizmos.DrawWireSphere(transform.position, radius);
 	}
 }
