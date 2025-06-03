@@ -13,12 +13,14 @@ public class WallMongerMoveState : WallMongerState
 	{
 		base.Enter();
 		boss.animator.SetBool("Move", true);
+		boss.vfx.PlayVFXAttack();
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
 		boss.animator.SetBool("Move", false);
+		boss.vfx.ExitVFXAttack();
 	}
 
 	public override void FrameUpdate()

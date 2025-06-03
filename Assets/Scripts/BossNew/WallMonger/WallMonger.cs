@@ -8,8 +8,20 @@ public class WallMonger : MonoBehaviour
 	#endregion
 
 	#region Boss Components
+	[HideInInspector]
 	public Animator animator;
+	[HideInInspector]
 	public Rigidbody2D rb;
+	[HideInInspector]
+	public WallMongerVFX vfx;
+	[HideInInspector]
+	public Collider2D col;
+
+	public GameObject colliderAlive;
+	public GameObject colliderDie;
+
+	[HideInInspector]
+	public SpriteRenderer spriteRenderer;
 	#endregion
 
 	#region State Machine
@@ -19,6 +31,7 @@ public class WallMonger : MonoBehaviour
 	public WallMongerMoveState moveState;
 	public WallMongerJumpState jumpState;
 	public WallMongerSkillState skillState;
+	public WallMongerDieState dieState;
 	#endregion
 
 	private void Awake()
@@ -26,6 +39,9 @@ public class WallMonger : MonoBehaviour
 		// Get Components
 		animator = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
+		vfx = GetComponent<WallMongerVFX>();
+		col = GetComponent<Collider2D>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 
 		// Initialize State Machine
 		stateMachine = new WallMongerStateMachine();
@@ -34,6 +50,7 @@ public class WallMonger : MonoBehaviour
 		moveState = new WallMongerMoveState(this, stateMachine);
 		jumpState = new WallMongerJumpState(this, stateMachine);
 		skillState = new WallMongerSkillState(this, stateMachine);
+		dieState = new WallMongerDieState(this, stateMachine);
 		stateMachine.Initialize(initState);
 	}
 
@@ -88,6 +105,13 @@ public class WallMonger : MonoBehaviour
 	{
 		Debug.Log("Chuyển sang trạng thái Skill");
 		stateMachine.ChangeState(skillState);
+	}
+
+	[ContextMenu("Die State")]
+	public void DebugDieState()
+	{
+		Debug.Log("Chuyển sang trạng thái Die");
+		stateMachine.ChangeState(dieState);
 	}
 	#endregion
 
