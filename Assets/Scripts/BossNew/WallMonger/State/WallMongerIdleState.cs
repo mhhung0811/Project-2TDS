@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WallMongerIdleState : WallMongerState
 {
+	private float timeExitState = 1f;
 	public WallMongerIdleState(WallMonger boss, WallMongerStateMachine stateMachine) : base(boss, stateMachine)
 	{
 
@@ -13,6 +14,8 @@ public class WallMongerIdleState : WallMongerState
 	{
 		base.Enter();
 		boss.animator.SetBool("Idle", true);
+
+		boss.StartCoroutine(DelayChangeState());
 	}
 
 	public override void Exit()
@@ -29,5 +32,11 @@ public class WallMongerIdleState : WallMongerState
 	public override void PhysicsUpdate()
 	{
 		base.PhysicsUpdate();
+	}
+
+	private IEnumerator DelayChangeState()
+	{
+		yield return new WaitForSeconds(timeExitState);
+		stateMachine.ChangeState(boss.jumpState);
 	}
 }

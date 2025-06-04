@@ -19,6 +19,7 @@ public class WallMonger : MonoBehaviour
 
 	public GameObject colliderAlive;
 	public GameObject colliderDie;
+	public FlyweightTypeVector2FloatEvent takeBulletEvent;
 
 	[HideInInspector]
 	public SpriteRenderer spriteRenderer;
@@ -68,6 +69,22 @@ public class WallMonger : MonoBehaviour
 	private void FixedUpdate()
 	{
 		stateMachine.CurrentState.PhysicsUpdate();
+	}
+
+
+
+	public float Vector2ToAngle(Vector2 direction)
+	{
+		float angleInRadians = Mathf.Atan2(direction.y, direction.x);
+
+		float angleInDegrees = angleInRadians * Mathf.Rad2Deg;
+
+		if (angleInDegrees < 0)
+		{
+			angleInDegrees += 360f;
+		}
+
+		return angleInDegrees;
 	}
 
 
