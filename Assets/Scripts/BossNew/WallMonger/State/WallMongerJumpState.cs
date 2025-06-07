@@ -40,10 +40,10 @@ public class WallMongerJumpState : WallMongerState
 		// Spawn bullet
 		float angle = boss.Vector2ToAngle(Vector2.down);
 		Vector2 posStart = new Vector2(boss.transform.position.x - 8.0f, boss.transform.position.y - 1.8f);
-		float offsetY = width / (bulletCount - 1);
+		float offsetX = width / (bulletCount - 1);
 		for (int i =0;i < bulletCount; i++)
 		{
-			Vector2 posSpawn = posStart + Vector2.right * (i * offsetY);
+			Vector2 posSpawn = posStart + Vector2.right * (i * offsetX);
 			boss.takeBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawn, angle));
 
 			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide , posSpawn, Quaternion.identity);
@@ -53,7 +53,11 @@ public class WallMongerJumpState : WallMongerState
 	private IEnumerator DelayAttack()
 	{
 		yield return new WaitForSeconds(1.1f);
-		Attack();
+		for (int i = 0; i < 4; i++)
+		{
+			Attack();
+			yield return new WaitForSeconds(0.15f);
+		}
 		stateMachine.ChangeState(boss.idleState);
 	}
 }

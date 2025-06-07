@@ -18,7 +18,7 @@ public class ShotGunBullet : Projectile
 			return;
 		}
 
-		if (collision.gameObject.CompareTag("Wall"))
+		if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Boss"))
 		{
 			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
 			settings.flyweightEvent.Raise(this);

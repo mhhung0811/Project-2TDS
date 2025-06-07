@@ -15,7 +15,7 @@ public class WallMongerIdleState : WallMongerState
 		base.Enter();
 		boss.animator.SetBool("Idle", true);
 
-		boss.StartCoroutine(DelayChangeState());
+		boss.StartCoroutine(ControllerState());
 	}
 
 	public override void Exit()
@@ -27,6 +27,8 @@ public class WallMongerIdleState : WallMongerState
 	public override void FrameUpdate()
 	{
 		base.FrameUpdate();
+
+		
 	}
 
 	public override void PhysicsUpdate()
@@ -34,9 +36,17 @@ public class WallMongerIdleState : WallMongerState
 		base.PhysicsUpdate();
 	}
 
-	private IEnumerator DelayChangeState()
+	private IEnumerator ControllerState()
 	{
 		yield return new WaitForSeconds(timeExitState);
-		stateMachine.ChangeState(boss.jumpState);
+
+		if(boss.canUseSkill)
+		{
+			boss.UseSkill();
+		}
+		else
+		{
+			stateMachine.ChangeState(boss.moveState);
+		}
 	}
 }

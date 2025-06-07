@@ -16,7 +16,10 @@ public class WallMongerDieState : WallMongerState
 		boss.vfx.PlayVFXDie();
 
 		// Delay Do die
+		boss.StopAllCoroutines();
+		boss.PlayFlashWhite();
 		boss.StartCoroutine(DoDelayDieState());
+		boss.colliderRangeMovePlayer.SetActive(false);
 	}
 
 	public override void Exit()
@@ -50,5 +53,7 @@ public class WallMongerDieState : WallMongerState
 
 		// Set OrderinLayer
 		boss.spriteRenderer.sortingOrder = 10;
+
+		boss.cameraBoss.SetActive(false);
 	}
 }

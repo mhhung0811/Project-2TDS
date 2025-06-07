@@ -16,12 +16,16 @@ public class WallMongerInitState : WallMongerState
 		boss.animator.SetBool("Init", true);
 
 		boss.StartCoroutine(DelayExitState());
+		boss.cameraBossInit.SetActive(true);
+		boss.cameraBoss.gameObject.SetActive(false);
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
 		boss.animator.SetBool("Init", false);
+		boss.cameraBossInit.SetActive(false);
+		boss.cameraBoss.gameObject.SetActive(true);
 	}
 
 	public override void FrameUpdate()

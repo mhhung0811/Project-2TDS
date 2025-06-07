@@ -1,10 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class WallMonger : MonoBehaviour
+public class WallMonger : MonoBehaviour, IEnemyInteractable
 {
 	#region Boss Properties
+	public FloatVariable maxHealth;
+	public FloatVariable currentHealth;
+	public float moveSpeed;
+
+	[HideInInspector]
+	public bool canUseSkill = true;
+	public float timeToUseSkill = 10f;
+	private float cooldownSkill = 10f;
+	#endregion
+
+	#region Interface variables
+	public bool IsEnemyInteractable { get; set; } = true;
 	#endregion
 
 	#region Boss Components
@@ -20,6 +33,11 @@ public class WallMonger : MonoBehaviour
 	public GameObject colliderAlive;
 	public GameObject colliderDie;
 	public FlyweightTypeVector2FloatEvent takeBulletEvent;
+	public Material damageFlashMAT;
+	public List<Transform> listSpawnPos;
+	public GameObject cameraBoss;
+	public GameObject cameraBossInit;
+	public GameObject colliderRangeMovePlayer;
 
 	[HideInInspector]
 	public SpriteRenderer spriteRenderer;
@@ -55,23 +73,26 @@ public class WallMonger : MonoBehaviour
 		stateMachine.Initialize(initState);
 	}
 
-
 	private void Start()
 	{
 
+		// Set up Skill
+		cooldownSkill = timeToUseSkill;
+		canUseSkill = false;
 	}
 
 	private void Update()
 	{
 		stateMachine.CurrentState.FrameUpdate();
+
+		// Update cooldown for skill usage
+		UpdateCoolDownSkill();
 	}
 
 	private void FixedUpdate()
 	{
 		stateMachine.CurrentState.PhysicsUpdate();
 	}
-
-
 
 	public float Vector2ToAngle(Vector2 direction)
 	{
@@ -85,6 +106,85 @@ public class WallMonger : MonoBehaviour
 		}
 
 		return angleInDegrees;
+	}
+
+	public void OnEnemyBulletHit(float damge)
+	{
+		if(stateMachine.CurrentState == initState || stateMachine.CurrentState == dieState || !IsEnemyInteractable) return;
+
+		currentHealth.CurrentValue = currentHealth.CurrentValue - damge;
+		StartCoroutine(FlashWhite());
+
+		if (currentHealth.CurrentValue <= 0)
+		{
+			stateMachine.ChangeState(dieState);
+		}
+	}
+
+	public void UseSkill()
+	{
+		// reset cooldown
+		cooldownSkill = timeToUseSkill;
+		canUseSkill = false;
+
+		stateMachine.ChangeState(skillState);
+	}
+
+	private void UpdateCoolDownSkill()
+	{
+		if(cooldownSkill <= 0f) return;
+
+		cooldownSkill -= Time.deltaTime;
+
+		if(cooldownSkill <= 0)
+		{
+			cooldownSkill = 0f;
+			canUseSkill = true;
+		}
+	}
+
+	#region Spawn Bullets
+	public void SpawnABulletLine(Vector2 posStart, int bulletCount, float width)
+	{
+		float angle = Vector2ToAngle(Vector2.down);
+		float offsetX = width / (bulletCount - 1);
+		for (int i = 0; i < bulletCount; i++)
+		{
+			Vector2 posSpawn = posStart + Vector2.right * (i * offsetX);
+			takeBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawn, angle));
+
+			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, posSpawn, Quaternion.identity);
+		}
+	}
+
+	public void SpawnArcBullets(Vector2 pos, Vector2 direction, float totalAngle, int bulletCount)
+	{
+		float startAngle = -totalAngle / 2f;
+		float stepAngle = totalAngle / (bulletCount - 1);
+
+		for (int i = 0; i < bulletCount; i++)
+		{
+			float angle = startAngle + i * stepAngle;
+
+			takeBulletEvent.Raise((
+				FlyweightType.EnemyBullet,
+				pos,
+				Vector2ToAngle(direction) + angle
+			));
+		}
+	}
+	#endregion
+
+	public void PlayFlashWhite()
+	{
+		StartCoroutine(FlashWhite());
+	}
+
+	private IEnumerator FlashWhite()
+	{
+		damageFlashMAT.SetFloat("_FlashAmount", 0.5f);
+		yield return new WaitForSeconds(0.1f);
+		damageFlashMAT.SetFloat("_FlashAmount", 0f);
 	}
 
 
@@ -134,6 +234,10 @@ public class WallMonger : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
-		
+		foreach (Transform pos in listSpawnPos)
+		{
+			Gizmos.color = Color.green;
+			Gizmos.DrawSphere(pos.position, 0.1f);
+		}
 	}
 }
