@@ -12,11 +12,13 @@ public class WallMongerDieState : WallMongerState
 	public override void Enter()
 	{
 		base.Enter();
+		boss.animator.SetBool("Idle", false);
 		boss.animator.SetBool("Die", true);
 		boss.vfx.PlayVFXDie();
-
+		
 		// Delay Do die
 		boss.StopAllCoroutines();
+
 		boss.PlayFlashWhite();
 		boss.StartCoroutine(DoDelayDieState());
 		boss.colliderRangeMovePlayer.SetActive(false);
