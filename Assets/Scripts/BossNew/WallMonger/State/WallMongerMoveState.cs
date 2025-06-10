@@ -6,7 +6,6 @@ using static UnityEditor.PlayerSettings;
 
 public class WallMongerMoveState : WallMongerState
 {
-	private float timeExitState = 5f;
 	private Vector2 moveDirection;
 	public WallMongerMoveState(WallMonger boss, WallMongerStateMachine stateMachine) : base(boss, stateMachine)
 	{
