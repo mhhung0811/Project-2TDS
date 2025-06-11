@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighPriestShieldState : HighPriestState
+public class HighPriestFireState : HighPriestState
 {
-	public HighPriestShieldState(HighPriest highPriest, HighPriestStateMachine stateMachine) : base(highPriest, stateMachine)
+	public HighPriestFireState(HighPriest highPriest, HighPriestStateMachine stateMachine) : base(highPriest, stateMachine)
 	{
 
 	}
@@ -18,7 +18,7 @@ public class HighPriestShieldState : HighPriestState
 	public override void Exit()
 	{
 		base.Exit();
-		boss.animator.SetBool("Shield", false);
+		boss.animator.SetBool("Fire", false);
 	}
 
 	public override void FrameUpdate()
@@ -37,7 +37,7 @@ public class HighPriestShieldState : HighPriestState
 		boss.animator.SetBool("Attack", true);
 		yield return new WaitForSeconds(0.5f);
 		boss.animator.SetBool("Attack", false);
-		boss.animator.SetBool("Shield", true);
+		boss.animator.SetBool("Fire", true);
 	}
 }
 

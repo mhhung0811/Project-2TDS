@@ -34,6 +34,7 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	public HighPriestGunState gunState;
 	public HighPriestShieldState shieldState;
 	public HighPriestDissolveState dissolveState;
+	public HighPriestFireState fireState;
 	#endregion
 	#region Unity Functions 
 	private void Awake()
@@ -50,6 +51,7 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 		gunState = new HighPriestGunState(this, stateMachine);
 		shieldState = new HighPriestShieldState(this, stateMachine);
 		dissolveState = new HighPriestDissolveState(this, stateMachine);
+		fireState = new HighPriestFireState(this, stateMachine);
 
 		stateMachine.Initialize(initState);
 	}
@@ -143,6 +145,13 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	{
 		Debug.Log("Chuyển sang trạng thái Dissolve");
 		stateMachine.ChangeState(dissolveState);
+	}
+
+	[ContextMenu("Fire State")]
+	public void DebugFireState()
+	{
+		Debug.Log("Chuyển sang trạng thái Fire");
+		stateMachine.ChangeState(fireState);
 	}
 	#endregion
 
