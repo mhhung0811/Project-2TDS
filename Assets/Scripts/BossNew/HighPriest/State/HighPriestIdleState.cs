@@ -13,6 +13,7 @@ public class HighPriestIdleState : HighPriestState
 	{
 		base.Enter();
 		boss.animator.SetBool("Idle", true);
+		boss.StartCoroutine(ControllerState());
 	}
 
 	public override void Exit()
@@ -31,6 +32,12 @@ public class HighPriestIdleState : HighPriestState
 	public override void PhysicsUpdate()
 	{
 		base.PhysicsUpdate();
+	}
+
+	private IEnumerator ControllerState()
+	{
+		yield return new WaitForSeconds(1f);
+		stateMachine.ChangeState(boss.fireState);
 	}
 }
 

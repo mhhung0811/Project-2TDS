@@ -23,6 +23,9 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	[HideInInspector]
 	public Collider2D col;
 	public Material damageFlashMAT;
+	public FlyweightTypeVector2FloatEvent takeBulletEvent;
+	public Transform fireLeft;
+	public Transform fireRight;
 	#endregion
 
 	#region State Machine
@@ -70,6 +73,37 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 		
 	}
 	#endregion
+
+	public float Vector2ToAngle(Vector2 direction)
+	{
+		float angleInRadians = Mathf.Atan2(direction.y, direction.x);
+
+		float angleInDegrees = angleInRadians * Mathf.Rad2Deg;
+
+		if (angleInDegrees < 0)
+		{
+			angleInDegrees += 360f;
+		}
+
+		return angleInDegrees;
+	}
+
+	public void SpawnArcBullets(Vector2 pos, Vector2 direction, float totalAngle, int bulletCount)
+	{
+		float startAngle = -totalAngle / 2f;
+		float stepAngle = totalAngle / (bulletCount - 1);
+
+		for (int i = 0; i < bulletCount; i++)
+		{
+			float angle = startAngle + i * stepAngle;
+
+			takeBulletEvent.Raise((
+				FlyweightType.EnemyBullet,
+				pos,
+				Vector2ToAngle(direction) + angle
+			));
+		}
+	}
 
 	public void OnEnemyBulletHit(float damge)
 	{
