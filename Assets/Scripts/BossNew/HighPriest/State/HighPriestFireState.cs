@@ -69,7 +69,7 @@ public class HighPriestFireState : HighPriestState
 	private void SpawnBulletDirRandom(Vector2 pos)
 	{
 		float angle = Random.Range(0f, 360f);
-		boss.takeBulletEvent.Raise((FlyweightType.EnemyBullet, pos, angle));
+		boss.takeBulletFunc.GetFunction()((FlyweightType.EnemyBullet, pos, angle));
 	}
 
 	private IEnumerator CoroutineTimeOutState()
@@ -110,7 +110,7 @@ public class HighPriestFireState : HighPriestState
 				angle -= angleStep;
 			}
 
-			boss.takeBulletEvent.Raise((FlyweightType.EnemyBullet, pos, angle));
+			boss.takeBulletFunc.GetFunction()((FlyweightType.EnemyBullet, pos, angle));
 
 			yield return new WaitForSeconds(time);
 		}

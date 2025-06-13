@@ -23,7 +23,7 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	[HideInInspector]
 	public Collider2D col;
 	public Material damageFlashMAT;
-	public FlyweightTypeVector2FloatEvent takeBulletEvent;
+	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
 	public Transform fireLeft;
 	public Transform fireRight;
 	#endregion
@@ -97,7 +97,7 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 		{
 			float angle = startAngle + i * stepAngle;
 
-			takeBulletEvent.Raise((
+			takeBulletFunc.GetFunction()((
 				FlyweightType.EnemyBullet,
 				pos,
 				Vector2ToAngle(direction) + angle

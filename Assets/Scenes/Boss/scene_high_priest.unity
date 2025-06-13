@@ -546,7 +546,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   col: {fileID: 0}
   damageFlashMAT: {fileID: 2100000, guid: b09d076b1484b2d418d8161d7c12df7a, type: 2}
-  takeBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
+  takeBulletFunc: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}
   fireLeft: {fileID: 262443282}
   fireRight: {fileID: 1890195143}
 --- !u!61 &294836430
