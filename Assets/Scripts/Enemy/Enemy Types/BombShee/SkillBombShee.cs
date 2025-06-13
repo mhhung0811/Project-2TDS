@@ -35,7 +35,7 @@ public class SkillBombShee : MonoBehaviour
 			Projectile projectile = collider.GetComponent<Projectile>();
             if(projectile != null)
             {
-                projectile.settings.flyweightEvent.Raise(projectile);
+                projectile.settings.flyweightFunc.GetFunction()(projectile);
 			}
 		}
 	}

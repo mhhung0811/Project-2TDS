@@ -85,7 +85,7 @@ public class BulletTailWhip : Projectile
 	public IEnumerator DestroyOvertime()
 	{
 		yield return new WaitForSeconds(destroyTime);
-		settings.flyweightEvent.Raise(this);
+		settings.flyweightFunc.GetFunction()(this);
 	}
 
 	public void OnTriggerEnter2D(Collider2D collision)
@@ -97,7 +97,7 @@ public class BulletTailWhip : Projectile
 			{
 				Debug.Log("TailWhip");
 				EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
-				settings.flyweightEvent.Raise(this);
+				settings.flyweightFunc.GetFunction()(this);
 				player.OnPlayerBulletHit();
 				StopAllCoroutines();
 			}
@@ -107,7 +107,7 @@ public class BulletTailWhip : Projectile
 		if (collision.gameObject.CompareTag("Wall") && canDestroyWithWall)
 		{
 			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
-			settings.flyweightEvent.Raise(this);
+			settings.flyweightFunc.GetFunction()(this);
 			StopAllCoroutines();
 			return;
 		}
