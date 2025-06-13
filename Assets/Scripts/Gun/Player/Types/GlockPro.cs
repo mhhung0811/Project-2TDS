@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GlockPro : GunBase
 {
-	public FlyweightTypeVector2FloatEvent takeBulletEvent;
+	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
 	public VoidEvent playerShootEvent;
 
 	public override void Shoot(float angle)
 	{
 		if (!CanShoot()) return;
 
-		takeBulletEvent.Raise((FlyweightType.GlockProBullet, new Vector2(this.transform.position.x, this.transform.position.y + 0.25f), angle));
+		takeBulletFunc.GetFunction()((FlyweightType.GlockProBullet, new Vector2(this.transform.position.x, this.transform.position.y + 0.25f), angle));
 
 		currentAmmo--;
 		UpdateLastShootTime();

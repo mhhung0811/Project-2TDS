@@ -1219,7 +1219,7 @@ MonoBehaviour:
   col: {fileID: 0}
   colliderAlive: {fileID: 1428043240746585568}
   colliderDie: {fileID: 7469011481323367487}
-  takeBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
+  takeBulletFunc: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}
   damageFlashMAT: {fileID: 2100000, guid: b09d076b1484b2d418d8161d7c12df7a, type: 2}
   listSpawnPos:
   - {fileID: 1243102751508666605}

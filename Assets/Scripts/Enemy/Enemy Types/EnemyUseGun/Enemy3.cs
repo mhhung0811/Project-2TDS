@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy3 : EnemyUseGun
 {
-	public FlyweightTypeVector2FloatEvent spawnBulletEvent;
+	public GameObjectFlyweightTypeVector2FloatFuncProvider spawnBulletFunc;
 
 	public Animator animatorGun;
 
@@ -37,13 +37,13 @@ public class Enemy3 : EnemyUseGun
 
 			Vector2 posSpawnBullet = new Vector2(transform.position.x, transform.position.y) + direction * 1f;
 
-			spawnBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawnBullet, angle));
-			spawnBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawnBullet, angle + 10f));
-			spawnBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawnBullet, angle - 10f));
-			spawnBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawnBullet, angle + 5f));
-			spawnBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawnBullet, angle - 5f));
-			spawnBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawnBullet, angle + 15f));
-			spawnBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawnBullet, angle - 15f));
+			spawnBulletFunc.GetFunction()((FlyweightType.EnemyBullet, posSpawnBullet, angle));
+			spawnBulletFunc.GetFunction()((FlyweightType.EnemyBullet, posSpawnBullet, angle + 10f));
+			spawnBulletFunc.GetFunction()((FlyweightType.EnemyBullet, posSpawnBullet, angle - 10f));
+			spawnBulletFunc.GetFunction()((FlyweightType.EnemyBullet, posSpawnBullet, angle + 5f));
+			spawnBulletFunc.GetFunction()((FlyweightType.EnemyBullet, posSpawnBullet, angle - 5f));
+			spawnBulletFunc.GetFunction()((FlyweightType.EnemyBullet, posSpawnBullet, angle + 15f));
+			spawnBulletFunc.GetFunction()((FlyweightType.EnemyBullet, posSpawnBullet, angle - 15f));
 
 			yield return new WaitForSeconds(0.8f);
 		}

@@ -51,7 +51,7 @@ public class BossTailWhipState : BossState
 			float x = radius * Mathf.Cos(angle * Mathf.Deg2Rad);
 			float y = radius * Mathf.Sin(angle * Mathf.Deg2Rad);
 			Vector2 offset = new Vector2(x, y) + new Vector2(+1, -radius);
-			Boss.TakeBulletEvent.Raise((FlyweightType.TailWhipBullet, Boss.BossPos.CurrentValue + offset, 0));
+			Boss.TakeBulletFunc.GetFunction()((FlyweightType.TailWhipBullet, Boss.BossPos.CurrentValue + offset, 0));
 		}
 		yield return null;
 	}
