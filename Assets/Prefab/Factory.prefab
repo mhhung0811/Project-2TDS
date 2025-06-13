@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1492332218813845883}
   - component: {fileID: 4258327518646382260}
   - component: {fileID: 2168074826545911912}
-  - component: {fileID: 7417503984483236187}
   - component: {fileID: 3022636264809954789}
   - component: {fileID: 5957830766127141223}
   m_Layer: 0
@@ -138,22 +137,6 @@ MonoBehaviour:
   inUseEnemy: {fileID: 11400000, guid: 4be9a01bac10e8148bdae38d7384e235, type: 2}
   defaultCapacity: 10
   maxPoolSize: 100
---- !u!114 &7417503984483236187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3592139224148121317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 302c92c258614a38b4e9d5caabc4a540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Get Enemy
-  funcProvider: {fileID: 11400000, guid: fcfa6add6a68b934893e34c5f6106f72, type: 2}
-  func: {fileID: 2168074826545911912}
-  selectedMethod: SpawnEnemy
 --- !u!114 &3022636264809954789
 MonoBehaviour:
   m_ObjectHideFlags: 0
