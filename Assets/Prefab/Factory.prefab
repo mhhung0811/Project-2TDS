@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 1492332218813845883}
   - component: {fileID: 4258327518646382260}
   - component: {fileID: 2168074826545911912}
-  - component: {fileID: 7417503984483236187}
   - component: {fileID: 3022636264809954789}
+  - component: {fileID: 5957830766127141223}
+  - component: {fileID: 3906982891241502997}
+  - component: {fileID: 2090439404684738447}
   m_Layer: 0
   m_Name: Factory
   m_TagString: Untagged
@@ -137,22 +139,6 @@ MonoBehaviour:
   inUseEnemy: {fileID: 11400000, guid: 4be9a01bac10e8148bdae38d7384e235, type: 2}
   defaultCapacity: 10
   maxPoolSize: 100
---- !u!114 &7417503984483236187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3592139224148121317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 302c92c258614a38b4e9d5caabc4a540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Get Enemy
-  funcProvider: {fileID: 11400000, guid: fcfa6add6a68b934893e34c5f6106f72, type: 2}
-  func: {fileID: 2168074826545911912}
-  selectedMethod: SpawnEnemy
 --- !u!114 &3022636264809954789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,3 +155,51 @@ MonoBehaviour:
   funcProvider: {fileID: 11400000, guid: 20c83bbba3aeedd4988a709b75a5416d, type: 2}
   func: {fileID: 2168074826545911912}
   selectedMethod: ReleaseEnemy
+--- !u!114 &5957830766127141223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592139224148121317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b306f2baff443e4ab87ab78302af4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Get Enemy
+  funcProvider: {fileID: 11400000, guid: 8a5459ebc773ca24e9a6bada41d63506, type: 2}
+  func: {fileID: 2168074826545911912}
+  selectedMethod: SpawnEnemy
+--- !u!114 &3906982891241502997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592139224148121317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b01f44567ad4b60869fd1555148e15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Take Bullet
+  funcProvider: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}
+  func: {fileID: 3495036746688416300}
+  selectedMethod: Spawn
+--- !u!114 &2090439404684738447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592139224148121317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4727e34dc55f459cbf001abf0f0fe53c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Retrieve Bullet
+  funcProvider: {fileID: 11400000, guid: 3aa7bffda27e5bf4a9867fda7beef9bb, type: 2}
+  func: {fileID: 3495036746688416300}
+  selectedMethod: ReturnToPool

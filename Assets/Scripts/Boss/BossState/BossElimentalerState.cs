@@ -50,13 +50,13 @@ public class BossElimentalerState : BossState
 		for (int i = 0; i < 20; i++)
 		{
 
-			Boss.TakeBulletEvent.Raise((FlyweightType.CheeseBullet, Boss.BossPos.CurrentValue, angleStart - i * angleSpace - angleSpace / 3f));
-			Boss.TakeBulletEvent.Raise((FlyweightType.CheeseBullet, Boss.BossPos.CurrentValue, angleStart - i * angleSpace));
-			Boss.TakeBulletEvent.Raise((FlyweightType.CheeseBullet, Boss.BossPos.CurrentValue, angleStart - i * angleSpace + angleSpace / 3f));
+			Boss.TakeBulletFunc.GetFunction()((FlyweightType.CheeseBullet, Boss.BossPos.CurrentValue, angleStart - i * angleSpace - angleSpace / 3f));
+			Boss.TakeBulletFunc.GetFunction()((FlyweightType.CheeseBullet, Boss.BossPos.CurrentValue, angleStart - i * angleSpace + angleSpace / 3f));
+			Boss.TakeBulletFunc.GetFunction()((FlyweightType.CheeseBullet, Boss.BossPos.CurrentValue, angleStart - i * angleSpace));
 
-			Boss.TakeBulletEvent.Raise((FlyweightType.CheeseBulletPro, Boss.BossPos.CurrentValue, angleStart - i * angleSpace - angleSpace/ 3f));
-			Boss.TakeBulletEvent.Raise((FlyweightType.CheeseBulletPro, Boss.BossPos.CurrentValue, angleStart - i * angleSpace));
-			Boss.TakeBulletEvent.Raise((FlyweightType.CheeseBulletPro, Boss.BossPos.CurrentValue, angleStart - i * angleSpace + angleSpace/ 3f));
+			Boss.TakeBulletFunc.GetFunction()((FlyweightType.CheeseBulletPro, Boss.BossPos.CurrentValue, angleStart - i * angleSpace - angleSpace/ 3f));
+			Boss.TakeBulletFunc.GetFunction()((FlyweightType.CheeseBulletPro, Boss.BossPos.CurrentValue, angleStart - i * angleSpace));
+			Boss.TakeBulletFunc.GetFunction()((FlyweightType.CheeseBulletPro, Boss.BossPos.CurrentValue, angleStart - i * angleSpace + angleSpace/ 3f));
 			
 			yield return new WaitForSeconds(1f/40f);
 		}

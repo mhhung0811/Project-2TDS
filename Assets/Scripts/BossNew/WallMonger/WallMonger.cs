@@ -32,7 +32,7 @@ public class WallMonger : MonoBehaviour, IEnemyInteractable
 
 	public GameObject colliderAlive;
 	public GameObject colliderDie;
-	public FlyweightTypeVector2FloatEvent takeBulletEvent;
+	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
 	public Material damageFlashMAT;
 	public List<Transform> listSpawnPos;
 	public GameObject cameraBoss;
@@ -151,7 +151,7 @@ public class WallMonger : MonoBehaviour, IEnemyInteractable
 		for (int i = 0; i < bulletCount; i++)
 		{
 			Vector2 posSpawn = posStart + Vector2.right * (i * offsetX);
-			takeBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawn, angle));
+			takeBulletFunc.GetFunction()((FlyweightType.EnemyBullet, posSpawn, angle));
 
 			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, posSpawn, Quaternion.identity);
 		}
@@ -166,7 +166,7 @@ public class WallMonger : MonoBehaviour, IEnemyInteractable
 		{
 			float angle = startAngle + i * stepAngle;
 
-			takeBulletEvent.Raise((
+			takeBulletFunc.GetFunction()((
 				FlyweightType.EnemyBullet,
 				pos,
 				Vector2ToAngle(direction) + angle

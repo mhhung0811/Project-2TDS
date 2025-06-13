@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AssaultRifle : GunBase
 {
-	public FlyweightTypeVector2FloatEvent takeBulletEvent;
+	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
 	public VoidEvent playerShootEvent;
 
 	public override void Shoot(float angle)
@@ -13,7 +13,7 @@ public class AssaultRifle : GunBase
 
 		SetOffset(angle);
 
-		takeBulletEvent.Raise((FlyweightType.AssaultRifleBullet, new Vector2(this.transform.position.x + offsetX, this.transform.position.y + offsetY), angle));
+		takeBulletFunc.GetFunction()((FlyweightType.AssaultRifleBullet, new Vector2(this.transform.position.x + offsetX, this.transform.position.y + offsetY), angle));
 
 		currentAmmo--;
 		UpdateLastShootTime();

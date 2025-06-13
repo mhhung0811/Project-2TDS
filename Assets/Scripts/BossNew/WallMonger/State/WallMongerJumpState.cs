@@ -44,7 +44,7 @@ public class WallMongerJumpState : WallMongerState
 		for (int i =0;i < bulletCount; i++)
 		{
 			Vector2 posSpawn = posStart + Vector2.right * (i * offsetX);
-			boss.takeBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawn, angle));
+			boss.takeBulletFunc.GetFunction()((FlyweightType.EnemyBullet, posSpawn, angle));
 
 			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide , posSpawn, Quaternion.identity);
 		}

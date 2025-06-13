@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Gigi : EnemyUseGun
 {
-	public FlyweightTypeVector2FloatEvent spawnBulletEvent;
+	public GameObjectFlyweightTypeVector2FloatFuncProvider spawnBulletFunc;
 
 	public override void Attack()
 	{
@@ -26,6 +26,6 @@ public class Gigi : EnemyUseGun
 
 		float angle = Vector2ToAngle(direction);
 
-		spawnBulletEvent.Raise((FlyweightType.EnemyBullet, new Vector2(transform.position.x, transform.position.y), angle));
+		spawnBulletFunc.GetFunction()((FlyweightType.EnemyBullet, new Vector2(transform.position.x, transform.position.y), angle));
 	}
 }

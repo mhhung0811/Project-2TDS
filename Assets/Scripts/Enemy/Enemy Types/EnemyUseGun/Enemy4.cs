@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy4 : EnemyUseGun
 {
-	public FlyweightTypeVector2FloatEvent spawnBulletEvent;
+	public GameObjectFlyweightTypeVector2FloatFuncProvider spawnBulletFunc;
 
 	public Animator animatorGun;
 
@@ -37,7 +37,7 @@ public class Enemy4 : EnemyUseGun
 
 			Vector2 posSpawnBullet = new Vector2(transform.position.x, transform.position.y) + direction * 1f;
 
-			spawnBulletEvent.Raise((FlyweightType.EnemyBullet, posSpawnBullet, angle));
+			spawnBulletFunc.GetFunction()((FlyweightType.EnemyBullet, posSpawnBullet, angle));
 
 			yield return new WaitForSeconds(0.2f);
 		}

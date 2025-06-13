@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769b2f1ec2d145dcb489747182e4b17d, type: 3}
-  m_Name: GetEnemyFuncProvider
+  m_Script: {fileID: 11500000, guid: 8be8b12e8bf3465786a20d70bca3dc89, type: 3}
+  m_Name: RetrieveBulletFuncProvider
   m_EditorClassIdentifier: 

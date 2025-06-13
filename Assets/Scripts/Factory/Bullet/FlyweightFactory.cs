@@ -34,19 +34,29 @@ public class FlyweightFactory : MonoBehaviour
         return pool;
     }
     
-    public void Spawn((FlyweightType type, Vector2 position, float rotation) parameters)
+    public GameObject Spawn((FlyweightType type, Vector2 position, float rotation) parameters)
     {
 		Flyweight fw = GetPoolFor(parameters.type)?.Get();
-		if (fw == null) return;
+        if (fw == null)
+        {
+            Debug.LogError($"No pool found for type {parameters.type}. Please ensure the type is registered in the FlyweightFactory.");
+            return Instantiate(new GameObject());
+        }
 
 		fw.transform.SetParent(_flyweightPoolDictionary[parameters.type]);
 		fw.transform.position = parameters.position;
 		fw.transform.rotation = Quaternion.Euler(0, 0, parameters.rotation);
 
 		fw.gameObject.SetActive(true);
-	}
 
-	public void ReturnToPool(Flyweight f) => GetPoolFor(f.settings.type)?.Release(f);
+        return fw.gameObject;
+    }
+
+    public object ReturnToPool(Flyweight f)
+    {
+        GetPoolFor(f.settings.type)?.Release(f);
+        return null;
+    }
 
     private void Awake()
     {
