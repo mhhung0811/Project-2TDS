@@ -1,18 +1,19 @@
 ﻿public enum FlyweightType
 {
-  BasicBullet,
-  FloatBullet,
-  EnemyBullet,
-  SniperBullet,
-  TailWhipBullet,
-  EnemySniperBullet,
-  CheeseBullet,
-  CheeseBulletPro,
-  KunaiBullet,
-  AssaultRifleBullet,
-  GlockProBullet,
-  HighPriestFireBullet,
-  HighPriestAttackBullet,
+	BasicBullet,
+	FloatBullet,
+	EnemyBullet,
+	SniperBullet,
+	TailWhipBullet,
+	EnemySniperBullet,
+	CheeseBullet,
+	CheeseBulletPro,
+	KunaiBullet,
+	AssaultRifleBullet,
+	GlockProBullet,
+	HighPriestFireBullet,
+	HighPriestAttackBullet,
+	HighPriestShieldBullet,
 }
 
 public enum EffectType
