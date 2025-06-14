@@ -11,6 +11,8 @@
   KunaiBullet,
   AssaultRifleBullet,
   GlockProBullet,
+  HighPriestFireBullet,
+  HighPriestAttackBullet,
 }
 
 public enum EffectType

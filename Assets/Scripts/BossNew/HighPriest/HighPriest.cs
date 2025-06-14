@@ -26,6 +26,7 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
 	public Transform fireLeft;
 	public Transform fireRight;
+	public Vector2Variable playerPos;
 	#endregion
 
 	#region State Machine
@@ -86,6 +87,12 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 		}
 
 		return angleInDegrees;
+	}
+
+	public Vector2 AngleToVector2(float angleInDegrees)
+	{
+		float angleInRadians = angleInDegrees * Mathf.Deg2Rad;
+		return new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians));
 	}
 
 	public void SpawnArcBullets(Vector2 pos, Vector2 direction, float totalAngle, int bulletCount)
