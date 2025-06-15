@@ -14,7 +14,11 @@ public class AssaultRifle : GunBase
 		SetOffset(angle);
 
 		takeBulletFunc.GetFunction()((FlyweightType.AssaultRifleBullet, new Vector2(this.transform.position.x + offsetX, this.transform.position.y + offsetY), angle));
-
+		var pref = EffectManager.Instance.PlayEffect(EffectType.FxFlash1, 0.5f);
+		if (pref)
+		{
+			pref.transform.position = new Vector2(this.transform.position.x + offsetX, this.transform.position.y + offsetY);
+		}
 		currentAmmo--;
 		UpdateLastShootTime();
 		StateMachine.ChangeState(ShootingState);

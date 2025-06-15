@@ -15,18 +15,22 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	#endregion
 
 	#region Boss Components
-	[HideInInspector]
-	public Animator animator;
 	public Animator gunAnimator;
-	[HideInInspector]
-	public Rigidbody2D rb;
-	[HideInInspector]
-	public Collider2D col;
 	public Material damageFlashMAT;
+	public Material dissolveMAT;
 	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
 	public Transform fireLeft;
 	public Transform fireRight;
+	public Transform posGun;
 	public Vector2Variable playerPos;
+	public List<Vector2Variable> posTele;
+
+	private SpriteRenderer spriteRenderer;
+	private Rigidbody2D rb;
+	[HideInInspector]
+	public Collider2D col;
+	[HideInInspector]
+	public Animator animator;
 	#endregion
 
 	#region State Machine
@@ -46,6 +50,7 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		col = GetComponent<Collider2D>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 
 		stateMachine = new HighPriestStateMachine();
 		initState = new HighPriestInitState(this, stateMachine);
@@ -61,17 +66,18 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	}
 	void Start()
     {
-        
-    }
+        dissolveMAT.SetFloat("_DissolveAmount", 0f);
+		dissolveMAT.SetFloat("_VerticalDissolve", 0f);
+	}
 
     void Update()
     {
-        
+		stateMachine.CurrentState.FrameUpdate();
     }
 
 	private void FixedUpdate()
 	{
-		
+		stateMachine.CurrentState.PhysicsUpdate();
 	}
 	#endregion
 
@@ -131,11 +137,89 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	}
 	private IEnumerator FlashWhite()
 	{
+		spriteRenderer.material = damageFlashMAT;
 		damageFlashMAT.SetFloat("_FlashAmount", 1f);
 		yield return new WaitForSeconds(0.05f);
 		damageFlashMAT.SetFloat("_FlashAmount", 0f);
 	}
 
+	public void StartDissolve(float duration)
+	{
+		StartCoroutine(DissolveEffect(duration));
+	}
+
+	public void StartAppear(float duration)
+	{
+		StartCoroutine(AppearEffect(duration));
+	}
+
+	private IEnumerator DissolveEffect(float duration)
+	{
+		float elapsedTime = 0f;
+		dissolveMAT.SetFloat("_DissolveAmount", 0f);
+		spriteRenderer.material = dissolveMAT;
+		while (elapsedTime < duration)
+		{
+			float dissolveAmount = Mathf.Lerp(0f, 1f, elapsedTime / duration);
+			dissolveMAT.SetFloat("_DissolveAmount", dissolveAmount);
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+		dissolveMAT.SetFloat("_DissolveAmount", 1f);
+	}
+	 
+	private IEnumerator AppearEffect(float duration)
+	{
+		float elapsedTime = 0f;
+		spriteRenderer.material = dissolveMAT;
+		while (elapsedTime < duration)
+		{
+			float dissolveAmount = Mathf.Lerp(1f, 0f, elapsedTime / duration);
+			dissolveMAT.SetFloat("_DissolveAmount", dissolveAmount);
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+		dissolveMAT.SetFloat("_DissolveAmount", 0f);
+	}
+
+	public void StartVerDissolve(float duration)
+	{
+		StartCoroutine(VerDissolveEffect(duration));
+	}
+
+	public void StartVerAppear(float duration)
+	{
+		StartCoroutine(VerAppearEffect(duration));
+	}
+
+	private IEnumerator VerDissolveEffect(float duration)
+	{
+		float elapsedTime = 0f;
+		dissolveMAT.SetFloat("_DissolveAmount", 0f);
+		spriteRenderer.material = dissolveMAT;
+		while (elapsedTime < duration)
+		{
+			float dissolveAmount = Mathf.Lerp(0f, 1f, elapsedTime / duration);
+			dissolveMAT.SetFloat("_VerticalDissolve", dissolveAmount);
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+		dissolveMAT.SetFloat("_VerticalDissolve", 1f);
+	}
+
+	private IEnumerator VerAppearEffect(float duration)
+	{
+		float elapsedTime = 0f;
+		spriteRenderer.material = dissolveMAT;
+		while (elapsedTime < duration)
+		{
+			float dissolveAmount = Mathf.Lerp(1f, 0f, elapsedTime / duration);
+			dissolveMAT.SetFloat("_VerticalDissolve", dissolveAmount);
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+		dissolveMAT.SetFloat("_VerticalDissolve", 0f);
+	}
 
 	#region Unity Methods Debug
 	[ContextMenu("Init State")]

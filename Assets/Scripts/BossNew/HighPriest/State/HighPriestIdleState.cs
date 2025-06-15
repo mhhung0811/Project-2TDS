@@ -37,7 +37,7 @@ public class HighPriestIdleState : HighPriestState
 	private IEnumerator ControllerState()
 	{
 		yield return new WaitForSeconds(1f);
-		stateMachine.ChangeState(boss.shieldState);
+		stateMachine.ChangeState(boss.dissolveState);
 	}
 }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HighPriestFireState : HighPriestState
 {
-	private float duration = 3.5f;
+	private float duration = 4f;
 	private float delay = 0.5f;
 	public HighPriestFireState(HighPriest highPriest, HighPriestStateMachine stateMachine) : base(highPriest, stateMachine)
 	{
@@ -74,7 +74,7 @@ public class HighPriestFireState : HighPriestState
 
 	private IEnumerator CoroutineTimeOutState()
 	{
-		yield return new WaitForSeconds(duration);
+		yield return new WaitForSeconds(duration + delay + 1f);
 		stateMachine.ChangeState(boss.idleState);
 	}
 

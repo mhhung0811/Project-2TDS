@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &623793649860196582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5873714716965525004}
+  - component: {fileID: 8727748607881215571}
+  m_Layer: 0
+  m_Name: Shadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5873714716965525004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623793649860196582}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2213706181451647089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8727748607881215571
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623793649860196582}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d898bc35fb3640348a885a6b189c9b99, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1439208483
+  m_SortingLayer: 5
+  m_SortingOrder: -5
+  m_Sprite: {fileID: -1023337656, guid: d9e2bba469816164b8d899247b968013, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.6666667, y: 4}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &2612684002656238541
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +289,7 @@ Transform:
   - {fileID: 5352045292860051733}
   - {fileID: 6441732985321159123}
   - {fileID: 2761385894988425647}
+  - {fileID: 5873714716965525004}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8528364464999733681
@@ -227,7 +312,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b09d076b1484b2d418d8161d7c12df7a, type: 2}
+  - {fileID: 2100000, guid: d898bc35fb3640348a885a6b189c9b99, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -295,14 +380,25 @@ MonoBehaviour:
   maxHealth: {fileID: 11400000, guid: f871543b234cd3940af42786ca7500f2, type: 2}
   currentHealth: {fileID: 11400000, guid: 6cfbdf3dd8f8f654fb8ecbbb0c56a38f, type: 2}
   moveSpeed: 1
-  animator: {fileID: 7560581855865653455}
   gunAnimator: {fileID: 8641693119898083530}
-  rb: {fileID: 0}
-  col: {fileID: 0}
   damageFlashMAT: {fileID: 2100000, guid: b09d076b1484b2d418d8161d7c12df7a, type: 2}
+  dissolveMAT: {fileID: 2100000, guid: d898bc35fb3640348a885a6b189c9b99, type: 2}
   takeBulletFunc: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}
   fireLeft: {fileID: 6441732985321159123}
   fireRight: {fileID: 2761385894988425647}
+  posGun: {fileID: 5352045292860051733}
+  playerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
+  posTele:
+  - {fileID: 11400000, guid: 265ad83ce45b52645a4349fdcddb01c9, type: 2}
+  - {fileID: 11400000, guid: 93ad2b11ef4ddce4c8ee9de8393d9f32, type: 2}
+  - {fileID: 11400000, guid: 4d02944c67ea7c24d94b2d9a65431486, type: 2}
+  - {fileID: 11400000, guid: beff2984603081d42b1d1d9af9d09527, type: 2}
+  - {fileID: 11400000, guid: 920b5c7da1d0e744f92ac93b933f9d20, type: 2}
+  - {fileID: 11400000, guid: 423e86fd92829d94eb1c2a233bde6aab, type: 2}
+  - {fileID: 11400000, guid: 007d14af8a571ad41b750edafeb71875, type: 2}
+  - {fileID: 11400000, guid: 4de1ccdb0275ce74fbc5c472c339cb9e, type: 2}
+  col: {fileID: 0}
+  animator: {fileID: 7560581855865653455}
 --- !u!50 &432046754585257211
 Rigidbody2D:
   serializedVersion: 4
