@@ -23,7 +23,10 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	public Transform fireRight;
 	public Transform posGun;
 	public Vector2Variable playerPos;
+	public Vector2Variable posCenter;
 	public List<Vector2Variable> posTele;
+	public VoidEvent enterDissolve;
+	public VoidEvent exitDissolve;
 
 	private SpriteRenderer spriteRenderer;
 	private Rigidbody2D rb;

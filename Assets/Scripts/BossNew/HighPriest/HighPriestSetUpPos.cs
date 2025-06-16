@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class HighPriestSetUpPos : MonoBehaviour
 {
+	public Vector2Variable posCenter;
 	public List<Transform> posTele;
-	public List<Vector2Variable> posTeleSO; 
-
+	public List<Vector2Variable> posTeleSO;
+	public GameObject cameraBoss;
 	private void Start()
 	{
-		if(posTele.Count == 0 || posTeleSO.Count == 0)
+		cameraBoss.SetActive(false);
+		posCenter.CurrentValue = transform.position;
+
+		if (posTele.Count == 0 || posTeleSO.Count == 0)
 		{
 			Debug.LogError("No teleport positions set up for High Priest.");
 			return;
@@ -28,5 +32,15 @@ public class HighPriestSetUpPos : MonoBehaviour
 		{
 			Gizmos.DrawWireSphere(pos.position, 0.5f);
 		}
+	}
+
+	public void ActiveCamera()
+	{
+		cameraBoss.SetActive(true);
+	}
+
+	public void DeactiveCamera()
+	{
+		cameraBoss.SetActive(false);
 	}
 }
