@@ -30,7 +30,7 @@ public class HighPriestFireState : HighPriestState
 	public override void FrameUpdate()
 	{
 		base.FrameUpdate();
-
+		boss.Move();
 	}
 
 	public override void PhysicsUpdate()
@@ -41,8 +41,8 @@ public class HighPriestFireState : HighPriestState
 	private IEnumerator SkillRandom()
 	{
 		yield return new WaitForSeconds(delay);
-		boss.StartCoroutine(CoroutineSpawnRandom(boss.fireLeft.position, 75));
-		boss.StartCoroutine(CoroutineSpawnRandom(boss.fireRight.position, 75));
+		boss.StartCoroutine(CoroutineSpawnRandomLeft(75));
+		boss.StartCoroutine(CoroutineSpawnRandomRight(75));
 	}
 
 	private void RandomUseSkill()
@@ -78,12 +78,22 @@ public class HighPriestFireState : HighPriestState
 		stateMachine.ChangeState(boss.idleState);
 	}
 
-	private IEnumerator CoroutineSpawnRandom(Vector2 pos, int amountBullet)
+	private IEnumerator CoroutineSpawnRandomLeft(int amountBullet)
 	{
 		float time = duration / amountBullet;
 		for (int i = 0; i < amountBullet; i++)
 		{
-			SpawnBulletDirRandom(pos);
+			SpawnBulletDirRandom(boss.fireLeft.position);
+			yield return new WaitForSeconds(time);
+		}
+	}
+
+	private IEnumerator CoroutineSpawnRandomRight(int amountBullet)
+	{
+		float time = duration / amountBullet;
+		for (int i = 0; i < amountBullet; i++)
+		{
+			SpawnBulletDirRandom(boss.fireRight.position);
 			yield return new WaitForSeconds(time);
 		}
 	}
@@ -91,11 +101,11 @@ public class HighPriestFireState : HighPriestState
 	private IEnumerator SkillFireCircle()
 	{
 		yield return new WaitForSeconds(delay);
-		boss.StartCoroutine(SpawnCircle(boss.fireLeft.position, 180f, true, 2, 75));
-		boss.StartCoroutine(SpawnCircle(boss.fireRight.position, 0f, false, 2, 75));
+		boss.StartCoroutine(SpawnCircleLeft(180f, true, 2, 75));
+		boss.StartCoroutine(SpawnCircleRight(0f, false, 2, 75));
 	}
 
-	private IEnumerator SpawnCircle(Vector2 pos, float angleStart, bool dir, int loopCount, int amountBullet)
+	private IEnumerator SpawnCircleLeft(float angleStart, bool dir, int loopCount, int amountBullet)
 	{
 		float angleStep = 360f * loopCount / amountBullet;
 		float angle = angleStart;
@@ -110,7 +120,29 @@ public class HighPriestFireState : HighPriestState
 				angle -= angleStep;
 			}
 
-			boss.takeBulletFunc.GetFunction()((FlyweightType.HighPriestFireBullet, pos, angle));
+			boss.takeBulletFunc.GetFunction()((FlyweightType.HighPriestFireBullet, boss.fireLeft.position, angle));
+
+			yield return new WaitForSeconds(time);
+		}
+	}
+
+	private IEnumerator SpawnCircleRight(float angleStart, bool dir, int loopCount, int amountBullet)
+	{
+		float angleStep = 360f * loopCount / amountBullet;
+		float angle = angleStart;
+		float time = duration / amountBullet;
+		for (int i = 0; i < amountBullet; i++)
+		{
+			if (dir)
+			{
+				angle += angleStep;
+			}
+			else
+			{
+				angle -= angleStep;
+			}
+
+			boss.takeBulletFunc.GetFunction()((FlyweightType.HighPriestFireBullet, boss.fireRight.position, angle));
 
 			yield return new WaitForSeconds(time);
 		}

@@ -17,7 +17,7 @@ public class HighPriestAttackState : HighPriestState
 	{
 		base.Enter();
 		accumulatedCombo++;
-		if(accumulatedCombo >= 4)
+		if(accumulatedCombo >= 3)
 		{
 			boss.StartCoroutine(ComboSkill());
 			accumulatedCombo = 0;

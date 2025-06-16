@@ -15,6 +15,11 @@ public class HighPriestDieState : HighPriestState
 		boss.StopAllCoroutines();
 		boss.col.enabled = false;
 		boss.animator.SetBool("Die", true);
+		GameObject shadow = boss.transform.Find("Shadow").gameObject;
+		if (shadow != null)
+		{
+			shadow.SetActive(false);
+		}
 	}
 
 	public override void Exit()

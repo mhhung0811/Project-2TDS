@@ -46,6 +46,7 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	public HighPriestShieldState shieldState;
 	public HighPriestDissolveState dissolveState;
 	public HighPriestFireState fireState;
+	public HighPriestTeleState teleState;
 	#endregion
 	#region Unity Functions 
 	private void Awake()
@@ -64,6 +65,7 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 		shieldState = new HighPriestShieldState(this, stateMachine);
 		dissolveState = new HighPriestDissolveState(this, stateMachine);
 		fireState = new HighPriestFireState(this, stateMachine);
+		teleState = new HighPriestTeleState(this, stateMachine);
 
 		stateMachine.Initialize(initState);
 	}
@@ -126,12 +128,14 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 		if (stateMachine.CurrentState == initState || stateMachine.CurrentState == dieState || !IsEnemyInteractable) return;
 
 		currentHealth.CurrentValue = currentHealth.CurrentValue - damge;
-		StartCoroutine(FlashWhite());
-
 		if (currentHealth.CurrentValue <= 0)
 		{
+			spriteRenderer.material = damageFlashMAT; // Reset material to avoid flashing after death
+			damageFlashMAT.SetFloat("_FlashAmount", 0f);
 			stateMachine.ChangeState(dieState);
+			return;
 		}
+		StartCoroutine(FlashWhite());
 	}
 
 	public void PlayFlashWhite()
@@ -144,6 +148,15 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 		damageFlashMAT.SetFloat("_FlashAmount", 1f);
 		yield return new WaitForSeconds(0.05f);
 		damageFlashMAT.SetFloat("_FlashAmount", 0f);
+	}
+
+	public void Move()
+	{
+		transform.position = Vector2.MoveTowards(
+			transform.position,
+			playerPos.CurrentValue,
+			moveSpeed * Time.deltaTime
+		);
 	}
 
 	public void StartDissolve(float duration)
