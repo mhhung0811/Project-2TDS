@@ -328,4 +328,4 @@ MonoBehaviour:
   <AttackCooldown>k__BackingField: 2
   patrolArea: {fileID: 0}
   attackCooldownTimer: 0
-  spawnBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
+  spawnBulletFunc: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}

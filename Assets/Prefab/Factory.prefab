@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2480544756683955820}
   - component: {fileID: 3495036746688416300}
-  - component: {fileID: 1492332218813845883}
-  - component: {fileID: 4258327518646382260}
   - component: {fileID: 2168074826545911912}
-  - component: {fileID: 7417503984483236187}
   - component: {fileID: 3022636264809954789}
+  - component: {fileID: 5957830766127141223}
+  - component: {fileID: 3906982891241502997}
+  - component: {fileID: 2090439404684738447}
   m_Layer: 0
   m_Name: Factory
   m_TagString: Untagged
@@ -60,68 +60,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ba675ff901664f344814dadb7e411ac4, type: 2}
   - {fileID: 11400000, guid: 6e94a24713fa1b74191002e131f37a15, type: 2}
   - {fileID: 11400000, guid: 3a4e98310dc0be341b61477e9781f346, type: 2}
+  - {fileID: 11400000, guid: f39d3916797213d4fbb99c7a643c6c96, type: 2}
+  - {fileID: 11400000, guid: d312e07fd41ac954daa5681c3efa1b87, type: 2}
+  - {fileID: 11400000, guid: 9e9d9dbffff5aba4682c142120be3590, type: 2}
+  - {fileID: 11400000, guid: c67ea7919e82ab343b4220d76f1b5283, type: 2}
   projectilePools: []
   collectionCheck: 1
   defaultCapacity: 10
   maxPoolSize: 100
---- !u!114 &1492332218813845883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3592139224148121317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0f4942e5a3a498185cbb779da8001e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Description: Take bullet event listener
-  Event: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3495036746688416300}
-        m_TargetAssemblyTypeName: FlyweightFactory, Assembly-CSharp
-        m_MethodName: Spawn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &4258327518646382260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3592139224148121317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf857b920f4541e8a72d6b869717986c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Description: Return bullet event listener
-  Event: {fileID: 11400000, guid: 5f4e6c89e8b385e4984c58c297d8a0c3, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3495036746688416300}
-        m_TargetAssemblyTypeName: FlyweightFactory, Assembly-CSharp
-        m_MethodName: ReturnToPool
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2168074826545911912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,22 +83,6 @@ MonoBehaviour:
   inUseEnemy: {fileID: 11400000, guid: 4be9a01bac10e8148bdae38d7384e235, type: 2}
   defaultCapacity: 10
   maxPoolSize: 100
---- !u!114 &7417503984483236187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3592139224148121317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 302c92c258614a38b4e9d5caabc4a540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Get Enemy
-  funcProvider: {fileID: 11400000, guid: fcfa6add6a68b934893e34c5f6106f72, type: 2}
-  func: {fileID: 2168074826545911912}
-  selectedMethod: SpawnEnemy
 --- !u!114 &3022636264809954789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,3 +99,51 @@ MonoBehaviour:
   funcProvider: {fileID: 11400000, guid: 20c83bbba3aeedd4988a709b75a5416d, type: 2}
   func: {fileID: 2168074826545911912}
   selectedMethod: ReleaseEnemy
+--- !u!114 &5957830766127141223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592139224148121317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b306f2baff443e4ab87ab78302af4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Get Enemy
+  funcProvider: {fileID: 11400000, guid: 8a5459ebc773ca24e9a6bada41d63506, type: 2}
+  func: {fileID: 2168074826545911912}
+  selectedMethod: SpawnEnemy
+--- !u!114 &3906982891241502997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592139224148121317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b01f44567ad4b60869fd1555148e15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Take Bullet
+  funcProvider: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}
+  func: {fileID: 3495036746688416300}
+  selectedMethod: Spawn
+--- !u!114 &2090439404684738447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592139224148121317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4727e34dc55f459cbf001abf0f0fe53c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Retrieve Bullet
+  funcProvider: {fileID: 11400000, guid: 3aa7bffda27e5bf4a9867fda7beef9bb, type: 2}
+  func: {fileID: 3495036746688416300}
+  selectedMethod: ReturnToPool

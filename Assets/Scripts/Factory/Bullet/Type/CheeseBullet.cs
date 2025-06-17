@@ -34,7 +34,7 @@ public class CheeseBullet : Projectile
 			if (player.IsPlayerInteractable)
 			{
 				EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
-				settings.flyweightEvent.Raise(this);
+				settings.flyweightFunc.GetFunction()(this);
 				player.OnPlayerBulletHit();
 			}
 			return;
@@ -43,7 +43,7 @@ public class CheeseBullet : Projectile
 		if (collision.gameObject.CompareTag("Wall"))
 		{
 			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
-			settings.flyweightEvent.Raise(this);
+			settings.flyweightFunc.GetFunction()(this);
 			return;
 		}
 	}

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ShotGun : GunBase
 {
-	public FlyweightTypeVector2FloatEvent takeBulletEvent;
+	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
 	public VoidEvent playerShootEvent;
 
 	private Coroutine reloadingCoroutine;
@@ -48,7 +48,7 @@ public class ShotGun : GunBase
 		for (int i = 0; i < bulletCount; i++)
 		{
 			float currentAngle = startAngle + i * spreadAngle;
-			takeBulletEvent.Raise((FlyweightType.BasicBullet, new Vector2(this.transform.position.x + offsetX, this.transform.position.y + offsetY), currentAngle));
+			takeBulletFunc.GetFunction()((FlyweightType.BasicBullet, new Vector2(this.transform.position.x + offsetX, this.transform.position.y + offsetY), currentAngle));
 		}
 
 		if (reloadingCoroutine != null)

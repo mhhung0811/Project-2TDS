@@ -83,7 +83,7 @@ public class BossThrowKunaiState : BossState
 		for (int i = 0; i < quantity; i++)
 		{
 			float currentAngle = startAngle + i * spaceAngle;
-			Boss.TakeBulletEvent.Raise((FlyweightType.KunaiBullet, Boss.BossPos.CurrentValue, currentAngle));
+			Boss.TakeBulletFunc.GetFunction()((FlyweightType.KunaiBullet, Boss.BossPos.CurrentValue, currentAngle));
 		}
 
 		yield return new WaitForSeconds(0.3f);
@@ -91,7 +91,7 @@ public class BossThrowKunaiState : BossState
 		for (int i = 0; i < quantity; i++)
 		{
 			float currentAngle = startAngle + i * spaceAngle;
-			Boss.TakeBulletEvent.Raise((FlyweightType.KunaiBullet, Boss.BossPos.CurrentValue, currentAngle));
+			Boss.TakeBulletFunc.GetFunction()((FlyweightType.KunaiBullet, Boss.BossPos.CurrentValue, currentAngle));
 		}
 
 		yield return new WaitForSeconds(0.3f);

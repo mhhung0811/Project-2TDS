@@ -20,5 +20,17 @@ public class EffectManager : Singleton<EffectManager>
 		}
 		return null;
 	}
+
+	public GameObject PlayEffect(EffectType effectType, float duration)
+	{
+		GameObject prefab = effectDatabase.GetEffectPrefab(effectType);
+		if (prefab != null)
+		{
+			GameObject effectInstance = Instantiate(prefab);
+			Destroy(effectInstance, duration);
+			return effectInstance;
+		}
+		return null;
+	}
 }
 

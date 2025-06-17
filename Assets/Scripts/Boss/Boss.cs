@@ -22,7 +22,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 	public Vector2Variable BossPos;
 	public Vector2Variable PosCenterBoss;
 
-	public FlyweightTypeVector2FloatEvent TakeBulletEvent;
+	public GameObjectFlyweightTypeVector2FloatFuncProvider TakeBulletFunc;
 	public GameObject Cheese;
 	public GameObject Trap;
 

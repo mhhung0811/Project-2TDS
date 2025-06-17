@@ -364,7 +364,6 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 
         HP.CurrentValue = HP.CurrentValue - 1;
 		SaveGameManager.Instance.gameData.health = HP.CurrentValue;
-		SaveGameManager.Instance.SaveGame(SaveGameManager.Instance.gameData);
 
 		if (HP.CurrentValue <= 0)
         {

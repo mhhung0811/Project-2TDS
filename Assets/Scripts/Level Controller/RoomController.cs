@@ -32,7 +32,7 @@ public class RoomController : MonoBehaviour
     public GameObject miniMap;
 
     public RoomStateMachine roomStateMachine { get; private set; }
-    public VoidEnemyTypeVector3FuncProvider SpawnEnemyFunc;
+    public GameObjectEnemyTypeVector3FuncProvider SpawnEnemyFunc;
 
     public VoidEvent OnRoomTrigger;
     

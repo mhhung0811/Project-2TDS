@@ -13,15 +13,15 @@ public class ShotGunBullet : Projectile
 			{
 				EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
 				enemy.OnEnemyBulletHit(settings.damage);
-				settings.flyweightEvent.Raise(this);
+				settings.flyweightFunc.GetFunction()(this);
 			}
 			return;
 		}
 
-		if (collision.gameObject.CompareTag("Wall"))
+		if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Boss"))
 		{
 			EffectManager.Instance.PlayEffect(EffectType.EfBulletCollide, transform.position, Quaternion.identity);
-			settings.flyweightEvent.Raise(this);
+			settings.flyweightFunc.GetFunction()(this);
 			return;
 		}
 	}

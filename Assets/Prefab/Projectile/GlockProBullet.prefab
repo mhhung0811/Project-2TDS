@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3897106465049883388}
   - component: {fileID: 5802569011614853836}
   - component: {fileID: 5555882147663582445}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GlockProBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -53,7 +53,7 @@ public class EnemyFactory : MonoBehaviour
     }
     
     // Func
-    public object SpawnEnemy((EnemyType enemyType, Vector3 position) parameters)
+    public GameObject SpawnEnemy((EnemyType enemyType, Vector3 position) parameters)
     {
         if (!_enemyPools.ContainsKey(parameters.enemyType))
         {
@@ -65,7 +65,7 @@ public class EnemyFactory : MonoBehaviour
         GameObject enemy = _enemyPools[parameters.enemyType].Get();
         enemy.transform.position = parameters.position;
         enemy.transform.rotation = Quaternion.identity;
-        return null;
+        return enemy;
     }
     
     // Func

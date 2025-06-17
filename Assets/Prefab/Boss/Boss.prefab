@@ -138,10 +138,11 @@ MonoBehaviour:
   PlayerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   BossPos: {fileID: 11400000, guid: 375a2d3c85267fa439c0f0662a71c6d5, type: 2}
   PosCenterBoss: {fileID: 11400000, guid: 4c4294afc2760a24fb22227361bac001, type: 2}
-  TakeBulletEvent: {fileID: 11400000, guid: e77195c6f8e85d14084d2b3a34113f5d, type: 2}
+  TakeBulletFunc: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}
   Cheese: {fileID: 1577374604294575238, guid: 6e2ee1fa5b7b81d4985f734a7ac2df19, type: 3}
   Trap: {fileID: 3186472115229708052, guid: 3e8da4dc813d73448a25c78d264ebdb6, type: 3}
   BossDied: {fileID: 11400000, guid: aa1f453824f315b4298886523572a562, type: 2}
+  FinishInitBossState: {fileID: 0}
   Animator: {fileID: 0}
 --- !u!50 &6965294975741474674
 Rigidbody2D:

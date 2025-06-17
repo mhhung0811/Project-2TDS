@@ -119,6 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe89a4f601518d468ad0f0c2ed0ac9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPlayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  radius: 2.5
 --- !u!1 &8953185677163167418
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +137,7 @@ GameObject:
   - component: {fileID: 1734463014788695958}
   - component: {fileID: 2846347339823602390}
   - component: {fileID: 4138039932142604776}
+  - component: {fileID: 4852117767430252883}
   m_Layer: 7
   m_Name: BombShee
   m_TagString: Untagged
@@ -314,9 +319,28 @@ MonoBehaviour:
   onEnemyDown: {fileID: 11400000, guid: 7dce80d15cb825345a33903f0ec32a29, type: 2}
   animator: {fileID: 0}
   <AttackRange>k__BackingField: 50
-  <MoveSpeed>k__BackingField: 5
+  <MoveSpeed>k__BackingField: 4
   canScreech: 0
-  cooldownScreech: 0
-  timeScreech: 0
-  targetRange: 0
+  cooldownScreech: 2
+  timeScreech: 4
+  targetRange: 7
   enemyTarget: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  protectRange: 1.5
+--- !u!114 &4852117767430252883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953185677163167418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44dea100a204b024bb28556f5f4b824e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000, guid: 998d7fc2604f1da4f930dd1e9294006d, type: 2}
+  speed: 0
+  onDrawGizmos: 1

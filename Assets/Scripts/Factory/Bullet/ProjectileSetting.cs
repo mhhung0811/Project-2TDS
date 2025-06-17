@@ -8,7 +8,7 @@ public class ProjectileSetting : FlyweightSetting
 {
     public float speed = 10f;
     public float damage = 10f;
-    [FormerlySerializedAs("factoryDespawnEvent")] public FlyweightEvent flyweightEvent;
+    public VoidFlyweightFuncProvider flyweightFunc;
     
     public override Flyweight Create() // Instantiate callback OnEnable
     {
