@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunnutMoveState : EnemyState
 {
 	private Gunnut gunnut => (Gunnut)base.Enemy;
-
+	private Coroutine attackCoroutine;
 	public GunnutMoveState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
 	{
 	}
@@ -16,6 +16,12 @@ public class GunnutMoveState : EnemyState
 		gunnut.animator.SetBool("IsMove", true);
 		gunnut.unit.speed = gunnut.MoveSpeed;
 		gunnut.unit.StartFindPath();
+
+		if(attackCoroutine != null)
+		{
+			gunnut.StopCoroutine(attackCoroutine);
+		}
+		attackCoroutine = gunnut.StartCoroutine(CoolDownAttack());
 	}
 
 	public override void Exit()
@@ -33,6 +39,10 @@ public class GunnutMoveState : EnemyState
 
 		if (!gunnut.patrolArea.CheckEnemyInPatrolArea(Enemy.transform.position) && !gunnut.IsWithinStrikingDistance)
 		{
+			if(attackCoroutine != null)
+			{
+				gunnut.StopCoroutine(attackCoroutine);
+			} 
 			EnemyStateMachine.ChangeState(gunnut.patrolState);
 			return;
 		}
@@ -41,5 +51,11 @@ public class GunnutMoveState : EnemyState
 	public override void PhysicsUpdate()
 	{
 		base.PhysicsUpdate();
+	}
+
+	private IEnumerator CoolDownAttack()
+	{
+		yield return new WaitForSeconds(gunnut.GetTimeToAttack());
+        EnemyStateMachine.ChangeState(gunnut.attackState);
 	}
 }

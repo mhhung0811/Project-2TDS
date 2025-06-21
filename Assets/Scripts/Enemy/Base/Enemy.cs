@@ -88,7 +88,14 @@ public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInterac
 
 		return angleInDegrees;
 	}
-	
+
+	public Vector2 AngleToVector2(float angleInDegrees)
+	{
+		float angleInRadians = angleInDegrees * Mathf.Deg2Rad;
+		return new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians));
+	}
+
+
 
 	public bool CheckRaycastAttack()
 	{

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Gunnut : Enemy
 {
+	private float timeToAttack = 2f;
+
 	public PatrolArea patrolArea;
 	[HideInInspector]
 	public Unit unit;
+	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
 	// State Machine Variables
 	public GunnutMoveState moveState { get; set; }
 	public GunnutDieState dieState { get; set; }
@@ -41,5 +44,63 @@ public class Gunnut : Enemy
 	public override void OnEnemyBulletHit(float damage)
 	{
 		base.OnEnemyBulletHit(damage);
+	}
+
+	public float GetTimeToAttack()
+	{
+		return timeToAttack;
+	}
+
+	public void SpawnArcBullets(Vector2 pos, Vector2 direction, float totalAngle, int bulletCount)
+	{
+		float startAngle = -totalAngle / 2f;
+		float stepAngle = totalAngle / (bulletCount - 1);
+
+		for (int i = 0; i < bulletCount; i++)
+		{
+			float angle = startAngle + i * stepAngle;
+
+			takeBulletFunc.GetFunction()((
+				FlyweightType.GunnutBullet,
+				pos,
+				Vector2ToAngle(direction) + angle
+			));
+		}
+	}
+
+	public void SpawnHeadArrowBullet(Vector2 pos, Vector2 direction)
+	{
+		float angle = Vector2ToAngle(direction);
+
+		takeBulletFunc.GetFunction()((
+			FlyweightType.GunnutBullet,
+			pos,
+			angle
+		));
+
+		// left
+		float angleLeft = angle - 45f;
+		Vector2 dirLeft = AngleToVector2(angleLeft);
+
+		for (int i = 1; i <= 1; i++)
+		{
+			takeBulletFunc.GetFunction()((
+				FlyweightType.GunnutBullet,
+				pos - dirLeft * i * 0.4f,
+				angle
+			));
+		}
+
+		// right
+		float angleRight = angle + 45f;
+		Vector2 dirRight = AngleToVector2(angleRight);
+		for (int i = 1; i <= 1; i++)
+		{
+			takeBulletFunc.GetFunction()((
+				FlyweightType.GunnutBullet,
+				pos - dirRight * i * 0.4f,
+				angle
+			));
+		}
 	}
 }
