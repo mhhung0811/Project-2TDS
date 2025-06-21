@@ -90,7 +90,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: b09d076b1484b2d418d8161d7c12df7a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,8 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba0efe5a9df0ba41a3b012bb433bf8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 300
-  <CurrentHealth>k__BackingField: 300
+  <MaxHealth>k__BackingField: 200
+  <CurrentHealth>k__BackingField: 200
   <Obstacles>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
@@ -165,10 +165,12 @@ MonoBehaviour:
   <DieTime>k__BackingField: 0
   onEnemyDown: {fileID: 11400000, guid: 7dce80d15cb825345a33903f0ec32a29, type: 2}
   animator: {fileID: 0}
-  <AttackRange>k__BackingField: 5
+  <AttackRange>k__BackingField: 8
   <MoveSpeed>k__BackingField: 1.75
   patrolArea: {fileID: 0}
   unit: {fileID: 0}
+  takeBulletFunc: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}
+  damageFlashMAT: {fileID: 2100000, guid: b09d076b1484b2d418d8161d7c12df7a, type: 2}
 --- !u!50 &6280991061518490569
 Rigidbody2D:
   serializedVersion: 4
@@ -254,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
-  speed: 0
+  speed: 2
   onDrawGizmos: 1
 --- !u!1 &7911365009570874725
 GameObject:

@@ -315,6 +315,8 @@ GameObject:
   - component: {fileID: 8794105362669998000}
   - component: {fileID: 2407178947788878506}
   - component: {fileID: 1873615056651309943}
+  - component: {fileID: 3430104747011733366}
+  - component: {fileID: 9056676259950396385}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -632,6 +634,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 814cfb59-387b-4ac3-811d-90963253e131
     m_ActionName: Player/OnMiniMap[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9056676259950396385}
+        m_TargetAssemblyTypeName: PlayerUseItems, Assembly-CSharp
+        m_MethodName: InputUseGrenade
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 313f5cb2-1cd6-4d1f-a06d-2b7e14d4cac0
+    m_ActionName: Player/Press C[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9056676259950396385}
+        m_TargetAssemblyTypeName: PlayerUseItems, Assembly-CSharp
+        m_MethodName: InputUseMolotov
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 90d51abb-2826-454e-880f-b9c5e2328f34
+    m_ActionName: Player/Press V[/Keyboard/v]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -808,6 +842,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3430104747011733366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345081005870679355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: 
+  Event: {fileID: 11400000, guid: 3c01e932a95e45c4fb040abe419ca2f9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2848320089499006292}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: SetStatePlayerOnOpenUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9056676259950396385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345081005870679355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8f0a84b5cda044ebf7340dc45a870d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenade: {fileID: 4900765061902340498, guid: f4d4c908fa866dd4b958a1fc48f6de77, type: 3}
+  molotov: {fileID: 329094294015616518, guid: dfc1baf51833f774db7092e1fb360394, type: 3}
 --- !u!1 &3842092606158417366
 GameObject:
   m_ObjectHideFlags: 0

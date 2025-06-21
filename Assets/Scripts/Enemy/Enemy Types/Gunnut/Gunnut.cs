@@ -10,6 +10,9 @@ public class Gunnut : Enemy
 	[HideInInspector]
 	public Unit unit;
 	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
+	public Material damageFlashMAT;
+	private Material damageFlashMATRunTime;
+	private SpriteRenderer SpriteRenderer => GetComponent<SpriteRenderer>();
 	// State Machine Variables
 	public GunnutMoveState moveState { get; set; }
 	public GunnutDieState dieState { get; set; }
@@ -20,6 +23,7 @@ public class Gunnut : Enemy
 		unit = GetComponent<Unit>();
 		animator = GetComponent<Animator>();
 		RB = GetComponent<Rigidbody2D>();
+		damageFlashMATRunTime = new Material(damageFlashMAT);
 
 		StateMachine = new EnemyStateMachine();
 		moveState = new GunnutMoveState(this, StateMachine);
@@ -39,11 +43,6 @@ public class Gunnut : Enemy
 	private void FixedUpdate()
 	{
 		StateMachine.CurrentState.PhysicsUpdate();
-	}
-
-	public override void OnEnemyBulletHit(float damage)
-	{
-		base.OnEnemyBulletHit(damage);
 	}
 
 	public float GetTimeToAttack()
@@ -102,5 +101,27 @@ public class Gunnut : Enemy
 				angle
 			));
 		}
+	}
+
+	public override void OnEnemyBulletHit(float damage)
+	{
+		CurrentHealth -= (int)damage;
+
+		if (CurrentHealth <= 0)
+		{
+			StateMachine.ChangeState(dieState);
+			// ResetMAT
+			damageFlashMATRunTime.SetFloat("_FlashAmount", 0f);
+			return;
+		}
+		StartCoroutine(FlashWhite());
+	}
+
+	private IEnumerator FlashWhite()
+	{
+		SpriteRenderer.material = damageFlashMATRunTime;
+		damageFlashMATRunTime.SetFloat("_FlashAmount", 0.5f);
+		yield return new WaitForSeconds(0.05f);
+		damageFlashMATRunTime.SetFloat("_FlashAmount", 0f);
 	}
 }

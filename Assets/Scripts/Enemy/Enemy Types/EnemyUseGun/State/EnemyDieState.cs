@@ -14,6 +14,8 @@ public class EnemyDieState : EnemyState
 		dieTime = 0;
 		Enemy.animator.SetBool("isDie", true);
 		// Debug.Log("Enemy Die");
+		Enemy.StopAllCoroutines();
+		Enemy.StartCoroutine(DelaySetActive());
 	}
 
 	public override void Exit()
@@ -25,7 +27,6 @@ public class EnemyDieState : EnemyState
 
 	public override void FrameUpdate()
 	{
-		CheckForChangeState();
 	}
 
 	public override void PhysicsUpdate()
@@ -38,12 +39,9 @@ public class EnemyDieState : EnemyState
 
 	}
 
-	private void CheckForChangeState()
+	private IEnumerator DelaySetActive()
 	{
-		dieTime += Time.deltaTime;
-		if (dieTime >= Enemy.DieTime)
-		{
-			Enemy.gameObject.SetActive(false);
-		}
+		yield return new WaitForSeconds(2f);
+		Enemy.gameObject.SetActive(false);
 	}
 }
