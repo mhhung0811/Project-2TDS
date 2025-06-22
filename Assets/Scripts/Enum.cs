@@ -31,6 +31,7 @@ public enum EffectType
 	EfBurning,
 	VFXBulletBombshee,
 	FxFlash1,
+	LichFlashInitFx,
 }
 
 public enum EnemyType

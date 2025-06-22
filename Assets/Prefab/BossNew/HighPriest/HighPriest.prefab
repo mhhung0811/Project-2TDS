@@ -379,7 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: {fileID: 11400000, guid: f871543b234cd3940af42786ca7500f2, type: 2}
   currentHealth: {fileID: 11400000, guid: 6cfbdf3dd8f8f654fb8ecbbb0c56a38f, type: 2}
-  moveSpeed: 1
+  moveSpeed: 2
   gunAnimator: {fileID: 8641693119898083530}
   damageFlashMAT: {fileID: 2100000, guid: b09d076b1484b2d418d8161d7c12df7a, type: 2}
   dissolveMAT: {fileID: 2100000, guid: d898bc35fb3640348a885a6b189c9b99, type: 2}
@@ -388,6 +388,7 @@ MonoBehaviour:
   fireRight: {fileID: 2761385894988425647}
   posGun: {fileID: 5352045292860051733}
   playerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
+  posCenter: {fileID: 11400000, guid: 77d73722e2b425a49b6d14db1961cb2a, type: 2}
   posTele:
   - {fileID: 11400000, guid: 265ad83ce45b52645a4349fdcddb01c9, type: 2}
   - {fileID: 11400000, guid: 93ad2b11ef4ddce4c8ee9de8393d9f32, type: 2}
@@ -397,6 +398,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 423e86fd92829d94eb1c2a233bde6aab, type: 2}
   - {fileID: 11400000, guid: 007d14af8a571ad41b750edafeb71875, type: 2}
   - {fileID: 11400000, guid: 4de1ccdb0275ce74fbc5c472c339cb9e, type: 2}
+  enterDissolve: {fileID: 11400000, guid: 68f8f447fde45744b9d2058343fce910, type: 2}
+  exitDissolve: {fileID: 11400000, guid: 792630796c36d464281d4a400c5a90e1, type: 2}
   col: {fileID: 0}
   animator: {fileID: 7560581855865653455}
 --- !u!50 &432046754585257211

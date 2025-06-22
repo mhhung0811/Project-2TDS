@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighPriestDieState : HighPriestState
+public class Lich1DieState : Lich1State
 {
-	public HighPriestDieState(HighPriest highPriest, HighPriestStateMachine stateMachine) : base(highPriest, stateMachine)
+	public Lich1DieState(Lich1 highPriest, Lich1StateMachine stateMachine) : base(highPriest, stateMachine)
 	{
 
 	}
@@ -12,15 +12,7 @@ public class HighPriestDieState : HighPriestState
 	public override void Enter()
 	{
 		base.Enter();
-		boss.StopAllCoroutines();
-		boss.col.enabled = false;
 		boss.animator.SetBool("Die", true);
-		GameObject shadow = boss.transform.Find("Shadow").gameObject;
-		boss.gunAnimator.SetBool("Idle", true);
-		if (shadow != null)
-		{
-			shadow.SetActive(false);
-		}
 	}
 
 	public override void Exit()
@@ -39,5 +31,7 @@ public class HighPriestDieState : HighPriestState
 	{
 		base.PhysicsUpdate();
 	}
+
+
 }
 
