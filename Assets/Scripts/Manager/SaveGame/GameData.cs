@@ -9,10 +9,16 @@ public class GameData
 	public int maxMana;
 	public Vector2 lastSpawn;
 	public int lastRoom;
+	public int gunSlots;
+	public int currentGunIndex;
+	public List<GunType> unlockedGuns = new();
 
 	public GameData()
 	{
 		maxHealth = 6;
 		maxMana = 1000;
+		gunSlots = 2;
+		currentGunIndex = 0;
+		unlockedGuns.Add(GunType.GlockPro);
 	}
 }

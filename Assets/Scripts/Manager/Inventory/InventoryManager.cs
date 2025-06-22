@@ -15,22 +15,28 @@ public class InventoryManager : MonoBehaviour
     {
         // Retrieve data
         // _gunSlotSize = 3;
-        _gunColection.Add(GunType.GlockPro);
-        _gunColection.Add(GunType.AssaultRifle);
-		_gunColection.Add(GunType.ShotGun);
-
-		InitializedGun();
+        // _gunColection.Add(GunType.GlockPro);
+        // _gunColection.Add(GunType.AssaultRifle);
+        // _gunColection.Add(GunType.ShotGun);
     }
 
     private void Start()
     {
+        InitializedGun();
+        
         ChangeGunInArsenal(_guns[GunType.GlockPro], 0);
-        ChangeGunInArsenal(_guns[GunType.AssaultRifle], 1);
-		ChangeGunInArsenal(_guns[GunType.ShotGun], 2);
+        // ChangeGunInArsenal(_guns[GunType.AssaultRifle], 1);
+		// ChangeGunInArsenal(_guns[GunType.ShotGun], 2);
 	}
     
     private void InitializedGun()
     {
+        // Retrieve data
+        foreach (var gunType in SaveGameManager.Instance.gameData.unlockedGuns)
+        {
+            _gunColection.Add(gunType);
+        }
+        
         foreach (var gunType in _gunColection)
         {
             var gun = Instantiate(inUseGun.GetGunByType(gunType));
