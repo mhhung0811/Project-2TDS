@@ -130,7 +130,7 @@ public class Lich1 : MonoBehaviour, IEnemyInteractable
 			float angle = startAngle + i * stepAngle;
 
 			takeBulletFunc.GetFunction()((
-				FlyweightType.EnemyBullet,
+				FlyweightType.LichGunBullet,
 				pos,
 				Vector2ToAngle(direction) + angle
 			));

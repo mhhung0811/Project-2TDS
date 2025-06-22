@@ -36,7 +36,7 @@ public class Lich1IdleState : Lich1State
 	private IEnumerator CoolDownIdleState()
 	{
 		yield return new WaitForSeconds(1f);
-		boss.stateMachine.ChangeState(boss.gunState);
+		boss.stateMachine.ChangeState(boss.attackAOEState);
 	}
 }
 

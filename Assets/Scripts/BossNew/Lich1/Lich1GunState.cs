@@ -14,6 +14,7 @@ public class Lich1GunState : Lich1State
 	{
 		base.Enter();
 		boss.animator.SetBool("Gun", true);
+		boss.StartCoroutine(Attack());
 		boss.StartCoroutine(CoolDownGunState());
 	}
 
@@ -37,6 +38,22 @@ public class Lich1GunState : Lich1State
 	{
 		yield return new WaitForSeconds(gunTime);
 		boss.stateMachine.ChangeState(boss.idleState);
+	}
+
+	private IEnumerator Attack()
+	{
+		yield return new WaitForSeconds(1f/6f);
+
+		var direction = boss.playerPos.CurrentValue - (Vector2)boss.posGun.transform.position;
+		int amount = 5;
+		float totalAngle = 45f;
+		float timeBetweenShots = 1f/6f;
+		for (int i = 0; i< 4; i++)
+		{
+			boss.SpawnArcBullets(boss.posGun.transform.position, direction, totalAngle, amount);
+			EffectManager.Instance.PlayEffect(EffectType.LichFlashInitFx, boss.posGun.transform.position, Quaternion.identity);
+			yield return new WaitForSeconds(timeBetweenShots);
+		}
 	}
 }
 
