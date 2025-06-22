@@ -2355,7 +2355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onEnterOtherGate: {fileID: 11400000, guid: 8bc03a3c0dbd0fa4b96c189fa87925a4, type: 2}
-  onFadeOut: {fileID: 11400000, guid: b3fd34fbd09e80447a0a36b3048b349c, type: 2}
+  onFadeOut: {fileID: 11400000, guid: 3ce9f9e7424d5df428cc59611ba5c7f5, type: 2}
   enterPoint: {fileID: 437601413}
 --- !u!114 &423646255
 MonoBehaviour:
@@ -7247,8 +7247,6 @@ GameObject:
   - component: {fileID: 939460747}
   - component: {fileID: 939460746}
   - component: {fileID: 939460745}
-  - component: {fileID: 939460744}
-  - component: {fileID: 939460743}
   - component: {fileID: 939460748}
   m_Layer: 5
   m_Name: FadePanel
@@ -7256,7 +7254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &939460742
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7276,64 +7274,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &939460743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939460741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Description: Fade Out
-  Event: {fileID: 11400000, guid: b3fd34fbd09e80447a0a36b3048b349c, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 939460745}
-        m_TargetAssemblyTypeName: FadePanelUI, Assembly-CSharp
-        m_MethodName: StartFadeOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &939460744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939460741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Description: Fade In
-  Event: {fileID: 11400000, guid: 3ce9f9e7424d5df428cc59611ba5c7f5, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 939460745}
-        m_TargetAssemblyTypeName: FadePanelUI, Assembly-CSharp
-        m_MethodName: StartFadeIn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &939460745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7361,7 +7301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10524,7 +10464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onEnterOtherGate: {fileID: 11400000, guid: b692d887f6d3ac54289bb06eef8f62e8, type: 2}
-  onFadeOut: {fileID: 11400000, guid: b3fd34fbd09e80447a0a36b3048b349c, type: 2}
+  onFadeOut: {fileID: 11400000, guid: 3ce9f9e7424d5df428cc59611ba5c7f5, type: 2}
   enterPoint: {fileID: 125428609}
 --- !u!114 &1155744022
 MonoBehaviour:
@@ -11345,6 +11285,40 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7767620104099850147, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
   m_PrefabInstance: {fileID: 2077345976}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1563060858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3119405445525026381, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+  m_PrefabInstance: {fileID: 2077345976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1563060868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563060858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: On Fade Out
+  Event: {fileID: 11400000, guid: 3ce9f9e7424d5df428cc59611ba5c7f5, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 939460741}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1627181732
 GameObject:
   m_ObjectHideFlags: 0
@@ -11544,7 +11518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onEnterOtherGate: {fileID: 11400000, guid: b692d887f6d3ac54289bb06eef8f62e8, type: 2}
-  onFadeOut: {fileID: 11400000, guid: b3fd34fbd09e80447a0a36b3048b349c, type: 2}
+  onFadeOut: {fileID: 11400000, guid: 3ce9f9e7424d5df428cc59611ba5c7f5, type: 2}
   enterPoint: {fileID: 618953947}
 --- !u!114 &1703946761
 MonoBehaviour:
@@ -12221,6 +12195,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 867577912542870868, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: fadePanel
+      value: 
+      objectReference: {fileID: 939460741}
     - target: {fileID: 1658515228752844142, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: onRest
       value: 
@@ -12229,6 +12207,34 @@ PrefabInstance:
       propertyPath: currentRoomIndex
       value: 
       objectReference: {fileID: 11400000, guid: 5453c680d28bc754398c46482c518c99, type: 2}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: 313f5cb2-1cd6-4d1f-a06d-2b7e14d4cac0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: 90d51abb-2826-454e-880f-b9c5e2328f34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
+      value: Player/Press C[/Keyboard/c]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
+      value: Player/Press V[/Keyboard/v]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575200575036347308, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575200575036347308, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3119405445525026381, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: m_Name
       value: UI
@@ -12319,7 +12325,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7767620104099850147, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 939460742}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3119405445525026381, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1563060868}
   m_SourcePrefab: {fileID: 100100000, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
 --- !u!1 &2102106916
 GameObject:
