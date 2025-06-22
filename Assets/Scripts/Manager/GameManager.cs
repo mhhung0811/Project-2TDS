@@ -30,11 +30,6 @@ public class GameManager : Singleton<GameManager>
 		isOpenUI = false;
 	}
 
-	public void Update()
-	{
-
-	}
-
 	public void PauseGame()
 	{
 		isGamePaused = true;

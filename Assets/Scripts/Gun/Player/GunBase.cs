@@ -174,7 +174,7 @@ public class GunBase : MonoBehaviour, IGunData
 				playerMana.CurrentValue = playerMana.CurrentValue % manaCost;
 			}
 		}
-		Debug.Log("Reload nênneneenennne");
+		Debug.Log("Reload");
 		playerMana.CurrentValue -= manaToReload;
 		currentAmmo += ammoToReload;
 		// Debug.Log($"Player Ammo: {currentAmmo}");

@@ -84,11 +84,11 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 
 		if (SaveGameManager.Instance.isGameLoaded)
 		{
-			HP.CurrentValue = SaveGameManager.Instance.gameData.health;
-			Mana.CurrentValue = SaveGameManager.Instance.gameData.mana;
+			HP.CurrentValue = SaveGameManager.Instance.gameData.maxHealth;
+			Mana.CurrentValue = SaveGameManager.Instance.gameData.maxMana;
 			MaxHP.CurrentValue = SaveGameManager.Instance.gameData.maxHealth;
 			MaxMana.CurrentValue = SaveGameManager.Instance.gameData.maxMana;
-			this.transform.position = (Vector3)SaveGameManager.Instance.gameData.LastSpawn;
+			transform.position = SaveGameManager.Instance.gameData.lastSpawn;
 		}
 	}
 
@@ -362,8 +362,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 	{
         if (isInvulnerable) return;
 
-        HP.CurrentValue = HP.CurrentValue - 1;
-		SaveGameManager.Instance.gameData.health = HP.CurrentValue;
+        HP.CurrentValue -= 1;
+		// SaveGameManager.Instance.gameData.health = HP.CurrentValue;
 
 		if (HP.CurrentValue <= 0)
         {
@@ -373,8 +373,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
         StartCoroutine(InvulnerablilityCoroutine());
 
 		// Camera shake
-        var @void = new Void();
-		PlayerHit.Raise(@void);
+		PlayerHit.Raise(new Void());
 	}
 
     public void OnExplode(float damage)
@@ -482,4 +481,9 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
         RollEnd,
     }
     #endregion
+
+    public void ToIdleState()
+    {
+	    StateMachine.ChangeState(IdleState);
+    }
 }

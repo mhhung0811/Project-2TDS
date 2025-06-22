@@ -1,4 +1,6 @@
 ﻿public interface IRoomProp
 {
-    public void OnRoomInitialize();
+    public void OnRoomEntry();
+    
+    public void OnRoomRefresh();
 }

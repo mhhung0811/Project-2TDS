@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInteractable, IExplodedInteractable, IDamageEffectApplicable
+public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInteractable, IExplodedInteractable, IDamageEffectApplicable, IRoomProp
 {
 	// Base Enemy Variables
 	[field : SerializeField] public int MaxHealth { get; set; }
@@ -209,5 +209,20 @@ public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInterac
 		{
 			return;
 		}
+	}
+
+	public void OnRoomEntry()
+	{
+		if (gameObject.activeSelf)
+		{
+			CurrentHealth = MaxHealth;
+		}
+	}
+
+	public void OnRoomRefresh()
+	{
+		// StateMachine.ChangeState(IdleState);
+		gameObject.SetActive(true);
+		CurrentHealth = MaxHealth;
 	}
 }
