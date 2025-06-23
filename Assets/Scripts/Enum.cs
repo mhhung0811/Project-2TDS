@@ -17,6 +17,8 @@
 	HighPriestGunBullet,
 	GunnutBullet,
 	LichGunBullet,
+	BulletRotate,
+	BulletBouncing,
 }
 
 public enum EffectType

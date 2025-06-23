@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBullet : Projectile
 {
-	public void OnTriggerEnter2D(Collider2D collision)
+	public virtual void OnTriggerEnter2D(Collider2D collision)
 	{
 		IPlayerInteractable player = collision.gameObject.GetComponent<IPlayerInteractable>();
 		if (player != null)

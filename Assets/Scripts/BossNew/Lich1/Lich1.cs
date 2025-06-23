@@ -120,17 +120,17 @@ public class Lich1 : MonoBehaviour, IEnemyInteractable
 		return new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians));
 	}
 
-	public void SpawnArcBullets(Vector2 pos, Vector2 direction, float totalAngle, int bulletCount)
+	public void SpawnArcBullets(Vector2 pos, Vector2 direction, float totalAngle, int bulletCount, FlyweightType type = FlyweightType.LichGunBullet)
 	{
 		float startAngle = -totalAngle / 2f;
-		float stepAngle = totalAngle / (bulletCount - 1);
+		float stepAngle = totalAngle / (bulletCount);
 
 		for (int i = 0; i < bulletCount; i++)
 		{
 			float angle = startAngle + i * stepAngle;
 
 			takeBulletFunc.GetFunction()((
-				FlyweightType.LichGunBullet,
+				type,
 				pos,
 				Vector2ToAngle(direction) + angle
 			));
