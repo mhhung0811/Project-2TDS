@@ -334,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6772549295857386393, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 6772549295857386393, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -516,7 +516,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 267425821889468714, guid: f9196cfa53ab9da43ab682dfdcce1d6d, type: 3}
       propertyPath: m_Lens.OrthographicSize
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5661540658210679876, guid: f9196cfa53ab9da43ab682dfdcce1d6d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4043,7 +4043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7909215773385009145, guid: fac5f81fe06301e4ba51caa8494c3028, type: 3}
       propertyPath: orthographic size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7909215773385009145, guid: fac5f81fe06301e4ba51caa8494c3028, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -4287,7 +4287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8452983214604320129, guid: 3ecfc7be011bcfb459caaaa5da6ac9d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8452983214604320129, guid: 3ecfc7be011bcfb459caaaa5da6ac9d3, type: 3}
       propertyPath: m_LocalPosition.z

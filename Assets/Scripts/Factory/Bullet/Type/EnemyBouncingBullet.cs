@@ -68,7 +68,7 @@ public class EnemyBouncingBullet : Projectile
 		if(trail != null)
 		{
 			trail.SetActive(false);
-			yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(0.15f);
 			trail.SetActive(true);
 		}
 	}

@@ -35,6 +35,8 @@ public enum EffectType
 	VFXBulletBombshee,
 	FxFlash1,
 	LichFlashInitFx,
+	LichBookSummonFx,
+	LichExplodeFx,
 }
 
 public enum EnemyType

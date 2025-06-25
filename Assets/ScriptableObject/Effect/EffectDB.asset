@@ -39,3 +39,7 @@ MonoBehaviour:
     effectPref: {fileID: 2364161272177163379, guid: cc174c721b5991145a256e66e06fcf3a, type: 3}
   - effectType: 11
     effectPref: {fileID: 5457768346067187759, guid: 2da34776c9293d5459df96b7c84c9dcd, type: 3}
+  - effectType: 12
+    effectPref: {fileID: 8227343502732399918, guid: ad8cbb230cd42ed46a566c02244efa98, type: 3}
+  - effectType: 13
+    effectPref: {fileID: 5457768346067187759, guid: 569126534a561fd44a4e53ce42118d22, type: 3}

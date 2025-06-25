@@ -22,6 +22,8 @@ public class Lich1ExplodeState : Lich1State
 	{
 		base.Exit();
 		boss.animator.SetBool("Explode", false);
+
+		boss.vfx.SetActive(false);
 	}
 
 	public override void FrameUpdate()
@@ -44,6 +46,7 @@ public class Lich1ExplodeState : Lich1State
 	private IEnumerator Attack()
 	{
 		yield return new WaitForSeconds(0.9f);
+		EffectManager.Instance.PlayEffect(EffectType.LichExplodeFx, boss.transform.position, Quaternion.identity);
 		boss.SpawnArcBullets(boss.transform.position, boss.AngleToVector2(0), 360, 20, FlyweightType.BulletBouncing);
 		yield return new WaitForSeconds(0.2f);
 		boss.SpawnArcBullets(boss.transform.position, boss.AngleToVector2(9), 360, 20, FlyweightType.BulletRotate);

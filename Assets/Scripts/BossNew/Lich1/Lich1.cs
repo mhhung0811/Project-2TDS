@@ -21,6 +21,9 @@ public class Lich1 : MonoBehaviour, IEnemyInteractable
 	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
 	public Transform posGun;
 	public Transform posGunInit;
+	public Transform posAOE;
+	public Transform posBookFx;
+	public GameObject vfx;
 	public Vector2Variable playerPos;
 	public Vector2Variable posCenter;
 
@@ -40,6 +43,7 @@ public class Lich1 : MonoBehaviour, IEnemyInteractable
 	public Lich1GunState gunState;
 	public Lich1ExplodeState explodeState;
 	public Lich1DieState dieState;
+	public Lich1SummonState summonState;
 	#endregion
 
 	#region Unity Functions 
@@ -58,6 +62,7 @@ public class Lich1 : MonoBehaviour, IEnemyInteractable
 		gunState = new Lich1GunState(this, stateMachine);
 		explodeState = new Lich1ExplodeState(this, stateMachine);
 		dieState = new Lich1DieState(this, stateMachine);
+		summonState = new Lich1SummonState(this, stateMachine);
 
 		stateMachine.Initialize(initState);
 	}

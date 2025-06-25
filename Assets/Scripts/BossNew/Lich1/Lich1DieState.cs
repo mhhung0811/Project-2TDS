@@ -13,6 +13,9 @@ public class Lich1DieState : Lich1State
 	{
 		base.Enter();
 		boss.animator.SetBool("Die", true);
+		boss.StopAllCoroutines();
+		boss.col.enabled = false;
+		boss.StartCoroutine(DestroyDelay());
 	}
 
 	public override void Exit()
@@ -32,6 +35,10 @@ public class Lich1DieState : Lich1State
 		base.PhysicsUpdate();
 	}
 
-
+	private IEnumerator DestroyDelay()
+	{
+		yield return new WaitForSeconds(1.25f);
+		boss.gameObject.SetActive(false);
+	}
 }
 
