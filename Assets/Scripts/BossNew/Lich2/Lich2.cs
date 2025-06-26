@@ -139,7 +139,7 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 	public void SpawnArcBullets(Vector2 pos, Vector2 direction, float totalAngle, int bulletCount, FlyweightType type = FlyweightType.LichGunBullet)
 	{
 		float startAngle = -totalAngle / 2f;
-		float stepAngle = totalAngle / (bulletCount);
+		float stepAngle = totalAngle / (bulletCount - 1);
 
 		for (int i = 0; i < bulletCount; i++)
 		{

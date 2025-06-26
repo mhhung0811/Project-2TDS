@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Lich2IdleState : Lich2State
 {
+	public bool isCombo = false;
 	public Lich2IdleState(Lich2 highPriest, Lich2StateMachine stateMachine) : base(highPriest, stateMachine)
 	{
 
@@ -40,6 +41,11 @@ public class Lich2IdleState : Lich2State
 		else if (Input.GetKeyDown(KeyCode.L))
 		{
 			stateMachine.ChangeState(boss.attackState);
+		}
+		else if (Input.GetKeyDown(KeyCode.U))
+		{
+			isCombo = true;
+			stateMachine.ChangeState(boss.attackLeftState);
 		}
 	}	
 
