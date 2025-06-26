@@ -47,6 +47,66 @@ public class Lich2AttackCenterState : Lich2State
 		yield return new WaitForSeconds(timeSpawnTrail);
 		boss.SpawnTrail(boss.trailCenter, 0.1f);
 		EffectManager.Instance.PlayEffect(EffectType.Lich2ExplodeCenter, boss.posCenter.position, Quaternion.identity);
+
+		// Spawn Left
+		boss.StartCoroutine(SpawnGrids(
+			pos: boss.areaLeft.position,
+			dir: Vector2.right,
+			countLine: 5,
+			amountInLine: 5,
+			widthStep: 2f,
+			countGrid: 5
+		));
+
+		yield return new WaitForSeconds(1f);
+		// Spawn Right
+		boss.StartCoroutine(SpawnGrids(
+			pos: (Vector2)boss.areaRight.position + Vector2.up * 0.75f,
+			dir: Vector2.left,
+			countLine: 4,
+			amountInLine: 5,
+			widthStep: 2f,
+			countGrid: 5
+		));
+	}
+
+	private IEnumerator SpawnGrids(Vector2 pos, Vector2 dir, int countLine, int amountInLine, float widthStep, int countGrid)
+	{
+		for(int i =0; i < countGrid; i++)
+		{
+			SpawnLines(
+				pos,
+				dir,
+				countLine,
+				amountInLine,
+				widthStep
+			);
+			yield return new WaitForSeconds(2f);
+		}
+	}
+
+	private void SpawnLines(Vector2 posStart, Vector2 dir, int countLine, int amountInLine, float widthStep) {
+		for(int i = 0; i< countLine;i++)
+		{
+			boss.StartCoroutine(SpawnLine(
+				posStart + Vector2.up * widthStep * i,
+				dir,
+				amountInLine
+			));
+		}
+	}
+
+	private IEnumerator SpawnLine(Vector2 pos, Vector2 dir, int amount)
+	{
+		for (int i = 0; i < amount; i++) {
+			boss.takeBulletFunc.GetFunction()((
+				FlyweightType.LichGunBullet,
+				pos,
+				boss.Vector2ToAngle(dir)
+			));
+
+			yield return new WaitForSeconds(0.15f);
+		}
 	}
 }
 

@@ -42,6 +42,9 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 	public Transform posCenter;
 	public Transform posLeft;
 	public Transform posRight;
+	public Transform areaLeft;
+	public Transform areaRight;
+	public Transform areaCenter;
 	#endregion
 
 	#region State Machine

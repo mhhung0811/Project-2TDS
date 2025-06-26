@@ -68,6 +68,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87fdacbbcee68664ba2cb314816c584d, type: 2}
   - {fileID: 11400000, guid: 3394e97a55649b24eba8cb72ef9ad593, type: 2}
   - {fileID: 11400000, guid: 2d5cb3bc0f1d0ab4bad59670a10710dc, type: 2}
+  - {fileID: 11400000, guid: 3cec3a090ce2cac43bbcbf1ae97fe3fb, type: 2}
   projectilePools: []
   collectionCheck: 1
   defaultCapacity: 10

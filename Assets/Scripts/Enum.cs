@@ -19,6 +19,7 @@
 	LichGunBullet,
 	BulletRotate,
 	BulletBouncing,
+	Lich2BendingBullet,
 }
 
 public enum EffectType
