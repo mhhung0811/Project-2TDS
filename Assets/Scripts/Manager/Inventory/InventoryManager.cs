@@ -10,15 +10,6 @@ public class InventoryManager : MonoBehaviour
     public InUseGun inUseGun;
     
     public GunBaseIntEvent onGunArsenalChange;
-    
-    private void Awake()
-    {
-        // Retrieve data
-        // _gunSlotSize = 3;
-        // _gunColection.Add(GunType.GlockPro);
-        // _gunColection.Add(GunType.AssaultRifle);
-        // _gunColection.Add(GunType.ShotGun);
-    }
 
     private void Start()
     {
