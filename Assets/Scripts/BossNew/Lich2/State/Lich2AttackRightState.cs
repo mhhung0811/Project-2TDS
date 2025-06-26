@@ -45,7 +45,8 @@ public class Lich2AttackRightState : Lich2State
 	private IEnumerator SpawnTrail()
 	{
 		yield return new WaitForSeconds(timeSpawnTrail);
-		boss.SpawnTrail(boss.trailRight, 0.075f);
+		boss.SpawnTrail(boss.trailRight, 0.1f);
+		EffectManager.Instance.PlayEffect(EffectType.Lich2ExplodeRight, boss.posRight.position, Quaternion.identity);
 	}
 }
 

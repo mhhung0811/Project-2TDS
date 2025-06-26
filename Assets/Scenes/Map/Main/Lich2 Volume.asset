@@ -18,7 +18,7 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.75
   intensity:
     m_OverrideState: 1
     m_Value: 5
@@ -30,7 +30,7 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.74635506, g: 0, b: 1, a: 1}
+    m_Value: {r: 0.8189846, g: 0, b: 0.94716984, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Global Volume Profile
+  m_Name: Lich2 Volume
   m_EditorClassIdentifier: 
   components:
   - {fileID: -4556689733113751172}

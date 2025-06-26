@@ -43,3 +43,9 @@ MonoBehaviour:
     effectPref: {fileID: 8227343502732399918, guid: ad8cbb230cd42ed46a566c02244efa98, type: 3}
   - effectType: 13
     effectPref: {fileID: 5457768346067187759, guid: 569126534a561fd44a4e53ce42118d22, type: 3}
+  - effectType: 14
+    effectPref: {fileID: 2201124917986055952, guid: c6a62719ff0367c4682d31a9fc1ff66f, type: 3}
+  - effectType: 15
+    effectPref: {fileID: 2559962734664822945, guid: 56ac449c3cbf94f42aaac35a00cbbd26, type: 3}
+  - effectType: 16
+    effectPref: {fileID: 1602428903958840356, guid: 569e6f90ad845c94d9eb1aeb9a925619, type: 3}

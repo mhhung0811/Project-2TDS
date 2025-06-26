@@ -45,7 +45,8 @@ public class Lich2AttackCenterState : Lich2State
 	private IEnumerator SpawnTrail()
 	{
 		yield return new WaitForSeconds(timeSpawnTrail);
-		boss.SpawnTrail(boss.trailCenter, 0.075f);
+		boss.SpawnTrail(boss.trailCenter, 0.1f);
+		EffectManager.Instance.PlayEffect(EffectType.Lich2ExplodeCenter, boss.posCenter.position, Quaternion.identity);
 	}
 }
 

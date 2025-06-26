@@ -37,6 +37,9 @@ public enum EffectType
 	LichFlashInitFx,
 	LichBookSummonFx,
 	LichExplodeFx,
+	Lich2ExplodeCenter,
+	Lich2ExplodeLeft,
+	Lich2ExplodeRight,
 }
 
 public enum EnemyType

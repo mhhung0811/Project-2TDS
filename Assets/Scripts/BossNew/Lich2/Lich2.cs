@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.LowLevel;
 public class Lich2 : MonoBehaviour, IEnemyInteractable
 {
 	#region Boss Properties
+	[Header("Properties")]
 	public FloatVariable maxHealth;
 	public FloatVariable currentHealth;
 	public float moveSpeed;
@@ -16,6 +17,7 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 	#endregion
 
 	#region Boss Components
+	[Header("Component")]
 	public Material damageFlashMAT;
 	private Material damageFlashMATRunTime;
 	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
@@ -31,9 +33,15 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 
 
 	#region Child Components
+	[Header("Trail fx")]
 	public GameObject trailCenter;
 	public GameObject trailLeft;
 	public GameObject trailRight;
+
+	[Header("Position Transforms")]
+	public Transform posCenter;
+	public Transform posLeft;
+	public Transform posRight;
 	#endregion
 
 	#region State Machine
