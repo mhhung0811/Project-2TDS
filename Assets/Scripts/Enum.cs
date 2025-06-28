@@ -43,6 +43,8 @@ public enum EffectType
 	Lich2ExplodeCenter,
 	Lich2ExplodeLeft,
 	Lich2ExplodeRight,
+	HandPullFx,
+	TeleportPixelFx,
 }
 
 public enum EnemyType
