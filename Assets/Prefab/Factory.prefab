@@ -65,6 +65,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e9d9dbffff5aba4682c142120be3590, type: 2}
   - {fileID: 11400000, guid: c67ea7919e82ab343b4220d76f1b5283, type: 2}
   - {fileID: 11400000, guid: 23b74786a5b581140bcd7af15a518135, type: 2}
+  - {fileID: 11400000, guid: 87fdacbbcee68664ba2cb314816c584d, type: 2}
+  - {fileID: 11400000, guid: 3394e97a55649b24eba8cb72ef9ad593, type: 2}
+  - {fileID: 11400000, guid: 2d5cb3bc0f1d0ab4bad59670a10710dc, type: 2}
+  - {fileID: 11400000, guid: 3cec3a090ce2cac43bbcbf1ae97fe3fb, type: 2}
+  - {fileID: 11400000, guid: 33b455b9ab2a7464489e8d5b13009cdf, type: 2}
+  - {fileID: 11400000, guid: 645c7da415299e84da7f2692e8ce7372, type: 2}
   projectilePools: []
   collectionCheck: 1
   defaultCapacity: 10

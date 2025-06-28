@@ -16,6 +16,12 @@
 	HighPriestShieldBullet,
 	HighPriestGunBullet,
 	GunnutBullet,
+	LichGunBullet,
+	BulletRotate,
+	BulletBouncing,
+	Lich2BendingBullet,
+	Lich2WireBullet,
+	Lich2HeadWireBullet,
 }
 
 public enum EffectType
@@ -31,6 +37,14 @@ public enum EffectType
 	EfBurning,
 	VFXBulletBombshee,
 	FxFlash1,
+	LichFlashInitFx,
+	LichBookSummonFx,
+	LichExplodeFx,
+	Lich2ExplodeCenter,
+	Lich2ExplodeLeft,
+	Lich2ExplodeRight,
+	HandPullFx,
+	TeleportPixelFx,
 }
 
 public enum EnemyType

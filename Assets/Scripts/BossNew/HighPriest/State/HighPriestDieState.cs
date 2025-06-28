@@ -16,6 +16,7 @@ public class HighPriestDieState : HighPriestState
 		boss.col.enabled = false;
 		boss.animator.SetBool("Die", true);
 		GameObject shadow = boss.transform.Find("Shadow").gameObject;
+		boss.gunAnimator.SetBool("Idle", true);
 		if (shadow != null)
 		{
 			shadow.SetActive(false);
