@@ -1,64 +1,82 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections;
+using UnityEngine;
 
 public class FadePanelUI : MonoBehaviour
 {
-    [SerializeField] private Image fadeOutImage;
-    [Range(0.1f, 10f), SerializeField] private float fadeOutSpeed = 5f;
-    [Range(0.1f, 10f), SerializeField] private float fadeInSpeed = 5f;
+    public float fadeDuration = 1.0f;
+    public float inputEnableTime = 0.5f;
     
-    [SerializeField] private Color fadeOutStartColor;
-    
-    public bool isFadingOut { get; private set; }
-    public bool isFadingIn { get; private set; }
+    private CanvasGroup _canvasGroup;
+    private Coroutine _fadeCoroutine;
+    private bool _isInputEnable = false;
     
     private void Awake()
     {
-        fadeOutStartColor.a = 0;
+        // Get the CanvasGroup component attached to this GameObject.
+        _canvasGroup = GetComponent<CanvasGroup>();
+        // Ensure the panel is fully visible initially if it's enabled in the editor.
+        _canvasGroup.alpha = 1.0f;
+        // Reset flag
+        _isInputEnable = false;
     }
 
-    private void Update()
+    void OnEnable()
     {
-        if (isFadingOut)
+        // Start the fade-out coroutine when the GameObject is enabled.
+        if (_fadeCoroutine != null)
         {
-            if (fadeOutImage.color.a < 1)
-            {
-                fadeOutStartColor.a += Time.deltaTime * fadeOutSpeed;
-                fadeOutImage.color = fadeOutStartColor;
-            }
-            else
-            {
-                isFadingOut = false;
-            }
+            StopCoroutine(_fadeCoroutine);
         }
+        _fadeCoroutine = StartCoroutine(FadeOut());
+        GameManager.Instance.isOpenUI = true;
+    }
 
-        if (isFadingIn)
+    private IEnumerator FadeOut()
+    {
+        float startAlpha = _canvasGroup.alpha;
+        float timer = 0f;
+
+        while (timer < fadeDuration)
         {
-            if (fadeOutImage.color.a >= 0)
+            timer += Time.deltaTime;
+            float clampedInputEnableTime = Mathf.Clamp(inputEnableTime, 0f, fadeDuration);
+
+            if (!_isInputEnable && timer >= clampedInputEnableTime)
             {
-                fadeOutStartColor.a -= Time.deltaTime * fadeInSpeed;
-                fadeOutImage.color = fadeOutStartColor;
+                GameManager.Instance.isOpenUI = false;
+                _isInputEnable = true;
             }
-            else
-            {
-                isFadingIn = false;
-            }
+            
+            float newAlpha = Mathf.Lerp(startAlpha, 0f, timer / fadeDuration);
+            _canvasGroup.alpha = newAlpha;
+            yield return null; // Wait for the next frame
         }
-    }
-
-    // Event listener
-    public void StartFadeOut()
-    {
-        fadeOutImage.color = fadeOutStartColor;
-        isFadingOut = true;
-    }
-
-    // Event listener
-    public void StartFadeIn()
-    {
-        if (!(fadeOutImage.color.a >= 1)) return;
         
-        fadeOutImage.color = fadeOutStartColor;
-        isFadingIn = true;
+        // Ensure the alpha is exactly 0 at the end.
+        _canvasGroup.alpha = 0f;
+        
+        // This prevents interaction and rendering of the panel when it's invisible.
+        gameObject.SetActive(false);
+        // canvasGroup.interactable = false;
+        // canvasGroup.blocksRaycasts = false;
+
+        _fadeCoroutine = null; // Clear the coroutine reference
+    }
+    
+    void OnDisable()
+    {
+        // Stop the coroutine if the GameObject is disabled while fading.
+        if (_fadeCoroutine != null)
+        {
+            StopCoroutine(_fadeCoroutine);
+            _fadeCoroutine = null;
+        }
+        // Reset alpha to full when disabled, so it's ready for the next enable.
+        if (_canvasGroup != null)
+        {
+            _canvasGroup.alpha = 1.0f;
+        }
+
+        _isInputEnable = false;
     }
 }

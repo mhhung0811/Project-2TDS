@@ -30,7 +30,7 @@ public class Door : MonoBehaviour
     private Animator _animator;
     private BoxCollider2D _boxCollider2D;
 
-    private RoomController _room;
+    // private RoomController _room;
     private BoxCollider2D _interactionZone;
     
     void Awake()
@@ -41,13 +41,13 @@ public class Door : MonoBehaviour
         Transform parentOfParent = transform.parent?.parent;
         if (parentOfParent != null)
         {
-            _room = parentOfParent.GetComponent<RoomController>();
+            // _room = parentOfParent.GetComponent<RoomController>();
         }
         
-        if (_room == null)
-        {
-            Debug.LogWarning("RoomController parent not found");
-        }
+        // if (_room == null)
+        // {
+        //     Debug.LogWarning("RoomController parent not found");
+        // }
         
         _interactionZone = transform.GetChild(0).GetComponent<BoxCollider2D>();
     }
@@ -60,10 +60,10 @@ public class Door : MonoBehaviour
     
     public void DoorTrigger()
     {
-        if (_room != null)
-        {
-            _room.DelayTriggerdStateToState(_room.roomStateMachine.activeState);
-        }
+        // if (_room != null)
+        // {
+        //     _room.DelayTriggerdStateToState(_room.roomStateMachine.activeState);
+        // }
     }
     public void TurnOnInteractionZone()
     {

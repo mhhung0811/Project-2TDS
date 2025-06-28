@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grenade : BombBase
+public class Grenade : BombBase, IPlayerItem
 {
 	public float force = 12f;
 	public float damage = 50f;
@@ -59,4 +59,16 @@ public class Grenade : BombBase
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, radius);
 	}
+
+	#region IPlayerItem Implementation
+
+	public int manaCost { get; set; }
+	public float cooldown { get; set; }
+
+	public void UseItem(Vector2 pos)
+	{
+		Throw(pos);
+	}
+
+	#endregion
 }

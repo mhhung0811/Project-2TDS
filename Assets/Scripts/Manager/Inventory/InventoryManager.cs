@@ -10,27 +10,21 @@ public class InventoryManager : MonoBehaviour
     public InUseGun inUseGun;
     
     public GunBaseIntEvent onGunArsenalChange;
-    
-    private void Awake()
-    {
-        // Retrieve data
-        // _gunSlotSize = 3;
-        _gunColection.Add(GunType.GlockPro);
-        _gunColection.Add(GunType.AssaultRifle);
-		_gunColection.Add(GunType.ShotGun);
-
-		InitializedGun();
-    }
+    public IntEvent onGunArsenalRemove;
 
     private void Start()
     {
-        ChangeGunInArsenal(_guns[GunType.GlockPro], 0);
-        ChangeGunInArsenal(_guns[GunType.AssaultRifle], 1);
-		ChangeGunInArsenal(_guns[GunType.ShotGun], 2);
+        InitializedGun();
 	}
     
     private void InitializedGun()
     {
+        // Retrieve data
+        foreach (var gunType in SaveGameManager.Instance.gameData.unlockedGuns)
+        {
+            _gunColection.Add(gunType);
+        }
+        
         foreach (var gunType in _gunColection)
         {
             var gun = Instantiate(inUseGun.GetGunByType(gunType));
@@ -50,6 +44,20 @@ public class InventoryManager : MonoBehaviour
             else
             {
                 Debug.LogError($"Gun of type {gunType} not found!");
+            }
+        }
+
+        for (int i = 0; i < SaveGameManager.Instance.gameData.currentGuns.Count; i++)
+        {
+            if (i >= SaveGameManager.Instance.gameData.gunSlots) break;
+            var type = SaveGameManager.Instance.gameData.currentGuns[i];
+            if (_guns.ContainsKey(type))
+            {
+                onGunArsenalChange?.Raise((_guns[type], i));
+            }
+            else
+            {
+                Debug.LogError($"Gun of type {type} not found in initialized guns!");
             }
         }
     }
@@ -82,9 +90,23 @@ public class InventoryManager : MonoBehaviour
             Debug.LogError($"Gun of type {gunType} not found!");
         }
     }
-
-    public void ChangeGunInArsenal(GunBase gun, int index)
+    
+    // Event listener
+    public void ChangeGunInArsenal((GunType gunType, int index) param)
     {
-        onGunArsenalChange?.Raise((gun, index));
+        if (_guns.TryGetValue(param.gunType, out var gun))
+        {
+            onGunArsenalChange?.Raise((gun, param.index));
+        }
+        else
+        {
+            Debug.LogError($"Gun of type {param.gunType} not found in arsenal!");
+        }
+    }
+    
+    // Event listener
+    public void RemoveGunInArsenal(int index)
+    {
+        onGunArsenalRemove?.Raise(index);
     }
 }

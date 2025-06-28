@@ -63,3 +63,9 @@ public enum GunType
 	GlockPro,
 	AWM,
 }
+
+public enum ItemType
+{
+	Grenade,
+	Molotov
+}

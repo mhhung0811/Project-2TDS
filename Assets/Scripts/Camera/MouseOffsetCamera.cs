@@ -14,6 +14,7 @@ public class MouseOffsetCamera : MonoBehaviour
 	public float dampingFactor = 0.5f; // Tỉ lệ giảm tốc độ camera so với chuột
 
 	public CinemachineVirtualCamera virtualCamera; // Gắn Virtual Camera
+	private CinemachineConfiner2D confiner2D;
 
 	private Vector3 mouseOffset;
 	private Vector3 targetOffset;
@@ -26,9 +27,9 @@ public class MouseOffsetCamera : MonoBehaviour
 	private Vector2 shakeOffset = Vector2.zero;
 	private Vector2 shakeDirection = Vector2.zero;
 
-	private void Start()
+	private void Awake()
 	{
-
+		confiner2D = virtualCamera.GetComponent<CinemachineConfiner2D>();
 	}
 
 	void Update()
@@ -91,5 +92,11 @@ public class MouseOffsetCamera : MonoBehaviour
 		yield return new WaitForSeconds(3.5f);
 		virtualCamera.enabled = true;
 		SoundManager.Instance.PlayMusic();
+	}
+	
+	// Event listener
+	public void ChangeCameraBound(Collider2D coll)
+	{
+		confiner2D.m_BoundingShape2D = coll;
 	}
 }

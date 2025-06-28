@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cbcfac9d7ae4e2c95fe2b9f4da8873f, type: 3}
+  m_Name: DefaultGameData
+  m_EditorClassIdentifier: 
+  gameData:
+    maxHealth: 6
+    maxMana: 1000
+    lastSpawn: {x: 0, y: 0}
+    lastRoom: 0
+    currentHPPieces: 0
+    currentManaPieces: 0
+    currentPowerPieces: 0
+    gunSlots: 2
+    unlockedGuns: 02000000
+    currentGunIndex: 0
+    currentGuns: 02000000
+    itemSlots: 0
+    unlockedItems: 
+    currentItemIndex: 0
+    currentItems: 

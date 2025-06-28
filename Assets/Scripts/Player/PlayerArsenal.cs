@@ -52,6 +52,59 @@ public class PlayerArsenal : MonoBehaviour
         // Auto switch to the first gun
         SwitchGun(0);
     }
+    
+    // Event listener
+    /// <summary>
+    /// Removes a gun from the arsenal by index.
+    /// </summary>
+    public void RemoveGunInArsenal(int index)
+    {
+        if (index < 0 || index >= gunCollection.Count)
+        {
+            Debug.LogWarning($"Invalid gun index: {index}. Cannot remove.");
+            return;
+        }
+
+        var gunToRemove = gunCollection[index];
+
+        if (gunToRemove != null)
+        {
+            Debug.Log("Still work");
+            // gunToRemove.ResetReloadTimeVariables();
+            // gunToRemove.ResetAmmoVariables();
+            // gunToRemove.ResetTotalAmmoVariable();
+            gunToRemove.gameObject.SetActive(false);
+            gunToRemove.transform.SetParent(null); // optionally detach it from gunHolder
+        }
+
+        // Remove the gun and shift the rest
+        gunCollection.RemoveAt(index);
+
+        // Adjust currentGunIndex
+        if (_currentGunIndex == index)
+        {
+            _currentGunIndex = -1;
+            AutoSwitchNextValidGun();
+        }
+        else if (_currentGunIndex > index)
+        {
+            _currentGunIndex--; // account for shifted elements
+        }
+    }
+    
+    private void AutoSwitchNextValidGun()
+    {
+        for (int i = 0; i < gunCollection.Count; i++)
+        {
+            if (gunCollection[i] != null)
+            {
+                SwitchGun(i);
+                return;
+            }
+        }
+
+        Debug.Log("No guns available to switch to.");
+    }
 
     /// <summary>
     /// Switches to a gun based on its index in the collection.
