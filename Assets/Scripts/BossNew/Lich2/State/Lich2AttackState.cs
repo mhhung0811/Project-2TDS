@@ -6,25 +6,25 @@ using UnityEngine;
 public class Lich2AttackState : Lich2State
 {
 	private float delayAttack = 2.5f;
-	private bool preSkill = true;
+	public bool preSkill1 = false;
 	public Lich2AttackState(Lich2 highPriest, Lich2StateMachine stateMachine) : base(highPriest, stateMachine)
 	{
-
+		preSkill1 = false;
 	}
 
 	public override void Enter()
 	{
 		base.Enter();
 		boss.animator.SetBool("Attack", true);
-		if (preSkill)
+		if (!preSkill1)
 		{
 			boss.StartCoroutine(Skill1());
-			preSkill = false;
+			preSkill1 = true;
 		}
 		else
 		{
 			boss.StartCoroutine(Skill2());
-			preSkill = true; 
+			preSkill1 = false; 
 		}
 	}
 

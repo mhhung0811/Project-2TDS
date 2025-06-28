@@ -356,11 +356,11 @@ MonoBehaviour:
   maxHealth: {fileID: 11400000, guid: f871543b234cd3940af42786ca7500f2, type: 2}
   currentHealth: {fileID: 11400000, guid: 6cfbdf3dd8f8f654fb8ecbbb0c56a38f, type: 2}
   moveSpeed: 0
-  damageFlashMAT: {fileID: 2100000, guid: b09d076b1484b2d418d8161d7c12df7a, type: 2}
   takeBulletFunc: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}
   playerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   col: {fileID: 0}
   animator: {fileID: 0}
+  dissolveMAT: {fileID: 2100000, guid: 86ca0cc982fbbd040aa45f6064e03893, type: 2}
   trailCenter: {fileID: 2469744878984223768}
   trailLeft: {fileID: 5878742058557318533}
   trailRight: {fileID: 5256474533166732314}
@@ -390,7 +390,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 86ca0cc982fbbd040aa45f6064e03893, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

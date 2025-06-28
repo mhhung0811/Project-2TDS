@@ -16,6 +16,7 @@ public class Lich2DieState : Lich2State
 		boss.animator.SetBool("Die", true);
 		boss.StopAllCoroutines();
 		boss.col.enabled = false;
+		boss.StartCoroutine(Dissolve());
 	}
 
 	public override void Exit()
@@ -33,6 +34,14 @@ public class Lich2DieState : Lich2State
 	public override void PhysicsUpdate()
 	{
 		base.PhysicsUpdate();
+	}
+
+	public IEnumerator Dissolve()
+	{
+		yield return new WaitForSeconds(2f);
+		boss.Dissolve(3f);
+		yield return new WaitForSeconds(3f);
+		boss.gameObject.SetActive(false);
 	}
 }
 

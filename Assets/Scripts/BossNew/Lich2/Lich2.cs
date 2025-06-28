@@ -18,8 +18,6 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 
 	#region Boss Components
 	[Header("Component")]
-	public Material damageFlashMAT;
-	private Material damageFlashMATRunTime;
 	public GameObjectFlyweightTypeVector2FloatFuncProvider takeBulletFunc;
 	public Vector2Variable playerPos;
 
@@ -29,6 +27,8 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 	public Collider2D col;
 	[HideInInspector]
 	public Animator animator;
+
+	public Material dissolveMAT;
 	#endregion
 
 
@@ -65,7 +65,7 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 		animator = GetComponent<Animator>();
 		col = GetComponent<Collider2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		damageFlashMATRunTime = new Material(damageFlashMAT);
+		//damageFlashMATRunTime = new Material(damageFlashMAT);
 
 		stateMachine = new Lich2StateMachine();
 		initState = new Lich2InitState(this, stateMachine);
@@ -80,6 +80,7 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 	}
 	private void Start()
 	{
+		dissolveMAT.SetFloat("_DissolveAmount", 0f);
 	}
 
 	private void Update()
@@ -100,21 +101,19 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 		currentHealth.CurrentValue = currentHealth.CurrentValue - damge;
 		if (currentHealth.CurrentValue <= 0)
 		{
-			spriteRenderer.material = damageFlashMAT; // Reset material to avoid flashing after death
-			damageFlashMAT.SetFloat("_FlashAmount", 0f);
 			stateMachine.ChangeState(dieState);
 			return;
 		}
-		StartCoroutine(FlashWhite());
+		//StartCoroutine(FlashWhite());
 	}
 
-	private IEnumerator FlashWhite()
-	{
-		spriteRenderer.material = damageFlashMATRunTime;
-		damageFlashMATRunTime.SetFloat("_FlashAmount", 0.5f);
-		yield return new WaitForSeconds(0.05f);
-		damageFlashMATRunTime.SetFloat("_FlashAmount", 0f);
-	}
+	//private IEnumerator FlashWhite()
+	//{
+	//	spriteRenderer.material = damageFlashMATRunTime;
+	//	damageFlashMATRunTime.SetFloat("_FlashAmount", 0.5f);
+	//	yield return new WaitForSeconds(0.05f);
+	//	damageFlashMATRunTime.SetFloat("_FlashAmount", 0f);
+	//}
 
 	public float Vector2ToAngle(Vector2 direction)
 	{
@@ -170,5 +169,25 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 		trailCenter.SetActive(false);
 		trailLeft.SetActive(false);
 		trailRight.SetActive(false);
+	}
+
+	public void Dissolve(float duration)
+	{
+		StartCoroutine(DissolveEffect(duration));
+	}
+
+	private IEnumerator DissolveEffect(float duration)
+	{
+		float elapsedTime = 0f;
+		dissolveMAT.SetFloat("_DissolveAmount", 0f);
+		spriteRenderer.material = dissolveMAT;
+		while (elapsedTime < duration)
+		{
+			float dissolveAmount = Mathf.Lerp(0f, 1f, elapsedTime / duration);
+			dissolveMAT.SetFloat("_DissolveAmount", dissolveAmount);
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+		dissolveMAT.SetFloat("_DissolveAmount", 1f);
 	}
 }
