@@ -12,6 +12,7 @@ public class Lich2HeadWireBullet : Projectile
 	private Vector2 posStart;
 	private List<Lich2WireBullet> bullets = new List<Lich2WireBullet>();
 	private bool stopSpawn = false;
+	public float timeClear = 3f;
 
 	public float offset = 0.5f;
 	private int dirOffset = 1;
@@ -26,8 +27,12 @@ public class Lich2HeadWireBullet : Projectile
 
 		// Spawn the first bullet
 		bullets.Clear();
-
 		stopSpawn = false;
+	}
+
+	public override void OnDisable()
+	{
+		base.OnDisable();
 	}
 
 	private void Update()
@@ -69,7 +74,7 @@ public class Lich2HeadWireBullet : Projectile
 	{
 		transform.position = (Vector2)transform.position + moveDir * Time.deltaTime * settings.speed;
 
-		for (int i = 0; i < bullets.Count;i++)
+		for (int i = 0; i < bullets.Count; i++)
 		{
 			bullets[i].transform.position = (Vector2)transform.position - moveDir * spacing * i;
 		}
@@ -119,11 +124,12 @@ public class Lich2HeadWireBullet : Projectile
 			_rb.velocity = Vector2.zero;
 
 			stopSpawn = true;
-			for (int i =0; i < bullets.Count; i++)
+			StartCoroutine(StartMoveWire());
+			for (int i = 0; i < bullets.Count; i++)
 			{
-				bullets[i].CoroutineClear(3f);
+				bullets[i].CoroutineClear(timeClear - 0.025f * i);
 			}
-			StartCoroutine(AutoClear(3f));
+			StartCoroutine(AutoClear(timeClear));
 			return;
 		}
 	}
@@ -131,6 +137,24 @@ public class Lich2HeadWireBullet : Projectile
 	private IEnumerator AutoClear(float time)
 	{
 		yield return new WaitForSeconds(time);
+		StopAllCoroutines();
 		settings.flyweightFunc.GetFunction()(this);
+	}
+
+	private IEnumerator StartMoveWire()
+	{
+		for(int i = 0; i < bullets.Count; i++)
+		{
+			bullets[i].StartMove();
+			if(i <= 10)
+			{
+				bullets[i].amplitude = 0.05f * i;
+			}
+			if(i >= bullets.Count - 10)
+			{
+				bullets[i].amplitude = 0.05f * (bullets.Count - i - 1);
+			}
+			yield return new WaitForSeconds(0.025f);
+		}
 	}
 }

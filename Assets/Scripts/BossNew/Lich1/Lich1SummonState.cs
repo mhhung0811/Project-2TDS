@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lich1SummonState : Lich1State
 {
-	private float summonDuration = 3f;
+	private float summonDuration = 3.5f;
 	public Lich1SummonState(Lich1 highPriest, Lich1StateMachine stateMachine) : base(highPriest, stateMachine)
 	{
 
@@ -53,15 +53,51 @@ public class Lich1SummonState : Lich1State
 		yield return new WaitForSeconds(7f/6f);
 
 		var direction = boss.playerPos.CurrentValue - (Vector2)boss.posGun.transform.position;
-		int amount = 5;
-		float totalAngle = 45f;
 		float timeBetweenShots = 1.4f / 6f;
-		for (int i = 0; i < 4; i++)
-		{
-			boss.SpawnArcBullets(boss.posGun.transform.position, direction, totalAngle, amount, FlyweightType.LichGunBullet);
-			EffectManager.Instance.PlayEffect(EffectType.LichFlashInitFx, boss.posGun.transform.position, Quaternion.identity);
-			yield return new WaitForSeconds(timeBetweenShots);
-		}
+
+		// 1st shot
+		boss.takeBulletFunc.GetFunction()((
+			FlyweightType.Lich2HeadWireBullet,
+			boss.posGun.transform.position,
+			boss.Vector2ToAngle(direction) + 30f
+		));
+		EffectManager.Instance.PlayEffect(EffectType.LichFlashInitFx, boss.posGun.transform.position, Quaternion.identity);
+		yield return new WaitForSeconds(timeBetweenShots);
+
+		// 2nd shot
+		boss.takeBulletFunc.GetFunction()((
+			FlyweightType.Lich2HeadWireBullet,
+			boss.posGun.transform.position,
+			boss.Vector2ToAngle(direction) - 30f
+		));
+		EffectManager.Instance.PlayEffect(EffectType.LichFlashInitFx, boss.posGun.transform.position, Quaternion.identity);
+		yield return new WaitForSeconds(timeBetweenShots);
+
+		// 3rd shot
+		boss.takeBulletFunc.GetFunction()((
+			FlyweightType.Lich2HeadWireBullet,
+			boss.posGun.transform.position,
+			boss.Vector2ToAngle(direction) + 10f
+		));
+		EffectManager.Instance.PlayEffect(EffectType.LichFlashInitFx, boss.posGun.transform.position, Quaternion.identity);
+		yield return new WaitForSeconds(timeBetweenShots);
+
+		// 4th shot
+		boss.takeBulletFunc.GetFunction()((
+			FlyweightType.Lich2HeadWireBullet,
+			boss.posGun.transform.position,
+			boss.Vector2ToAngle(direction) - 10f
+		));
+		EffectManager.Instance.PlayEffect(EffectType.LichFlashInitFx, boss.posGun.transform.position, Quaternion.identity);
+		yield return new WaitForSeconds(timeBetweenShots + 0.5f);
+
+		// final shot
+		boss.takeBulletFunc.GetFunction()((
+			FlyweightType.Lich2HeadWireBullet,
+			boss.posGun.transform.position,
+			boss.Vector2ToAngle(boss.playerPos.CurrentValue - (Vector2)boss.posGun.transform.position)
+		));
+		EffectManager.Instance.PlayEffect(EffectType.LichFlashInitFx, boss.posGun.transform.position, Quaternion.identity);
 	}
 }
 

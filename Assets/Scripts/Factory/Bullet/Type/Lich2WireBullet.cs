@@ -37,37 +37,37 @@ public class Lich2WireBullet : Projectile
 
 	private void Update()
 	{
-		//if (!startMove)
-		//{
-		//	return;
-		//}
+		if (!startMove)
+		{
+			return;
+		}
 
-		//time += Time.deltaTime;
+		time += Time.deltaTime;
 
-		//// Thời gian 1 chu kỳ của sóng sin
-		//float period = 1f / frequency;
+		// Thời gian 1 chu kỳ của sóng sin
+		float period = 1f / frequency;
 
-		//if (time <= period)
-		//{
-		//	// Dao động sin vuông góc quanh vị trí ban đầu
-		//	float offset = Mathf.Sin(time * frequency * 2f * Mathf.PI) * amplitude;
-		//	Vector2 waveOffset = perpendicularDirection * offset;
+		if (time <= period)
+		{
+			// Dao động sin vuông góc quanh vị trí ban đầu
+			float offset = Mathf.Sin(time * frequency * 2f * Mathf.PI) * amplitude;
+			Vector2 waveOffset = perpendicularDirection * offset;
 
-		//	// Cập nhật vị trí viên đạn
-		//	transform.position = startPosition + (Vector3)waveOffset;
-		//}
-		//else
-		//{
-		//	transform.position = startPosition;
-		//	startMove = false; // Dừng chuyển động sau khi hoàn thành 1 chu kỳ
-		//}
+			// Cập nhật vị trí viên đạn
+			transform.position = startPosition + (Vector3)waveOffset;
+		}
+		else
+		{
+			transform.position = startPosition;
+			startMove = false; // Dừng chuyển động sau khi hoàn thành 1 chu kỳ
+		}
 	}
 
-	//public void StartMove()
-	//{
-	//	startMove = true;
-	//	startPosition = transform.position; // Lưu vị trí ban đầu khi bắt đầu chuyển động
-	//}
+	public void StartMove()
+	{
+		startMove = true;
+		startPosition = transform.position; // Lưu vị trí ban đầu khi bắt đầu chuyển động
+	}
 
 
 	public void OnTriggerEnter2D(Collider2D collision)
@@ -92,7 +92,7 @@ public class Lich2WireBullet : Projectile
 
 	public void CoroutineClear(float time)
 	{
-		StartCoroutine(AutoClean(time));
+		this.StartCoroutine(AutoClean(time));
 	}
 
 	private IEnumerator AutoClean(float time)

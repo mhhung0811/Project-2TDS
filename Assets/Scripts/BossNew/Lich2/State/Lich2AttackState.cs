@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Lich2AttackState : Lich2State
 {
-	private float duration = 8f;
 	private float delayAttack = 2.5f;
+	private bool preSkill = true;
 	public Lich2AttackState(Lich2 highPriest, Lich2StateMachine stateMachine) : base(highPriest, stateMachine)
 	{
 
@@ -16,9 +16,16 @@ public class Lich2AttackState : Lich2State
 	{
 		base.Enter();
 		boss.animator.SetBool("Attack", true);
-		boss.StartCoroutine(ExitState());
-		//boss.StartCoroutine(Skill1());
-		boss.StartCoroutine(Skill2());
+		if (preSkill)
+		{
+			boss.StartCoroutine(Skill1());
+			preSkill = false;
+		}
+		else
+		{
+			boss.StartCoroutine(Skill2());
+			preSkill = true; 
+		}
 	}
 
 	public override void Exit()
@@ -37,12 +44,6 @@ public class Lich2AttackState : Lich2State
 	{
 		base.PhysicsUpdate();
 	}
-
-	private IEnumerator ExitState()
-	{
-		yield return new WaitForSeconds(duration);
-		boss.stateMachine.ChangeState(boss.idleState);
-	}
 	
 	private IEnumerator Skill1()
 	{
@@ -59,13 +60,21 @@ public class Lich2AttackState : Lich2State
 		}
 		yield return new WaitForSeconds(0.5f);
 		boss.StartCoroutine(SpawnRandom());
+
+		yield return new WaitForSeconds(5f);
+		stateMachine.ChangeState(boss.idleState);
 	}
 
 	private IEnumerator Skill2()
 	{
 		yield return new WaitForSeconds(delayAttack);
 		boss.StartCoroutine(SpawnRandomHeadWire());
-		yield return new WaitForSeconds(4.5f);
+		yield return new WaitForSeconds(3f);
+		boss.animator.SetBool("Idle", true);
+		yield return new WaitForSeconds(0.5f);
+		boss.animator.SetBool("Idle", false);
+		yield return new WaitForSeconds(delayAttack - 0.5f);
+		EffectManager.Instance.PlayEffect(EffectType.Lich2ExplodeCenter, boss.areaCenter.position, Quaternion.identity);
 		boss.SpawnArcBullets(
 			boss.areaCenter.transform.position,
 			Vector2.down,
@@ -73,6 +82,7 @@ public class Lich2AttackState : Lich2State
 			12,
 			FlyweightType.Lich2HeadWireBullet
 		);
+		stateMachine.ChangeState(boss.idleState);
 	}
 
 	public void SpawnArcBendingBullets(Vector2 pos, Vector2 direction, float totalAngle, int bulletCount, float delayMove)
@@ -95,7 +105,7 @@ public class Lich2AttackState : Lich2State
 
 	private IEnumerator SpawnRandom()
 	{
-		for(int i = 0; i < 32; i++)
+		for(int i = 0; i < 30; i++)
 		{
 			Vector2 pos = (Vector2)boss.areaCenter.transform.position + Random.insideUnitCircle * 0.6f;
 			SpawnBendingLine(
@@ -117,7 +127,7 @@ public class Lich2AttackState : Lich2State
 				pos,
 				boss.Vector2ToAngle(boss.playerPos.CurrentValue - pos)
 			));
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(0.375f);
 		}
 	}
 

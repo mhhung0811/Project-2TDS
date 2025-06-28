@@ -5,7 +5,7 @@ using UnityEngine;
 public class Lich1IdleState : Lich1State
 {
 	private float coolDownExplode = 15f;
-	private float coolDownSummon = 25f;
+	private float coolDownSummon = 20f;
 	
 	private bool canUseExplodeState = false;
 	private bool canUseSummonState = false;
@@ -13,7 +13,10 @@ public class Lich1IdleState : Lich1State
 	private bool isGunState = false;
 	public Lich1IdleState(Lich1 highPriest, Lich1StateMachine stateMachine) : base(highPriest, stateMachine)
 	{
-
+		canUseExplodeState = false;
+		canUseSummonState = false;
+		Debug.Log("Lich1IdleState created");
+		boss.StartCoroutine(FirstCoolDown());
 	}
 
 	public override void Enter()
@@ -21,8 +24,6 @@ public class Lich1IdleState : Lich1State
 		base.Enter();
 		boss.animator.SetBool("Idle", true);
 		boss.StartCoroutine(ControllerState());
-		boss.StartCoroutine(CoolDownExplode());
-		boss.StartCoroutine(CoolDownSummon());
 	}
 
 	public override void Exit()
@@ -48,15 +49,15 @@ public class Lich1IdleState : Lich1State
 
 		if (canUseExplodeState)
 		{
-			boss.stateMachine.ChangeState(boss.explodeState);
 			boss.StartCoroutine(CoolDownExplode());
+			boss.stateMachine.ChangeState(boss.explodeState);
 			yield break;
 		}
 
 		if (canUseSummonState)
 		{
-			boss.stateMachine.ChangeState(boss.summonState);
 			boss.StartCoroutine(CoolDownSummon());
+			boss.stateMachine.ChangeState(boss.summonState);
 			yield break;
 		}
 
@@ -74,16 +75,23 @@ public class Lich1IdleState : Lich1State
 
 	private IEnumerator CoolDownExplode()
 	{
-		canUseSummonState = false;
+		canUseExplodeState = false;
 		yield return new WaitForSeconds(coolDownExplode);
 		canUseExplodeState = true;
 	}
 
 	private IEnumerator CoolDownSummon()
 	{
-		canUseExplodeState = false;
+		canUseSummonState = false;
 		yield return new WaitForSeconds(coolDownSummon);
 		canUseSummonState = true;
+	}
+
+	private IEnumerator FirstCoolDown()
+	{
+		yield return new WaitForSeconds(5f);
+		boss.StartCoroutine(CoolDownExplode());
+		boss.StartCoroutine(CoolDownSummon());
 	}
 }
 
