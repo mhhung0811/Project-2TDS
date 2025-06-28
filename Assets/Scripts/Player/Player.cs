@@ -45,6 +45,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 	[NonSerialized]
 	public Vector2 MovementInput;
 
+	public GameObject trailTele;
+
 	// private PlayerInventory _inventory;
 	private PlayerArsenal _arsenal;
 	private Camera MainCamera;
@@ -52,6 +54,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 	[Header("Interaction Zone")]
 	public float interactionOffSet = 0.25f;
 	public CircleCollider2D interactCollider;
+	public Material dissolveMAT;
 
 	#region State Machine Variables
 	public PlayerStateMachine StateMachine;
@@ -59,6 +62,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
     public PlayerMoveState MoveState;
     public PlayerRollState RollState;
     public PlayerDieState DieState;
+	public PlayerTeleState TeleState;
 	#endregion
 	private void Awake()
     {
@@ -67,6 +71,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
         IdleState = new PlayerIdleState(this, StateMachine);
         MoveState = new PlayerMoveState(this, StateMachine);
 		DieState = new PlayerDieState(this, StateMachine);
+		TeleState = new PlayerTeleState(this, StateMachine);
 	}
     void Start()
     {
@@ -75,12 +80,14 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 		_arsenal = GetComponent<PlayerArsenal>();
         HoldGun = GetComponentInChildren<HoldGun>();
 		SpriteRenderer = GetComponent<SpriteRenderer>();
+
 		IsFacingRight = true;
 		MovementInput = new Vector2(1, 0);
         StateMachine.Initialize(IdleState);
 		isInvulnerable = false;
 		IsPlayerInteractable = true;
 		CanExplodeInteractable = true;
+		dissolveMAT.SetFloat("_VerticalDissolve", 0f);
 
 		if (SaveGameManager.Instance.isGameLoaded)
 		{
@@ -103,6 +110,14 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 		StateMachine.CurrentState.FrameUpdate();
 		UpdateInteractColliderByPosMouse();
         OnShoot();
+
+		if(StateMachine.CurrentState == IdleState || StateMachine.CurrentState == MoveState)
+		{
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				StateMachine.ChangeState(TeleState);
+			}
+		}
 	}
     void FixedUpdate()
     {
@@ -471,6 +486,47 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 	{
 		visitor.Visit(this);
 	}
+
+	#region dissolve effect
+	public void StartVerDissolve(float duration)
+	{
+		StartCoroutine(VerDissolveEffect(duration));
+	}
+
+	public void StartVerAppear(float duration)
+	{
+		StartCoroutine(VerAppearEffect(duration));
+	}
+
+	private IEnumerator VerDissolveEffect(float duration)
+	{
+		float elapsedTime = 0f;
+		dissolveMAT.SetFloat("_DissolveAmount", 0f);
+		SpriteRenderer.material = dissolveMAT;
+		while (elapsedTime < duration)
+		{
+			float dissolveAmount = Mathf.Lerp(0f, 1.2f, elapsedTime / duration);
+			dissolveMAT.SetFloat("_VerticalDissolve", dissolveAmount);
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+		dissolveMAT.SetFloat("_VerticalDissolve", 1.2f);
+	}
+
+	private IEnumerator VerAppearEffect(float duration)
+	{
+		float elapsedTime = 0f;
+		SpriteRenderer.material = dissolveMAT;
+		while (elapsedTime < duration)
+		{
+			float dissolveAmount = Mathf.Lerp(1.2f, 0f, elapsedTime / duration);
+			dissolveMAT.SetFloat("_VerticalDissolve", dissolveAmount);
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+		dissolveMAT.SetFloat("_VerticalDissolve", 0f);
+	}
+	#endregion
 
 	#region Animation Triggers
 	public void AnimationTriggerEvent(AnimationTriggerType triggerEvent)
