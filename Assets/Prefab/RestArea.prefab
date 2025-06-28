@@ -213,6 +213,7 @@ Transform:
   m_Children:
   - {fileID: 7058317340638849838}
   - {fileID: 6860770964491125245}
+  - {fileID: 592322803684751963}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8147136085225910015
@@ -279,7 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0b41db55dc9fa45984768bc03b0388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPos: {fileID: 592322803684751963}
   openRestPanel: {fileID: 11400000, guid: b547be977640aec498eb97cb0b97117b, type: 2}
+  currentSpawnPos: {fileID: 11400000, guid: 24daa2eba722a7643a014ac309019872, type: 2}
 --- !u!50 &1444905211399449489
 Rigidbody2D:
   serializedVersion: 4
@@ -548,6 +551,37 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!1 &5601438304904812843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592322803684751963}
+  m_Layer: 0
+  m_Name: SpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &592322803684751963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601438304904812843}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3433603097199478420}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7613228540571055471
 GameObject:
   m_ObjectHideFlags: 0

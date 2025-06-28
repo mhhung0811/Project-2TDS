@@ -9,8 +9,11 @@ public class SaveGameManager : Singleton<SaveGameManager>
 	private string _saveListPath;
 	private string _preName;
 
+	[HideInInspector]
 	public bool isGameLoaded;
+	[HideInInspector]
 	public GameData gameData;
+	[HideInInspector]
 	public SaveSlot currentSaveSlot;
 
 	public override void Awake()

@@ -9,6 +9,7 @@ public class RestPanel : MonoBehaviour
     public IntVariable playerMana;
 	public IntVariable playerMaxMana;
     public Vector2Variable playerPos;
+    public Vector2Variable playerSpawn;
     
 	public IntVariable currentRoomIndex;
 	
@@ -33,7 +34,7 @@ public class RestPanel : MonoBehaviour
 		Debug.Log("Saving game...");
         SaveGameManager.Instance.gameData.maxHealth = playerMaxHp.CurrentValue;
 		SaveGameManager.Instance.gameData.maxMana = playerMaxMana.CurrentValue;
-		SaveGameManager.Instance.gameData.lastSpawn = playerPos.CurrentValue;
+		SaveGameManager.Instance.gameData.lastSpawn = playerSpawn.CurrentValue;
 		SaveGameManager.Instance.gameData.lastRoom = currentRoomIndex.CurrentValue;
 		SaveGameManager.Instance.SaveGame(SaveGameManager.Instance.gameData);
 		gameObject.SetActive(false);

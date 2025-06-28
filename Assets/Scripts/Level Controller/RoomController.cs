@@ -6,6 +6,7 @@ public class RoomController : MonoBehaviour
     [SerializeField] private Collider2D roomBound;
     [SerializeField] private Transform roomCenter;
     [SerializeField] private Transform enemyHolder;
+    [SerializeField] private RestArea restArea;
     
     [Header("SO Events")]
     [SerializeField] private Collider2DEvent changeRoomBound;

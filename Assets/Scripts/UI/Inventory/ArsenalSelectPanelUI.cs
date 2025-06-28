@@ -50,6 +50,8 @@ namespace UI
         
         public void InputScroll(InputAction.CallbackContext context)
         {
+            if (!isWeaponPanelOn || !isItemPanelOn) return;
+            
             if (!context.performed) return;
 
             Vector2 scrollDelta = context.ReadValue<Vector2>();

@@ -15,19 +15,19 @@ public class GameData
 	public int currentPowerPieces;
 	
 	public int gunSlots;
-	public int currentGunIndex;
 	public List<GunType> unlockedGuns = new();
+	public List<GunType> currentGuns = new();
 	
 	public int itemSlots;
-	public int currentItemIndex;
 	public List<ItemType> unlockedItems = new();
+	public List<ItemType> currentItems = new();
 
 	public GameData()
 	{
 		maxHealth = 6;
 		maxMana = 1000;
 		gunSlots = 2;
-		currentGunIndex = 0;
 		unlockedGuns.Add(GunType.GlockPro);
+		currentGuns.Add(GunType.GlockPro);
 	}
 }
