@@ -109,6 +109,160 @@ MonoBehaviour:
   reloadTimeMax: {fileID: 11400000, guid: 41b6939160732ea45921ad480903458a, type: 2}
   reloadTimeCurrent: {fileID: 11400000, guid: c981e723458cedc4dba004161d33897f, type: 2}
   isReloading: {fileID: 11400000, guid: a8e88cf90e526e449879dc9ac623defd, type: 2}
+--- !u!1 &1489695155103538933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5681559181498589417}
+  - component: {fileID: 6368259746025263408}
+  m_Layer: 0
+  m_Name: Trail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5681559181498589417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489695155103538933}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6772549295857386393}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!96 &6368259746025263408
+TrailRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489695155103538933}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1439208483
+  m_SortingLayer: 5
+  m_SortingOrder: 1
+  m_Time: 0.1
+  m_PreviewTimeScale: 1
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.024993896
+        inSlope: 0.0009642933
+        outSlope: 0.0009642933
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.315638
+      - serializedVersion: 3
+        time: 0.5009227
+        value: 0.20120773
+        inSlope: 0.008442425
+        outSlope: 0.008442425
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.1408091
+      - serializedVersion: 3
+        time: 1
+        value: 0.016662598
+        inSlope: 0.0169241
+        outSlope: 0.0169241
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.14615801
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0, g: 0.28724968, b: 0.9622642, a: 1}
+      key1: {r: 0, g: 0.96387434, b: 1, a: 1}
+      key2: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 65535
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_MaskInteraction: 0
+  m_Autodestruct: 0
+  m_Emitting: 1
+  m_ApplyActiveColorSpace: 1
 --- !u!1 &1603245697972234260
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,10 +467,13 @@ GameObject:
   - component: {fileID: 8445335004037890109}
   - component: {fileID: 4708352331105556207}
   - component: {fileID: 8794105362669998000}
+  - component: {fileID: 5215565851158081456}
   - component: {fileID: 2407178947788878506}
   - component: {fileID: 1873615056651309943}
   - component: {fileID: 3430104747011733366}
   - component: {fileID: 9056676259950396385}
+  - component: {fileID: 2737662573744579640}
+  - component: {fileID: 5736001294974005158}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -342,6 +499,7 @@ Transform:
   - {fileID: 8730119341281830351}
   - {fileID: 945528780157767083}
   - {fileID: 6227899878831904453}
+  - {fileID: 5681559181498589417}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8480231936002484304
@@ -471,8 +629,13 @@ MonoBehaviour:
   MovementSpeed: 5
   RollSpeed: 8
   RollDuration: 0.68
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  trailTele: {fileID: 1489695155103538933}
   interactionOffSet: 0.25
   interactCollider: {fileID: 2547707970219836964}
+  dissolveMAT: {fileID: 2100000, guid: 9b7eab51e5e35d94ba5de9e64dbb77a9, type: 2}
 --- !u!114 &790851280412161788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,6 +829,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 90d51abb-2826-454e-880f-b9c5e2328f34
     m_ActionName: Player/Press V[/Keyboard/v]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e3af33de-a040-459f-a16c-8d1cccd20e0d
+    m_ActionName: Player/Change Weapon[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f92f68ab-c845-4f29-866c-cf387f831524
+    m_ActionName: Player/Change Item[/Keyboard/leftCtrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3a7bd290-64a5-4367-b585-ce3c08084958
+    m_ActionName: Player/Mouse Scroll[/Mouse/scroll]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -784,6 +959,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5215565851158081456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345081005870679355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ceaca2b3508498d9276bf103ad5aae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: On Gun Arsenal Remove
+  Event: {fileID: 11400000, guid: 1a8477b2b016c7146a8a7d22f074d050, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4708352331105556207}
+        m_TargetAssemblyTypeName: PlayerArsenal, Assembly-CSharp
+        m_MethodName: RemoveGunInArsenal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2407178947788878506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,6 +1076,49 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &9056676259950396385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345081005870679355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8f0a84b5cda044ebf7340dc45a870d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenade: {fileID: 4900765061902340498, guid: f4d4c908fa866dd4b958a1fc48f6de77, type: 3}
+  molotov: {fileID: 329094294015616518, guid: dfc1baf51833f774db7092e1fb360394, type: 3}
+--- !u!114 &2737662573744579640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345081005870679355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96e58b1ba163a943aaccc2d5622fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: 
+  Event: {fileID: 11400000, guid: 3c01e932a95e45c4fb040abe419ca2f9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2848320089499006292}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: SetStatePlayerOnOpenUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5736001294974005158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

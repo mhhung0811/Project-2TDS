@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 554123658703444898}
   - component: {fileID: 1464670617933882888}
+  - component: {fileID: 6843306314035176260}
+  - component: {fileID: 2994128557509615646}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -46,3 +48,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inUseGun: {fileID: 11400000, guid: 1cd1017fada77f24a9510e410c759c29, type: 2}
   onGunArsenalChange: {fileID: 11400000, guid: f93a41f97353b6844a5bb5d60d27a31d, type: 2}
+  onGunArsenalRemove: {fileID: 11400000, guid: 1a8477b2b016c7146a8a7d22f074d050, type: 2}
+--- !u!114 &6843306314035176260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731615934417966485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e328901879d37cb4a8bcb586d2a250fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: Gun Arsenal Change
+  Event: {fileID: 11400000, guid: 665b2aaf211f3b3429970ca720cf740c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1464670617933882888}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: ChangeGunInArsenal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2994128557509615646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731615934417966485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ceaca2b3508498d9276bf103ad5aae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: Gun Arsenal Remove
+  Event: {fileID: 11400000, guid: 788972b8adf053241a354278f0ac839c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1464670617933882888}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: RemoveGunInArsenal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
