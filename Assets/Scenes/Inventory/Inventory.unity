@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &54604015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 891897831236376085, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+  m_PrefabInstance: {fileID: 2077345976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &78100804
 GameObject:
   m_ObjectHideFlags: 0
@@ -6558,7 +6563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1346114916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7028,6 +7033,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1483478449 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4101475479213814961, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+  m_PrefabInstance: {fileID: 2077345976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1510439561 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7767620104099850147, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
@@ -7258,6 +7268,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700356475}
+  m_CullTransparentMesh: 1
+--- !u!1 &1735158051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1735158052}
+  - component: {fileID: 1735158054}
+  - component: {fileID: 1735158053}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1735158052
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735158051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2083420530}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1735158053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735158051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9019608}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1735158054
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735158051}
   m_CullTransparentMesh: 1
 --- !u!1 &1747605640
 GameObject:
@@ -8548,8 +8633,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: m_ActionEvents.Array.data[10].m_ActionId
@@ -8560,12 +8649,36 @@ PrefabInstance:
       value: 90d51abb-2826-454e-880f-b9c5e2328f34
       objectReference: {fileID: 0}
     - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_ActionId
+      value: e3af33de-a040-459f-a16c-8d1cccd20e0d
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_ActionId
+      value: f92f68ab-c845-4f29-866c-cf387f831524
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionId
+      value: 7f44dd51-8d40-45c2-9d38-a33ed4346b4d
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: m_ActionEvents.Array.data[10].m_ActionName
       value: Player/Press C[/Keyboard/c]
       objectReference: {fileID: 0}
     - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: m_ActionEvents.Array.data[11].m_ActionName
       value: Player/Press V[/Keyboard/v]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_ActionName
+      value: Player/Change Weapon[/Keyboard/leftShift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_ActionName
+      value: Player/Change Item[/Keyboard/ctrl]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179938055159909483, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionName
+      value: UI/Mouse Scroll[/Mouse/scroll]
       objectReference: {fileID: 0}
     - target: {fileID: 2575200575036347308, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -8581,7 +8694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3427133275888095501, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3910157956719572203, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -8717,14 +8830,174 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7767620104099850147, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1920600268}
+    - targetCorrespondingSourceObject: {fileID: 5545094129775094871, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1735158052}
     - targetCorrespondingSourceObject: {fileID: 3910157956719572203, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1346114916}
     - targetCorrespondingSourceObject: {fileID: 3910157956719572203, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1769912496}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2648760097611495529, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2083420532}
+    - targetCorrespondingSourceObject: {fileID: 2648760097611495529, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2083420531}
   m_SourcePrefab: {fileID: 100100000, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+--- !u!1 &2083420529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2648760097611495529, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+  m_PrefabInstance: {fileID: 2077345976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2083420530 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5545094129775094871, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+  m_PrefabInstance: {fileID: 2077345976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2083420531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083420529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 746fc6c4ba2f4d044adb767c8a437c6f, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0ccc1d96-2e79-4088-9c01-d0b3c2d514a2
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 46f4a2ca-43ad-4cb2-9095-5639b08b8b0b
+    m_ActionName: Player/Roll[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27d8b931-fee3-44f3-aa07-fb5aa20965fa
+    m_ActionName: Player/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e12d4a58-82d3-4047-907d-c74be2a3f235
+    m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4348e885-6a88-4099-8e6c-c708a9c5556a
+    m_ActionName: Player/Press 1[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1a4c1b44-1839-4164-900e-6e1efd4b6d47
+    m_ActionName: Player/Press 2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3f1e20bf-7040-4ea8-9183-87fcc95689d2
+    m_ActionName: Player/Press 3[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 748d3a3b-dc93-4817-8dbf-814b88695992
+    m_ActionName: Player/Reload[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0025e402-1739-488a-bac9-b80c8db503e6
+    m_ActionName: Player/OnPauseMenu[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 814cfb59-387b-4ac3-811d-90963253e131
+    m_ActionName: Player/OnMiniMap[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 313f5cb2-1cd6-4d1f-a06d-2b7e14d4cac0
+    m_ActionName: Player/Press C[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 90d51abb-2826-454e-880f-b9c5e2328f34
+    m_ActionName: Player/Press V[/Keyboard/v]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2083420532}
+        m_TargetAssemblyTypeName: UI.ArsenalSelectPanelUI, Assembly-CSharp
+        m_MethodName: InputToggleWeaponPanel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e3af33de-a040-459f-a16c-8d1cccd20e0d
+    m_ActionName: Player/Change Weapon[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2083420532}
+        m_TargetAssemblyTypeName: UI.ArsenalSelectPanelUI, Assembly-CSharp
+        m_MethodName: InputToggleItemPanel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f92f68ab-c845-4f29-866c-cf387f831524
+    m_ActionName: Player/Change Item[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2083420532}
+        m_TargetAssemblyTypeName: UI.ArsenalSelectPanelUI, Assembly-CSharp
+        m_MethodName: InputScroll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3a7bd290-64a5-4367-b585-ce3c08084958
+    m_ActionName: Player/Mouse Scroll[/Mouse/scroll]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &2083420532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083420529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74000456f1ce4e48bdd27b48ae9a187a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPanel: {fileID: 1483478449}
+  weaponPanel: {fileID: 54604015}
+  backgroundPanel: {fileID: 1735158051}
 --- !u!1 &2111157096
 GameObject:
   m_ObjectHideFlags: 0

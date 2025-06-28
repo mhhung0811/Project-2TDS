@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Molotov : BombBase
+public class Molotov : BombBase, IPlayerItem
 {
 	public int timeBurning;
 	public float dps;
@@ -128,4 +128,16 @@ public class Molotov : BombBase
 			prevPoint = currentPoint;
 		}
 	}
+	 
+	#region IPlayerItem Implementation
+
+	public int manaCost { get; set; }
+	public float cooldown { get; set; }
+
+	public void UseItem(Vector2 pos)
+	{
+		Throw(pos);
+	}
+
+	#endregion
 }
