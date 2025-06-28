@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Lich2AttackState : Lich2State
@@ -16,7 +17,8 @@ public class Lich2AttackState : Lich2State
 		base.Enter();
 		boss.animator.SetBool("Attack", true);
 		boss.StartCoroutine(ExitState());
-		boss.StartCoroutine(Skill1());
+		//boss.StartCoroutine(Skill1());
+		boss.StartCoroutine(Skill2());
 	}
 
 	public override void Exit()
@@ -59,6 +61,20 @@ public class Lich2AttackState : Lich2State
 		boss.StartCoroutine(SpawnRandom());
 	}
 
+	private IEnumerator Skill2()
+	{
+		yield return new WaitForSeconds(delayAttack);
+		boss.StartCoroutine(SpawnRandomHeadWire());
+		yield return new WaitForSeconds(4.5f);
+		boss.SpawnArcBullets(
+			boss.areaCenter.transform.position,
+			Vector2.down,
+			150f,
+			12,
+			FlyweightType.Lich2HeadWireBullet
+		);
+	}
+
 	public void SpawnArcBendingBullets(Vector2 pos, Vector2 direction, float totalAngle, int bulletCount, float delayMove)
 	{
 		float startAngle = -totalAngle / 2f;
@@ -88,6 +104,20 @@ public class Lich2AttackState : Lich2State
 				5
 			);
 			yield return new WaitForSeconds(0.15f);
+		}
+	}
+
+	private IEnumerator SpawnRandomHeadWire()
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			Vector2 pos = (Vector2)boss.areaCenter.transform.position + Random.insideUnitCircle * 0.4f;
+			boss.takeBulletFunc.GetFunction()((
+				FlyweightType.Lich2HeadWireBullet,
+				pos,
+				boss.Vector2ToAngle(boss.playerPos.CurrentValue - pos)
+			));
+			yield return new WaitForSeconds(0.5f);
 		}
 	}
 
