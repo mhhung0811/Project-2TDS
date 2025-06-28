@@ -328,6 +328,10 @@ PrefabInstance:
       propertyPath: dissolveMAT
       value: 
       objectReference: {fileID: 2100000, guid: 9b7eab51e5e35d94ba5de9e64dbb77a9, type: 2}
+    - target: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
+      propertyPath: wallLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3345081005870679355, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1098,7 +1102,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 0.024993896
         inSlope: 0.0009642933
         outSlope: 0.0009642933
         tangentMode: 0
@@ -1116,7 +1120,7 @@ TrailRenderer:
         outWeight: 0.1408091
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 0.016662598
         inSlope: 0.0169241
         outSlope: 0.0169241
         tangentMode: 0
@@ -4649,6 +4653,10 @@ PrefabInstance:
     - target: {fileID: 7841221114210095392, guid: ea0a26c36aca82a478613443e14ca4c3, type: 3}
       propertyPath: m_Name
       value: HighPriest
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841221114210095392, guid: ea0a26c36aca82a478613443e14ca4c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

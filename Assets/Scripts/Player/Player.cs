@@ -45,6 +45,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 	[NonSerialized]
 	public Vector2 MovementInput;
 
+	public LayerMask wallLayer;
 	public GameObject trailTele;
 
 	// private PlayerInventory _inventory;

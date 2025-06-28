@@ -44,19 +44,42 @@ public class PlayerTeleState : PlayerState
 
 	}
 
+	private void Tele(float duration)
+	{
+		Vector2 targetPos = (Vector2)Player.GetMousePosition();
+		Vector2 direction = targetPos - (Vector2)Player.transform.position;
+		float distance = direction.magnitude;
+
+		RaycastHit2D[] hits = Physics2D.RaycastAll(Player.transform.position, direction.normalized, distance, Player.wallLayer);
+
+		foreach(var hit in hits)
+		{
+			if(hit.collider != null && hit.collider.CompareTag("Wall"))
+			{
+				targetPos = hit.point - direction.normalized * 0.75f;
+				break;
+			}
+		}
+
+		Player.StartCoroutine(MoveToPosition(Player.transform, targetPos, duration));
+	}
+
 	private IEnumerator Teleport()
 	{
 		// Dissolve
 		Player.StartVerDissolve(0.2f);
 		yield return new WaitForSeconds(0.2f);
+
+		// Move
+		EffectManager.Instance.PlayEffect(EffectType.EfRollLand, Player.transform.position, Quaternion.identity);
 		Player.myRb.velocity = Vector2.zero;
 		Player.trailTele.transform.position = Player.transform.position;
-		// Move
+		Tele(0.1f);
 		Player.trailTele.SetActive(true);
-		Player.StartCoroutine(MoveToPosition(Player.transform, (Vector2)Player.GetMousePosition(), 0.1f));
 		yield return new WaitForSeconds(0.1f);
 
 		// Appear
+		EffectManager.Instance.PlayEffect(EffectType.EfRollLand, Player.transform.position, Quaternion.identity);
 		Player.trailTele.SetActive(false);
 		ChangeState();
 		Player.StartVerAppear(0.2f);
@@ -90,4 +113,5 @@ public class PlayerTeleState : PlayerState
 		}
 	}
 
+	
 }
