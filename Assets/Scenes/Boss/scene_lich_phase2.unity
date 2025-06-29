@@ -36498,14 +36498,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lich2
       objectReference: {fileID: 0}
-    - target: {fileID: 6190209541156573505, guid: ac092ce37e5c5a349a38c8ac9a103805, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6579144598495511191, guid: ac092ce37e5c5a349a38c8ac9a103805, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 12
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
