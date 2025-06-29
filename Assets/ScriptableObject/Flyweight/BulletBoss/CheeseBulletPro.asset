@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 7
   prefab: {fileID: 8522532010833094704, guid: 162131ad4768da042bdc156e15551555, type: 3}
-  speed: 10
+  speed: 15
   damage: 1
   flyweightFunc: {fileID: 11400000, guid: 3aa7bffda27e5bf4a9867fda7beef9bb, type: 2}

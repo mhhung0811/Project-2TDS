@@ -163,5 +163,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 3d1820c55c071e24282b08fa9165544b, type: 2}
   _rb: {fileID: 0}
-  acceleration: 0.5
-  maxSpeed: 20
+  acceleration: 0.6
+  maxSpeed: 27

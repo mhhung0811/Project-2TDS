@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: {fileID: 11400000, guid: f871543b234cd3940af42786ca7500f2, type: 2}
   currentHealth: {fileID: 11400000, guid: 6cfbdf3dd8f8f654fb8ecbbb0c56a38f, type: 2}
-  moveSpeed: 5
+  moveSpeed: 6.5
   isFacingRight: 1
   isStayPosCenter: 0
   isMoveStatePrevious: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   isUsedThrowTrap: 0
   cooldownRoll: 15
   heightAreaMovable: 8
-  widthAreaMovable: 14
+  widthAreaMovable: 20
   PlayerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   BossPos: {fileID: 11400000, guid: 375a2d3c85267fa439c0f0662a71c6d5, type: 2}
   PosCenterBoss: {fileID: 11400000, guid: 4c4294afc2760a24fb22227361bac001, type: 2}
@@ -142,7 +142,7 @@ MonoBehaviour:
   Cheese: {fileID: 1577374604294575238, guid: 6e2ee1fa5b7b81d4985f734a7ac2df19, type: 3}
   Trap: {fileID: 3186472115229708052, guid: 3e8da4dc813d73448a25c78d264ebdb6, type: 3}
   BossDied: {fileID: 11400000, guid: aa1f453824f315b4298886523572a562, type: 2}
-  FinishInitBossState: {fileID: 0}
+  FinishInitBossState: {fileID: 11400000, guid: d479f77e4c457254dbf361851a629b59, type: 2}
   Animator: {fileID: 0}
 --- !u!50 &6965294975741474674
 Rigidbody2D:
@@ -207,7 +207,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.75, y: 0.875}
+    oldSize: {x: 1.125, y: 1.3125}
     newSize: {x: 1.125, y: 1.3125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
