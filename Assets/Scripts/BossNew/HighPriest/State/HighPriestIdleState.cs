@@ -8,7 +8,7 @@ public class HighPriestIdleState : HighPriestState
 	private bool canUseGunState = false;
 	private bool canUseDissolveState = false;
 
-	private float cooldownShield = 30f;
+	private float cooldownShield = 20f;
 	private float cooldownGun = 40f;
 	private float cooldownDissolve = 40f;
 	public HighPriestIdleState(HighPriest highPriest, HighPriestStateMachine stateMachine) : base(highPriest, stateMachine)
@@ -68,7 +68,7 @@ public class HighPriestIdleState : HighPriestState
 			yield break;
 		}
 
-		int random = Random.Range(0, 4);
+		int random = Random.Range(0, 3);
 		switch(random)
 		{
 			case 0:
@@ -79,9 +79,6 @@ public class HighPriestIdleState : HighPriestState
 				break;
 			case 2:
 				boss.stateMachine.ChangeState(boss.fireState);
-				break;
-			case 3:
-				boss.stateMachine.ChangeState(boss.teleState);
 				break;
 		}
 	}

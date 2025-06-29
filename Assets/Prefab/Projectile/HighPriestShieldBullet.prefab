@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1997831944255543716}
   - component: {fileID: 7345827666258484803}
   - component: {fileID: 859836077890341875}
+  - component: {fileID: 778904288490496574}
   m_Layer: 0
   m_Name: HighPriestShieldBullet
   m_TagString: Bullet
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 1439208483
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -245856004, guid: 1b7901796094bf043b85f19e060c7230, type: 3}
+  m_Sprite: {fileID: -1180327960, guid: 38bc88c6ffee9df48b232d6557958b69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -162,4 +163,25 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.35
+--- !u!95 &778904288490496574
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2801221837517870353}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5973e05a60151384994d0bec0559665f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
