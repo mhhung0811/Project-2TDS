@@ -221,7 +221,6 @@ public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInterac
 
 	public void OnRoomRefresh()
 	{
-		// StateMachine.ChangeState(IdleState);
 		gameObject.SetActive(true);
 		CurrentHealth = MaxHealth;
 	}
