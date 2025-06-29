@@ -16,6 +16,8 @@ public class BombShee : Enemy
 
 	public float protectRange;
 
+	private bool isDead = false;
+
 
 	#region State Variables
 	public BombSheeIdleState IdleState { get; set; }
@@ -67,6 +69,21 @@ public class BombShee : Enemy
 	public void CallbackEndAniScreech()
 	{
 		StateMachine.ChangeState(IdleState);
+	}
+
+	private void OnEnable()
+	{
+		if (isDead)
+		{
+			CurrentHealth = MaxHealth;
+			isDead = false;
+			StateMachine.ChangeState(IdleState);
+		}
+	}
+
+	private void OnDisable()
+	{
+		isDead = true;
 	}
 
 	public void CallbackEndAniAttack()
