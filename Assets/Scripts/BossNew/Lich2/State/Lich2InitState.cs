@@ -41,6 +41,7 @@ public class Lich2InitState : Lich2State
 	{
 		yield return new WaitForSeconds(initTime);
 		boss.stateMachine.ChangeState(boss.idleState);
+		boss.FinishInitBossState?.Raise(new Void());
 	}
 
 	private IEnumerator SpawnTrail()

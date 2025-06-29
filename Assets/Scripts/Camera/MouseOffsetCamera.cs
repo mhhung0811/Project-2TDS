@@ -32,6 +32,11 @@ public class MouseOffsetCamera : MonoBehaviour
 		confiner2D = virtualCamera.GetComponent<CinemachineConfiner2D>();
 	}
 
+	private void Start()
+	{
+		this.transform.position =  SaveGameManager.Instance.gameData.lastSpawn;
+	}
+
 	void Update()
 	{
 		// Lấy vị trí chuột trong Viewport (0-1)
@@ -58,15 +63,20 @@ public class MouseOffsetCamera : MonoBehaviour
 
 	void LateUpdate()
 	{
+		
+	}
+
+	private void FixedUpdate()
+	{
 		// Giảm tốc độ camera theo dampingFactor
 		mouseOffset = Vector3.Lerp(mouseOffset, targetOffset, dampingFactor * Time.deltaTime);
 
 		Vector2 shakeOffsetCur = Vector2.zero;
 
-		if(shakeTimer > 0)
+		if (shakeTimer > 0)
 		{
 			shakeTimer -= Time.deltaTime;
-			shakeOffsetCur = shakeOffset * Mathf.Sin(shakeTimer/ shakeDuration * Mathf.PI);
+			shakeOffsetCur = shakeOffset * Mathf.Sin(shakeTimer / shakeDuration * Mathf.PI);
 		}
 		else
 		{

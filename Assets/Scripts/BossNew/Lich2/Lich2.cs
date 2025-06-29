@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
-public class Lich2 : MonoBehaviour, IEnemyInteractable
+public class Lich2 : MonoBehaviour, IEnemyInteractable, IRoomProp
 {
 	#region Boss Properties
 	[Header("Properties")]
@@ -29,6 +29,7 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 	public Animator animator;
 
 	public Material dissolveMAT;
+	public VoidEvent FinishInitBossState;
 	#endregion
 
 
@@ -37,6 +38,7 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 	public GameObject trailCenter;
 	public GameObject trailLeft;
 	public GameObject trailRight;
+	public GameObject cameraBos;
 
 	[Header("Position Transforms")]
 	public Transform posCenter;
@@ -81,6 +83,7 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 	private void Start()
 	{
 		dissolveMAT.SetFloat("_DissolveAmount", 0f);
+		cameraBos.SetActive(true);
 	}
 
 	private void Update()
@@ -189,5 +192,17 @@ public class Lich2 : MonoBehaviour, IEnemyInteractable
 			yield return null;
 		}
 		dissolveMAT.SetFloat("_DissolveAmount", 1f);
+	}
+
+	public void OnRoomEntry()
+	{
+		currentHealth.CurrentValue = maxHealth.CurrentValue;
+		StopAllCoroutines();
+		stateMachine.ChangeState(initState);
+	}
+
+	public void OnRoomRefresh()
+	{
+		gameObject.SetActive(true);
 	}
 }

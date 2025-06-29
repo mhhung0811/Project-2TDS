@@ -80,8 +80,6 @@ public class MiniMapClick : MonoBehaviour
 			{
 				Vector2 playerPos = hit.transform.parent.position;
 				teleportEvent.Raise(playerPos); // Gọi sự kiện teleport
-				Vector2 posEffect = new Vector2(playerPos.x, playerPos.y - 0.6f);
-				EffectManager.Instance.PlayEffect(EffectType.EfTele, posEffect, Quaternion.Euler(-90, 0, 0));
 				break;
 			}
 		}

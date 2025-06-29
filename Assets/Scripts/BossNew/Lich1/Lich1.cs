@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
-public class Lich1 : MonoBehaviour, IEnemyInteractable
+public class Lich1 : MonoBehaviour, IEnemyInteractable, IRoomProp
 {
 	#region Boss Properties
 	public FloatVariable maxHealth;
@@ -25,7 +25,6 @@ public class Lich1 : MonoBehaviour, IEnemyInteractable
 	public Transform posBookFx;
 	public GameObject vfx;
 	public Vector2Variable playerPos;
-	public Vector2Variable posCenter;
 
 	private SpriteRenderer spriteRenderer;
 	private Rigidbody2D rb;
@@ -33,6 +32,8 @@ public class Lich1 : MonoBehaviour, IEnemyInteractable
 	public Collider2D col;
 	[HideInInspector]
 	public Animator animator;
+	public VoidEvent FinishInitBossState;
+	public GameObject cameraInit;
 	#endregion
 
 	#region State Machine
@@ -140,5 +141,17 @@ public class Lich1 : MonoBehaviour, IEnemyInteractable
 				Vector2ToAngle(direction) + angle
 			));
 		}
+	}
+
+	public void OnRoomEntry()
+	{
+		currentHealth.CurrentValue = maxHealth.CurrentValue;
+		StopAllCoroutines();
+		stateMachine.ChangeState(initState);
+	}
+
+	public void OnRoomRefresh()
+	{
+		gameObject.SetActive(true);
 	}
 }

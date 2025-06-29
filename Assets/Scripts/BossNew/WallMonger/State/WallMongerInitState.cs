@@ -48,5 +48,6 @@ public class WallMongerInitState : WallMongerState
 		boss.animator.SetBool("Idle", true);
 		yield return new WaitForSeconds(1f);
 		stateMachine.ChangeState(boss.idleState);
+		boss.FinishInitBossState?.Raise(new Void());
 	}
 }
