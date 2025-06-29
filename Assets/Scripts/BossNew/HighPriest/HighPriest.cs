@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighPriest : MonoBehaviour, IEnemyInteractable
+public class HighPriest : MonoBehaviour, IEnemyInteractable, IRoomProp
 {
 	#region Boss Properties
 	public FloatVariable maxHealth;
@@ -27,6 +27,7 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	public List<Vector2Variable> posTele;
 	public VoidEvent enterDissolve;
 	public VoidEvent exitDissolve;
+	public VoidEvent FinishInitBossState;
 
 	private SpriteRenderer spriteRenderer;
 	private Rigidbody2D rb;
@@ -34,6 +35,7 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 	public Collider2D col;
 	[HideInInspector]
 	public Animator animator;
+	public GameObject cameraInit;
 	#endregion
 
 	#region State Machine
@@ -235,6 +237,18 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable
 			yield return null;
 		}
 		dissolveMAT.SetFloat("_VerticalDissolve", 0f);
+	}
+
+	public void OnRoomEntry()
+	{
+		currentHealth.CurrentValue = maxHealth.CurrentValue;
+		StopAllCoroutines();
+		stateMachine.ChangeState(initState);
+	}
+
+	public void OnRoomRefresh()
+	{
+		gameObject.SetActive(true);
 	}
 
 	#region Unity Methods Debug

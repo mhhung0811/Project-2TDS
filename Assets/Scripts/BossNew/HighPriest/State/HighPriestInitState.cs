@@ -35,6 +35,8 @@ public class HighPriestInitState : HighPriestState
 
 	private IEnumerator LogicAnimation()
 	{
+		boss.cameraInit.SetActive(true);
+		yield return new WaitForSeconds(0.5f);
 		boss.animator.SetBool("PullHatDown", true);
 		yield return new WaitForSeconds(1.165f);
 		boss.animator.SetBool("PullHatDown", false);
@@ -46,6 +48,8 @@ public class HighPriestInitState : HighPriestState
 		boss.animator.SetBool("PullHatUp", false);
 
 		stateMachine.ChangeState(boss.idleState);
+		boss.FinishInitBossState?.Raise(new Void());
+		boss.cameraInit.SetActive(false);
 	}
 
 	private IEnumerator LogicAnimationGun()

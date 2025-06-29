@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WallMonger : MonoBehaviour, IEnemyInteractable
+public class WallMonger : MonoBehaviour, IEnemyInteractable, IRoomProp
 {
 	#region Boss Properties
 	public FloatVariable maxHealth;
@@ -29,6 +29,8 @@ public class WallMonger : MonoBehaviour, IEnemyInteractable
 	public WallMongerVFX vfx;
 	[HideInInspector]
 	public Collider2D col;
+
+	public VoidEvent FinishInitBossState;
 
 	public GameObject colliderAlive;
 	public GameObject colliderDie;
@@ -185,6 +187,18 @@ public class WallMonger : MonoBehaviour, IEnemyInteractable
 		damageFlashMAT.SetFloat("_FlashAmount", 0.5f);
 		yield return new WaitForSeconds(0.1f);
 		damageFlashMAT.SetFloat("_FlashAmount", 0f);
+	}
+
+	public void OnRoomEntry()
+	{
+		currentHealth.CurrentValue = maxHealth.CurrentValue;
+		StopAllCoroutines();
+		stateMachine.ChangeState(initState);
+	}
+
+	public void OnRoomRefresh()
+	{
+		gameObject.SetActive(true);
 	}
 
 

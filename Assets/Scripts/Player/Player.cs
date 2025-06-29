@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using static UnityEditor.PlayerSettings;
 
 public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable, IDamageEffectApplicable
 {
@@ -47,6 +48,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 
 	public LayerMask wallLayer;
 	public GameObject trailTele;
+	public VoidEvent OnFadeOutPanel;
+	public VoidEvent OnUseSkillTele;
 
 	// private PlayerInventory _inventory;
 	private PlayerArsenal _arsenal;
@@ -371,7 +374,23 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 	// Event Listener
 	public void Teleport(Vector2 pos)
 	{
+		StartCoroutine(CoroutineTele(pos));
+	}
+
+	private IEnumerator CoroutineTele(Vector2 pos)
+	{
+		EffectManager.Instance.PlayEffect(EffectType.TeleportPixelFx, transform.position, Quaternion.identity);
+		SpriteRenderer.enabled = false;
+		HoldGun.SetActive(false);
+
+		yield return new WaitForSeconds(1f);
+		OnFadeOutPanel?.Raise(new Void());
+
+		yield return new WaitForSeconds(0.1f);
 		this.transform.position = pos;
+		EffectManager.Instance.PlayEffect(EffectType.TeleportPixelFx, transform.position, Quaternion.identity);
+		SpriteRenderer.enabled = true;
+		HoldGun.SetActive(true);
 	}
 
 	public void OnPlayerBulletHit()

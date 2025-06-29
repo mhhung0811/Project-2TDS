@@ -413,6 +413,14 @@ PrefabInstance:
       propertyPath: MovementSpeed
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
+      propertyPath: OnFadeOutPanel
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ce9f9e7424d5df428cc59611ba5c7f5, type: 2}
+    - target: {fileID: 2848320089499006292, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
+      propertyPath: OnUseSkillTele
+      value: 
+      objectReference: {fileID: 11400000, guid: e109f245efbdc514b984a4774ce3354e, type: 2}
     - target: {fileID: 3345081005870679355, guid: ad706f5bce8df2a49af612d2eea57e2a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1691,6 +1699,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 787829969757640932, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 899105553232128486, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: onOpenUI
       value: 
@@ -1718,6 +1730,10 @@ PrefabInstance:
     - target: {fileID: 3119405445525026381, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822294048067109125, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
+      propertyPath: fadeDuration
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5693390425642028016, guid: 41a930bf54de97a47b53774fbb62256a, type: 3}
       propertyPath: onOpenUI

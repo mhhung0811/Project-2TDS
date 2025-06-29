@@ -37,8 +37,11 @@ public class Lich1InitState : Lich1State
 
 	private IEnumerator CoolDownInitState()
 	{
+		boss.cameraInit.SetActive(true);
 		yield return new WaitForSeconds(initTime);
 		boss.stateMachine.ChangeState(boss.idleState);
+		boss.FinishInitBossState?.Raise(new Void());
+		boss.cameraInit.SetActive(false);
 	}
 
 	private IEnumerator DelayCallFx()

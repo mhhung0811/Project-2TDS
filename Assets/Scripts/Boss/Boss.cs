@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour, IEnemyInteractable
+public class Boss : MonoBehaviour, IEnemyInteractable, IRoomProp
 {
 	public FloatVariable maxHealth;
 	public FloatVariable currentHealth;
@@ -267,6 +267,16 @@ public class Boss : MonoBehaviour, IEnemyInteractable
 		}
 	}
 	#endregion
+
+	public void OnRoomEntry()
+	{
+		currentHealth.CurrentValue = maxHealth.CurrentValue;
+	}
+
+	public void OnRoomRefresh()
+	{
+		gameObject.SetActive(true);
+	}
 
 
 	#region Animation Triggers

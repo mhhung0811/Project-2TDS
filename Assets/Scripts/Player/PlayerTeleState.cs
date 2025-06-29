@@ -14,18 +14,21 @@ public class PlayerTeleState : PlayerState
 		Debug.Log("PlayerTeleState: Enter");
 		base.Enter();
 		Player.IsRolling = true;
-		Player.GetComponent<Collider2D>().enabled = false;
 		Player.StartCoroutine(Teleport());
 		Player.HoldGun.SetActive(false);
+		Player.OnUseSkillTele?.Raise(new Void());
+		Player.IsPlayerInteractable = false; 
+		Player.isInvulnerable = true;
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
-		Player.GetComponent<Collider2D>().enabled = true;
 		Player.IsRolling = false;
 		Player.myRb.velocity = Vector2.zero;
+		Player.IsPlayerInteractable = true;
 		Player.HoldGun.SetActive(true);
+		Player.isInvulnerable = false;
 	}
 
 	public override void FrameUpdate()

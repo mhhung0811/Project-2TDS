@@ -1155,6 +1155,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   vfx: {fileID: 0}
   col: {fileID: 0}
+  FinishInitBossState: {fileID: 11400000, guid: 75001ea9d83ec534191009a716592244, type: 2}
   colliderAlive: {fileID: 1428043240746585568}
   colliderDie: {fileID: 7469011481323367487}
   takeBulletFunc: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}
