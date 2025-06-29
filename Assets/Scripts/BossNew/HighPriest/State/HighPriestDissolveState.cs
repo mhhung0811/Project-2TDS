@@ -117,7 +117,7 @@ public class HighPriestDissolveState : HighPriestState
 		{
 			float angle = (startAngle + i * stepAngle * clockwise) + boss.Vector2ToAngle(direction);
 
-			pos = center + boss.AngleToVector2(angle) * 2f;
+			pos = center + boss.AngleToVector2(angle) * 3f;
 
 			var gobj = boss.takeBulletFunc.GetFunction()((
 				FlyweightType.HighPriestAttackBullet,

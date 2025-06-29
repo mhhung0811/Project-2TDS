@@ -83,13 +83,13 @@ public class Lich2AttackRightState : Lich2State
 
 	private IEnumerator Attack2()
 	{
-		yield return new WaitForSeconds(2.1f);
+		yield return new WaitForSeconds(1.8f);
 		SpawnLinesRandom(
 			boss.areaRight.position,
 			Vector2.left,
 			8,
 			7,
-			1f
+			1.5f
 		);
 	}
 

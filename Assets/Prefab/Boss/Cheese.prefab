@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1439208483
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 4
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -122,11 +122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   CheeseSummon: {fileID: 8213803507765567944, guid: 3bb20450cdc52c6428eba9c44c4506d6, type: 3}
   quantityX: 30
   quantityY: 20
-  width: 28
-  height: 20
+  width: 38
+  height: 26
   CheeseSlam: {fileID: 2197790780690591480, guid: 5921e7138ba678f49a6080f71927df99, type: 3}
   quantityCheese: 80
 --- !u!50 &3214151383681685348

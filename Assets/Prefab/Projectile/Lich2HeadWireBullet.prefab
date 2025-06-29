@@ -148,7 +148,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.32
 --- !u!114 &6517732608052337312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,4 +165,5 @@ MonoBehaviour:
   _rb: {fileID: 0}
   takeBulletFunc: {fileID: 11400000, guid: 8eb0be0dd1044334fae2338272ab24d6, type: 2}
   spacing: 0.5
+  timeClear: 3
   offset: 0.2

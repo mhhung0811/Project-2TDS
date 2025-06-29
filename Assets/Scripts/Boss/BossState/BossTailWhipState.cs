@@ -40,7 +40,7 @@ public class BossTailWhipState : BossState
 
 	public IEnumerator Attack()
 	{
-		float radius = 10;
+		float radius = 15;
 		float startAngle = 30;
 		float endAngle = 90;
 		float quantity = 30;

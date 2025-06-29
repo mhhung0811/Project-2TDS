@@ -70,18 +70,18 @@ public class Lich2AttackCenterState : Lich2State
 			dir: Vector2.right,
 			countLine: 5,
 			amountInLine: 5,
-			widthStep: 2f,
+			widthStep: 3f,
 			countGrid: 5
 		));
 
 		yield return new WaitForSeconds(1f);
 		// Spawn Right
 		boss.StartCoroutine(SpawnGrids(
-			pos: (Vector2)boss.areaRight.position + Vector2.up * 0.75f,
+			pos: (Vector2)boss.areaRight.position + Vector2.up * 1.5f,
 			dir: Vector2.left,
 			countLine: 4,
 			amountInLine: 5,
-			widthStep: 2f,
+			widthStep: 3f,
 			countGrid: 5
 		));
 	}
@@ -174,7 +174,7 @@ public class Lich2AttackCenterState : Lich2State
 			Vector2.right,
 			8,
 			7,
-			1f
+			1.5f
 		);
 		// Right
 		SpawnLinesRandomContinue(
@@ -182,7 +182,7 @@ public class Lich2AttackCenterState : Lich2State
 			Vector2.left,
 			8,
 			7,
-			1f
+			1.5f
 		);
 	}
 

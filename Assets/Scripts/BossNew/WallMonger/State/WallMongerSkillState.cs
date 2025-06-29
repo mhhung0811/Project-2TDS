@@ -53,10 +53,10 @@ public class WallMongerSkillState : WallMongerState
 	{
 		yield return new WaitForSeconds(0.5f);
 		int bulletCount = 10;
-		float width = 7;
+		float width = 12.5F;
 
 		// left
-		Vector2 posStartL = new Vector2(boss.transform.position.x - 8.0f, boss.transform.position.y - 2f);
+		Vector2 posStartL = new Vector2(boss.transform.position.x - 12.5f, boss.transform.position.y - 2f);
 		for (int i = 0; i < 4; i++)
 		{
 			boss.SpawnABulletLine(posStartL, bulletCount, width);
@@ -65,7 +65,7 @@ public class WallMongerSkillState : WallMongerState
 
 		// right
 		yield return new WaitForSeconds(0.15f);
-		Vector2 posStartR = new Vector2(boss.transform.position.x + 1, boss.transform.position.y - 2f);
+		Vector2 posStartR = new Vector2(boss.transform.position.x, boss.transform.position.y - 2f);
 		for (int i = 0; i < 4; i++)
 		{
 			boss.SpawnABulletLine(posStartR, bulletCount, width);
@@ -74,7 +74,7 @@ public class WallMongerSkillState : WallMongerState
 
 		// left
 		yield return new WaitForSeconds(0.15f);
-		posStartL = new Vector2(boss.transform.position.x - 8.0f, boss.transform.position.y - 2f);
+		posStartL = new Vector2(boss.transform.position.x - 12.5f, boss.transform.position.y - 2f);
 		for (int i = 0; i < 4; i++)
 		{
 			boss.SpawnABulletLine(posStartL, bulletCount, width);
@@ -83,7 +83,7 @@ public class WallMongerSkillState : WallMongerState
 
 		// right
 		yield return new WaitForSeconds(0.15f);
-		posStartR = new Vector2(boss.transform.position.x + 1, boss.transform.position.y - 2f);
+		posStartR = new Vector2(boss.transform.position.x , boss.transform.position.y - 2f);
 		for (int i = 0; i < 4; i++)
 		{
 			boss.SpawnABulletLine(posStartR, bulletCount, width);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HighPriestShieldState : HighPriestState
 {
-	private float durationState = 4f;
+	private float durationState = 5f;
 	private float delayAttack = 0.5f;
 	public HighPriestShieldState(HighPriest highPriest, HighPriestStateMachine stateMachine) : base(highPriest, stateMachine)
 	{
@@ -46,8 +46,8 @@ public class HighPriestShieldState : HighPriestState
 
 	private IEnumerator StartSkill()
 	{
-		float radiusStart = 2f;
-		float radiusStep = 0.5f;
+		float radiusStart = 3f;
+		float radiusStep = 1f;
 		int bulletCount = 12;
 		float delayStart = durationState;
 		yield return new WaitForSeconds(delayAttack);
