@@ -133,8 +133,8 @@ MonoBehaviour:
   canRoll: 1
   isUsedThrowTrap: 0
   cooldownRoll: 15
-  heightAreaMovable: 8
-  widthAreaMovable: 20
+  heightAreaMovable: 18
+  widthAreaMovable: 28
   PlayerPos: {fileID: 11400000, guid: 30dd280c446154c4ab5f2f87c53dc06f, type: 2}
   BossPos: {fileID: 11400000, guid: 375a2d3c85267fa439c0f0662a71c6d5, type: 2}
   PosCenterBoss: {fileID: 11400000, guid: 4c4294afc2760a24fb22227361bac001, type: 2}
@@ -214,7 +214,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.6}
+  m_Size: {x: 0.7, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &70099194342025263
 MonoBehaviour:

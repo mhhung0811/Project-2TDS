@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WallMongerJumpState : WallMongerState
 {
-	private float width = 16f;
-	private int bulletCount = 24;
+	private float width = 24f;
+	private int bulletCount = 25;
 	public WallMongerJumpState(WallMonger boss, WallMongerStateMachine stateMachine) : base(boss, stateMachine)
 	{
 
@@ -39,7 +39,7 @@ public class WallMongerJumpState : WallMongerState
 	{
 		// Spawn bullet
 		float angle = boss.Vector2ToAngle(Vector2.down);
-		Vector2 posStart = new Vector2(boss.transform.position.x - 8.0f, boss.transform.position.y - 1.8f);
+		Vector2 posStart = new Vector2(boss.transform.position.x - 12.5f, boss.transform.position.y - 1.8f);
 		float offsetX = width / (bulletCount - 1);
 		for (int i =0;i < bulletCount; i++)
 		{
