@@ -11,6 +11,7 @@ public class EnemyUseGun : Enemy
 
 	public float attackCooldownTimer;
 
+	private bool isDead = false;
 
 	#region State Machine Variables
 	public EnemyIdleState IdleState { get; set; }
@@ -69,6 +70,21 @@ public class EnemyUseGun : Enemy
 	public virtual void Die()
 	{
 		StateMachine.ChangeState(DieState);
+	}
+
+	private void OnEnable()
+	{
+		if(isDead)
+		{
+			this.CurrentHealth = MaxHealth;
+			StateMachine.ChangeState(IdleState);
+			isDead = false;
+		}
+	}
+
+	private void OnDisable()
+	{
+		isDead = true;
 	}
 
 

@@ -18,6 +18,8 @@ public class Gunnut : Enemy
 	public GunnutDieState dieState { get; set; }
 	public GunnutAttackState attackState { get; set; }
 	public GunnutPatrolState patrolState { get; set; }
+
+	private bool isDead = false;
 	private void Awake()
 	{
 		unit = GetComponent<Unit>();
@@ -43,6 +45,21 @@ public class Gunnut : Enemy
 	private void FixedUpdate()
 	{
 		StateMachine.CurrentState.PhysicsUpdate();
+	}
+
+	private void OnEnable()
+	{
+		if(isDead)
+		{
+			CurrentHealth = MaxHealth;
+			isDead = false;
+			StateMachine.ChangeState(patrolState);
+		}
+	}
+
+	private void OnDisable()
+	{
+		isDead = true;
 	}
 
 	public float GetTimeToAttack()
