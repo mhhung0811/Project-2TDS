@@ -30,8 +30,12 @@ public class EffectLineLaze : MonoBehaviour
 		if (hit.collider != null)
 		{
 			lineRenderer.SetPosition(1, hit.point);
+			Debug.Log("Hit: " + hit.collider.name + "pos: " + hit.point);
 		}
-
+		else
+		{
+			lineRenderer.SetPosition(1, transform.position + (Vector3)direction.normalized * 100f);
+		}
 		StartCoroutine(DesTroyLine());
 	}
 
