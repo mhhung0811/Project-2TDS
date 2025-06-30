@@ -92,6 +92,29 @@ public class SaveGameManager : Singleton<SaveGameManager>
 		File.WriteAllText(path, JsonUtility.ToJson(gameData, true));
 		Debug.Log("SaveGameManager: SaveGame: Game saved to " + path);
 	}
+	
+	public void SaveCompletedRoomsOnly(List<int> newCompletedRooms)
+	{
+		string slotName = currentSaveSlot.slotName;
+		string path = _saveDirection + slotName + ".json";
+
+		if (!File.Exists(path))
+		{
+			Debug.LogWarning("Save file does not exist. Cannot save completed rooms.");
+			return;
+		}
+
+		// Load existing game data from file
+		string json = File.ReadAllText(path);
+		GameData loadedData = JsonUtility.FromJson<GameData>(json);
+
+		// Update only the completed rooms
+		loadedData.completedRooms = new List<int>(newCompletedRooms);
+
+		// Save back to the file
+		File.WriteAllText(path, JsonUtility.ToJson(loadedData, true));
+		Debug.Log("SaveGameManager: SaveCompletedRoomsOnly: Saved completedRooms to " + path);
+	}
 
 	// load game data from save slot
 	public void LoadGame()

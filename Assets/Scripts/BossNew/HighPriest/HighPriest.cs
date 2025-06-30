@@ -10,6 +10,8 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable, IRoomProp
 	public float moveSpeed;
 	#endregion
 
+	public VoidEvent onClearRoom;
+
 	#region Interface variables
 	public bool IsEnemyInteractable { get; set; } = true;
 	#endregion
@@ -135,6 +137,8 @@ public class HighPriest : MonoBehaviour, IEnemyInteractable, IRoomProp
 			spriteRenderer.material = damageFlashMAT; // Reset material to avoid flashing after death
 			damageFlashMAT.SetFloat("_FlashAmount", 0f);
 			stateMachine.ChangeState(dieState);
+			
+			onClearRoom?.Raise(new Void());
 			return;
 		}
 		StartCoroutine(FlashWhite());

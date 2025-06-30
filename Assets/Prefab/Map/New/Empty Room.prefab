@@ -322,7 +322,8 @@ MonoBehaviour:
   roomBound: {fileID: 3642429144429336648}
   roomCenter: {fileID: 1239574190849632642}
   enemyHolder: {fileID: 9160803847515852042}
-  restArea: {fileID: 0}
+  isBossRoom: 0
+  roomDoors: []
   changeRoomBound: {fileID: 11400000, guid: 95889db434097174daa0bb50d25bf3ef, type: 2}
   changeRoomIndex: {fileID: 11400000, guid: 4625730d76a0b094b93e3d906a87f0d3, type: 2}
 --- !u!1 &1789759697251404006
@@ -553,6 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inUseEnemy: {fileID: 11400000, guid: 4be9a01bac10e8148bdae38d7384e235, type: 2}
+  roomController: {fileID: 9208754138278057242}
   spawData: []
 --- !u!1 &5539093423048294941
 GameObject:

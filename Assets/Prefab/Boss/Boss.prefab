@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: {fileID: 11400000, guid: f871543b234cd3940af42786ca7500f2, type: 2}
   currentHealth: {fileID: 11400000, guid: 6cfbdf3dd8f8f654fb8ecbbb0c56a38f, type: 2}
+  OnClearRoom: {fileID: 11400000, guid: 1a46e1aabe07c4348a3b2f859ff87d9b, type: 2}
   moveSpeed: 6.5
   isFacingRight: 1
   isStayPosCenter: 0
