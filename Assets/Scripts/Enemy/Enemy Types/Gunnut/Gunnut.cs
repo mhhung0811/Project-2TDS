@@ -141,4 +141,9 @@ public class Gunnut : Enemy
 		yield return new WaitForSeconds(0.05f);
 		damageFlashMATRunTime.SetFloat("_FlashAmount", 0f);
 	}
+
+	public override void SetPatrolArea(PatrolArea patrolArea)
+	{
+		this.patrolArea = patrolArea;
+	}
 }

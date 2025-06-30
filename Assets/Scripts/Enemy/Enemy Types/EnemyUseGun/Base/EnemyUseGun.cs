@@ -155,4 +155,8 @@ public class EnemyUseGun : Enemy
 		StateMachine.ChangeState(KnockbackState);
 	}
 
+	public override void SetPatrolArea(PatrolArea patrolArea)
+	{
+		this.patrolArea = patrolArea;
+	}
 }

@@ -517,6 +517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9160803847515852042}
+  - component: {fileID: 8057632491548801731}
   m_Layer: 0
   m_Name: EnemyHolder
   m_TagString: Untagged
@@ -539,6 +540,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8775601211310972536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8057632491548801731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4251201233480859048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764ae0912a55450a86942cfb7d66262b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inUseEnemy: {fileID: 11400000, guid: 4be9a01bac10e8148bdae38d7384e235, type: 2}
+  spawData: []
 --- !u!1 &5539093423048294941
 GameObject:
   m_ObjectHideFlags: 0
