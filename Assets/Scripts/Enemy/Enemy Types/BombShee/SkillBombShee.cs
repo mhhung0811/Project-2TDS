@@ -8,10 +8,12 @@ public class SkillBombShee : MonoBehaviour
     public float radius;
 
     private Animator ani;
-    private bool isScreeching = false;
+	private SpriteRenderer spriteRenderer;
+	private bool isScreeching = false;
 	private void Awake()
 	{
 		ani = GetComponent<Animator>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
     void Start()
@@ -40,7 +42,20 @@ public class SkillBombShee : MonoBehaviour
 		}
 	}
 
-    public void StartScreech()
+	private void OnEnable()
+	{
+		isScreeching = false;
+		
+		ani.SetBool("IsStart", false);
+		ani.SetBool("IsLoop", false);
+	}
+
+	private void OnDisable()
+	{
+		spriteRenderer.sprite = null; // Reset sprite to avoid flickering
+	}
+
+	public void StartScreech()
     {
         ani.SetBool("IsStart", true);
         isScreeching = true;

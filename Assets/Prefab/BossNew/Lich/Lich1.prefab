@@ -236,6 +236,7 @@ MonoBehaviour:
   col: {fileID: 0}
   animator: {fileID: 0}
   FinishInitBossState: {fileID: 11400000, guid: d479f77e4c457254dbf361851a629b59, type: 2}
+  OnEndPhaseLich1: {fileID: 11400000, guid: a8dcac3e07fa55d49b47b2126b44eb25, type: 2}
   cameraInit: {fileID: 6992376429388429214}
 --- !u!212 &5580706227456901353
 SpriteRenderer:
@@ -408,7 +409,7 @@ Transform:
   m_GameObject: {fileID: 6992376429388429214}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -431,13 +432,13 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 20
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 3.3555923
+    OrthographicSize: 7
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0

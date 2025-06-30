@@ -39,6 +39,7 @@ public class Lich1DieState : Lich1State
 	{
 		yield return new WaitForSeconds(1.25f);
 		boss.gameObject.SetActive(false);
+		boss.OnEndPhaseLich1?.Raise(new Void());
 	}
 }
 
