@@ -6,7 +6,6 @@ public class RoomController : MonoBehaviour
     [SerializeField] private Collider2D roomBound;
     [SerializeField] private Transform roomCenter;
     [SerializeField] private Transform enemyHolder;
-    [SerializeField] private RestArea restArea;
     
     [Header("SO Events")]
     [SerializeField] private Collider2DEvent changeRoomBound;
@@ -17,6 +16,11 @@ public class RoomController : MonoBehaviour
     private void Awake()
     {
         _roomProps = new List<IRoomProp>(enemyHolder.GetComponentsInChildren<IRoomProp>());
+    }
+
+    public void Init()
+    {
+        enemyHolder.GetComponent<EnemySpawner>().SpawnEnemies();
         // Disable enemy holder at the start
         enemyHolder.gameObject.SetActive(false);
     }

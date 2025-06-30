@@ -222,6 +222,11 @@ public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInterac
 	public void OnRoomRefresh()
 	{
 		gameObject.SetActive(true);
-		CurrentHealth = MaxHealth;
+		// CurrentHealth = MaxHealth;
+	}
+
+	public virtual void SetPatrolArea(PatrolArea patrolArea)
+	{
+		
 	}
 }

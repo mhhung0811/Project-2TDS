@@ -54,6 +54,8 @@ public enum EnemyType
 	Enemy3,
 	Enemy4,
 	Gigi,
+	Gunnut,
+	Bombshee,
 }
 
 public enum GunType

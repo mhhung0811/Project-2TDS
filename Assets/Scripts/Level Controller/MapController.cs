@@ -3,17 +3,27 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> roomPrefabs;
+    
     [SerializeField] private IntVariable currentRoom;
     
-    private List<RoomController> _rooms;
-    
-    private void Awake()
-    {
-        _rooms = new List<RoomController>(GetComponentsInChildren<RoomController>());
-    }
+    private List<RoomController> _rooms = new();
 
     private void Start()
     {
+        Init();
+    }
+
+    private void Init()
+    {
+        foreach (var r in roomPrefabs)
+        {
+            var room = Instantiate(r, transform).GetComponent<RoomController>();
+            room.transform.SetParent(transform);
+            room.Init();
+            _rooms.Add(room);
+        }
+        
         currentRoom.CurrentValue = SaveGameManager.Instance.gameData.lastRoom;
         
         // Load the current room
