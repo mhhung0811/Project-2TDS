@@ -453,6 +453,7 @@ MonoBehaviour:
   maxHealth: {fileID: 11400000, guid: f871543b234cd3940af42786ca7500f2, type: 2}
   currentHealth: {fileID: 11400000, guid: 6cfbdf3dd8f8f654fb8ecbbb0c56a38f, type: 2}
   moveSpeed: 2
+  onClearRoom: {fileID: 11400000, guid: 1a46e1aabe07c4348a3b2f859ff87d9b, type: 2}
   gunAnimator: {fileID: 8641693119898083530}
   damageFlashMAT: {fileID: 2100000, guid: b09d076b1484b2d418d8161d7c12df7a, type: 2}
   dissolveMAT: {fileID: 2100000, guid: d898bc35fb3640348a885a6b189c9b99, type: 2}

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WallMonger : MonoBehaviour, IEnemyInteractable, IRoomProp
 {
+	public VoidEvent onClearRoom;
+	
 	#region Boss Properties
 	public FloatVariable maxHealth;
 	public FloatVariable currentHealth;
@@ -120,6 +122,7 @@ public class WallMonger : MonoBehaviour, IEnemyInteractable, IRoomProp
 		if (currentHealth.CurrentValue <= 0)
 		{
 			stateMachine.ChangeState(dieState);
+			onClearRoom.Raise(new Void());
 		}
 	}
 

@@ -6,6 +6,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable, IRoomProp
 {
 	public FloatVariable maxHealth;
 	public FloatVariable currentHealth;
+	public VoidEvent OnClearRoom;
 	public float moveSpeed;
 	public bool isFacingRight = true;
 	public bool isStayPosCenter = false;
@@ -162,6 +163,7 @@ public class Boss : MonoBehaviour, IEnemyInteractable, IRoomProp
 
 		if(currentHealth.CurrentValue <= 0)
 		{
+			OnClearRoom.Raise(new Void());
 			Die();
 		}
 	}

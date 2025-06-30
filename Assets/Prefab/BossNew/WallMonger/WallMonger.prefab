@@ -1146,6 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a93c7cacdc47e498d16b260c3521b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onClearRoom: {fileID: 11400000, guid: 1a46e1aabe07c4348a3b2f859ff87d9b, type: 2}
   maxHealth: {fileID: 11400000, guid: f871543b234cd3940af42786ca7500f2, type: 2}
   currentHealth: {fileID: 11400000, guid: 6cfbdf3dd8f8f654fb8ecbbb0c56a38f, type: 2}
   moveSpeed: 1.5

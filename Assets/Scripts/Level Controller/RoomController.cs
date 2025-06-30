@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Props;
 using UnityEngine;
 
 public class RoomController : MonoBehaviour
@@ -6,20 +7,20 @@ public class RoomController : MonoBehaviour
     [SerializeField] private Collider2D roomBound;
     [SerializeField] private Transform roomCenter;
     [SerializeField] private Transform enemyHolder;
+    [SerializeField] private bool isBossRoom = false;
+    [SerializeField] private List<RoomDoor> roomDoors;
     
     [Header("SO Events")]
     [SerializeField] private Collider2DEvent changeRoomBound;
     [SerializeField] private RoomControllerEvent changeRoomIndex;
     
-    private List<IRoomProp> _roomProps;
-    
-    private void Awake()
-    {
-        _roomProps = new List<IRoomProp>(enemyHolder.GetComponentsInChildren<IRoomProp>());
-    }
+    private List<IRoomProp> _roomProps = new();
+    private bool isCompleted = false;
 
-    public void Init()
+    public void Init(bool isClear)
     {
+        isCompleted = isClear;
+        
         enemyHolder.GetComponent<EnemySpawner>().SpawnEnemies();
         // Disable enemy holder at the start
         enemyHolder.gameObject.SetActive(false);
@@ -33,11 +34,17 @@ public class RoomController : MonoBehaviour
         changeRoomBound.Raise(roomBound);
         changeRoomIndex.Raise(this);
         
+        if (isCompleted) return;
         enemyHolder.gameObject.SetActive(true);
         
         foreach(var prop in _roomProps)
         {
             prop.OnRoomEntry();
+        }
+        
+        foreach (var door in roomDoors)
+        {
+            door.IsClose = true;
         }
     }
 
@@ -52,5 +59,19 @@ public class RoomController : MonoBehaviour
         {
             prop.OnRoomRefresh();
         }
+    }
+    
+    public void CompleteRoom()
+    {
+        isCompleted = true;
+        foreach (var door in roomDoors)
+        {
+            door.IsClose = false;
+        }
+    }
+    
+    public void AddRoomProp(IRoomProp prop)
+    {
+        _roomProps.Add(prop);
     }
 }

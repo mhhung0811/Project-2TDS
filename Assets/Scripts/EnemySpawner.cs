@@ -19,6 +19,7 @@ public class SpawnEnemy
 public class EnemySpawner : MonoBehaviour
 {
     public InUseEnemy inUseEnemy;
+    public RoomController roomController;
     public List<SpawData> spawData;
     
     public void SpawnEnemies()
@@ -32,6 +33,11 @@ public class EnemySpawner : MonoBehaviour
                     var spawnObj = Instantiate(inUseEnemy.GetEnemyByType(enemy.type), spawnPoint.position, Quaternion.identity);
                     spawnObj.transform.SetParent(data.area.transform);
                     spawnObj.GetComponent<Enemy>().SetPatrolArea(data.area);
+                    
+                    if (spawnObj.GetComponent<IRoomProp>() != null)
+                    {
+                        roomController.AddRoomProp(spawnObj.GetComponent<IRoomProp>());
+                    }
                 }
             }
         }

@@ -9,6 +9,7 @@ public class GameData
 	public int maxMana;
 	public Vector2 lastSpawn;
 	public int lastRoom;
+	public List<int> completedRooms = new();
 
 	public int currentHPPieces;
 	public int currentManaPieces;

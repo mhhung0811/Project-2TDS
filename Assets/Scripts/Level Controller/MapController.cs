@@ -16,11 +16,15 @@ public class MapController : MonoBehaviour
 
     private void Init()
     {
-        foreach (var r in roomPrefabs)
+        var completedRooms = SaveGameManager.Instance.gameData.completedRooms;
+        
+        for (int i = 0; i < roomPrefabs.Count; i++)
         {
+            var r = roomPrefabs[i];
+            
             var room = Instantiate(r, transform).GetComponent<RoomController>();
             room.transform.SetParent(transform);
-            room.Init();
+            room.Init(completedRooms.Contains(i));
             _rooms.Add(room);
         }
         
@@ -42,6 +46,23 @@ public class MapController : MonoBehaviour
         foreach (var room in _rooms)
         {
             room.Refresh();
+        }
+    }
+
+    // Event listener
+    public void ClearRoom()
+    {
+        var rooms = SaveGameManager.Instance.gameData.completedRooms;
+        if (!rooms.Contains(currentRoom.CurrentValue))
+        {
+            _rooms[currentRoom.CurrentValue].CompleteRoom();
+            rooms.Add(currentRoom.CurrentValue);
+            SaveGameManager.Instance.SaveCompletedRoomsOnly(rooms);
+            Debug.Log($"Room {currentRoom.CurrentValue} marked as cleared.");
+        }
+        else
+        {
+            Debug.Log($"Room {currentRoom.CurrentValue} is already cleared.");
         }
     }
 }
