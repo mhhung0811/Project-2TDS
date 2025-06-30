@@ -8,10 +8,10 @@ public class RestArea : MonoBehaviour, IInteractable
 	public bool isInteractable { get; set; }
     public VoidEvent openRestPanel;
     public Vector2Variable currentSpawnPos;
-
 	public void Interact(GameObject go)
 	{
 		openRestPanel.Raise(new Void());
 		currentSpawnPos.CurrentValue = spawnPos.position;
 	}
+
 }

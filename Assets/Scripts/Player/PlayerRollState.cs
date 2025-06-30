@@ -24,6 +24,12 @@ public class PlayerRollState : PlayerState
         _rollDuration = Player.RollDuration;
         _rollDirection = Player.MovementInput;
 
+		// Check Roll Through Table
+		if (_rollDirection != Vector2.zero)
+		{
+			CheckRollThroughTable(_rollDirection);
+		}
+
 		// Check Flip
 		if (Player.MovementInput.x > 0 && !Player.IsFacingRight)
 		{
@@ -98,5 +104,29 @@ public class PlayerRollState : PlayerState
 		// Debug.Log("Roll Land");
 		EffectManager.Instance.PlayEffect(EffectType.EfRollLand, Player.transform.position + new Vector3(0, -0.2f, 0), Quaternion.identity);
 		Player.myRb.velocity = Player.MovementInput.normalized * Player.RollSpeed / 2;
+	}
+
+    public void CheckRollThroughTable(Vector2 direction)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Player.transform.position, direction, 3, LayerMask.GetMask("Unwalkable"));
+		if (hit.collider != null && hit.collider.CompareTag("Table"))
+		{
+            Debug.Log("Roll Through Table: " + hit.collider.name);
+			Table table = hit.collider.GetComponent<Table>();
+			if (table != null && table.CanRollThrough)
+			{
+				Physics2D.IgnoreCollision(Player.GetComponent<Collider2D>(), hit.collider, true);
+				Player.StartCoroutine(OffIgnoreCollison(table));
+			}
+		}
+	}
+
+    private IEnumerator OffIgnoreCollison(Table table)
+    {
+        yield return new WaitForSeconds(_rollDuration);
+		if (table != null)
+		{
+			Physics2D.IgnoreCollision(Player.GetComponent<Collider2D>(), table.GetComponent<Collider2D>(), false);
+		}
 	}
 }

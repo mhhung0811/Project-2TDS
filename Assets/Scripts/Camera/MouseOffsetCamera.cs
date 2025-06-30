@@ -61,12 +61,7 @@ public class MouseOffsetCamera : MonoBehaviour
 		shakeTimer = shakeDuration;
 	}
 
-	void LateUpdate()
-	{
-		
-	}
-
-	private void FixedUpdate()
+	private void LateUpdate()
 	{
 		// Giảm tốc độ camera theo dampingFactor
 		mouseOffset = Vector3.Lerp(mouseOffset, targetOffset, dampingFactor * Time.deltaTime);

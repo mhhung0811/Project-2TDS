@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunName: AWM
   isInfiniteAmmo: 0
-  maxAmmoPerMag: 5
-  currentAmmo: 5
-  totalAmmo: 40
-  manaCost: 5
+  maxAmmoPerMag: 10
+  currentAmmo: 10
+  totalAmmo: 80
+  manaCost: 20
   reloadTime: 2.5
-  fireRate: 1
+  fireRate: 3
   posHoldGun: {x: -0.1, y: -0.1, z: 0}
   posGun: {x: 0.4, y: 0, z: 0}
