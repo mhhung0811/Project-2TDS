@@ -10,6 +10,7 @@ public class GameData
 	public Vector2 lastSpawn;
 	public int lastRoom;
 	public List<int> completedRooms = new();
+	public List<int> clearRewardRooms = new();
 
 	public int currentHPPieces;
 	public int currentManaPieces;

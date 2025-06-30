@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     private Dictionary<GunType, GunBase> _guns = new();
     
     public InUseGun inUseGun;
+    public InventoryPanelUI inventoryPanelUI;
     
     public GunBaseIntEvent onGunArsenalChange;
     public IntEvent onGunArsenalRemove;
@@ -71,24 +73,39 @@ public class InventoryManager : MonoBehaviour
             return;
         }
         
-        var gun = inUseGun.GetGunByType(gunType);
-        if (gun != null)
+        var gunPrefab = inUseGun.GetGunByType(gunType);
+        if (gunPrefab == null)
         {
-            var gunBase = gun.GetComponent<GunBase>();
-            if (gunBase != null)
-            {
-                _guns.Add(gunType, gunBase);
-                Debug.Log($"Gun {gun.name} unlocked!");
-            }
-            else
-            {
-                Debug.LogError($"GunBase component not found on {gun.name}");
-            }
+            Debug.LogError($"Gun prefab for {gunType} not found!");
+            return;
         }
-        else
+
+        var gunBase = gunPrefab.GetComponent<GunBase>();
+        if (gunBase == null)
         {
-            Debug.LogError($"Gun of type {gunType} not found!");
+            Debug.LogError($"GunBase component not found on {gunPrefab.name}");
+            return;
         }
+        
+        // 1. Save logic
+        _gunColection.Add(gunType);
+        _guns.Add(gunType, gunBase);
+        SaveGameManager.Instance.gameData.unlockedGuns.Add(gunType);
+
+        // 2. UI update
+        if (inventoryPanelUI != null && inventoryPanelUI.isActiveAndEnabled)
+        {
+            inventoryPanelUI.AddGunToInventoryUI(gunType);
+        }
+
+        // 3. Optional: auto-equip if no guns
+        if (SaveGameManager.Instance.gameData.currentGuns.Count == 0)
+        {
+            inventoryPanelUI.EquipGun(SaveGameManager.Instance.gameData.unlockedGuns.Count - 1);
+        }
+
+        SaveGameManager.Instance.SaveGame(SaveGameManager.Instance.gameData);
+        Debug.Log($"Gun {gunType} unlocked and added to inventory.");
     }
     
     // Event listener

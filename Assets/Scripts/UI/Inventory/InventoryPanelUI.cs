@@ -262,5 +262,23 @@ namespace UI
             SaveGameManager.Instance.SaveGame(gameData);
             gameObject.SetActive(false);
         }
+        
+        public void AddGunToInventoryUI(GunType gunType)
+        {
+            var index = SaveGameManager.Instance.gameData.unlockedGuns.IndexOf(gunType);
+            if (index < 0)
+            {
+                Debug.LogWarning($"Trying to add UI for gun {gunType} but it's not in unlockedGuns.");
+                return;
+            }
+
+            var gunHolder = Instantiate(gunHolderPrefab, gunPanel.transform);
+            gunHolder.GetComponent<GunInventoryHolderUI>().Initialize(this, index);
+
+            var gunUI = Instantiate(inUseGun.GetGunUIByType(gunType), gunHolder.transform);
+            var rect = gunUI.GetComponent<RectTransform>();
+            rect.localPosition *= gunUIScale;
+            rect.sizeDelta *= gunUIScale;
+        }
     }
 }
