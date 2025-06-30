@@ -33,6 +33,7 @@ public class Lich1 : MonoBehaviour, IEnemyInteractable, IRoomProp
 	[HideInInspector]
 	public Animator animator;
 	public VoidEvent FinishInitBossState;
+	public VoidEvent OnEndPhaseLich1;
 	public GameObject cameraInit;
 	#endregion
 
@@ -145,6 +146,7 @@ public class Lich1 : MonoBehaviour, IEnemyInteractable, IRoomProp
 
 	public void OnRoomEntry()
 	{
+		Debug.Log("Lich1 OnRoomEntry");
 		currentHealth.CurrentValue = maxHealth.CurrentValue;
 		StopAllCoroutines();
 		stateMachine.ChangeState(initState);
