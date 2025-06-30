@@ -74,7 +74,7 @@ TrailRenderer:
   m_SortingLayerID: 1439208483
   m_SortingLayer: 5
   m_SortingOrder: 1
-  m_Time: 0.15
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -83,23 +83,14 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0026779175
-        value: 0.07245064
-        inSlope: 0
-        outSlope: 0
+        time: 0
+        value: 0.16173854
+        inSlope: -0.005032791
+        outSlope: -0.005032791
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.97118413
-        value: 0.06920548
-        inSlope: -0.034373935
-        outSlope: -0.034373935
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 1
+        outWeight: 0.20554407
       - serializedVersion: 3
         time: 1
         value: 0
@@ -114,8 +105,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.83445597, b: 1, a: 1}
-      key1: {r: 0, g: 0.28724968, b: 0.9622642, a: 1}
+      key0: {r: 0, g: 0.81132424, b: 0.9607843, a: 1}
+      key1: {r: 0.025378227, g: 0, b: 1, a: 0.6666667}
       key2: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -171,7 +162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3110049438764245085
 Transform:
   m_ObjectHideFlags: 0
@@ -270,8 +261,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 1
+      scalar: 0.4
+      minScalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4994,7 +4985,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7031336427493445905}
   - component: {fileID: 7378253498645682369}
-  - component: {fileID: 7080100935157177673}
   - component: {fileID: 8700374895686737331}
   - component: {fileID: 5702667297230032570}
   - component: {fileID: 6416605073846441864}
@@ -5015,7 +5005,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3057522528652070555}
@@ -5063,7 +5053,7 @@ SpriteRenderer:
   m_SortingLayerID: 1439208483
   m_SortingLayer: 5
   m_SortingOrder: 1
-  m_Sprite: {fileID: 394869370, guid: b9a5124a781a7ec418d2a4ebfb608e94, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0a256bd8a0fc05b4f9f2405af0e7b4f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5074,27 +5064,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7080100935157177673
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6634478904440318480}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 986f2921c9703874c9a01f3b84fe48db, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &8700374895686737331
 Rigidbody2D:
   serializedVersion: 4

@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Teleport
   - MenuMiniMapCamera
+  - Table
   layers:
   - Default
   - TransparentFX

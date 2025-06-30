@@ -128,7 +128,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
         StateMachine.CurrentState.PhysicsUpdate();
     }
 
-    public void InputShoot(InputAction.CallbackContext context)
+	// Input Actions
+	public void InputShoot(InputAction.CallbackContext context)
     {
 		if (GameManager.Instance.isHoldButtonTab) {
 			IsPressShoot = false;
