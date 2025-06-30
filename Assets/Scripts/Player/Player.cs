@@ -394,6 +394,32 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 		HoldGun.SetActive(true);
 	}
 
+	public void LichHandPull(Vector2 pos)
+	{
+		StartCoroutine(LichHandPullCoroutine(pos));
+	}
+
+	private IEnumerator LichHandPullCoroutine(Vector2 pos)
+	{
+		yield return new WaitForSeconds(2f);
+		EffectManager.Instance.PlayEffect(EffectType.HandPullFx, transform.position, Quaternion.identity);
+		SpriteRenderer.enabled = false;
+		HoldGun.SetActive(false);
+		IsRolling = true;
+
+		yield return new WaitForSeconds(2.5f);
+		OnFadeOutPanel?.Raise(new Void());
+
+		yield return new WaitForSeconds(0.1f);
+		this.transform.position = pos;
+		EffectManager.Instance.PlayEffect(EffectType.HandPullFx, transform.position, Quaternion.identity);
+
+		yield return new WaitForSeconds(1.5f);
+		SpriteRenderer.enabled = true;
+		IsRolling = false;
+		HoldGun.SetActive(true);
+	}
+
 	public void OnPlayerBulletHit()
 	{
         if (isInvulnerable) return;

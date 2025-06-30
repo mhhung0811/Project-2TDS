@@ -24,6 +24,11 @@ public class RoomController : MonoBehaviour
         enemyHolder.GetComponent<EnemySpawner>().SpawnEnemies();
         // Disable enemy holder at the start
         enemyHolder.gameObject.SetActive(false);
+
+        foreach(Transform enemyHolder in enemyHolder)
+        {
+            _roomProps.Add(enemyHolder.GetComponent<IRoomProp>());
+		}
     }
 
     public void Entry()

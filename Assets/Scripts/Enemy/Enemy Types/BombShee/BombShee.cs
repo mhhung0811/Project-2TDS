@@ -49,7 +49,10 @@ public class BombShee : Enemy
 		animator = GetComponent<Animator>();
 
 		canScreech = true;
-		enemyTarget = CheckTargetEnemy();
+		if (enemyTarget == null)
+		{
+			enemyTarget = CheckTargetEnemy();
+		}
 		Debug.Log(enemyTarget.transform.position);
 		StateMachine.Initialize(MoveState);
 	}
@@ -73,11 +76,17 @@ public class BombShee : Enemy
 
 	private void OnEnable()
 	{
+		StopAllCoroutines();
+		canScreech = true;
+		if(enemyTarget == null)
+		{
+			enemyTarget = CheckTargetEnemy();
+		}
 		if (isDead)
 		{
 			CurrentHealth = MaxHealth;
 			isDead = false;
-			StateMachine.ChangeState(IdleState);
+			StateMachine.ChangeState(MoveState);
 		}
 	}
 
