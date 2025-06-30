@@ -17,6 +17,8 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 	public Vector2Variable PlayerPos;
     public VoidEvent PlayerHit;
 	public VoidEvent PlayerDied;
+	public VoidEvent OnRest;
+	public IntEvent EntryRoom;
 	public Animator Animator;
     public Rigidbody2D myRb;
 
@@ -368,6 +370,7 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 
 	public void Die()
 	{
+		IsPlayerInteractable = false;
 		StateMachine.ChangeState(DieState);
 		HoldGun.SetActive(false);
 	}
@@ -505,6 +508,17 @@ public class Player : MonoBehaviour, IPlayerInteractable, IExplodedInteractable,
 	public void Accept(IDamageEffectVisitor visitor)
 	{
 		visitor.Visit(this);
+	}
+	
+	// Event listener
+	public void OnPlayerRevive()
+	{
+		Teleport(SaveGameManager.Instance.gameData.lastSpawn);
+		HP.CurrentValue = MaxHP.CurrentValue;
+		Mana.CurrentValue = MaxMana.CurrentValue;
+		StateMachine.ChangeState(IdleState);
+		OnRest.Raise(new Void());
+		EntryRoom.Raise(SaveGameManager.Instance.gameData.lastRoom);
 	}
 
 	#region dissolve effect

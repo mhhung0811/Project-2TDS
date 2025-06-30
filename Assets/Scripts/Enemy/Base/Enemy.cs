@@ -213,7 +213,6 @@ public class Enemy : MonoBehaviour, IEnemyMove, ITriggerCheckable, IEnemyInterac
 
 	public void OnRoomEntry()
 	{
-		Debug.Log("OnRoomEntry called for " + gameObject.name);
 		if (gameObject.activeSelf)
 		{
 			CurrentHealth = MaxHealth;

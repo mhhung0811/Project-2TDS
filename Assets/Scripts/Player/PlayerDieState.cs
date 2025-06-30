@@ -10,6 +10,7 @@ public class PlayerDieState : PlayerState
 
 	public override void Enter()
 	{
+		Player.GetComponent<Collider2D>().enabled = false;
 		base.Enter();
 		Player.Animator.SetBool("IsDie", true);
 		Player.myRb.velocity = Vector2.zero;
@@ -21,6 +22,8 @@ public class PlayerDieState : PlayerState
 	{
 		base.Exit();
 		Player.Animator.SetBool("IsDie", false);
+		Player.myRb.constraints = RigidbodyConstraints2D.None;
+		Player.GetComponent<Collider2D>().enabled = false;
 	}
 
 	public override void FrameUpdate()
@@ -40,7 +43,7 @@ public class PlayerDieState : PlayerState
 
 	public IEnumerator Die()
 	{
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(3f);
 		Void @void = new Void();
 		Player.PlayerDied.Raise(@void);
 	}

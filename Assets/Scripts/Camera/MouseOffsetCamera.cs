@@ -102,6 +102,7 @@ public class MouseOffsetCamera : MonoBehaviour
 	// Event listener
 	public void ChangeCameraBound(Collider2D coll)
 	{
+		Debug.Log("Change Camera Bound");
 		confiner2D.m_BoundingShape2D = coll;
 	}
 }

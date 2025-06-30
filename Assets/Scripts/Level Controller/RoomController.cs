@@ -9,6 +9,7 @@ public class RoomController : MonoBehaviour
     [SerializeField] private Transform enemyHolder;
     [SerializeField] private bool isBossRoom = false;
     [SerializeField] private List<RoomDoor> roomDoors;
+    [SerializeField] private GameObject chest;
     
     [Header("SO Events")]
     [SerializeField] private Collider2DEvent changeRoomBound;
@@ -16,11 +17,13 @@ public class RoomController : MonoBehaviour
     
     private List<IRoomProp> _roomProps = new();
     private bool isCompleted = false;
+    private bool isCompletedReward = false;
 
-    public void Init(bool isClear)
+    public void Init(bool isClear, bool isClearReward)
     {
         isCompleted = isClear;
-        
+        isCompletedReward = isClearReward;
+
         enemyHolder.GetComponent<EnemySpawner>().SpawnEnemies();
         // Disable enemy holder at the start
         enemyHolder.gameObject.SetActive(false);
@@ -28,11 +31,29 @@ public class RoomController : MonoBehaviour
 
     public void Entry()
     {
+        Debug.Log(isCompletedReward);
         // Update A*
         PathRequestManager.Instance.UpdatePos(roomCenter.position);
         
         changeRoomBound.Raise(roomBound);
         changeRoomIndex.Raise(this);
+        Debug.Log(isCompletedReward);
+
+        if (isCompletedReward)
+        {
+            Debug.Log("Room already completed and reward given.");
+            if (chest != null)
+            {
+                chest.SetActive(false);
+            }
+        }
+        else
+        {
+            if (chest != null)
+            {
+                chest.SetActive(true);
+            }
+        }
         
         if (isCompleted) return;
         enemyHolder.gameObject.SetActive(true);
@@ -67,6 +88,15 @@ public class RoomController : MonoBehaviour
         foreach (var door in roomDoors)
         {
             door.IsClose = false;
+        }
+    }
+    
+    public void CompleteRoomReward()
+    {
+        isCompletedReward = true;
+        if (chest != null)
+        {
+            chest.SetActive(true);
         }
     }
     
