@@ -28,7 +28,9 @@ public class GameData
 	{
 		maxHealth = 6;
 		maxMana = 1000;
-		gunSlots = 2;
+		gunSlots = 3;
+		lastSpawn = Vector2.zero;
+		lastRoom = 0;
 		unlockedGuns.Add(GunType.GlockPro);
 		currentGuns.Add(GunType.GlockPro);
 	}
