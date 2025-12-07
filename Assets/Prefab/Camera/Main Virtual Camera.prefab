@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 4038075176080980011}
   - component: {fileID: 2572287661765111080}
   - component: {fileID: 1580062102473998449}
+  - component: {fileID: 1471367611059646318}
   m_Layer: 0
   m_Name: Main Virtual Camera
   m_TagString: Untagged
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 6
+    OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -296,3 +297,32 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1471367611059646318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7821949177216510568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5135e12f539d44b68152b137ea23115d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: Change room
+  Event: {fileID: 11400000, guid: 95889db434097174daa0bb50d25bf3ef, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9044683478113996363}
+        m_TargetAssemblyTypeName: MouseOffsetCamera, Assembly-CSharp
+        m_MethodName: ChangeCameraBound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

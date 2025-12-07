@@ -17,6 +17,7 @@ public class MapController : MonoBehaviour
     private void Init()
     {
         var completedRooms = SaveGameManager.Instance.gameData.completedRooms;
+        var clearRewardRooms = SaveGameManager.Instance.gameData.clearRewardRooms;
         
         for (int i = 0; i < roomPrefabs.Count; i++)
         {
@@ -24,7 +25,7 @@ public class MapController : MonoBehaviour
             
             var room = Instantiate(r, transform).GetComponent<RoomController>();
             room.transform.SetParent(transform);
-            room.Init(completedRooms.Contains(i));
+            room.Init(completedRooms.Contains(i), clearRewardRooms.Contains(i));
             _rooms.Add(room);
         }
         
@@ -64,5 +65,29 @@ public class MapController : MonoBehaviour
         {
             Debug.Log($"Room {currentRoom.CurrentValue} is already cleared.");
         }
+    }
+    
+    // Event listener
+    public void FinishChest()
+    {
+        var rooms = SaveGameManager.Instance.gameData.clearRewardRooms;
+        if (!rooms.Contains(currentRoom.CurrentValue))
+        {
+            _rooms[currentRoom.CurrentValue].CompleteRoomReward();
+            rooms.Add(currentRoom.CurrentValue);
+            SaveGameManager.Instance.SaveClearRewardOnly(rooms);
+            Debug.Log($"Room {currentRoom.CurrentValue} chest finished.");
+        }
+        else
+        {
+            Debug.Log($"Room {currentRoom.CurrentValue} chest is already finished.");
+        }
+    }
+
+    // Event listener
+    public void EntryRoom(int index)
+    {
+        _rooms[currentRoom.CurrentValue].Exit();
+        _rooms[index].Entry();
     }
 }
